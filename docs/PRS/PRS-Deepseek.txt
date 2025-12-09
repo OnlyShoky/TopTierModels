@@ -1,0 +1,345 @@
+# **Product Requirements Specification (PRS): TopTierModels v1.0 (Free-Tier Deployment)**
+
+**Document Version:** 1.0
+**Date:** October 26, 2023
+**Status:** Approved for Development
+**Project Lead:** Product Manager
+**Stakeholders:** Engineering, Design, Data Science
+**Deployment Constraints:** Free-tier services only (Netlify + Supabase)
+
+---
+
+## **1. Project Overview**
+
+### **1.1 Purpose**
+TopTierModels v1.0 is a minimal viable product that automatically generates curated technical content and tierlists for AI models from Hugging Face. The system is designed to operate entirely within free-tier service limits while delivering core functionality.
+
+### **1.2 Target Users**
+1. **AI/ML Developers & Researchers:** Quick access to analyzed model information.
+2. **Technical Content Consumers:** Digestible summaries of complex models.
+3. **Admin/Curator:** Single user managing the content pipeline.
+
+### **1.3 Key Objectives & Free-Tier Constraints**
+| Objective | Success Metric | Free-Tier Constraint Mitigation |
+| :--- | :--- | :--- |
+| Functional MVP within free tiers | All core features operational | Design for Netlify static hosting; Supabase free tier limits (500MB DB, 1GB storage) |
+| Automated content pipeline | Successful processing of 5-10 models/week | Manual trigger via local script; batch processing not automated |
+| Reliable data display | 99% uptime for frontend | Static site generation; client-side data fetching only |
+| Cost control | $0 monthly infrastructure cost | Strict use of Netlify + Supabase free plans only |
+
+---
+
+## **2. Functional Requirements (Free-Tier Optimized)**
+
+### **2.1 Core Processing Pipeline (Local Execution)**
+**V1 CONSTRAINT:** No cloud processing services. All pipeline steps run locally on developer machine.
+
+**2.1.1 Input & Trigger**
+- **Manual Process:** Admin runs local Python script with Hugging Face URL as argument
+- **Example Command:** `python pipeline.py https://huggingface.co/Tongyi-MAI/Z-Image-Turbo`
+- **Future Compatibility:** Data model supports multiple sources but V1 processes one at a time
+
+**2.1.2 Local Scraping**
+- Extract text, images, and links using Python (BeautifulSoup/requests)
+- Store images locally temporarily before upload to Supabase Storage
+- Implement rate limiting to respect Hugging Face servers
+
+**2.1.3 Local LLM Processing**
+- **V1 CONSTRAINT:** Use free local LLM (Ollama with Llama 3.1 8B or Mistral 7B)
+- Generate:
+  - Technical article (500-800 words)
+  - LinkedIn post (2-3 sentences + CTA)
+  - Code snippets (1-2 examples)
+  - Normalized scores (0-100 scale)
+- **Fallback:** If local LLM fails, use structured template-based generation
+
+**2.1.4 Tierlist Generation**
+- Category assignment based on model tags/description
+- Tier calculation (S/A/B/C) based on normalized scores within category
+- Update tierlist JSON in Supabase after each new model addition
+
+**2.1.5 Data Storage to Supabase**
+- Python script uses Supabase service_role key (stored locally)
+- Upload structured data to tables
+- Upload images to Supabase Storage (free tier: 1GB limit)
+- Implement cleanup of temporary local files
+
+### **2.2 Front-End (Netlify Static Site)**
+**V1 CONSTRAINT:** No server-side rendering; client-side data fetching only.
+
+**2.2.1 Static Site Architecture**
+- Framework: Next.js with Static Export or Vite + React
+- Deployed as static files to Netlify
+- Environment variables for Supabase URL and anon key only
+
+**2.2.2 Client-Side Data Fetching**
+- Use Supabase JavaScript client for all data queries
+- Implement loading states for async data fetching
+- Client-side pagination (not server-side) to stay within free tier
+
+**2.2.3 Pages & Components**
+- **Blog Page:** Grid of article cards with client-side search/filter
+- **Tierlist Page:** Static tier visualization with category toggles
+- **Article Detail:** Full article view with sidebar metrics
+- **Admin Page:** Simple form to display pipeline status (no execution)
+
+### **2.3 No LinkedIn API Integration in V1**
+- **V1 CONSTRAINT:** No external API integrations
+- LinkedIn post displayed as copyable text only
+- Manual posting required by user
+
+---
+
+## **3. Non-Functional Requirements (Free-Tier Focused)**
+
+### **3.1 Architecture Constraints**
+| Requirement | Free-Tier Implementation |
+| :--- | :--- |
+| **Hosting** | Netlify static site deployment only |
+| **Database** | Supabase PostgreSQL (500MB limit) with RLS enabled |
+| **File Storage** | Supabase Storage (1GB limit), optimized images |
+| **Processing** | Local execution only, no cloud functions |
+| **Authentication** | Supabase auth available but not required for V1 |
+
+### **3.2 Performance Optimizations**
+- **Image Optimization:** Compress all images before upload (target <100KB each)
+- **Database Indexing:** Critical for free-tier performance:
+  ```sql
+  CREATE INDEX idx_models_category ON models(category);
+  CREATE INDEX idx_model_scores_overall ON model_scores(overall_score DESC);
+  ```
+- **Frontend Bundle Size:** Keep under 500KB gzipped for Netlify free CDN
+- **Client-Side Caching:** Implement SWR or React Query for efficient Supabase queries
+
+### **3.3 Security (Free-Tier Specific)**
+1. **Supabase RLS Policies:**
+   - `models`: `SELECT` allowed for `anon`, `INSERT/UPDATE` for `service_role` only
+   - `model_scores`: `SELECT` for `anon`, all other operations for `service_role`
+   - Storage: Public read access for images, no public writes
+
+2. **Key Management:**
+   - `SUPABASE_SERVICE_ROLE_KEY`: Local environment only, never in frontend
+   - `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Frontend only
+   - No other API keys or secrets in frontend code
+
+### **3.4 Data Limits Monitoring**
+- Implement dashboard showing:
+  - Database size (warning at 400MB)
+  - Storage usage (warning at 800MB)
+  - Row counts per table
+- **Alert:** Manual cleanup process if approaching limits
+
+---
+
+## **4. Data Model (Supabase Free-Tier Optimized)**
+
+### **4.1 Tables with Size Estimates**
+**`models`** (~50KB per model, target: <100 models)
+- Essential fields only: `id`, `name`, `huggingface_url`, `category`, `created_at`
+- **EXCLUDE:** `paper_link`, `github_link` stored in `articles` JSON field
+
+**`articles`** (~20KB per article)
+- `full_content` (text, compressed)
+- `extracted_images` (JSON array, store Supabase Storage URLs only)
+- **Optimization:** Store featured image as URL string, not JSON
+
+**`model_scores`** (~5KB per model)
+- Only 4 integer scores + `metrics_raw` (JSON)
+- **Optimization:** Remove separate `id`, use `model_id` as primary key
+
+**`tierlists`** (Single row per category)
+- Store as JSON arrays of model IDs
+- **Optimization:** Update in-place, don't create new rows
+
+### **4.2 Storage Strategy**
+- **Image Storage:** `model-images/{model_id}/{image_name.jpg}`
+- **Max Image Size:** 150KB after compression
+- **Estimated Storage:** 100 models × 3 images × 150KB = 45MB (well under 1GB)
+
+### **4.3 Row Level Security (RLS) Policies**
+```sql
+-- models table
+CREATE POLICY "Anyone can view models" ON models
+  FOR SELECT USING (true);
+  
+CREATE POLICY "Only service role can insert" ON models
+  FOR INSERT WITH CHECK (auth.role() = 'service_role');
+```
+
+---
+
+## **5. System Architecture (Free-Tier Only)**
+
+### **5.1 Deployment Architecture**
+```
+[Developer Machine]
+    │
+    ├── [Local Pipeline Script] (manual run)
+    │     ├── Scraper (Python)
+    │     ├── LLM Processor (Ollama local)
+    │     └── Supabase Writer (service_role key)
+    │           │
+    │           └── [Supabase Free Tier]
+    │                 ├── PostgreSQL (500MB)
+    │                 └── Storage (1GB)
+    │
+    └── [Frontend Code]
+          │
+          └── [Netlify Build & Deploy]
+                │
+                └── [Static Site]
+                      └── [Browser] ──fetches──> [Supabase (anon key)]
+```
+
+### **5.2 Component Specifications**
+**Local Pipeline Script:**
+- Language: Python 3.9+
+- Dependencies: `supabase`, `beautifulsoup4`, `requests`, `ollama` (or local LLM)
+- Storage: Temporary local folder for processing
+- Output: Direct upload to Supabase
+
+**Frontend Application:**
+- Framework: Next.js 14 (Static Export) or Vite + React
+- UI Library: Tailwind CSS for minimal bundle size
+- State Management: React hooks + SWR for data fetching
+- Bundle Target: <500KB total
+
+### **5.3 No Automation in V1**
+- **No GitHub Actions:** Manual deployment only
+- **No Scheduled Jobs:** Manual pipeline execution
+- **No Webhooks:** Manual content updates
+
+---
+
+## **6. User Stories (Free-Tier Scope)**
+
+### **6.1 Core User Stories**
+1. **As a** visitor,
+   **I want to** browse AI model articles and tierlists,
+   **so that** I can quickly understand model capabilities without reading source documentation.
+
+2. **As a** developer,
+   **I want to** see generated code snippets and usage links,
+   **so that** I can start using a model quickly.
+
+3. **As a** content creator,
+   **I want to** copy pre-written LinkedIn summaries,
+   **so that** I can share AI developments without writing from scratch.
+
+### **6.2 Admin/Curator Story (Manual Process)**
+4. **As an** admin,
+   **I want to** run a local script to process a new Hugging Face model,
+   **so that** I can add it to the site without manual content creation.
+
+---
+
+## **7. Wireframes / Mockups (Simple Implementation)**
+
+### **7.1 Blog Homepage**
+- **Header:** Logo + "TopTierModels" + dark/light toggle
+- **Content:** 3-column grid (desktop) / 1-column (mobile) of cards
+- **Card Simplicity:** Image, title, score, 2-line excerpt, category badge
+- **No Server-side Search:** Client-side filter only (simple text match)
+
+### **7.2 Tierlist Page**
+- **Visual Simplicity:** Four colored columns (S/A/B/C) with model cards
+- **Interaction:** Click category buttons to filter (client-side)
+- **No Drag-and-Drop:** Static display only
+- **Search:** Simple client-side search by model name
+
+### **7.3 Article Detail**
+- **Left (70%):** Markdown-rendered article
+- **Right Sidebar (30%):** Model scores (bar visualization), copyable LinkedIn text, code snippet expander
+- **Responsive:** Sidebar becomes top-aligned on mobile
+
+---
+
+## **8. Acceptance Criteria (Free-Tier Specific)**
+
+### **8.1 Deployment & Infrastructure**
+- [ ] **AC-1:** Frontend deploys successfully to Netlify free tier
+- [ ] **AC-2:** Supabase project created with all tables and RLS policies
+- [ ] **AC-3:** Total initial deployment size <50MB (Netlify limit for free tier)
+
+### **8.2 Pipeline Functionality**
+- [ ] **AC-4:** Local script processes Tongyi-MAI/Z-Image-Turbo URL successfully
+- [ ] **AC-5:** Generated content stored in Supabase with all required fields
+- [ ] **AC-6:** Images uploaded to Supabase Storage and referenced correctly
+- [ ] **AC-7:** Tierlist updates correctly after new model addition
+
+### **8.3 Frontend Display**
+- [ ] **AC-8:** Blog page displays all articles from Supabase
+- [ ] **AC-9:** Tierlist page shows correct S/A/B/C categorization
+- [ ] **AC-10:** Article detail page shows full content and sidebar data
+- [ ] **AC-11:** Site is fully responsive on mobile/desktop
+- [ ] **AC-12:** Dark/light mode toggle works without page refresh
+
+### **8.4 Performance & Limits**
+- [ ] **AC-13:** Page load time <3 seconds on Netlify CDN
+- [ ] **AC-14:** Database queries use indexes (verified with EXPLAIN)
+- [ ] **AC-15:** No service_role key exposure in frontend code
+- [ ] **AC-16:** Image sizes <150KB after compression
+
+---
+
+## **9. Future Considerations (Post-Free-Tier)**
+
+### **9.1 If Successful (Upgrade Path)**
+1. **Netlify Pro:** Serverless functions for automated pipeline
+2. **Supabase Pro:** Increased limits, realtime subscriptions
+3. **Automation:** GitHub Actions for scheduled processing
+4. **External APIs:** LinkedIn, Twitter posting integration
+
+### **9.2 Monetization Considerations**
+1. **Sponsorships:** Model company sponsored spots
+2. **Pro Features:** Advanced analytics, API access, custom tierlists
+3. **Enterprise:** White-label solution for AI companies
+
+### **9.3 Technical Evolution**
+1. **Edge Functions:** Move processing to Supabase Edge Functions
+2. **CDN:** Image optimization via Supabase CDN
+3. **Real-time:** Live tierlist updates with Supabase realtime
+4. **Multi-LLM:** Cloud LLM API integration (OpenAI, Anthropic)
+
+---
+
+## **10. Free-Tier Limitations & Workarounds**
+
+| Limitation | Workaround for V1 |
+| :--- | :--- |
+| **No server-side code execution** | All processing done locally, manual deployment |
+| **Supabase 500MB database limit** | Regular pruning of old/unused data |
+| **Supabase 1GB storage limit** | Aggressive image compression, limit 3 images/model |
+| **No automated scheduling** | Manual pipeline execution by admin |
+| **Netlify 100GB bandwidth/month** | Implement client-side caching, CDN optimizations |
+| **No webhook endpoints** | Manual content updates only |
+| **Limited build minutes (Netlify)** | Optimize build process, minimal dependencies |
+
+---
+
+## **11. Getting Started Checklist**
+
+1. [ ] Create Supabase project (free tier)
+2. [ ] Set up tables with RLS policies
+3. [ ] Create local Python environment for pipeline
+4. [ ] Set up Ollama with 7B parameter model
+5. [ ] Develop and test pipeline with example URL
+6. [ ] Create frontend with Next.js/Vite
+7. [ ] Connect frontend to Supabase (anon key)
+8. [ ] Test full flow: pipeline → Supabase → frontend display
+9. [ ] Deploy to Netlify
+10. [ ] Document manual update process for admin
+
+---
+
+**Approval:**  
+This PRS defines a fully functional MVP that operates within free-tier constraints while delivering core value. The architecture allows for future paid-tier upgrades without significant refactoring.
+
+**Next Steps:**  
+1. Technical design review  
+2. Create local development environment  
+3. Implement pipeline script  
+4. Build frontend components  
+5. End-to-end testing  
+6. Deploy to Netlify  
+7. Document manual processes

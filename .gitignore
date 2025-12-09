@@ -1,0 +1,44 @@
+# TopTierModels - Development Files
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Local data
+backend/data/*.db
+backend/data/cache/
+backend/data/sessions/
+.top-tier-cache/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Test coverage
+htmlcov/
+.coverage
+.pytest_cache/
+
+# Build artifacts
+frontend/dist/

@@ -1,0 +1,1724 @@
+# Product Requirements Specification (PRS)
+## TopTierModels
+
+**Version:** 1.0  
+**Date:** December 9, 2025  
+**Status:** Draft  
+**Author:** Product Management Team
+
+---
+
+## 1. Project Overview
+
+### 1.1 Purpose of the Project
+
+TopTierModels is a web application designed to automatically discover, analyze, and rank artificial intelligence models from Hugging Face. The platform transforms technical model documentation into accessible content by generating comprehensive blog articles, simplified social media posts, and visual tier rankings. This enables AI practitioners, researchers, and enthusiasts to quickly evaluate and discover the best models for their use cases.
+
+### 1.2 Target Users
+
+**Primary Users:**
+- AI/ML Engineers seeking model recommendations
+- Data Scientists evaluating models for production
+- AI Researchers tracking state-of-the-art developments
+- Technical Content Creators covering AI advancements
+- Product Managers making ML tooling decisions
+
+**Secondary Users:**
+- AI Enthusiasts learning about new models
+- Company Decision Makers evaluating AI capabilities
+- Developer Community seeking implementation guidance
+
+### 1.3 Key Objectives
+
+1. **Automate Content Creation:** Transform Hugging Face model pages into publication-ready technical articles
+2. **Enable Discovery:** Provide visual tier rankings to help users identify top-performing models by category
+3. **Simplify Technical Information:** Generate accessible summaries for broader audiences
+4. **Centralize Model Intelligence:** Create a single source of truth for AI model evaluation and metrics
+5. **Drive Engagement:** Produce shareable content optimized for professional social networks
+
+### 1.4 Success Metrics
+
+| Metric | Target | Measurement Period |
+|--------|--------|-------------------|
+| Models Processed | 50+ models | First 3 months |
+| Article Quality Score | 4.0/5.0+ | User feedback |
+| Page Load Time | <2 seconds | 95th percentile |
+| Mobile Responsiveness | 100% pass | Lighthouse audit |
+| Tierlist Accuracy | 85%+ user agreement | Survey feedback |
+| Content Generation Time | <5 minutes per model | Average processing |
+| User Retention Rate | 40%+ return visits | Monthly active users |
+
+---
+
+## 2. Functional Requirements
+
+### 2.1 Core Pipeline Architecture
+
+#### 2.1.1 Input Processing
+
+**FR-001: URL Input Validation**
+- System must accept Hugging Face model URLs and blog post URLs
+- Initial implementation must support: `https://huggingface.co/Tongyi-MAI/Z-Image-Turbo`
+- URL validation must verify domain (`huggingface.co`) and path structure
+- Future versions must support multiple Hugging Face link types (models, datasets, spaces)
+
+**FR-002: URL Queue Management**
+- System must maintain a processing queue for submitted URLs
+- Queue must track status: pending, processing, completed, failed
+- System must prevent duplicate URL processing within 30 days
+
+#### 2.1.2 Web Scraping Module
+
+**FR-003: Content Extraction**
+- System must scrape the following elements from Hugging Face pages:
+  - Model name and organization
+  - Model description and README content
+  - Model card metadata (license, languages, tasks)
+  - Performance metrics and benchmarks
+  - Code snippets and usage examples
+  - All embedded images (thumbnails, charts, diagrams)
+  - External links and references
+  - Model file information (size, format)
+
+**FR-004: Image Processing**
+- System must download and store all relevant images
+- Images must be stored with unique identifiers
+- Image metadata must include: source URL, dimensions, file size, alt text
+- System must generate thumbnails (300x300px) for card displays
+
+**FR-005: Structured Data Extraction**
+- System must parse model metadata into structured JSON
+- System must extract quantitative metrics (accuracy, speed, parameters)
+- System must identify model category (image generation, NLP, multimodal, etc.)
+- System must capture tags and keywords
+
+#### 2.1.3 LLM Processing Engine
+
+**FR-006: Article Generation**
+- LLM must generate comprehensive technical blog articles (800-1500 words)
+- Articles must include:
+  - Executive summary
+  - Model architecture overview
+  - Key features and innovations
+  - Performance analysis and benchmarks
+  - Use cases and applications
+  - Implementation guidance
+  - Comparison with similar models
+  - Conclusion and recommendations
+- Articles must maintain technical accuracy while being accessible
+- Generated content must include proper citations to source material
+
+**FR-007: LinkedIn Post Generation**
+- LLM must generate simplified LinkedIn posts (150-300 words)
+- Posts must include:
+  - Attention-grabbing hook
+  - Key model highlights (3-5 bullet points)
+  - Business impact or use case
+  - Call-to-action (link to full article)
+  - Relevant hashtags (3-5)
+- Tone must be professional yet engaging
+
+**FR-008: Code Snippet Curation**
+- System must extract or generate practical code examples
+- Code must include:
+  - Installation instructions
+  - Basic usage example
+  - Advanced configuration options
+  - Common troubleshooting tips
+- Code must be tested for syntax validity
+- Multiple language implementations when applicable (Python, JavaScript, etc.)
+
+**FR-009: Model Scoring and Ranking**
+- LLM must generate comprehensive model scores based on:
+  - Performance metrics (accuracy, speed, efficiency)
+  - Ease of use (documentation quality, API simplicity)
+  - Innovation factor (novelty of approach)
+  - Community adoption (downloads, likes, discussions)
+  - Production readiness (stability, support)
+- Scoring must use weighted algorithm producing values 0-100
+- System must assign tier rating: S (90-100), A (80-89), B (70-79), C (60-69), D (<60)
+
+**FR-010: Tierlist Generation**
+- System must categorize models into domain categories:
+  - Image Generation
+  - Text Generation (LLMs)
+  - Computer Vision
+  - Natural Language Processing
+  - Multimodal Models
+  - Audio Processing
+  - Video Generation
+  - Reinforcement Learning
+  - Other/Emerging
+- Each category must maintain separate tierlist rankings
+- Tierlists must update automatically when new models are added
+
+#### 2.1.4 Data Storage (Supabase)
+
+**FR-011: Database Schema Implementation**
+- System must implement complete data model (see Section 4)
+- All tables must include created_at and updated_at timestamps
+- Foreign key relationships must be properly enforced
+- Row Level Security (RLS) must be enabled on all tables
+
+**FR-012: Image Storage**
+- Images must be stored in Supabase Storage buckets
+- Bucket structure: `/models/{model_id}/{image_name}`
+- Public URLs must be generated for frontend access
+- Storage must implement automatic cleanup for deleted models
+
+**FR-013: Metadata Management**
+- All JSON payloads must be validated before storage
+- System must maintain version history for articles
+- Audit logs must track all data modifications
+- Backup procedures must run daily
+
+### 2.2 Front-End Functionality
+
+#### 2.2.1 Blog Page
+
+**FR-014: Article Listing**
+- Display article cards in grid layout (3 columns desktop, 2 tablet, 1 mobile)
+- Each card must show:
+  - Featured image
+  - Model name and category
+  - Excerpt (150 characters)
+  - Tier badge (S/A/B/C/D)
+  - Publication date
+  - Read time estimate
+- Cards must have hover effects and smooth transitions
+
+**FR-015: Pagination and Filtering**
+- Implement pagination with 12 articles per page
+- Provide category filter dropdown
+- Provide tier filter (All, S, A, B, C, D)
+- Display total article count
+- Maintain filter state in URL parameters
+
+**FR-016: Search Functionality**
+- Real-time search across article titles and excerpts
+- Search must highlight matching terms
+- Search must show "No results" state with suggestions
+- Search must debounce input (300ms delay)
+
+#### 2.2.2 Article Detail Page
+
+**FR-017: Article Display**
+- Full-width article layout with readable line length (65-75 characters)
+- Article must render:
+  - Hero image
+  - Model metadata sidebar (category, tier, metrics)
+  - Full article content with proper typography
+  - Code blocks with syntax highlighting
+  - Embedded images and charts
+  - Author information and date
+- Table of contents for navigation (auto-generated from headings)
+- Social sharing buttons (LinkedIn, Twitter, Copy Link)
+
+**FR-018: Related Models Section**
+- Display 3-4 related models at article end
+- Related models based on category similarity
+- Include thumbnail, name, tier, and brief description
+
+#### 2.2.3 Tierlist Page
+
+**FR-019: Tier Display Structure**
+- Visual tier sections: S, A, B, C, D (descending order)
+- Each tier must have distinct color coding:
+  - S Tier: Gold/Yellow (#FFD700)
+  - A Tier: Red/Orange (#FF6B6B)
+  - B Tier: Blue (#4ECDC4)
+  - C Tier: Green (#95E77D)
+  - D Tier: Gray (#9E9E9E)
+- Models displayed as cards within each tier
+- Drag-and-drop disabled (rankings are computed)
+
+**FR-020: Model Cards in Tierlist**
+- Each model card shows:
+  - Model icon/logo
+  - Model name
+  - Overall score (e.g., 87/100)
+  - Key metrics badges (speed, accuracy, etc.)
+  - Quick-view tooltip on hover
+- Click opens article detail page
+
+**FR-021: Category Filtering**
+- Category tabs or dropdown at page top
+- Selecting category filters tierlist to show only that category
+- "All Categories" default view shows all models
+- Active category highlighted visually
+
+**FR-022: Search and Sort**
+- Search bar filters models by name in real-time
+- Sort options: Score (high to low), Newest, Most Popular
+- Filter panel for additional criteria (license type, model size, etc.)
+
+#### 2.2.4 Responsive Design
+
+**FR-023: Mobile Optimization**
+- All pages must be fully responsive (breakpoints: 320px, 768px, 1024px, 1440px)
+- Mobile navigation: hamburger menu
+- Touch-friendly UI elements (minimum 44x44px tap targets)
+- Optimized images for mobile bandwidth
+- Lazy loading for images and content
+
+**FR-024: Cross-Browser Compatibility**
+- Support for Chrome, Firefox, Safari, Edge (latest 2 versions)
+- Graceful degradation for older browsers
+- Progressive Web App (PWA) considerations for future implementation
+
+#### 2.2.5 User Interface Elements
+
+**FR-025: Navigation**
+- Persistent header with logo and main navigation
+- Navigation items: Home, Blog, Tierlist, About
+- Search icon triggering overlay search
+- Sticky header on scroll
+
+**FR-026: Footer**
+- Links to social media and GitHub repository
+- Contact information
+- Privacy policy and terms of service links
+- Attribution to data sources (Hugging Face)
+
+**FR-027: Theme Support**
+- Dark mode and light mode toggle
+- Theme preference stored in localStorage
+- System preference detection (prefers-color-scheme)
+- Smooth theme transition animations
+
+### 2.3 Optional Features (Phase 2)
+
+**FR-028: LinkedIn API Integration**
+- Automated posting of simplified articles to LinkedIn
+- OAuth authentication flow for admin users
+- Posting schedule configuration
+- Post preview before publishing
+- Analytics tracking for post performance
+
+**FR-029: Manual Model Submission**
+- Admin interface for adding models manually
+- Form validation for required fields
+- Image upload functionality
+- Draft and publish workflow
+
+---
+
+## 3. Non-Functional Requirements
+
+### 3.1 Security
+
+**NFR-001: Authentication and Authorization**
+- Supabase Row Level Security (RLS) must be enabled on all tables
+- Public read access for articles and models
+- Write access restricted to service role key only
+- Admin operations must use service_role key with secure storage
+- No API keys or secrets in frontend code
+
+**NFR-002: Data Protection**
+- All API communications must use HTTPS
+- Input validation and sanitization for all user inputs
+- Protection against SQL injection via parameterized queries
+- XSS protection through content sanitization
+- CSRF tokens for state-changing operations
+
+**NFR-003: Secrets Management**
+- Environment variables for all sensitive configuration
+- Service role keys stored securely in backend environment only
+- No credentials committed to version control
+- Secrets rotation policy every 90 days
+
+### 3.2 Performance
+
+**NFR-004: Scraping Efficiency**
+- Single model scraping must complete within 30 seconds
+- Concurrent scraping must support up to 5 parallel jobs
+- Rate limiting compliance with Hugging Face (1 request/second)
+- Retry logic with exponential backoff for failed requests
+- Timeout handling for unresponsive pages (15 second timeout)
+
+**NFR-005: LLM Processing**
+- Article generation must complete within 60 seconds per model
+- LLM context window must accommodate full model documentation
+- Batch processing capability for multiple models
+- Token usage optimization to minimize API costs
+- Fallback to cached responses when LLM unavailable
+
+**NFR-006: Frontend Performance**
+- Initial page load: <2 seconds (Lighthouse target: 90+)
+- Time to Interactive (TTI): <3 seconds
+- First Contentful Paint (FCP): <1 second
+- Lazy loading for images below the fold
+- Code splitting for route-based optimization
+- CDN distribution for static assets
+
+**NFR-007: Database Performance**
+- Query response time: <100ms for 95% of queries
+- Indexing on frequently queried fields (model_id, category, tier)
+- Connection pooling for database efficiency
+- Query optimization and EXPLAIN plan analysis
+- Caching layer for frequently accessed data
+
+### 3.3 Reliability
+
+**NFR-008: Error Handling**
+- Comprehensive error logging for all failures
+- User-friendly error messages on frontend
+- Automatic retry mechanism for transient failures
+- Circuit breaker pattern for external service calls
+- Graceful degradation when services unavailable
+
+**NFR-009: Logging and Monitoring**
+- Structured logging for all pipeline operations
+- Log levels: DEBUG, INFO, WARN, ERROR
+- Log aggregation and searchability
+- Performance metrics tracking (processing time, success rate)
+- Alerting for critical failures
+
+**NFR-010: Data Integrity**
+- Transaction management for multi-step operations
+- Data validation at all input points
+- Referential integrity enforcement
+- Backup and recovery procedures
+- Data consistency checks
+
+### 3.4 Scalability
+
+**NFR-011: Horizontal Scaling**
+- Pipeline scripts must be stateless for parallel execution
+- Database connection pool sizing for increased load
+- Storage bucket organization for large image volumes
+- API rate limit management for multiple concurrent users
+- Queue-based architecture for batch processing
+
+**NFR-012: Data Volume Management**
+- Support for 1000+ models in database
+- Efficient pagination for large result sets
+- Archive strategy for outdated content
+- Storage optimization for images (compression, format selection)
+
+### 3.5 Usability
+
+**NFR-013: User Experience**
+- Intuitive navigation requiring no training
+- Consistent design language across all pages
+- Accessibility compliance (WCAG 2.1 Level AA)
+- Loading states for asynchronous operations
+- Empty states with helpful guidance
+
+**NFR-014: Design Aesthetics**
+- Modern, minimalist design focused on content
+- Data-centric visual hierarchy
+- Professional color palette suitable for technical audience
+- Typography optimized for readability
+- Micro-interactions for engagement
+
+**NFR-015: Accessibility**
+- Semantic HTML structure
+- ARIA labels for interactive elements
+- Keyboard navigation support
+- Screen reader compatibility
+- Sufficient color contrast (WCAG AA compliance)
+- Alt text for all images
+
+### 3.6 Maintainability
+
+**NFR-016: Code Quality**
+- Modular, reusable component architecture
+- Clear separation of concerns (data, logic, presentation)
+- Comprehensive inline documentation
+- Consistent coding style (enforced by linters)
+- Test coverage minimum 70% for critical paths
+
+**NFR-017: Project Structure**
+- Logical folder organization by feature/domain
+- Configuration management via environment files
+- Dependency management with version pinning
+- README documentation for setup and deployment
+- API documentation for internal endpoints
+
+**NFR-018: Version Control**
+- Git-based version control with branch strategy
+- Feature branches for development
+- Pull request reviews required
+- Semantic versioning for releases
+- Changelog maintenance
+
+---
+
+## 4. Data Model
+
+### 4.1 Database Schema
+
+#### 4.1.1 Table: `models`
+
+**Purpose:** Store core information about AI models from Hugging Face
+
+| Column Name | Data Type | Constraints | Description |
+|------------|-----------|-------------|-------------|
+| id | UUID | PRIMARY KEY, DEFAULT uuid_generate_v4() | Unique model identifier |
+| huggingface_url | TEXT | UNIQUE, NOT NULL | Original Hugging Face URL |
+| model_name | TEXT | NOT NULL | Full model name (e.g., "Tongyi-MAI/Z-Image-Turbo") |
+| display_name | TEXT | NOT NULL | Human-readable name |
+| organization | TEXT | | Organization/author name |
+| category | TEXT | NOT NULL | Model category (see FR-010) |
+| description | TEXT | | Short description (from model card) |
+| readme_content | TEXT | | Full README markdown |
+| license | TEXT | | Model license |
+| tags | JSONB | DEFAULT '[]' | Array of tags |
+| model_metadata | JSONB | DEFAULT '{}' | Flexible metadata storage |
+| featured_image_url | TEXT | | Primary image URL |
+| downloads | INTEGER | DEFAULT 0 | Hugging Face download count |
+| likes | INTEGER | DEFAULT 0 | Hugging Face likes count |
+| status | TEXT | DEFAULT 'active' | active, archived, deprecated |
+| created_at | TIMESTAMP | DEFAULT NOW() | Record creation timestamp |
+| updated_at | TIMESTAMP | DEFAULT NOW() | Last update timestamp |
+| scraped_at | TIMESTAMP | | Last scrape timestamp |
+
+**Indexes:**
+- `idx_models_category` on `category`
+- `idx_models_status` on `status`
+- `idx_models_organization` on `organization`
+
+#### 4.1.2 Table: `articles`
+
+**Purpose:** Store generated technical blog articles
+
+| Column Name | Data Type | Constraints | Description |
+|------------|-----------|-------------|-------------|
+| id | UUID | PRIMARY KEY, DEFAULT uuid_generate_v4() | Unique article identifier |
+| model_id | UUID | FOREIGN KEY REFERENCES models(id) ON DELETE CASCADE, NOT NULL | Associated model |
+| title | TEXT | NOT NULL | Article title |
+| slug | TEXT | UNIQUE, NOT NULL | URL-friendly slug |
+| excerpt | TEXT | NOT NULL | Brief summary (150-200 chars) |
+| content | TEXT | NOT NULL | Full article content (markdown) |
+| hero_image_url | TEXT | | Featured article image |
+| read_time_minutes | INTEGER | | Estimated read time |
+| author | TEXT | DEFAULT 'TopTierModels AI' | Author name |
+| version | INTEGER | DEFAULT 1 | Content version number |
+| seo_keywords | TEXT[] | | Array of SEO keywords |
+| related_model_ids | UUID[] | | Related model references |
+| published | BOOLEAN | DEFAULT TRUE | Publication status |
+| published_at | TIMESTAMP | DEFAULT NOW() | Publication date |
+| created_at | TIMESTAMP | DEFAULT NOW() | Record creation timestamp |
+| updated_at | TIMESTAMP | DEFAULT NOW() | Last update timestamp |
+
+**Indexes:**
+- `idx_articles_model_id` on `model_id`
+- `idx_articles_slug` on `slug`
+- `idx_articles_published` on `published`
+
+#### 4.1.3 Table: `simplified_articles`
+
+**Purpose:** Store LinkedIn-optimized post content
+
+| Column Name | Data Type | Constraints | Description |
+|------------|-----------|-------------|-------------|
+| id | UUID | PRIMARY KEY, DEFAULT uuid_generate_v4() | Unique post identifier |
+| article_id | UUID | FOREIGN KEY REFERENCES articles(id) ON DELETE CASCADE, NOT NULL | Associated article |
+| model_id | UUID | FOREIGN KEY REFERENCES models(id) ON DELETE CASCADE, NOT NULL | Associated model |
+| content | TEXT | NOT NULL | LinkedIn post content |
+| hook | TEXT | | Opening hook sentence |
+| key_points | TEXT[] | | Array of bullet points |
+| call_to_action | TEXT | | CTA text |
+| hashtags | TEXT[] | | Array of hashtags |
+| character_count | INTEGER | | Total character count |
+| posted_to_linkedin | BOOLEAN | DEFAULT FALSE | Posting status |
+| linkedin_post_id | TEXT | | LinkedIn API post ID |
+| posted_at | TIMESTAMP | | LinkedIn posting timestamp |
+| created_at | TIMESTAMP | DEFAULT NOW() | Record creation timestamp |
+| updated_at | TIMESTAMP | DEFAULT NOW() | Last update timestamp |
+
+**Indexes:**
+- `idx_simplified_articles_article_id` on `article_id`
+- `idx_simplified_articles_model_id` on `model_id`
+
+#### 4.1.4 Table: `model_scores`
+
+**Purpose:** Store detailed scoring metrics for each model
+
+| Column Name | Data Type | Constraints | Description |
+|------------|-----------|-------------|-------------|
+| id | UUID | PRIMARY KEY, DEFAULT uuid_generate_v4() | Unique score identifier |
+| model_id | UUID | FOREIGN KEY REFERENCES models(id) ON DELETE CASCADE, UNIQUE, NOT NULL | Associated model |
+| overall_score | DECIMAL(5,2) | CHECK (overall_score >= 0 AND overall_score <= 100), NOT NULL | Overall score (0-100) |
+| tier | TEXT | CHECK (tier IN ('S', 'A', 'B', 'C', 'D')), NOT NULL | Tier classification |
+| performance_score | DECIMAL(5,2) | CHECK (performance_score >= 0 AND performance_score <= 100) | Performance metrics score |
+| usability_score | DECIMAL(5,2) | CHECK (usability_score >= 0 AND usability_score <= 100) | Ease of use score |
+| innovation_score | DECIMAL(5,2) | CHECK (innovation_score >= 0 AND innovation_score <= 100) | Innovation factor score |
+| adoption_score | DECIMAL(5,2) | CHECK (adoption_score >= 0 AND adoption_score <= 100) | Community adoption score |
+| production_score | DECIMAL(5,2) | CHECK (production_score >= 0 AND production_score <= 100) | Production readiness score |
+| benchmarks | JSONB | DEFAULT '{}' | Raw benchmark data |
+| metrics_details | JSONB | DEFAULT '{}' | Additional metrics |
+| scoring_methodology | TEXT | | Description of scoring logic |
+| scored_at | TIMESTAMP | DEFAULT NOW() | Score calculation timestamp |
+| created_at | TIMESTAMP | DEFAULT NOW() | Record creation timestamp |
+| updated_at | TIMESTAMP | DEFAULT NOW() | Last update timestamp |
+
+**Indexes:**
+- `idx_model_scores_model_id` on `model_id`
+- `idx_model_scores_tier` on `tier`
+- `idx_model_scores_overall_score` on `overall_score` DESC
+
+#### 4.1.5 Table: `tierlists`
+
+**Purpose:** Store category-specific tierlist configurations and metadata
+
+| Column Name | Data Type | Constraints | Description |
+|------------|-----------|-------------|-------------|
+| id | UUID | PRIMARY KEY, DEFAULT uuid_generate_v4() | Unique tierlist identifier |
+| category | TEXT | UNIQUE, NOT NULL | Category name |
+| display_name | TEXT | NOT NULL | Human-readable category name |
+| description | TEXT | | Category description |
+| icon | TEXT | | Icon identifier or URL |
+| model_count | INTEGER | DEFAULT 0 | Number of models in category |
+| last_updated | TIMESTAMP | DEFAULT NOW() | Last tierlist update |
+| created_at | TIMESTAMP | DEFAULT NOW() | Record creation timestamp |
+| updated_at | TIMESTAMP | DEFAULT NOW() | Last update timestamp |
+
+**Indexes:**
+- `idx_tierlists_category` on `category`
+
+#### 4.1.6 Table: `images`
+
+**Purpose:** Track all images associated with models and articles
+
+| Column Name | Data Type | Constraints | Description |
+|------------|-----------|-------------|-------------|
+| id | UUID | PRIMARY KEY, DEFAULT uuid_generate_v4() | Unique image identifier |
+| model_id | UUID | FOREIGN KEY REFERENCES models(id) ON DELETE CASCADE | Associated model (nullable) |
+| article_id | UUID | FOREIGN KEY REFERENCES articles(id) ON DELETE CASCADE | Associated article (nullable) |
+| source_url | TEXT | NOT NULL | Original image URL |
+| storage_path | TEXT | UNIQUE, NOT NULL | Supabase storage path |
+| public_url | TEXT | NOT NULL | Public CDN URL |
+| thumbnail_url | TEXT | | Thumbnail version URL |
+| alt_text | TEXT | | Accessibility description |
+| width | INTEGER | | Image width in pixels |
+| height | INTEGER | | Image height in pixels |
+| file_size | INTEGER | | File size in bytes |
+| mime_type | TEXT | | Image MIME type |
+| created_at | TIMESTAMP | DEFAULT NOW() | Record creation timestamp |
+
+**Indexes:**
+- `idx_images_model_id` on `model_id`
+- `idx_images_article_id` on `article_id`
+
+#### 4.1.7 Table: `code_snippets`
+
+**Purpose:** Store reusable code examples for each model
+
+| Column Name | Data Type | Constraints | Description |
+|------------|-----------|-------------|-------------|
+| id | UUID | PRIMARY KEY, DEFAULT uuid_generate_v4() | Unique snippet identifier |
+| model_id | UUID | FOREIGN KEY REFERENCES models(id) ON DELETE CASCADE, NOT NULL | Associated model |
+| title | TEXT | NOT NULL | Snippet title |
+| description | TEXT | | What the code demonstrates |
+| language | TEXT | NOT NULL | Programming language |
+| code | TEXT | NOT NULL | Code content |
+| snippet_type | TEXT | | installation, basic_usage, advanced, etc. |
+| order | INTEGER | DEFAULT 0 | Display order |
+| created_at | TIMESTAMP | DEFAULT NOW() | Record creation timestamp |
+| updated_at | TIMESTAMP | DEFAULT NOW() | Last update timestamp |
+
+**Indexes:**
+- `idx_code_snippets_model_id` on `model_id`
+
+### 4.2 Relationships
+
+```
+models (1) ─────┬─────> (N) articles
+                ├─────> (N) simplified_articles
+                ├─────> (1) model_scores
+                ├─────> (N) images
+                └─────> (N) code_snippets
+
+articles (1) ───┬─────> (1) simplified_articles
+                └─────> (N) images
+
+tierlists (category) ←─── models (category)
+```
+
+### 4.3 Storage Buckets
+
+**Bucket: `model-images`**
+- Structure: `/{model_id}/{image_filename}`
+- Public access: Read-only
+- File types: PNG, JPG, WEBP, SVG
+- Max file size: 10MB
+
+**Bucket: `article-images`**
+- Structure: `/{article_id}/{image_filename}`
+- Public access: Read-only
+- File types: PNG, JPG, WEBP
+- Max file size: 5MB
+
+**Bucket: `thumbnails`**
+- Structure: `/{model_id}/thumb_{image_filename}`
+- Public access: Read-only
+- Dimensions: 300x300px
+- Format: WEBP
+
+---
+
+## 5. System Architecture
+
+### 5.1 Architecture Overview
+
+TopTierModels follows a decoupled architecture optimized for **free-tier deployment** with three primary components:
+
+1. **Backend Pipeline** (Local Python/Node.js scripts)
+2. **Database & Storage** (Supabase Free Tier)
+3. **Frontend Application** (React/Next.js on Netlify Free Tier)
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    User / Admin                          │
+└─────────┬───────────────────────────────────────────────┘
+          │
+          ▼
+┌─────────────────────────────────────────────────────────┐
+│              Frontend Application (Web)                  │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
+│  │  Blog Page   │  │ Tierlist Page│  │Article Detail│  │
+│  └──────────────┘  └──────────────┘  └──────────────┘  │
+└─────────┬───────────────────────────────────────────────┘
+          │ REST API / GraphQL
+          ▼
+┌─────────────────────────────────────────────────────────┐
+│            Supabase (Database + Storage)                 │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
+│  │  PostgreSQL  │  │  Storage API │  │   Auth API   │  │
+│  │   Database   │  │   (Images)   │  │   (Future)   │  │
+│  └──────────────┘  └──────────────┘  └──────────────┘  │
+└─────────┬───────────────────────────────────────────────┘
+          ▲
+          │ Service Role Key
+          │
+┌─────────┴───────────────────────────────────────────────┐
+│           Backend Pipeline (Local/Server)                │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
+│  │   Scraper    │→ │  LLM Processor│→│Data Uploader │  │
+│  │   Module     │  │    Module     │  │    Module    │  │
+│  └──────────────┘  └──────────────┘  └──────────────┘  │
+│                          ↓                               │
+│                  ┌──────────────┐                        │
+│                  │ Local LLM or │                        │
+│                  │  API (GPT-4) │                        │
+│                  └──────────────┘                        │
+└─────────────────────────────────────────────────────────┘
+          ▲
+          │
+┌─────────┴───────────────────────────────────────────────┐
+│              Hugging Face Platform                       │
+│         (Model Pages, Documentation, APIs)               │
+└─────────────────────────────────────────────────────────┘
+```
+
+### 5.2 Component Details
+
+#### 5.2.1 Backend Pipeline
+
+**Architecture:** Modular Python scripts or Node.js services
+**Execution:** Local development machine or scheduled server
+**Components:**
+
+1. **URL Input Handler**
+   - Accepts Hugging Face URLs
+   - Validates URL format
+   - Checks for duplicates in database
+
+2. **Web Scraper Module**
+   - Technology: BeautifulSoup (Python) or Cheerio (Node.js)
+   - Extracts text, images, metadata from Hugging Face
+   - Rate limiting and retry logic
+   - Outputs structured JSON
+
+3. **LLM Processing Module**
+   - Technology: LangChain or direct API calls
+   - Supports: OpenAI GPT-4, Claude, Local models (Ollama)
+   - Prompt templates for article and post generation
+   - Token optimization and cost tracking
+
+4. **Scoring Engine**
+   - Analyzes extracted metrics
+   - Applies weighted scoring algorithm
+   - Assigns tier classifications
+   - Outputs model_scores payload
+
+5. **Data Uploader Module**
+   - Supabase client with service_role key
+   - Inserts data into all relevant tables
+   - Uploads images to storage buckets
+   - Handles transactions and rollbacks
+
+**Configuration:**
+- Environment variables for API keys
+- Config files for scraping rules
+- Prompt templates stored as files
+- Logging configuration
+
+**Deployment:**
+- Local execution for development
+- GitHub Actions for automation (Phase 2)
+- Docker containerization option (Future)
+
+#### 5.2.2 Supabase Backend
+
+**Services Used:**
+1. **PostgreSQL Database**
+   - Hosts all tables defined in Data Model
+   - Row Level Security for access control
+   - Automatic backups and point-in-time recovery
+
+2. **Storage API**
+   - Stores model images and thumbnails
+   - CDN distribution for performance
+   - Public buckets with read-only access
+
+3. **REST API / GraphQL**
+   - Auto-generated from database schema
+   - Used by frontend for data fetching
+   - Supports filtering, sorting, pagination
+
+4. **Realtime (Optional)**
+   - Future feature for live updates
+   - Subscription to new model additions
+
+**Security Configuration:**
+- RLS policies for public read access
+- Service role key restricted to backend pipeline
+- API keys separated by environment (dev, prod)
+
+#### 5.2.3 Frontend Application
+
+**Platform:** Netlify (Free Tier)
+**Framework:** React with Next.js or Vite
+**Deployment:** Git-based continuous deployment
+
+**Free Tier Specifications:**
+- 100GB bandwidth per month
+- 300 build minutes per month
+- Automatic HTTPS
+- CDN distribution
+- Instant cache invalidation
+
+**Frontend Architecture:**
+
+1. **Static Site Generation (SSG)**
+   - Pre-render blog and tierlist pages at build time
+   - Optimizes for Netlify's free tier strengths
+   - Reduces client-side API calls
+
+2. **Incremental Static Regeneration (ISR)**
+   - Rebuild pages when content changes
+   - Trigger rebuilds via Netlify Build Hooks
+   - Keep content fresh without constant rebuilds
+
+3. **Client-Side Data Fetching**
+   - Direct Supabase API calls from browser
+   - Uses anon public key (safe for frontend)
+   - Real-time search and filtering
+
+4. **Optimization for Free Tier:**
+   - Minimize build frequency (manual or scheduled)
+   - Optimize bundle size (<500KB initial load)
+   - Lazy load images and components
+   - Implement efficient caching strategies
+
+### 5.6 System Architecture Diagram (Free Tier)
+
+```
+┌────────────────────────────────────────────────────────────┐
+│                     Users (Browser)                         │
+└──────────────────┬─────────────────────────────────────────┘
+                   │ HTTPS
+                   ▼
+┌────────────────────────────────────────────────────────────┐
+│              Netlify (Free Tier - 100GB/mo)                 │
+│  ┌────────────────────────────────────────────────────┐    │
+│  │    Static Frontend (Next.js / React)               │    │
+│  │  • Blog Page  • Tierlist  • Article Details        │    │
+│  │  • CDN Cached  • Auto HTTPS  • Git Deploy          │    │
+│  └────────────────────────────────────────────────────┘    │
+└──────────────────┬─────────────────────────────────────────┘
+                   │ REST API (anon key)
+                   ▼
+┌────────────────────────────────────────────────────────────┐
+│          Supabase (Free Tier - 500MB DB, 1GB Storage)      │
+│  ┌──────────────────┐  ┌──────────────────┐               │
+│  │  PostgreSQL DB   │  │  Storage Buckets │               │
+│  │  • models        │  │  • model-images  │               │
+│  │  • articles      │  │  • thumbnails    │               │
+│  │  • scores        │  │  (WebP, <500KB)  │               │
+│  │  (RLS enabled)   │  │  (Public read)   │               │
+│  └──────────────────┘  └──────────────────┘               │
+└──────────────────▲─────────────────────────────────────────┘
+                   │ Service Role Key
+                   │ (Secrets in GitHub)
+┌──────────────────┴─────────────────────────────────────────┐
+│         GitHub Actions (Free - 2000 min/mo)                 │
+│  ┌────────────────────────────────────────────────────┐    │
+│  │  Automated Pipeline (Weekly or On-Demand)          │    │
+│  │  1. Read queue.json (URLs to process)              │    │
+│  │  2. Run scraper → LLM → uploader                   │    │
+│  │  3. Upload to Supabase                             │    │
+│  │  4. Trigger Netlify rebuild (webhook)              │    │
+│  └────────────────────────────────────────────────────┘    │
+└──────────────────┬─────────────────────────────────────────┘
+                   │
+                   ▼
+┌────────────────────────────────────────────────────────────┐
+│              Local LLM / API (Optional)                     │
+│  • Ollama (Free, local)                                     │
+│  • OpenAI API (Pay-per-use)                                 │
+│  • Claude API (Pay-per-use)                                 │
+└────────────────────────────────────────────────────────────┘
+```
+
+**Key Free Tier Benefits:**
+- ✅ Zero infrastructure costs
+- ✅ Global CDN distribution
+- ✅ Automatic HTTPS and security
+- ✅ Git-based deployment workflow
+- ✅ Scalable to hundreds of models
+- ✅ Professional production environment
+
+---
+
+## 6. User Stories
+
+### 6.1 Primary User Stories
+
+**US-001: Discover Top AI Models**
+- **As a** data scientist
+- **I want to** browse a curated tierlist of AI models by category
+- **So that** I can quickly identify the best models for my project
+- **Acceptance Criteria:**
+  - Categories clearly labeled (Image Gen, NLP, etc.)
+  - Models sorted by tier (S → D)
+  - Model cards show key metrics at a glance
+  - Clicking a model opens full article
+
+**US-002: Read Detailed Model Analysis**
+- **As an** AI engineer
+- **I want to** read comprehensive technical articles about specific models
+- **So that** I can understand capabilities, limitations, and implementation details
+- **Acceptance Criteria:**
+  - Article includes architecture overview, benchmarks, use cases
+  - Code snippets provided with syntax highlighting
+  - Links to original Hugging Face page
+  - Related models suggested at end
+
+**US-003: Get Quick Implementation Guidance**
+- **As a** developer new to AI
+- **I want to** find copy-paste code examples for using a model
+- **So that** I can get started quickly without deep diving into documentation
+- **Acceptance Criteria:**
+  - Installation instructions included
+  - Basic usage example provided
+  - Code is tested and functional
+  - Comments explain key parameters
+
+**US-004: Search for Specific Models**
+- **As a** researcher
+- **I want to** search for models by name or keyword
+- **So that** I can find relevant models without browsing all categories
+- **Acceptance Criteria:**
+  - Search bar prominently displayed
+  - Real-time results as I type
+  - Search works across model names, categories, tags
+  - "No results" state shows suggestions
+
+**US-005: Filter Models by Category**
+- **As a** product manager
+- **I want to** filter the tierlist by specific AI domains
+- **So that** I can focus on models relevant to my product needs
+- **Acceptance Criteria:**
+  - Category filter visible on tierlist page
+  - Selecting category updates view instantly
+  - Model count shown per category
+  - "All Categories" option available
+
+**US-006: Share Content on LinkedIn**
+- **As a** content creator
+- **I want to** access pre-written LinkedIn posts about models
+- **So that** I can share insights with my professional network
+- **Acceptance Criteria:**
+  - Simplified post included in article
+  - Copy button for easy sharing
+  - Post includes hashtags and CTA
+  - Character count within LinkedIn limits
+
+**US-007: View on Mobile Device**
+- **As a** commuter
+- **I want to** browse articles and tierlists on my phone
+- **So that** I can learn about AI models during my commute
+- **Acceptance Criteria:**
+  - Responsive design works on all screen sizes
+  - Touch-friendly navigation
+  - Images load quickly
+  - Text remains readable
+
+**US-008: Compare Models in Same Tier**
+- **As an** ML team lead
+- **I want to** see multiple models in the same tier side-by-side
+- **So that** I can make informed decisions for model selection
+- **Acceptance Criteria:**
+  - Models grouped visibly by tier
+  - Key differentiators highlighted in cards
+  - Metrics comparable across models
+  - Easy navigation between articles
+
+### 6.2 Admin User Stories
+
+**US-009: Submit New Model for Processing**
+- **As an** admin
+- **I want to** add a Hugging Face URL to the processing queue
+- **So that** new models are automatically analyzed and published
+- **Acceptance Criteria:**
+  - Simple way to add URL (GitHub commit or UI)
+  - URL validation prevents duplicates
+  - Processing status visible
+  - Errors logged and reported
+
+**US-010: Trigger Manual Content Update**
+- **As an** admin
+- **I want to** manually trigger the pipeline for urgent updates
+- **So that** important new models are published quickly
+- **Acceptance Criteria:**
+  - Manual trigger available (GitHub Actions UI)
+  - Processing completes within 5 minutes
+  - Site rebuilds automatically after upload
+  - Confirmation of successful deployment
+
+**US-011: Monitor System Health**
+- **As an** admin
+- **I want to** view logs and metrics for the pipeline
+- **So that** I can identify and fix issues quickly
+- **Acceptance Criteria:**
+  - Access to GitHub Actions logs
+  - Supabase dashboard for database metrics
+  - Netlify analytics for traffic
+  - Error alerts configured
+
+---
+
+## 7. Wireframes / Page Descriptions
+
+### 7.1 Homepage / Blog Page
+
+**Layout:** Grid-based article listing
+
+**Components:**
+1. **Header Navigation**
+   - Logo: "TopTierModels" (left)
+   - Navigation links: Home | Blog | Tierlist | About (center)
+   - Search icon (right)
+   - Theme toggle (dark/light mode)
+
+2. **Hero Section**
+   - Headline: "Discover the Best AI Models, Ranked"
+   - Subheadline: "Comprehensive analysis and tierlists for every AI domain"
+   - Featured model of the week (large card)
+
+3. **Filter Bar**
+   - Category dropdown: All | Image Gen | NLP | Vision | Audio | etc.
+   - Tier filter: All Tiers | S | A | B | C | D
+   - Sort by: Newest | Highest Score | Most Popular
+
+4. **Article Grid**
+   - 3 columns (desktop), 2 (tablet), 1 (mobile)
+   - Each card contains:
+     - Featured image (16:9 ratio)
+     - Category badge (top-left)
+     - Tier badge (S/A/B/C/D, top-right)
+     - Model name (headline)
+     - Excerpt (2 lines, truncated)
+     - Read time estimate
+     - "Read More" link
+   - Hover effect: subtle elevation and border highlight
+
+5. **Pagination**
+   - Page numbers (1, 2, 3... 10)
+   - Previous / Next buttons
+   - "Showing X-Y of Z articles"
+
+6. **Footer**
+   - About section
+   - Social links (GitHub, LinkedIn, Twitter)
+   - Contact email
+   - Data attribution: "Powered by Hugging Face"
+
+**Visual Style:**
+- Clean, modern, minimalist
+- Generous whitespace
+- Data-focused typography
+- Accent color for tier badges
+- Card-based design system
+
+### 7.2 Tierlist Page
+
+**Layout:** Vertical tier sections
+
+**Components:**
+1. **Header** (same as homepage)
+
+2. **Page Title Section**
+   - Headline: "AI Model Tierlist"
+   - Description: "Models ranked by performance, usability, and innovation"
+   - Last updated timestamp
+
+3. **Category Tabs**
+   - Horizontal tabs: All | Image Generation | Text Generation | Vision | Audio | Multimodal | Other
+   - Active tab highlighted
+   - Model count per category shown
+
+4. **Search Bar**
+   - Prominent search input
+   - Placeholder: "Search models by name..."
+   - Real-time filtering
+
+5. **Tier Sections** (Repeated for S, A, B, C, D)
+   - **Tier Header:**
+     - Large tier letter (S, A, B, C, D)
+     - Color-coded background
+     - Score range (e.g., "90-100")
+     - Model count in this tier
+   
+   - **Model Cards (Horizontal scroll or grid):**
+     - Model icon/logo
+     - Model name
+     - Organization
+     - Overall score badge (e.g., "87/100")
+     - 3-4 key metric badges (Speed, Accuracy, etc.)
+     - Hover: tooltip with quick summary
+     - Click: navigate to article
+
+6. **Empty State** (if no models in tier)
+   - "No models in this tier yet"
+   - Encouragement to check other categories
+
+7. **Methodology Button**
+   - "How are models scored?" link
+   - Opens modal explaining scoring algorithm
+
+**Visual Hierarchy:**
+- S Tier most prominent (larger cards, gold accent)
+- Gradient from S → D in visual weight
+- Clear tier separation with colored dividers
+
+### 7.3 Article Detail Page
+
+**Layout:** Full-width article with sidebar
+
+**Components:**
+1. **Header** (same as homepage)
+
+2. **Hero Section**
+   - Full-width hero image (model example output)
+   - Overlay gradient
+   - Model name (large headline)
+   - Category and tier badges
+   - Breadcrumb: Home > Blog > Category > Article
+
+3. **Article Metadata Bar**
+   - Author name + avatar
+   - Publication date
+   - Read time
+   - Share buttons (LinkedIn, Twitter, Copy Link)
+
+4. **Two-Column Layout:**
+   
+   **Main Content (70% width):**
+   - Table of contents (sticky, collapsible)
+   - Article body with:
+     - Section headings (H2, H3)
+     - Paragraphs with optimal line length
+     - Embedded images with captions
+     - Code blocks with syntax highlighting and copy button
+     - Blockquotes for key insights
+     - Bullet lists for features
+     - Performance charts/tables
+   
+   **Sidebar (30% width, sticky):**
+   - **Model Info Card:**
+     - Overall score (large number)
+     - Tier badge
+     - Category
+     - Organization/Author
+     - License
+     - Downloads count
+     - "View on Hugging Face" button
+   
+   - **Quick Metrics:**
+     - Performance: 85/100
+     - Usability: 90/100
+     - Innovation: 88/100
+     - Adoption: 92/100
+     - Production: 87/100
+   
+   - **Quick Links:**
+     - GitHub repository
+     - Demo/playground
+     - Documentation
+
+5. **Code Snippet Section**
+   - Tabbed interface: Installation | Basic Usage | Advanced
+   - Copy button per snippet
+   - Language selector (Python, JavaScript, etc.)
+
+6. **LinkedIn Post Section**
+   - Collapsible card: "Shareable LinkedIn Post"
+   - Pre-written post text
+   - Copy button
+   - "Post to LinkedIn" button (future feature)
+
+7. **Related Models Section**
+   - "You might also like..."
+   - 3-4 model cards (same category or tier)
+   - Small card format with image, name, tier, score
+
+8. **Comments/Discussion** (Future)
+   - Placeholder for community engagement
+
+**Responsive Behavior:**
+- Mobile: Sidebar moves below content
+- Sticky TOC collapses to hamburger menu
+- Full-width images on mobile
+
+### 7.4 Search Overlay
+
+**Triggered by:** Clicking search icon in header
+
+**Components:**
+- Full-screen overlay (semi-transparent backdrop)
+- Large centered search box
+- Real-time results below search box
+  - Article results (title, excerpt, category)
+  - Model results (name, tier, score)
+  - Grouped by type
+- "Esc to close" hint
+- Recent searches (if implemented)
+
+---
+
+## 8. Acceptance Criteria
+
+### 8.1 Pipeline Processing
+
+**AC-001: URL Validation**
+- ✅ System accepts valid Hugging Face URLs
+- ✅ System rejects invalid URLs with clear error message
+- ✅ System detects and prevents duplicate processing
+- ✅ System logs all validation attempts
+
+**AC-002: Web Scraping Success**
+- ✅ All text content extracted from model page
+- ✅ All relevant images downloaded (minimum 1, maximum 5)
+- ✅ Metadata correctly parsed into structured format
+- ✅ Code snippets extracted when present
+- ✅ Scraping completes within 30 seconds
+- ✅ Errors handled gracefully with retry logic
+
+**AC-003: Article Generation Quality**
+- ✅ Generated article is 800-1500 words
+- ✅ Article includes all required sections (summary, features, benchmarks, use cases)
+- ✅ Technical accuracy verified against source material
+- ✅ Tone is professional and accessible
+- ✅ No hallucinated information
+- ✅ Proper citations to Hugging Face source
+
+**AC-004: LinkedIn Post Generation**
+- ✅ Post is 150-300 words
+- ✅ Post includes hook, key points, CTA
+- ✅ 3-5 relevant hashtags included
+- ✅ Character count within LinkedIn limits (3000 chars)
+- ✅ Tone is engaging and professional
+
+**AC-005: Model Scoring**
+- ✅ Overall score calculated (0-100)
+- ✅ Tier assigned correctly (S/A/B/C/D) based on score
+- ✅ Individual component scores present (performance, usability, etc.)
+- ✅ Scoring methodology documented
+- ✅ Scores are consistent and reproducible
+
+**AC-006: Data Upload**
+- ✅ All data inserted into correct Supabase tables
+- ✅ Foreign key relationships maintained
+- ✅ Images uploaded to storage buckets
+- ✅ Public URLs generated for all images
+- ✅ Transaction rollback on any error
+- ✅ Upload completes within 20 seconds
+
+### 8.2 Frontend Display
+
+**AC-007: Blog Page Functionality**
+- ✅ All published articles displayed
+- ✅ Pagination works correctly (12 articles per page)
+- ✅ Category filter updates results instantly
+- ✅ Tier filter works correctly
+- ✅ Article cards display all required information
+- ✅ Clicking card navigates to article detail
+- ✅ Page loads in under 2 seconds
+
+**AC-008: Tierlist Page Functionality**
+- ✅ All tiers displayed in order (S → D)
+- ✅ Models grouped correctly by tier
+- ✅ Category tabs filter tierlist correctly
+- ✅ Search filters models in real-time
+- ✅ Model cards display key metrics
+- ✅ Empty tiers show appropriate message
+- ✅ Clicking model opens article detail
+
+**AC-009: Article Detail Page**
+- ✅ Full article content displayed with proper formatting
+- ✅ Code blocks have syntax highlighting
+- ✅ Images load correctly with captions
+- ✅ Sidebar displays model info and metrics
+- ✅ Table of contents links to sections
+- ✅ Share buttons functional
+- ✅ LinkedIn post section displays correctly
+- ✅ Related models displayed at end
+
+**AC-010: Search Functionality**
+- ✅ Search overlay opens when icon clicked
+- ✅ Search results appear as user types (debounced)
+- ✅ Results include both articles and models
+- ✅ Clicking result navigates to correct page
+- ✅ "No results" state displayed when appropriate
+- ✅ Overlay closes on Esc key or backdrop click
+
+**AC-011: Responsive Design**
+- ✅ All pages render correctly on mobile (320px width)
+- ✅ All pages render correctly on tablet (768px width)
+- ✅ All pages render correctly on desktop (1440px width)
+- ✅ Touch targets are minimum 44x44px
+- ✅ Navigation collapses to hamburger menu on mobile
+- ✅ Images scale appropriately for viewport
+
+**AC-012: Performance**
+- ✅ Lighthouse score ≥90 (Performance)
+- ✅ First Contentful Paint <1 second
+- ✅ Time to Interactive <3 seconds
+- ✅ Images lazy load below fold
+- ✅ Total bundle size <500KB (initial load)
+
+### 8.3 Data Integrity
+
+**AC-013: Database Operations**
+- ✅ All CRUD operations function correctly
+- ✅ RLS policies enforce read-only public access
+- ✅ Service role key operations succeed
+- ✅ Foreign key constraints enforced
+- ✅ Timestamps automatically updated
+- ✅ No orphaned records after deletions
+
+**AC-014: Image Management**
+- ✅ All images stored in correct buckets
+- ✅ Public URLs accessible without authentication
+- ✅ Thumbnails generated at correct size (300x300px)
+- ✅ Image compression maintains acceptable quality
+- ✅ Broken image links handled gracefully
+- ✅ Storage usage stays under 1GB limit
+
+### 8.4 Free Tier Compliance
+
+**AC-015: Supabase Free Tier**
+- ✅ Database size remains under 500MB
+- ✅ Storage usage remains under 1GB
+- ✅ No inactivity pause (ping service configured)
+- ✅ Connection pooling prevents limit breaches
+- ✅ API request patterns optimized
+
+**AC-016: Netlify Free Tier**
+- ✅ Monthly bandwidth stays under 100GB
+- ✅ Build minutes stay under 300 per month
+- ✅ Build time per deployment <5 minutes
+- ✅ HTTPS certificate auto-renews
+- ✅ CDN delivers assets globally
+
+**AC-017: GitHub Actions**
+- ✅ Monthly usage stays under 2000 minutes
+- ✅ Workflows complete successfully
+- ✅ Secrets properly configured
+- ✅ Error notifications sent on failures
+- ✅ Build hooks trigger Netlify correctly
+
+---
+
+## 9. Future Considerations
+
+### 9.1 Enhanced Features (Phase 2-3)
+
+**Feature: User Authentication**
+- User accounts for saving favorites
+- Personalized model recommendations
+- Comment and discussion system
+- Contribution system for community reviews
+
+**Feature: Advanced Search**
+- Multi-faceted search (tags, licenses, model size)
+- Boolean operators (AND, OR, NOT)
+- Saved searches and alerts
+- Search analytics
+
+**Feature: Interactive Comparisons**
+- Side-by-side model comparison tool
+- Interactive benchmark visualizations
+- Custom weighting for scoring criteria
+- Export comparison reports
+
+**Feature: API for Developers**
+- REST API for accessing tierlist data
+- Webhooks for new model notifications
+- Rate-limited public endpoints
+- API documentation portal
+
+**Feature: Community Features**
+- User-submitted reviews and ratings
+- Discussion forums per model
+- Upvoting/downvoting system
+- Expert contributor badges
+
+### 9.2 Content Expansion
+
+**Multi-Source Support:**
+- Support for additional model repositories beyond Hugging Face:
+  - GitHub model releases
+  - Papers with Code
+  - Model Zoo repositories
+  - ArXiv papers
+- Unified scoring across sources
+
+**Multi-Language Support:**
+- Internationalization (i18n) infrastructure
+- Translated articles (Spanish, Chinese, French)
+- Localized model descriptions
+- Regional model rankings
+
+**Content Types:**
+- Video walkthroughs and tutorials
+- Podcast-style audio summaries
+- Interactive code playgrounds
+- Live demo integrations
+
+### 9.3 Integration Enhancements
+
+**Social Media Automation:**
+- Automated LinkedIn posting via API
+- Twitter/X thread generation
+- Reddit post formatting
+- Scheduled social media campaigns
+
+**Workflow Automation:**
+- Zapier integration for custom workflows
+- Slack notifications for new models
+- Email newsletter generation
+- RSS feed for updates
+
+**Analytics and Insights:**
+- User engagement tracking
+- Popular model trends dashboard
+- Category growth analysis
+- Traffic source attribution
+
+### 9.4 Technical Improvements
+
+**Performance Optimization:**
+- Edge caching strategies
+- Incremental static regeneration
+- Service worker for offline access
+- Optimistic UI updates
+
+**LLM Enhancements:**
+- Multi-model LLM ensemble for better quality
+- Fine-tuned models for domain-specific content
+- Automated fact-checking pipeline
+- Version control for generated content
+
+**Infrastructure Scaling:**
+- Migration to paid tiers when needed:
+  - Supabase Pro ($25/mo) at 100+ models
+  - Netlify Pro ($19/mo) at 100K+ visitors
+- Dedicated CI/CD pipeline
+- Distributed scraping infrastructure
+- Caching layer (Redis/Upstash)
+
+**Developer Experience:**
+- CLI tool for local pipeline testing
+- Docker compose for full local environment
+- Automated testing suite
+- Contribution guidelines for open source
+
+### 9.5 Business Model (Long-term)
+
+**Potential Revenue Streams:**
+- Premium tier with advanced features ($9/mo)
+- Sponsored model placements
+- API access for enterprises
+- White-label solutions for companies
+- Affiliate links for model hosting services
+
+**Community Engagement:**
+- Open source contributions
+- Model developer partnerships
+- Academic research collaborations
+- Conference presentations and workshops
+
+### 9.6 Compliance and Legal
+
+**Future Requirements:**
+- GDPR compliance for EU users
+- Cookie consent management
+- Privacy policy and terms of service
+- Content moderation policies
+- Intellectual property guidelines
+- Data retention policies
+
+---
+
+## 10. Glossary
+
+| Term | Definition |
+|------|------------|
+| **Artifact** | Generated content from the pipeline (article, post, scores) |
+| **Hugging Face** | Platform hosting AI models and datasets |
+| **LLM** | Large Language Model used for content generation |
+| **Model Card** | Metadata and documentation for an AI model |
+| **RLS** | Row Level Security in Supabase for access control |
+| **Service Role Key** | Supabase admin key for backend operations |
+| **Tierlist** | Ranking system with categories S, A, B, C, D |
+| **Anon Key** | Supabase public key safe for frontend use |
+| **Build Hook** | Webhook URL to trigger Netlify deployment |
+| **SSG** | Static Site Generation for pre-rendered pages |
+| **ISR** | Incremental Static Regeneration for fresh content |
+
+---
+
+## 11. Appendices
+
+### Appendix A: Example Model Processing Flow
+
+**Input:** `https://huggingface.co/Tongyi-MAI/Z-Image-Turbo`
+
+**Step 1: Scraping**
+```json
+{
+  "url": "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo",
+  "model_name": "Tongyi-MAI/Z-Image-Turbo",
+  "category": "image-generation",
+  "description": "Fast text-to-image generation model",
+  "readme_content": "[Full markdown content]",
+  "images": ["url1", "url2", "url3"],
+  "metadata": {...}
+}
+```
+
+**Step 2: LLM Processing**
+- Article generated (1200 words)
+- LinkedIn post created (250 words)
+- Code snippets extracted
+- Scores calculated
+
+**Step 3: Upload to Supabase**
+- Insert into `models` table
+- Insert into `articles` table
+- Insert into `simplified_articles` table
+- Insert into `model_scores` table
+- Upload images to storage
+- Insert into `images` table
+
+**Step 4: Trigger Rebuild**
+- Call Netlify build hook
+- Wait for deployment (2-3 minutes)
+- New content live on site
+
+### Appendix B: Scoring Algorithm
+
+**Overall Score Calculation:**
+```
+Overall Score = (Performance × 0.30) + 
+                (Usability × 0.25) + 
+                (Innovation × 0.20) + 
+                (Adoption × 0.15) + 
+                (Production × 0.10)
+```
+
+**Tier Assignment:**
+- **S Tier:** 90-100 (Exceptional, industry-leading)
+- **A Tier:** 80-89 (Excellent, highly recommended)
+- **B Tier:** 70-79 (Good, solid choice)
+- **C Tier:** 60-69 (Adequate, situational use)
+- **D Tier:** 0-59 (Limited, not recommended)
+
+### Appendix C: Technology Stack Summary
+
+| Layer | Technology | Version | Purpose |
+|-------|-----------|---------|---------|
+| Frontend Framework | Next.js or Vite+React | 14+ / 5+ | Web application |
+| Styling | Tailwind CSS | 3+ | Utility-first CSS |
+| Database | Supabase PostgreSQL | Latest | Data storage |
+| Storage | Supabase Storage | Latest | Image hosting |
+| Hosting | Netlify | Free Tier | Static site hosting |
+| CI/CD | GitHub Actions | Free Tier | Automation |
+| Scraping | Python/BeautifulSoup or Cheerio | Latest | Web scraping |
+| LLM | Ollama/OpenAI/Claude | Latest | Content generation |
+| Version Control | Git + GitHub | Latest | Code management |
+
+---
+
+## Document Control
+
+**Version History:**
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| 1.0 | 2025-12-09 | Product Team | Initial PRS with free-tier optimization |
+
+**Approvals:**
+
+| Role | Name | Signature | Date |
+|------|------|-----------|------|
+| Product Manager | ___________ | ___________ | _____ |
+| Tech Lead | ___________ | ___________ | _____ |
+| Stakeholder | ___________ | ___________ | _____ |
+
+**Next Steps:**
+1. Technical review by engineering team
+2. Design mockup creation
+3. Development sprint planning
+4. Free-tier account setup (Supabase, Netlify)
+5. Repository initialization
+6. Pipeline development kickoff
+
+---
+
+*End of Product Requirements Specification*
+
+### 5.3 Free Tier Constraints and Optimizations
+
+#### 5.3.1 Supabase Free Tier Limits
+
+**Database:**
+- 500MB database space
+- Unlimited API requests
+- Paused after 1 week of inactivity
+- 2 concurrent connections
+- 50MB file uploads limit per file
+- 1GB total storage
+
+**Optimization Strategies:**
+
+1. **Database Size Management**
+   - Limit article content to essential text
+   - Store only web-optimized images
+   - Compress images before upload (WebP format)
+   - Archive old content after 6 months
+   - Monitor database size weekly
+
+2. **Storage Optimization**
+   - Maximum image size: 500KB per file
+   - Use WebP format (60-80% smaller than PNG/JPG)
+   - Generate thumbnails at 300x300px maximum
+   - Limit to 2-3 images per model article
+   - Total target: <800MB storage usage
+
+3. **Connection Management**
+   - Use connection pooling
+   - Close connections after operations
+   - Batch database operations
+   - Implement retry logic for connection limits
+
+4. **Activity Management**
+   - Set up ping service to prevent inactivity pause
+   - Use free uptime monitoring (UptimeRobot)
+   - Schedule weekly automated requests
+
+#### 5.3.2 Netlify Free Tier Optimization
+
+**Build Minutes Conservation:**
+- Limit rebuilds to content changes only
+- Avoid rebuilds for style/minor tweaks
+- Use build hooks selectively
+- Target: <10 builds per month
+
+**Bandwidth Management:**
+- Serve optimized images (WebP, compressed)
+- Implement lazy loading for all images
+- Minimize JavaScript bundle size
+- Use efficient caching headers
+- Target: <50GB bandwidth per month
+
+**Best Practices:**
+- Deploy production builds only
+- Test locally before deploying
+- Use preview deployments sparingly
+- Monitor analytics dashboard
+
+### 5.4 Backend Pipeline Execution Strategy
+
+**For Free Tier Deployment:**
+
+**Option 1: Local Manual Execution (Initial Launch)**
+- Run scripts on local development machine
+- Manual URL input and processing
+- Direct upload to Supabase
+- No infrastructure costs
+
+**Option 2: GitHub Actions (Free Tier - Recommended for Phase 2)**
+- 2,000 minutes per month (free)
+- Scheduled weekly runs
+- Triggered by repository dispatch
+- Automated content generation
+
+**Workflow:**
+1. Admin adds URL to `queue.json` in repository
+2. Pushes to GitHub
+3. GitHub Action triggers pipeline
+4. Script processes model, uploads to Supabase
+5. Triggers Netlify rebuild via webhook
+6. New content appears on site
+
+**GitHub Actions Configuration:**
+```yaml
+# Example workflow (not code, just specification)
+name: Process Model
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly on Sunday
+  workflow_dispatch:     # Manual trigger
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    steps:
+      - Checkout code
+      - Install dependencies
+      - Run scraper script
+      - Run LLM processor
+      - Upload to Supabase
+      - Trigger Netlify build hook
+```
+
+### 5.5 Cost Analysis for Free Tier
+
+**Monthly Costs: $0**
+
+| Service | Free Tier Limits | Usage Estimate | Cost |
+|---------|------------------|----------------|------|
+| Supabase Database | 500MB | 300MB (60 models) | $0 |
+| Supabase Storage | 1GB | 800MB (images) | $0 |
+| Netlify Hosting | 100GB bandwidth | 40GB | $0 |
+| Netlify Builds | 300 minutes | 60 minutes | $0 |
+| GitHub Actions | 2,000 minutes | 100 minutes | $0 |
+| LLM Processing | Pay-per-use | Local/free tier | $0* |
+
+*Note: LLM costs depend on choice:
+- **Local Ollama:** Free, requires local GPU
+- **OpenAI Free Tier:** Limited tokens
+- **Anthropic Claude:** Pay-per-use (estimate $2-5/month for 20 models)
+
+**Scaling Trigger Points:**
+- 100+ models: Upgrade Supabase ($25/month)
+- 100K+ monthly visitors: Upgrade Netlify ($19/month)
+- Daily builds needed: Consider dedicated CI/CD
+
+### 5.6 System Architecture Diagram (Free Tier)

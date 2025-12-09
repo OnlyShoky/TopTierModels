@@ -1,0 +1,79 @@
+.tierlist-page {
+    padding: var(--space-8) 0 var(--space-16);
+}
+
+/* Header */
+.tierlist-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.tierlist-header h1 {
+    margin-bottom: var(--space-2);
+}
+
+/* Category Tabs */
+.category-tabs {
+    display: flex;
+    gap: var(--space-2);
+    overflow-x: auto;
+    padding-bottom: var(--space-2);
+    margin-bottom: var(--space-6);
+}
+
+.category-tab {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.category-tab:hover {
+    border-color: var(--color-border-strong);
+    color: var(--color-text);
+}
+
+.category-tab.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-primary-text);
+}
+
+.category-tab-icon {
+    font-size: 1.1em;
+}
+
+/* Search */
+.tierlist-search {
+    max-width: 400px;
+    margin-bottom: var(--space-8);
+}
+
+/* Content */
+.tierlist-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+}
+
+.tierlist-loading {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+/* Methodology */
+.methodology-btn {
+    margin: 0 auto;
+    display: block;
+}
