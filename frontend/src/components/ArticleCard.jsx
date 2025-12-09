@@ -2,39 +2,30 @@ import { Link } from 'react-router-dom'
 import './ArticleCard.css'
 
 function ArticleCard({ article }) {
-    const formatDate = (dateString) => {
-        const date = new Date(dateString)
-        return date.toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric'
-        })
+    const formatNumber = (num) => {
+        if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`
+        if (num >= 1000) return `${(num / 1000).toFixed(0)}k`
+        return num.toString()
     }
 
     return (
-        <Link to={`/article/${article.slug}`} className="article-card card">
-            <div className="article-card-image">
-                {article.hero_image_url ? (
-                    <img src={article.hero_image_url} alt={article.title} />
-                ) : (
-                    <div className="article-card-placeholder">
-                        <span>🤖</span>
-                    </div>
-                )}
-                <div className="article-card-badges">
-                    <span className="category-badge">{article.category}</span>
+        <Link to={`/article/${article.slug}`} className="article-card card card-interactive">
+            <div className="card-body">
+                <div className="article-card-header">
                     <span className={`tier-badge tier-badge-${article.tier.toLowerCase()}`}>
                         {article.tier}
                     </span>
+                    <span className="article-card-score">{article.score}</span>
                 </div>
-            </div>
-            <div className="card-body">
+
                 <h3 className="article-card-title">{article.title}</h3>
                 <p className="article-card-excerpt">{article.excerpt}</p>
-                <div className="article-card-meta">
-                    <span>{formatDate(article.published_at)}</span>
-                    <span>•</span>
-                    <span>{article.read_time_minutes} min read</span>
+
+                <div className="article-card-footer">
+                    <span className="tag">{article.category}</span>
+                    <span className="article-card-downloads">
+                        {formatNumber(article.downloads)} downloads
+                    </span>
                 </div>
             </div>
         </Link>

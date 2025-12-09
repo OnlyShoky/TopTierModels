@@ -17,13 +17,11 @@ function ArticlePage() {
         const fetchArticle = async () => {
             setLoading(true)
             try {
-                // TODO: Implement Supabase fetch
-                // Mock data for now
+                // Mock data
                 setArticle({
                     id: '1',
-                    title: 'Z-Image-Turbo: Revolutionary Image Generation',
-                    content: `
-## Overview
+                    title: 'Z-Image-Turbo',
+                    content: `## Overview
 
 Z-Image-Turbo represents a significant leap forward in AI-powered image generation technology. Developed by Tongyi-MAI, this model combines cutting-edge architecture with unprecedented processing speed.
 
@@ -33,35 +31,30 @@ Z-Image-Turbo represents a significant leap forward in AI-powered image generati
 - **Superior Quality**: State-of-the-art image fidelity and detail
 - **Versatile Applications**: From art creation to product visualization
 
-## Performance Benchmarks
+## Performance
 
-| Metric | Z-Image-Turbo | Previous Best |
-|--------|---------------|---------------|
-| Generation Time | 1.8s | 4.2s |
-| FID Score | 8.2 | 12.1 |
-| User Preference | 78% | 22% |
+| Metric | Value |
+|--------|-------|
+| Generation Time | 1.8s |
+| FID Score | 8.2 |
+| Resolution | 1024x1024 |
 
-## Code Example
+## Usage
 
 \`\`\`python
 from transformers import pipeline
 
-# Load the model
 generator = pipeline("text-to-image", model="Tongyi-MAI/Z-Image-Turbo")
-
-# Generate an image
 image = generator("A beautiful sunset over mountains")
 image.save("output.png")
 \`\`\`
 
 ## Conclusion
 
-Z-Image-Turbo sets a new standard for image generation models, offering an unmatched combination of speed and quality.
-          `,
-                    excerpt: 'A breakthrough in fast image generation with unprecedented quality.',
-                    hero_image_url: null,
+Z-Image-Turbo sets a new standard for image generation models.`,
+                    excerpt: 'A breakthrough in fast image generation.',
                     read_time_minutes: 8,
-                    author: 'TopTierModels AI',
+                    author: 'TopTierModels',
                     published_at: new Date().toISOString()
                 })
 
@@ -73,6 +66,7 @@ Z-Image-Turbo sets a new standard for image generation models, offering an unmat
                     organization: 'Tongyi-MAI',
                     license: 'MIT',
                     downloads: 125000,
+                    likes: 4500,
                     huggingface_url: 'https://huggingface.co/Tongyi-MAI/Z-Image-Turbo'
                 })
 
@@ -86,26 +80,26 @@ Z-Image-Turbo sets a new standard for image generation models, offering an unmat
                     production_score: 94
                 })
             } catch (error) {
-                console.error('Error fetching article:', error)
+                console.error('Error:', error)
             } finally {
                 setLoading(false)
             }
         }
-
         fetchArticle()
     }, [slug])
 
-    const copyToClipboard = (text) => {
-        navigator.clipboard.writeText(text)
+    const formatNumber = (num) => {
+        if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`
+        if (num >= 1000) return `${(num / 1000).toFixed(0)}k`
+        return num.toString()
     }
 
     if (loading) {
         return (
             <div className="article-page container">
-                <div className="skeleton" style={{ height: '300px', marginBottom: '2rem' }} />
                 <div className="skeleton" style={{ height: '2rem', width: '60%', marginBottom: '1rem' }} />
                 <div className="skeleton" style={{ height: '1rem', width: '100%', marginBottom: '0.5rem' }} />
-                <div className="skeleton" style={{ height: '1rem', width: '90%' }} />
+                <div className="skeleton" style={{ height: '1rem', width: '80%' }} />
             </div>
         )
     }
@@ -114,7 +108,7 @@ Z-Image-Turbo sets a new standard for image generation models, offering an unmat
         return (
             <div className="article-page container">
                 <div className="empty-state">
-                    <h2>Article not found</h2>
+                    <h3>Model not found</h3>
                     <Link to="/" className="btn btn-primary">Back to Home</Link>
                 </div>
             </div>
@@ -123,140 +117,132 @@ Z-Image-Turbo sets a new standard for image generation models, offering an unmat
 
     return (
         <div className="article-page">
-            {/* Hero */}
-            <header className="article-hero">
-                <div className="container">
-                    <nav className="breadcrumb">
-                        <Link to="/">Home</Link>
-                        <span>/</span>
-                        <Link to={`/?category=${model.category}`}>{model.category}</Link>
-                        <span>/</span>
-                        <span>{model.display_name}</span>
-                    </nav>
-
-                    <h1 className="article-title">{article.title}</h1>
-
-                    <div className="article-meta">
-                        <span className="category-badge">{model.category}</span>
-                        <span className={`tier-badge tier-badge-${scores.tier.toLowerCase()}`}>
-                            {scores.tier} Tier
-                        </span>
-                        <span>{article.author}</span>
-                        <span>•</span>
-                        <span>{article.read_time_minutes} min read</span>
-                    </div>
-                </div>
-            </header>
-
-            {/* Content */}
             <div className="container">
+                {/* Breadcrumb */}
+                <nav className="breadcrumb">
+                    <Link to="/">Models</Link>
+                    <span>/</span>
+                    <span>{model.category}</span>
+                    <span>/</span>
+                    <span>{model.display_name}</span>
+                </nav>
+
                 <div className="article-layout">
                     {/* Main Content */}
-                    <article className="article-content">
-                        <ReactMarkdown
-                            remarkPlugins={[remarkGfm]}
-                            components={{
-                                code({ node, inline, className, children, ...props }) {
-                                    const match = /language-(\w+)/.exec(className || '')
-                                    return !inline && match ? (
-                                        <div className="code-block">
-                                            <div className="code-block-header">
-                                                <span>{match[1]}</span>
-                                                <button
-                                                    className="btn btn-secondary"
-                                                    onClick={() => copyToClipboard(String(children))}
+                    <main className="article-main">
+                        <header className="article-header">
+                            <div className="article-meta-row">
+                                <span className={`tier-badge tier-badge-${scores.tier.toLowerCase()} tier-badge-lg`}>
+                                    {scores.tier}
+                                </span>
+                                <span className="tag">{model.category}</span>
+                            </div>
+                            <h1>{article.title}</h1>
+                            <p className="article-excerpt">{article.excerpt}</p>
+                        </header>
+
+                        <article className="article-content prose">
+                            <ReactMarkdown
+                                remarkPlugins={[remarkGfm]}
+                                components={{
+                                    code({ node, inline, className, children, ...props }) {
+                                        const match = /language-(\w+)/.exec(className || '')
+                                        return !inline && match ? (
+                                            <div className="code-block">
+                                                <div className="code-block-header">
+                                                    <span>{match[1]}</span>
+                                                    <button
+                                                        className="btn btn-ghost btn-sm"
+                                                        onClick={() => navigator.clipboard.writeText(String(children))}
+                                                    >
+                                                        Copy
+                                                    </button>
+                                                </div>
+                                                <SyntaxHighlighter
+                                                    style={oneDark}
+                                                    language={match[1]}
+                                                    PreTag="div"
+                                                    {...props}
                                                 >
-                                                    Copy
-                                                </button>
+                                                    {String(children).replace(/\n$/, '')}
+                                                </SyntaxHighlighter>
                                             </div>
-                                            <SyntaxHighlighter
-                                                style={oneDark}
-                                                language={match[1]}
-                                                PreTag="div"
-                                                {...props}
-                                            >
-                                                {String(children).replace(/\n$/, '')}
-                                            </SyntaxHighlighter>
-                                        </div>
-                                    ) : (
-                                        <code className={className} {...props}>
-                                            {children}
-                                        </code>
-                                    )
-                                }
-                            }}
-                        >
-                            {article.content}
-                        </ReactMarkdown>
-                    </article>
+                                        ) : (
+                                            <code className={className} {...props}>{children}</code>
+                                        )
+                                    }
+                                }}
+                            >
+                                {article.content}
+                            </ReactMarkdown>
+                        </article>
+                    </main>
 
                     {/* Sidebar */}
                     <aside className="article-sidebar">
-                        {/* Score Card */}
+                        {/* Score */}
                         <div className="sidebar-card">
-                            <div className="score-display">
-                                <span className="score-big">{scores.overall_score}</span>
+                            <div className="score">
+                                <span className="score-value">{scores.overall_score}</span>
                                 <span className="score-max">/100</span>
                             </div>
-                            <div className={`tier-badge tier-badge-${scores.tier.toLowerCase()} tier-badge-lg`}>
-                                {scores.tier} Tier
-                            </div>
-                        </div>
-
-                        {/* Model Info */}
-                        <div className="sidebar-card">
-                            <h4>Model Info</h4>
-                            <dl className="model-info-list">
-                                <div>
-                                    <dt>Organization</dt>
-                                    <dd>{model.organization}</dd>
-                                </div>
-                                <div>
-                                    <dt>License</dt>
-                                    <dd>{model.license}</dd>
-                                </div>
-                                <div>
-                                    <dt>Downloads</dt>
-                                    <dd>{model.downloads.toLocaleString()}</dd>
-                                </div>
-                            </dl>
-                            <a
-                                href={model.huggingface_url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn btn-primary"
-                                style={{ width: '100%' }}
-                            >
-                                View on Hugging Face
-                            </a>
                         </div>
 
                         {/* Metrics */}
                         <div className="sidebar-card">
-                            <h4>Quick Metrics</h4>
-                            <div className="metrics-list">
-                                <div className="metric-row">
-                                    <span>Performance</span>
-                                    <span className="metric-value">{scores.performance_score}/100</span>
-                                </div>
-                                <div className="metric-row">
-                                    <span>Usability</span>
-                                    <span className="metric-value">{scores.usability_score}/100</span>
-                                </div>
-                                <div className="metric-row">
-                                    <span>Innovation</span>
-                                    <span className="metric-value">{scores.innovation_score}/100</span>
-                                </div>
-                                <div className="metric-row">
-                                    <span>Adoption</span>
-                                    <span className="metric-value">{scores.adoption_score}/100</span>
-                                </div>
-                                <div className="metric-row">
-                                    <span>Production</span>
-                                    <span className="metric-value">{scores.production_score}/100</span>
-                                </div>
+                            <h4 className="sidebar-title">Metrics</h4>
+                            <div className="stat-row">
+                                <span className="stat-label">Performance</span>
+                                <span className="stat-value">{scores.performance_score}</span>
+                            </div>
+                            <div className="stat-row">
+                                <span className="stat-label">Usability</span>
+                                <span className="stat-value">{scores.usability_score}</span>
+                            </div>
+                            <div className="stat-row">
+                                <span className="stat-label">Innovation</span>
+                                <span className="stat-value">{scores.innovation_score}</span>
+                            </div>
+                            <div className="stat-row">
+                                <span className="stat-label">Adoption</span>
+                                <span className="stat-value">{scores.adoption_score}</span>
+                            </div>
+                            <div className="stat-row">
+                                <span className="stat-label">Production</span>
+                                <span className="stat-value">{scores.production_score}</span>
                             </div>
                         </div>
+
+                        {/* Info */}
+                        <div className="sidebar-card">
+                            <h4 className="sidebar-title">Details</h4>
+                            <div className="stat-row">
+                                <span className="stat-label">Organization</span>
+                                <span className="stat-value">{model.organization}</span>
+                            </div>
+                            <div className="stat-row">
+                                <span className="stat-label">License</span>
+                                <span className="stat-value">{model.license}</span>
+                            </div>
+                            <div className="stat-row">
+                                <span className="stat-label">Downloads</span>
+                                <span className="stat-value">{formatNumber(model.downloads)}</span>
+                            </div>
+                            <div className="stat-row">
+                                <span className="stat-label">Likes</span>
+                                <span className="stat-value">{formatNumber(model.likes)}</span>
+                            </div>
+                        </div>
+
+                        <a
+                            href={model.huggingface_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-primary"
+                            style={{ width: '100%' }}
+                        >
+                            View on Hugging Face →
+                        </a>
                     </aside>
                 </div>
             </div>

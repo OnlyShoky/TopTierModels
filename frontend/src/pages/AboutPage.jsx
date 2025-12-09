@@ -1,106 +1,75 @@
 import './AboutPage.css'
 
 function AboutPage() {
+    const scores = [
+        { name: 'Performance', weight: '30%', desc: 'Accuracy, speed, efficiency' },
+        { name: 'Usability', weight: '25%', desc: 'Documentation, API simplicity' },
+        { name: 'Innovation', weight: '20%', desc: 'Novelty, research impact' },
+        { name: 'Adoption', weight: '15%', desc: 'Downloads, community' },
+        { name: 'Production', weight: '10%', desc: 'Stability, support' },
+    ]
+
+    const tiers = [
+        { tier: 'S', range: '90-100', desc: 'Exceptional, industry-leading' },
+        { tier: 'A', range: '80-89', desc: 'Excellent, highly recommended' },
+        { tier: 'B', range: '70-79', desc: 'Good, solid choice' },
+        { tier: 'C', range: '60-69', desc: 'Adequate, situational' },
+        { tier: 'D', range: '0-59', desc: 'Limited, not recommended' },
+    ]
+
     return (
         <div className="about-page">
             <div className="container">
-                <header className="about-header">
-                    <h1>About TopTierModels</h1>
-                    <p className="text-secondary">
-                        Discover, analyze, and rank the best AI models from Hugging Face
-                    </p>
+                <header className="page-header">
+                    <h1>About</h1>
+                    <p className="text-secondary">How we analyze and rank AI models</p>
                 </header>
 
-                <div className="about-content">
+                <div className="about-grid">
+                    {/* Mission */}
                     <section className="about-section">
-                        <h2>🎯 Our Mission</h2>
+                        <h2>Mission</h2>
                         <p>
-                            TopTierModels transforms technical AI model documentation into accessible,
-                            comprehensive content. We help AI practitioners, researchers, and enthusiasts
-                            quickly evaluate and discover the best models for their use cases.
+                            TopTierModels transforms technical AI documentation into accessible content.
+                            We analyze models from Hugging Face and rank them using a transparent scoring system.
                         </p>
                     </section>
 
+                    {/* Scoring */}
                     <section className="about-section">
-                        <h2>📊 How It Works</h2>
-                        <div className="how-it-works">
-                            <div className="step">
-                                <span className="step-number">1</span>
-                                <h3>Discovery</h3>
-                                <p>We scrape and analyze model pages from Hugging Face</p>
-                            </div>
-                            <div className="step">
-                                <span className="step-number">2</span>
-                                <h3>Analysis</h3>
-                                <p>AI generates comprehensive articles and scores</p>
-                            </div>
-                            <div className="step">
-                                <span className="step-number">3</span>
-                                <h3>Ranking</h3>
-                                <p>Models are ranked into tiers: S, A, B, C, D</p>
-                            </div>
+                        <h2>Scoring Methodology</h2>
+                        <p className="mb-4">We evaluate models across five weighted dimensions:</p>
+                        <div className="score-table">
+                            {scores.map(s => (
+                                <div key={s.name} className="score-row">
+                                    <span className="score-name">{s.name}</span>
+                                    <span className="score-weight">{s.weight}</span>
+                                    <span className="score-desc">{s.desc}</span>
+                                </div>
+                            ))}
                         </div>
                     </section>
 
+                    {/* Tiers */}
                     <section className="about-section">
-                        <h2>🏆 Tier System</h2>
-                        <div className="tier-explanation">
-                            <div className="tier-item">
-                                <span className="tier-badge tier-badge-s">S</span>
-                                <div>
-                                    <strong>S Tier (90-100)</strong>
-                                    <p>Exceptional, industry-leading models</p>
+                        <h2>Tier System</h2>
+                        <div className="tier-table">
+                            {tiers.map(t => (
+                                <div key={t.tier} className="tier-row">
+                                    <span className={`tier-badge tier-badge-${t.tier.toLowerCase()}`}>{t.tier}</span>
+                                    <span className="tier-range">{t.range}</span>
+                                    <span className="tier-desc">{t.desc}</span>
                                 </div>
-                            </div>
-                            <div className="tier-item">
-                                <span className="tier-badge tier-badge-a">A</span>
-                                <div>
-                                    <strong>A Tier (80-89)</strong>
-                                    <p>Excellent, highly recommended</p>
-                                </div>
-                            </div>
-                            <div className="tier-item">
-                                <span className="tier-badge tier-badge-b">B</span>
-                                <div>
-                                    <strong>B Tier (70-79)</strong>
-                                    <p>Good, solid choice for most use cases</p>
-                                </div>
-                            </div>
-                            <div className="tier-item">
-                                <span className="tier-badge tier-badge-c">C</span>
-                                <div>
-                                    <strong>C Tier (60-69)</strong>
-                                    <p>Adequate, situational use</p>
-                                </div>
-                            </div>
-                            <div className="tier-item">
-                                <span className="tier-badge tier-badge-d">D</span>
-                                <div>
-                                    <strong>D Tier (0-59)</strong>
-                                    <p>Limited, not generally recommended</p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </section>
 
+                    {/* Source */}
                     <section className="about-section">
-                        <h2>📈 Scoring Methodology</h2>
-                        <p>Our overall score is calculated using weighted factors:</p>
-                        <ul>
-                            <li><strong>Performance (30%)</strong> - Accuracy, speed, efficiency</li>
-                            <li><strong>Usability (25%)</strong> - Documentation quality, API simplicity</li>
-                            <li><strong>Innovation (20%)</strong> - Novelty of approach</li>
-                            <li><strong>Adoption (15%)</strong> - Community downloads, likes</li>
-                            <li><strong>Production (10%)</strong> - Stability, support readiness</li>
-                        </ul>
-                    </section>
-
-                    <section className="about-section">
-                        <h2>🔗 Data Sources</h2>
+                        <h2>Data Source</h2>
                         <p>
-                            All model data is sourced from <a href="https://huggingface.co" target="_blank" rel="noopener noreferrer">Hugging Face</a>,
-                            the leading platform for AI models and datasets. We respect their terms of service
-                            and implement rate limiting to ensure responsible data collection.
+                            All model data is sourced from <a href="https://huggingface.co" target="_blank" rel="noopener noreferrer">Hugging Face</a>.
+                            We respect rate limits and their terms of service.
                         </p>
                     </section>
                 </div>

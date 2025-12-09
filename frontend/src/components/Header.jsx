@@ -1,15 +1,13 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import SearchOverlay from './SearchOverlay'
 import './Header.css'
 
 function Header({ theme, toggleTheme }) {
     const [menuOpen, setMenuOpen] = useState(false)
-    const [searchOpen, setSearchOpen] = useState(false)
     const location = useLocation()
 
     const navLinks = [
-        { path: '/', label: 'Home' },
+        { path: '/', label: 'Models' },
         { path: '/tierlist', label: 'Tierlist' },
         { path: '/about', label: 'About' },
     ]
@@ -17,96 +15,82 @@ function Header({ theme, toggleTheme }) {
     const isActive = (path) => location.pathname === path
 
     return (
-        <>
-            <header className="header">
-                <div className="container">
-                    <div className="header-content">
-                        {/* Logo */}
-                        <Link to="/" className="logo">
-                            <span className="logo-icon">🏆</span>
-                            <span className="logo-text">TopTierModels</span>
-                        </Link>
+        <header className="header">
+            <div className="container">
+                <div className="header-inner">
+                    {/* Logo */}
+                    <Link to="/" className="logo">
+                        <span className="logo-mark">T</span>
+                        <span className="logo-text">TopTierModels</span>
+                    </Link>
 
-                        {/* Desktop Navigation */}
-                        <nav className="nav-desktop hide-mobile">
-                            {navLinks.map(link => (
-                                <Link
-                                    key={link.path}
-                                    to={link.path}
-                                    className={`nav-link ${isActive(link.path) ? 'active' : ''}`}
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
-                        </nav>
-
-                        {/* Actions */}
-                        <div className="header-actions">
-                            <button
-                                className="icon-btn"
-                                onClick={() => setSearchOpen(true)}
-                                aria-label="Search"
+                    {/* Desktop Nav */}
+                    <nav className="nav hide-mobile">
+                        {navLinks.map(link => (
+                            <Link
+                                key={link.path}
+                                to={link.path}
+                                className={`nav-link ${isActive(link.path) ? 'active' : ''}`}
                             >
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <circle cx="11" cy="11" r="8" />
-                                    <path d="m21 21-4.35-4.35" />
+                                {link.label}
+                            </Link>
+                        ))}
+                    </nav>
+
+                    {/* Actions */}
+                    <div className="header-actions">
+                        {/* Theme Toggle */}
+                        <button
+                            className="icon-btn"
+                            onClick={toggleTheme}
+                            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+                        >
+                            {theme === 'light' ? (
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M8 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 8 1zm0 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                    <path d="M13.5 8a.5.5 0 0 1 0 1h-1a.5.5 0 0 1 0-1h1zm-10 0a.5.5 0 0 1 0 1h-1a.5.5 0 0 1 0-1h1zm8.36-4.95a.5.5 0 0 1 0 .7l-.7.71a.5.5 0 1 1-.71-.71l.7-.7a.5.5 0 0 1 .71 0zm-8.49 8.49a.5.5 0 0 1 0 .7l-.7.71a.5.5 0 1 1-.71-.71l.7-.7a.5.5 0 0 1 .71 0zm8.49 0a.5.5 0 0 1 .7 0l.71.7a.5.5 0 1 1-.71.71l-.7-.7a.5.5 0 0 1 0-.71zm-8.49-8.49a.5.5 0 0 1 .7 0l.71.7a.5.5 0 1 1-.71.71l-.7-.7a.5.5 0 0 1 0-.71zM8 13a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 8 13z" />
                                 </svg>
-                            </button>
+                            ) : (
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
+                                </svg>
+                            )}
+                        </button>
 
-                            <button
-                                className="icon-btn"
-                                onClick={toggleTheme}
-                                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-                            >
-                                {theme === 'light' ? (
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                                    </svg>
+                        {/* Mobile Menu */}
+                        <button
+                            className="icon-btn hide-desktop"
+                            onClick={() => setMenuOpen(!menuOpen)}
+                            aria-label="Menu"
+                        >
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                {menuOpen ? (
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
                                 ) : (
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <circle cx="12" cy="12" r="5" />
-                                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-                                    </svg>
+                                    <path d="M1 3.5A.5.5 0 0 1 1.5 3h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zm0 4A.5.5 0 0 1 1.5 7h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z" />
                                 )}
-                            </button>
-
-                            {/* Mobile Menu Button */}
-                            <button
-                                className="icon-btn hide-desktop"
-                                onClick={() => setMenuOpen(!menuOpen)}
-                                aria-label="Menu"
-                            >
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    {menuOpen ? (
-                                        <path d="M18 6L6 18M6 6l12 12" />
-                                    ) : (
-                                        <path d="M3 12h18M3 6h18M3 18h18" />
-                                    )}
-                                </svg>
-                            </button>
-                        </div>
+                            </svg>
+                        </button>
                     </div>
-
-                    {/* Mobile Navigation */}
-                    {menuOpen && (
-                        <nav className="nav-mobile hide-desktop">
-                            {navLinks.map(link => (
-                                <Link
-                                    key={link.path}
-                                    to={link.path}
-                                    className={`nav-link ${isActive(link.path) ? 'active' : ''}`}
-                                    onClick={() => setMenuOpen(false)}
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
-                        </nav>
-                    )}
                 </div>
-            </header>
 
-            <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
-        </>
+                {/* Mobile Nav */}
+                {menuOpen && (
+                    <nav className="nav-mobile hide-desktop">
+                        {navLinks.map(link => (
+                            <Link
+                                key={link.path}
+                                to={link.path}
+                                className={`nav-link ${isActive(link.path) ? 'active' : ''}`}
+                                onClick={() => setMenuOpen(false)}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                    </nav>
+                )}
+            </div>
+        </header>
     )
 }
 

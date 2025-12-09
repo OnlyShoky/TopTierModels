@@ -10,10 +10,8 @@ function PreviewPage() {
     const [publishing, setPublishing] = useState(false)
     const [copySuccess, setCopySuccess] = useState(false)
 
-    // WebSocket for real-time updates
     const { data: wsData, isConnected } = usePreviewWebSocket(previewId, true)
 
-    // Update preview data when WebSocket receives updates
     useEffect(() => {
         if (wsData) {
             setPreviewData(wsData)
@@ -23,9 +21,7 @@ function PreviewPage() {
 
     useEffect(() => {
         const fetchPreview = async () => {
-            // Skip if WebSocket already provided data
             if (previewData) return
-
             setLoading(true)
             try {
                 const response = await fetch(`/api/preview/${previewId}`)
@@ -34,12 +30,11 @@ function PreviewPage() {
                     setPreviewData(data)
                 }
             } catch (error) {
-                console.error('Error fetching preview:', error)
+                console.error('Error:', error)
             } finally {
                 setLoading(false)
             }
         }
-
         fetchPreview()
     }, [previewId, previewData])
 
@@ -49,26 +44,20 @@ function PreviewPage() {
             const response = await fetch('/api/publish', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    preview_id: previewId,
-                    trigger_netlify_rebuild: true
-                })
+                body: JSON.stringify({ preview_id: previewId, trigger_netlify_rebuild: true })
             })
-
             if (response.ok) {
                 const result = await response.json()
-                alert(`Published successfully! View at: ${result.live_url}`)
-            } else {
-                throw new Error('Publish failed')
+                alert(`Published! ${result.live_url}`)
             }
         } catch (error) {
-            alert('Failed to publish: ' + error.message)
+            alert('Publish failed: ' + error.message)
         } finally {
             setPublishing(false)
         }
     }
 
-    const handleCopyLinkedIn = () => {
+    const handleCopy = () => {
         if (previewData?.linkedin_data?.content) {
             navigator.clipboard.writeText(previewData.linkedin_data.content)
             setCopySuccess(true)
@@ -87,9 +76,9 @@ function PreviewPage() {
     if (!previewData) {
         return (
             <div className="preview-page container">
-                <div className="preview-error">
-                    <h2>Preview not found</h2>
-                    <p>The preview session may have expired or doesn't exist.</p>
+                <div className="empty-state">
+                    <h3>Preview not found</h3>
+                    <p>Session may have expired</p>
                 </div>
             </div>
         )
@@ -100,18 +89,14 @@ function PreviewPage() {
             {/* Header */}
             <header className="preview-header">
                 <div className="container">
-                    <div className="preview-header-content">
+                    <div className="preview-header-inner">
                         <div>
-                            <h1>🔍 Preview Studio</h1>
-                            <p className="text-muted">Session: {previewId}</p>
+                            <h1>Preview</h1>
+                            <p className="text-muted text-sm">Session: {previewId}</p>
                         </div>
-                        <div className="preview-status">
-                            {isConnected && (
-                                <span className="status-badge status-connected" title="Real-time updates enabled">
-                                    🟢 Live
-                                </span>
-                            )}
-                            <span className="status-badge status-draft">Draft</span>
+                        <div className="preview-badges">
+                            {isConnected && <span className="status-live">Live</span>}
+                            <span className="status-draft">Draft</span>
                         </div>
                     </div>
                 </div>
@@ -119,91 +104,58 @@ function PreviewPage() {
 
             <div className="container">
                 <div className="preview-layout">
-                    {/* Article Preview */}
-                    <div className="preview-article">
-                        <div className="preview-section-header">
-                            <h3>Article Preview</h3>
+                    {/* Main */}
+                    <main className="preview-main">
+                        <div className="section-header">
+                            <span className="section-title">Article</span>
                         </div>
-                        <div className="preview-article-content card">
+                        <div className="preview-card">
                             <h2>{previewData.article_data?.title}</h2>
                             <p className="text-secondary">{previewData.article_data?.excerpt}</p>
-                            <div className="preview-article-body"
-                                dangerouslySetInnerHTML={{ __html: previewData.article_data?.content }}
-                            />
+                            <div className="preview-content" dangerouslySetInnerHTML={{ __html: previewData.article_data?.content }} />
                         </div>
-                    </div>
+                    </main>
 
-                    {/* Controls */}
-                    <div className="preview-controls">
-                        {/* LinkedIn Preview */}
-                        <div className="preview-section-header">
-                            <h3>LinkedIn Post</h3>
-                        </div>
-                        <div className="linkedin-preview card">
-                            <div className="linkedin-header">
-                                <div className="linkedin-avatar">🤖</div>
-                                <div className="linkedin-author">
-                                    <strong>TopTierModels</strong>
-                                    <span>AI Model Rankings</span>
-                                </div>
-                            </div>
-                            <div className="linkedin-content">
-                                {previewData.linkedin_data?.content}
-                            </div>
-                            <div className="linkedin-hashtags">
-                                {previewData.linkedin_data?.hashtags?.map((tag, i) => (
-                                    <span key={i}>#{tag}</span>
-                                ))}
-                            </div>
-                            <div className="linkedin-char-count">
-                                {previewData.linkedin_data?.content?.length || 0}/3000 characters
-                            </div>
-                        </div>
-
+                    {/* Sidebar */}
+                    <aside className="preview-sidebar">
                         {/* Actions */}
                         <div className="preview-actions">
-                            <button
-                                className="btn btn-success"
-                                onClick={handlePublish}
-                                disabled={publishing}
-                            >
-                                {publishing ? 'Publishing...' : '🚀 Publish to Supabase'}
+                            <button className="btn btn-primary" onClick={handlePublish} disabled={publishing}>
+                                {publishing ? 'Publishing...' : 'Publish'}
                             </button>
-
-                            <button
-                                className="btn btn-primary"
-                                onClick={handleCopyLinkedIn}
-                            >
-                                {copySuccess ? '✓ Copied!' : '📋 Copy LinkedIn Post'}
-                            </button>
-
-                            <button className="btn btn-secondary">
-                                🔄 Regenerate
-                            </button>
-
-                            <button className="btn btn-secondary">
-                                💾 Export JSON
-                            </button>
-
-                            <button className="btn btn-danger">
-                                🗑️ Discard
+                            <button className="btn btn-secondary" onClick={handleCopy}>
+                                {copySuccess ? 'Copied!' : 'Copy LinkedIn'}
                             </button>
                         </div>
 
-                        {/* Scores */}
-                        <div className="preview-section-header">
-                            <h3>Model Scores</h3>
+                        {/* LinkedIn */}
+                        <div className="sidebar-card">
+                            <h4 className="sidebar-title">LinkedIn Post</h4>
+                            <div className="linkedin-preview">
+                                <p>{previewData.linkedin_data?.content}</p>
+                                <div className="linkedin-hashtags">
+                                    {previewData.linkedin_data?.hashtags?.map((tag, i) => (
+                                        <span key={i}>#{tag}</span>
+                                    ))}
+                                </div>
+                                <span className="text-muted text-xs">
+                                    {previewData.linkedin_data?.content?.length || 0}/3000
+                                </span>
+                            </div>
                         </div>
-                        <div className="card" style={{ padding: 'var(--space-4)' }}>
-                            <div className="score-display">
-                                <span className="score-big">{previewData.scores_data?.overall_score}</span>
+
+                        {/* Score */}
+                        <div className="sidebar-card">
+                            <h4 className="sidebar-title">Score</h4>
+                            <div className="score">
+                                <span className="score-value">{previewData.scores_data?.overall_score}</span>
                                 <span className="score-max">/100</span>
                             </div>
                             <div className={`tier-badge tier-badge-${previewData.scores_data?.tier?.toLowerCase()}`}>
                                 {previewData.scores_data?.tier} Tier
                             </div>
                         </div>
-                    </div>
+                    </aside>
                 </div>
             </div>
         </div>

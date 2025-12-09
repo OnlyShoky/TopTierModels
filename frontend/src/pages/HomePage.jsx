@@ -10,47 +10,77 @@ function HomePage() {
         category: 'all',
         tier: 'all'
     })
-    const [page, setPage] = useState(1)
-    const articlesPerPage = 12
 
     useEffect(() => {
         const fetchArticles = async () => {
             setLoading(true)
             try {
-                // TODO: Implement Supabase fetch
-                // For now, return mock data
+                // Mock data
                 const mockArticles = [
                     {
                         id: '1',
                         slug: 'z-image-turbo',
-                        title: 'Z-Image-Turbo: Revolutionary Image Generation',
-                        excerpt: 'A breakthrough in fast image generation with unprecedented quality.',
+                        title: 'Z-Image-Turbo',
+                        excerpt: 'Revolutionary fast image generation with unprecedented quality.',
                         category: 'Image Generation',
                         tier: 'S',
-                        hero_image_url: null,
-                        read_time_minutes: 8,
+                        score: 95,
+                        downloads: 125000,
                         published_at: new Date().toISOString()
                     },
                     {
                         id: '2',
                         slug: 'llama-3-instruct',
-                        title: 'LLaMA 3 Instruct: Next-Gen Language Model',
-                        excerpt: 'Meta\'s latest instruction-tuned language model with remarkable capabilities.',
+                        title: 'LLaMA 3 Instruct',
+                        excerpt: 'Meta\'s instruction-tuned language model with remarkable capabilities.',
                         category: 'Text Generation',
                         tier: 'A',
-                        hero_image_url: null,
-                        read_time_minutes: 10,
+                        score: 87,
+                        downloads: 890000,
                         published_at: new Date().toISOString()
                     },
                     {
                         id: '3',
                         slug: 'whisper-v3',
-                        title: 'Whisper V3: State-of-the-Art Speech Recognition',
-                        excerpt: 'OpenAI\'s most capable speech recognition model to date.',
+                        title: 'Whisper V3',
+                        excerpt: 'OpenAI\'s most capable speech recognition model.',
                         category: 'Audio Processing',
                         tier: 'S',
-                        hero_image_url: null,
-                        read_time_minutes: 6,
+                        score: 92,
+                        downloads: 560000,
+                        published_at: new Date().toISOString()
+                    },
+                    {
+                        id: '4',
+                        slug: 'clip-vit-large',
+                        title: 'CLIP ViT-L/14',
+                        excerpt: 'Zero-shot image classification with natural language prompts.',
+                        category: 'Multimodal',
+                        tier: 'A',
+                        score: 85,
+                        downloads: 340000,
+                        published_at: new Date().toISOString()
+                    },
+                    {
+                        id: '5',
+                        slug: 'yolov8',
+                        title: 'YOLOv8',
+                        excerpt: 'Real-time object detection with state-of-the-art performance.',
+                        category: 'Computer Vision',
+                        tier: 'B',
+                        score: 78,
+                        downloads: 780000,
+                        published_at: new Date().toISOString()
+                    },
+                    {
+                        id: '6',
+                        slug: 'stable-diffusion-xl',
+                        title: 'Stable Diffusion XL',
+                        excerpt: 'High-resolution image synthesis with enhanced quality.',
+                        category: 'Image Generation',
+                        tier: 'A',
+                        score: 88,
+                        downloads: 1200000,
                         published_at: new Date().toISOString()
                     }
                 ]
@@ -63,107 +93,127 @@ function HomePage() {
         }
 
         fetchArticles()
-    }, [filters, page])
+    }, [filters])
 
     const categories = [
-        'all', 'Image Generation', 'Text Generation', 'Computer Vision',
-        'NLP', 'Multimodal', 'Audio Processing', 'Video Generation'
+        { id: 'all', label: 'All' },
+        { id: 'Image Generation', label: 'Image' },
+        { id: 'Text Generation', label: 'Text' },
+        { id: 'Audio Processing', label: 'Audio' },
+        { id: 'Computer Vision', label: 'Vision' },
+        { id: 'Multimodal', label: 'Multimodal' },
     ]
 
     const tiers = ['all', 'S', 'A', 'B', 'C', 'D']
 
+    const filteredArticles = articles.filter(article => {
+        if (filters.category !== 'all' && article.category !== filters.category) return false
+        if (filters.tier !== 'all' && article.tier !== filters.tier) return false
+        return true
+    })
+
     return (
         <div className="home-page">
-            {/* Hero Section */}
+            {/* Hero */}
             <section className="hero">
                 <div className="container">
                     <div className="hero-content">
                         <h1 className="hero-title">
-                            Discover the Best <span className="gradient-text">AI Models</span>, Ranked
+                            AI Model Rankings
                         </h1>
                         <p className="hero-subtitle">
-                            Comprehensive analysis and tier rankings for every AI domain.
-                            Find the perfect model for your next project.
+                            Discover and compare the best models from Hugging Face.
+                            Analyzed, scored, and ranked.
                         </p>
                         <div className="hero-actions">
-                            <Link to="/tierlist" className="btn btn-primary">
+                            <Link to="/tierlist" className="btn btn-primary btn-lg">
                                 View Tierlist
                             </Link>
-                            <a href="#articles" className="btn btn-secondary">
-                                Browse Articles
+                            <a href="#models" className="btn btn-secondary btn-lg">
+                                Browse Models
                             </a>
+                        </div>
+                    </div>
+
+                    {/* Stats */}
+                    <div className="hero-stats">
+                        <div className="stat">
+                            <span className="stat-value">50+</span>
+                            <span className="stat-label">Models</span>
+                        </div>
+                        <div className="stat">
+                            <span className="stat-value">8</span>
+                            <span className="stat-label">Categories</span>
+                        </div>
+                        <div className="stat">
+                            <span className="stat-value">5</span>
+                            <span className="stat-label">Tiers</span>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Filter Bar */}
-            <section id="articles" className="filter-section py-8">
+            {/* Filters */}
+            <section id="models" className="filter-section">
                 <div className="container">
                     <div className="filter-bar">
-                        <div className="filter-group">
-                            <label htmlFor="category">Category</label>
-                            <select
-                                id="category"
-                                className="input"
-                                value={filters.category}
-                                onChange={(e) => setFilters({ ...filters, category: e.target.value })}
-                            >
-                                {categories.map(cat => (
-                                    <option key={cat} value={cat}>
-                                        {cat === 'all' ? 'All Categories' : cat}
-                                    </option>
-                                ))}
-                            </select>
+                        <div className="filter-tabs">
+                            {categories.map(cat => (
+                                <button
+                                    key={cat.id}
+                                    className={`filter-tab ${filters.category === cat.id ? 'active' : ''}`}
+                                    onClick={() => setFilters({ ...filters, category: cat.id })}
+                                >
+                                    {cat.label}
+                                </button>
+                            ))}
                         </div>
 
-                        <div className="filter-group">
-                            <label htmlFor="tier">Tier</label>
+                        <div className="filter-select">
                             <select
-                                id="tier"
                                 className="input"
                                 value={filters.tier}
                                 onChange={(e) => setFilters({ ...filters, tier: e.target.value })}
                             >
-                                {tiers.map(tier => (
-                                    <option key={tier} value={tier}>
-                                        {tier === 'all' ? 'All Tiers' : `${tier} Tier`}
-                                    </option>
+                                <option value="all">All Tiers</option>
+                                {tiers.slice(1).map(tier => (
+                                    <option key={tier} value={tier}>{tier} Tier</option>
                                 ))}
                             </select>
                         </div>
-
-                        <span className="article-count">
-                            {articles.length} articles
-                        </span>
                     </div>
                 </div>
             </section>
 
-            {/* Articles Grid */}
-            <section className="articles-section py-8">
+            {/* Models Grid */}
+            <section className="models-section">
                 <div className="container">
+                    <div className="section-header">
+                        <span className="section-title">
+                            {filteredArticles.length} models
+                        </span>
+                    </div>
+
                     {loading ? (
                         <div className="grid grid-cols-3">
                             {[...Array(6)].map((_, i) => (
                                 <div key={i} className="card">
-                                    <div className="skeleton" style={{ aspectRatio: '16/9' }} />
                                     <div className="card-body">
-                                        <div className="skeleton" style={{ height: '1.5rem', width: '60%', marginBottom: '0.5rem' }} />
-                                        <div className="skeleton" style={{ height: '1rem', width: '100%' }} />
-                                        <div className="skeleton" style={{ height: '1rem', width: '80%', marginTop: '0.5rem' }} />
+                                        <div className="skeleton" style={{ height: '1.25rem', width: '70%', marginBottom: '0.5rem' }} />
+                                        <div className="skeleton" style={{ height: '1rem', width: '100%', marginBottom: '0.25rem' }} />
+                                        <div className="skeleton" style={{ height: '1rem', width: '80%' }} />
                                     </div>
                                 </div>
                             ))}
                         </div>
-                    ) : articles.length === 0 ? (
+                    ) : filteredArticles.length === 0 ? (
                         <div className="empty-state">
-                            <h3>No articles found</h3>
-                            <p>Try adjusting your filters or check back later.</p>
+                            <h3>No models found</h3>
+                            <p>Try adjusting your filters</p>
                         </div>
                     ) : (
                         <div className="grid grid-cols-3">
-                            {articles.map(article => (
+                            {filteredArticles.map(article => (
                                 <ArticleCard key={article.id} article={article} />
                             ))}
                         </div>

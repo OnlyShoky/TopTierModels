@@ -32,17 +32,17 @@ function SearchOverlay({ isOpen, onClose }) {
         const debounceTimer = setTimeout(async () => {
             setLoading(true)
             try {
-                // TODO: Implement Supabase search
-                // For now, return mock results
+                // Mock results
                 setResults([
-                    { type: 'article', slug: 'sample', title: 'Sample Model', tier: 'S', category: 'Image Generation' }
+                    { type: 'model', slug: 'z-image-turbo', title: 'Z-Image-Turbo', tier: 'S', category: 'Image Generation' },
+                    { type: 'model', slug: 'whisper-v3', title: 'Whisper V3', tier: 'S', category: 'Audio Processing' },
                 ])
             } catch (error) {
                 console.error('Search error:', error)
             } finally {
                 setLoading(false)
             }
-        }, 300)
+        }, 200)
 
         return () => clearTimeout(debounceTimer)
     }, [query])
@@ -57,58 +57,47 @@ function SearchOverlay({ isOpen, onClose }) {
 
     return (
         <div className="search-overlay" onClick={onClose}>
-            <div className="search-container" onClick={(e) => e.stopPropagation()}>
-                <div className="search-input-wrapper">
-                    <svg className="search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="11" cy="11" r="8" />
-                        <path d="m21 21-4.35-4.35" />
+            <div className="search-dialog" onClick={(e) => e.stopPropagation()}>
+                <div className="search-input-row">
+                    <svg className="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                     </svg>
                     <input
                         ref={inputRef}
                         type="text"
                         className="search-input"
-                        placeholder="Search models, articles..."
+                        placeholder="Search models..."
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                     />
-                    <button className="search-close" onClick={onClose}>
-                        <kbd>ESC</kbd>
-                    </button>
+                    <kbd className="search-kbd">esc</kbd>
                 </div>
 
                 {query && (
                     <div className="search-results">
                         {loading && (
-                            <div className="search-loading">Searching...</div>
+                            <div className="search-message">Searching...</div>
                         )}
 
                         {!loading && results.length === 0 && (
-                            <div className="search-empty">
-                                <p>No results found for "{query}"</p>
-                                <p className="text-muted">Try searching for model names or categories</p>
-                            </div>
+                            <div className="search-message">No results for "{query}"</div>
                         )}
 
                         {!loading && results.length > 0 && (
-                            <ul className="search-results-list">
+                            <ul className="search-list">
                                 {results.map((result, index) => (
                                     <li key={index}>
                                         <button
-                                            className="search-result-item"
+                                            className="search-result"
                                             onClick={() => handleResultClick(result)}
                                         >
-                                            <div className="search-result-content">
-                                                <span className="search-result-title">{result.title}</span>
-                                                <span className="search-result-meta">
-                                                    <span className={`tier-badge tier-badge-${result.tier.toLowerCase()}`}>
-                                                        {result.tier}
-                                                    </span>
-                                                    <span className="category-badge">{result.category}</span>
+                                            <span className="search-result-title">{result.title}</span>
+                                            <span className="search-result-meta">
+                                                <span className={`tier-badge tier-badge-${result.tier.toLowerCase()}`}>
+                                                    {result.tier}
                                                 </span>
-                                            </div>
-                                            <svg className="search-result-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                <path d="M5 12h14M12 5l7 7-7 7" />
-                                            </svg>
+                                                <span className="search-result-category">{result.category}</span>
+                                            </span>
                                         </button>
                                     </li>
                                 ))}

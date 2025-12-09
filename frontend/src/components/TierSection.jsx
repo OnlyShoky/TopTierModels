@@ -13,40 +13,32 @@ function TierSection({ tier, models }) {
     const config = tierConfig[tier]
 
     return (
-        <div className={`tier-section tier-section-${tier.toLowerCase()}`}>
-            <div className="tier-header" style={{ borderColor: config.color }}>
-                <div className="tier-label" style={{ background: config.color }}>
+        <div className="tier-section">
+            <div className="tier-header">
+                <div className={`tier-badge tier-badge-${tier.toLowerCase()} tier-badge-lg`}>
                     {tier}
                 </div>
                 <div className="tier-info">
-                    <span className="tier-name">{config.label}</span>
-                    <span className="tier-range">{config.range} points</span>
+                    <span className="tier-label">{config.label}</span>
+                    <span className="tier-range">{config.range}</span>
                 </div>
-                <span className="tier-count">{models.length} models</span>
+                <span className="tier-count">{models.length}</span>
             </div>
 
             <div className="tier-models">
-                {models.length === 0 ? (
-                    <p className="tier-empty">No models in this tier yet</p>
-                ) : (
-                    models.map(model => (
-                        <Link
-                            key={model.id}
-                            to={`/article/${model.slug}`}
-                            className="tier-model-card"
-                        >
-                            <div className="tier-model-icon">🤖</div>
-                            <div className="tier-model-info">
-                                <span className="tier-model-name">{model.name}</span>
-                                <span className="tier-model-category">{model.category}</span>
-                            </div>
-                            <div className="tier-model-score">
-                                <span className="score-value">{model.score}</span>
-                                <span className="score-label">/100</span>
-                            </div>
-                        </Link>
-                    ))
-                )}
+                {models.map(model => (
+                    <Link
+                        key={model.id}
+                        to={`/article/${model.slug}`}
+                        className="tier-model"
+                    >
+                        <span className="tier-model-name">{model.name}</span>
+                        <span className="tier-model-meta">
+                            <span className="tier-model-category">{model.category}</span>
+                            <span className="tier-model-score">{model.score}</span>
+                        </span>
+                    </Link>
+                ))}
             </div>
         </div>
     )
