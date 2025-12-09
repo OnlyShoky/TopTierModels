@@ -217,6 +217,8 @@ async def _call_llm(prompt: str) -> str:
         return await _call_openai(prompt)
     elif provider == 'anthropic':
         return await _call_anthropic(prompt)
+    elif provider == 'gemini':
+        return await _call_gemini(prompt)
     else:
         return await _call_ollama(prompt)
 
@@ -257,18 +259,63 @@ async def _call_anthropic(prompt: str) -> str:
     return response.content[0].text
 
 
+async def _call_gemini(prompt: str) -> str:
+    """Call Google Gemini API."""
+    import google.generativeai as genai
+    
+    genai.configure(api_key=settings.gemini_api_key)
+    model = genai.GenerativeModel(settings.gemini_model)
+    
+    # Gemini 1.5/2.0 specific configs
+    generation_config = genai.types.GenerationConfig(
+        candidate_count=1,
+        max_output_tokens=8192,
+        temperature=0.7,
+    )
+    
+    # Run in executor to avoid blocking event loop (genai is sync by default)
+    import asyncio
+    from functools import partial
+    
+    loop = asyncio.get_running_loop()
+    
+    response = await loop.run_in_executor(
+        None,
+        partial(
+            model.generate_content,
+            prompt,
+            generation_config=generation_config
+        )
+    )
+    
+    return response.text
+
+
 async def _call_ollama(prompt: str) -> str:
     """Call local Ollama instance."""
     import httpx
     
     async with httpx.AsyncClient(timeout=120.0) as client:
-        response = await client.post(
-            f"{settings.ollama_base_url}/api/generate",
-            json={
-                "model": settings.ollama_model,
-                "prompt": prompt,
-                "stream": False
-            }
-        )
-        response.raise_for_status()
-        return response.json()['response']
+        try:
+            response = await client.post(
+                f"{settings.ollama_base_url}/api/generate",
+                json={
+                    "model": settings.ollama_model,
+                    "prompt": prompt,
+                    "stream": False
+                }
+            )
+            response.raise_for_status()
+            return response.json()['response']
+        except Exception:
+            # Fallback for chat endpoint
+             response = await client.post(
+                f"{settings.ollama_base_url}/api/chat",
+                json={
+                    "model": settings.ollama_model,
+                    "messages": [{"role": "user", "content": prompt}],
+                    "stream": False
+                }
+            )
+             response.raise_for_status()
+             return response.json()['message']['content']

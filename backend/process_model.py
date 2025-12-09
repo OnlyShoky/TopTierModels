@@ -11,6 +11,7 @@ import asyncio
 import uuid
 import webbrowser
 import uvicorn
+import threading
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -109,7 +110,8 @@ def start_server(preview_id: str):
     print(f"📖 Opening preview: {preview_url}\n")
     
     # Schedule browser open
-    asyncio.get_event_loop().call_later(2.0, lambda: webbrowser.open(preview_url))
+    # Schedule browser open (using thread to avoid event loop issues)
+    threading.Timer(2.0, lambda: webbrowser.open(preview_url)).start()
     
     # Start server (blocking)
     uvicorn.run(

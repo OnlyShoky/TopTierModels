@@ -1,12 +1,15 @@
+import { memo, useMemo, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import './ArticleCard.css'
 
 function ArticleCard({ article }) {
-    const formatNumber = (num) => {
+    // Memoize expensive computation
+    const formattedDownloads = useMemo(() => {
+        const num = article.downloads
         if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`
         if (num >= 1000) return `${(num / 1000).toFixed(0)}k`
         return num.toString()
-    }
+    }, [article.downloads])
 
     return (
         <Link to={`/article/${article.slug}`} className="article-card card card-interactive">
@@ -24,7 +27,7 @@ function ArticleCard({ article }) {
                 <div className="article-card-footer">
                     <span className="tag">{article.category}</span>
                     <span className="article-card-downloads">
-                        {formatNumber(article.downloads)} downloads
+                        {formattedDownloads} downloads
                     </span>
                 </div>
             </div>
@@ -32,4 +35,8 @@ function ArticleCard({ article }) {
     )
 }
 
-export default ArticleCard
+// Memoize component to prevent unnecessary re-renders
+export default memo(ArticleCard, (prevProps, nextProps) => {
+    return prevProps.article.id === nextProps.article.id &&
+        prevProps.article.score === nextProps.article.score
+})

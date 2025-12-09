@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
 import './TierSection.css'
 
@@ -44,4 +45,9 @@ function TierSection({ tier, models }) {
     )
 }
 
-export default TierSection
+// Memoize to prevent re-renders when parent updates
+export default memo(TierSection, (prevProps, nextProps) => {
+    return prevProps.tier === nextProps.tier &&
+        prevProps.models.length === nextProps.models.length &&
+        prevProps.models.every((m, i) => m.id === nextProps.models[i]?.id)
+})
