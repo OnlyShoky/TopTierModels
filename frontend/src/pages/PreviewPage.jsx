@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import usePreviewWebSocket from '../hooks/usePreviewWebSocket'
+import './ArticlePage.css'
 import './PreviewPage.css'
 
 function PreviewPage() {
@@ -8,6 +13,7 @@ function PreviewPage() {
     const [previewData, setPreviewData] = useState(null)
     const [loading, setLoading] = useState(true)
     const [publishing, setPublishing] = useState(false)
+    const [activeTab, setActiveTab] = useState('article') // 'article' or 'linkedin'
     const [copySuccess, setCopySuccess] = useState(false)
 
     const { data: wsData, isConnected } = usePreviewWebSocket(previewId, true)
@@ -65,98 +71,240 @@ function PreviewPage() {
         }
     }
 
+    const formatNumber = (num) => {
+        if (!num) return '0'
+        if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`
+        if (num >= 1000) return `${(num / 1000).toFixed(0)}k`
+        return num.toString()
+    }
+
     if (loading) {
         return (
-            <div className="preview-page container">
-                <div className="preview-loading">Loading preview...</div>
+            <div className="article-page container">
+                <div className="skeleton" style={{ height: '2rem', width: '60%', marginBottom: '1rem' }} />
+                <div className="skeleton" style={{ height: '1rem', width: '100%', marginBottom: '0.5rem' }} />
+                <div className="skeleton" style={{ height: '1rem', width: '80%' }} />
             </div>
         )
     }
 
     if (!previewData) {
         return (
-            <div className="preview-page container">
+            <div className="article-page container">
                 <div className="empty-state">
                     <h3>Preview not found</h3>
                     <p>Session may have expired</p>
+                    <Link to="/" className="btn btn-primary">Back to Home</Link>
                 </div>
             </div>
         )
     }
 
+    const article = previewData.article_data || {}
+    const model = previewData.model_data || {}
+    const scores = previewData.scores_data || {}
+    const linkedin = previewData.linkedin_data || {}
+
     return (
-        <div className="preview-page">
-            {/* Header */}
-            <header className="preview-header">
-                <div className="container">
-                    <div className="preview-header-inner">
-                        <div>
-                            <h1>Preview</h1>
-                            <p className="text-muted text-sm">Session: {previewId}</p>
-                        </div>
-                        <div className="preview-badges">
-                            {isConnected && <span className="status-live">Live</span>}
-                            <span className="status-draft">Draft</span>
-                        </div>
+        <div className="article-page">
+            <div className="container">
+                {/* Preview Banner */}
+                <div className="preview-banner">
+                    <div className="preview-banner-left">
+                        <span className="preview-badge">Preview</span>
+                        {isConnected && <span className="preview-live">Live</span>}
+                        <span className="preview-id">ID: {previewId}</span>
+                    </div>
+                    <div className="preview-banner-right">
+                        <button className="btn btn-secondary btn-sm" onClick={handleCopy}>
+                            {copySuccess ? '✓ Copied' : 'Copy LinkedIn'}
+                        </button>
+                        <button className="btn btn-primary btn-sm" onClick={handlePublish} disabled={publishing}>
+                            {publishing ? 'Publishing...' : 'Publish'}
+                        </button>
                     </div>
                 </div>
-            </header>
 
-            <div className="container">
-                <div className="preview-layout">
-                    {/* Main */}
-                    <main className="preview-main">
-                        <div className="section-header">
-                            <span className="section-title">Article</span>
-                        </div>
-                        <div className="preview-card">
-                            <h2>{previewData.article_data?.title}</h2>
-                            <p className="text-secondary">{previewData.article_data?.excerpt}</p>
-                            <div className="preview-content" dangerouslySetInnerHTML={{ __html: previewData.article_data?.content }} />
-                        </div>
-                    </main>
-
-                    {/* Sidebar */}
-                    <aside className="preview-sidebar">
-                        {/* Actions */}
-                        <div className="preview-actions">
-                            <button className="btn btn-primary" onClick={handlePublish} disabled={publishing}>
-                                {publishing ? 'Publishing...' : 'Publish'}
-                            </button>
-                            <button className="btn btn-secondary" onClick={handleCopy}>
-                                {copySuccess ? 'Copied!' : 'Copy LinkedIn'}
-                            </button>
-                        </div>
-
-                        {/* LinkedIn */}
-                        <div className="sidebar-card">
-                            <h4 className="sidebar-title">LinkedIn Post</h4>
-                            <div className="linkedin-preview">
-                                <p>{previewData.linkedin_data?.content}</p>
-                                <div className="linkedin-hashtags">
-                                    {previewData.linkedin_data?.hashtags?.map((tag, i) => (
-                                        <span key={i}>#{tag}</span>
-                                    ))}
-                                </div>
-                                <span className="text-muted text-xs">
-                                    {previewData.linkedin_data?.content?.length || 0}/3000
-                                </span>
-                            </div>
-                        </div>
-
-                        {/* Score */}
-                        <div className="sidebar-card">
-                            <h4 className="sidebar-title">Score</h4>
-                            <div className="score">
-                                <span className="score-value">{previewData.scores_data?.overall_score}</span>
-                                <span className="score-max">/100</span>
-                            </div>
-                            <div className={`tier-badge tier-badge-${previewData.scores_data?.tier?.toLowerCase()}`}>
-                                {previewData.scores_data?.tier} Tier
-                            </div>
-                        </div>
-                    </aside>
+                {/* Tab Navigation */}
+                <div className="preview-tabs">
+                    <button
+                        className={`preview-tab ${activeTab === 'article' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('article')}
+                    >
+                        Article Preview
+                    </button>
+                    <button
+                        className={`preview-tab ${activeTab === 'linkedin' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('linkedin')}
+                    >
+                        LinkedIn Post
+                    </button>
                 </div>
+
+                {/* Article Tab */}
+                {activeTab === 'article' && (
+                    <>
+                        {/* Breadcrumb */}
+                        <nav className="breadcrumb">
+                            <Link to="/">Models</Link>
+                            <span>/</span>
+                            <span>{model.category || 'Other'}</span>
+                            <span>/</span>
+                            <span>{model.display_name}</span>
+                        </nav>
+
+                        <div className="article-layout">
+                            {/* Main Content */}
+                            <main className="article-main">
+                                <header className="article-header">
+                                    <div className="article-meta-row">
+                                        <span className={`tier-badge tier-badge-${(scores.tier || 'b').toLowerCase()} tier-badge-lg`}>
+                                            {scores.tier || 'B'}
+                                        </span>
+                                        <span className="tag">{model.category || 'Other'}</span>
+                                    </div>
+                                    <h1>{article.title || model.display_name}</h1>
+                                    <p className="article-excerpt">{article.excerpt}</p>
+                                </header>
+
+                                <article className="article-content prose">
+                                    <ReactMarkdown
+                                        remarkPlugins={[remarkGfm]}
+                                        components={{
+                                            code({ node, inline, className, children, ...props }) {
+                                                const match = /language-(\w+)/.exec(className || '')
+                                                return !inline && match ? (
+                                                    <div className="code-block">
+                                                        <div className="code-block-header">
+                                                            <span>{match[1]}</span>
+                                                            <button
+                                                                className="btn btn-ghost btn-sm"
+                                                                onClick={() => navigator.clipboard.writeText(String(children))}
+                                                            >
+                                                                Copy
+                                                            </button>
+                                                        </div>
+                                                        <SyntaxHighlighter
+                                                            style={oneDark}
+                                                            language={match[1]}
+                                                            PreTag="div"
+                                                            {...props}
+                                                        >
+                                                            {String(children).replace(/\n$/, '')}
+                                                        </SyntaxHighlighter>
+                                                    </div>
+                                                ) : (
+                                                    <code className={className} {...props}>{children}</code>
+                                                )
+                                            }
+                                        }}
+                                    >
+                                        {article.content || ''}
+                                    </ReactMarkdown>
+                                </article>
+                            </main>
+
+                            {/* Sidebar */}
+                            <aside className="article-sidebar">
+                                {/* Score */}
+                                <div className="sidebar-card">
+                                    <div className="score">
+                                        <span className="score-value">{Math.round(scores.overall_score || 0)}</span>
+                                        <span className="score-max">/100</span>
+                                    </div>
+                                </div>
+
+                                {/* Metrics */}
+                                <div className="sidebar-card">
+                                    <h4 className="sidebar-title">Metrics</h4>
+                                    <div className="stat-row">
+                                        <span className="stat-label">Performance</span>
+                                        <span className="stat-value">{scores.performance_score || 0}</span>
+                                    </div>
+                                    <div className="stat-row">
+                                        <span className="stat-label">Usability</span>
+                                        <span className="stat-value">{scores.usability_score || 0}</span>
+                                    </div>
+                                    <div className="stat-row">
+                                        <span className="stat-label">Innovation</span>
+                                        <span className="stat-value">{scores.innovation_score || 0}</span>
+                                    </div>
+                                    <div className="stat-row">
+                                        <span className="stat-label">Adoption</span>
+                                        <span className="stat-value">{scores.adoption_score || 0}</span>
+                                    </div>
+                                    <div className="stat-row">
+                                        <span className="stat-label">Production</span>
+                                        <span className="stat-value">{scores.production_score || 0}</span>
+                                    </div>
+                                </div>
+
+                                {/* Info */}
+                                <div className="sidebar-card">
+                                    <h4 className="sidebar-title">Details</h4>
+                                    <div className="stat-row">
+                                        <span className="stat-label">Organization</span>
+                                        <span className="stat-value">{model.organization || '-'}</span>
+                                    </div>
+                                    <div className="stat-row">
+                                        <span className="stat-label">License</span>
+                                        <span className="stat-value">{model.license || '-'}</span>
+                                    </div>
+                                    <div className="stat-row">
+                                        <span className="stat-label">Downloads</span>
+                                        <span className="stat-value">{formatNumber(model.downloads)}</span>
+                                    </div>
+                                    <div className="stat-row">
+                                        <span className="stat-label">Likes</span>
+                                        <span className="stat-value">{formatNumber(model.likes)}</span>
+                                    </div>
+                                </div>
+
+                                <a
+                                    href={model.huggingface_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn btn-primary"
+                                    style={{ width: '100%' }}
+                                >
+                                    View on Hugging Face →
+                                </a>
+                            </aside>
+                        </div>
+                    </>
+                )}
+
+                {/* LinkedIn Tab */}
+                {activeTab === 'linkedin' && (
+                    <div className="linkedin-tab">
+                        <div className="linkedin-mockup">
+                            <div className="linkedin-header">
+                                <div className="linkedin-avatar">TM</div>
+                                <div className="linkedin-info">
+                                    <div className="linkedin-name">TopTierModels</div>
+                                    <div className="linkedin-handle">AI Model Rankings & Analysis</div>
+                                </div>
+                            </div>
+                            <div className="linkedin-content">
+                                {linkedin.content}
+                            </div>
+                            <div className="linkedin-hashtags">
+                                {(linkedin.hashtags || []).map((tag, i) => (
+                                    <span key={i} className="linkedin-hashtag">#{tag}</span>
+                                ))}
+                            </div>
+                            <div className="linkedin-footer">
+                                <span className="linkedin-char-count">{linkedin.character_count || 0}/3000 characters</span>
+                            </div>
+                        </div>
+
+                        <div className="linkedin-actions">
+                            <button className="btn btn-secondary" onClick={handleCopy}>
+                                {copySuccess ? '✓ Copied to Clipboard' : 'Copy to Clipboard'}
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )

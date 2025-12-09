@@ -35,6 +35,9 @@ class Settings(BaseSettings):
     
     # Explicit Provider Selection
     llm_provider: Optional[str] = Field(default=None, env="LLM_PROVIDER")
+    
+    # Demo Mode - skip LLM calls, use sample data
+    demo_mode: bool = Field(default=False, env="DEMO_MODE")
 
     # Local Server
     local_server_port: int = Field(default=3001, env="LOCAL_SERVER_PORT")

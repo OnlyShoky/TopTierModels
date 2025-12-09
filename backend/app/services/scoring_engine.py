@@ -313,7 +313,8 @@ def classify_category(model: ScrapedModel) -> ModelCategory:
     category_rules = {
         ModelCategory.IMAGE_GENERATION: [
             'text-to-image', 'image-generation', 'diffusion', 'stable-diffusion',
-            'sdxl', 'dall-e', 'midjourney', 'image generation'
+            'sdxl', 'dall-e', 'midjourney', 'image generation', 'z-image',
+            'flux', 'imagen', 'kandinsky', 'pixart', 'image-to-image'
         ],
         ModelCategory.TEXT_GENERATION: [
             'text-generation', 'llm', 'language-model', 'gpt', 'llama',

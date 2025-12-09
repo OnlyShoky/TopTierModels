@@ -60,6 +60,7 @@ app.include_router(preview.router, prefix="/api", tags=["preview"])
 
 # Serve static files for preview interface (will be built from React)
 FRONTEND_BUILD_PATH = Path(__file__).parent.parent.parent / "frontend" / "dist"
+TEMPLATES_PATH = Path(__file__).parent / "templates"
 
 if FRONTEND_BUILD_PATH.exists():
     app.mount("/assets", StaticFiles(directory=FRONTEND_BUILD_PATH / "assets"), name="assets")
@@ -71,6 +72,20 @@ if FRONTEND_BUILD_PATH.exists():
         if file_path.exists() and file_path.is_file():
             return FileResponse(file_path)
         return FileResponse(FRONTEND_BUILD_PATH / "index.html")
+else:
+    # Development fallback: serve simple HTML template
+    @app.get("/")
+    async def home():
+        """Home page - list previews."""
+        return {"message": "TopTierModels API", "docs": "/docs", "previews": "/api/previews"}
+    
+    @app.get("/preview/{preview_id}")
+    async def preview_page(preview_id: str):
+        """Serve the standalone preview template."""
+        template_file = TEMPLATES_PATH / "preview.html"
+        if template_file.exists():
+            return FileResponse(template_file)
+        return {"error": "Preview template not found", "api_endpoint": f"/api/preview/{preview_id}"}
 
 
 @app.get("/api/health")

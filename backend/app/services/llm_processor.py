@@ -10,6 +10,34 @@ from pathlib import Path
 
 from ..config import settings, get_llm_provider
 from ..models import ScrapedModel, GeneratedArticle, LinkedInPost, ModelScores
+import re
+
+
+def _parse_json_response(response: str) -> Optional[Dict[str, Any]]:
+    """Parse JSON from LLM response, handling markdown code fences."""
+    # Try direct JSON parse first
+    try:
+        return json.loads(response)
+    except json.JSONDecodeError:
+        pass
+    
+    # Try to extract JSON from markdown code fence
+    patterns = [
+        r'```json\s*([\s\S]*?)\s*```',  # ```json ... ```
+        r'```\s*([\s\S]*?)\s*```',       # ``` ... ```
+        r'\{[\s\S]*\}'                   # Raw JSON object
+    ]
+    
+    for pattern in patterns:
+        match = re.search(pattern, response)
+        if match:
+            try:
+                json_str = match.group(1) if '```' in pattern else match.group(0)
+                return json.loads(json_str)
+            except (json.JSONDecodeError, IndexError):
+                continue
+    
+    return None
 
 
 # Prompt templates
@@ -88,6 +116,25 @@ async def generate_article(model: ScrapedModel, category: str = "Other") -> Gene
     Returns:
         GeneratedArticle with all content
     """
+    # Demo mode: use sample data
+    if settings.demo_mode:
+        sample_path = Path(__file__).parent.parent / "data" / "sample_article.json"
+        if sample_path.exists():
+            with open(sample_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                # Customize with actual model name
+                data['title'] = data['title'].replace('Z-Image-Turbo', model.display_name)
+                data['slug'] = model.display_name.lower().replace(' ', '-').replace('/', '-')
+                return GeneratedArticle(
+                    title=data.get('title'),
+                    slug=data.get('slug'),
+                    excerpt=data.get('excerpt'),
+                    content=data.get('content'),
+                    read_time_minutes=data.get('read_time_minutes', 5),
+                    seo_keywords=data.get('seo_keywords', []),
+                    hero_image_url=model.featured_image_url
+                )
+    
     prompt = ARTICLE_PROMPT_TEMPLATE.format(
         model_name=model.display_name,
         organization=model.organization or "Unknown",
@@ -98,8 +145,10 @@ async def generate_article(model: ScrapedModel, category: str = "Other") -> Gene
     
     response = await _call_llm(prompt)
     
-    try:
-        data = json.loads(response)
+    # Parse JSON from response (handling markdown code fences)
+    data = _parse_json_response(response)
+    
+    if data:
         return GeneratedArticle(
             title=data.get('title', f"Analysis: {model.display_name}"),
             slug=data.get('slug', model.display_name.lower().replace(' ', '-')),
@@ -109,7 +158,7 @@ async def generate_article(model: ScrapedModel, category: str = "Other") -> Gene
             seo_keywords=data.get('seo_keywords', []),
             hero_image_url=model.featured_image_url
         )
-    except json.JSONDecodeError:
+    else:
         # Fallback: treat response as raw content
         return GeneratedArticle(
             title=f"Analysis: {model.display_name}",
@@ -138,6 +187,22 @@ async def generate_linkedin_post(
     Returns:
         LinkedInPost with formatted content
     """
+    # Demo mode: use sample data
+    if settings.demo_mode:
+        sample_path = Path(__file__).parent.parent / "data" / "sample_linkedin.json"
+        if sample_path.exists():
+            with open(sample_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                content = data.get('content', '')
+                return LinkedInPost(
+                    content=content,
+                    hook=data.get('hook'),
+                    key_points=data.get('key_points', []),
+                    call_to_action=data.get('call_to_action'),
+                    hashtags=data.get('hashtags', [])[:5],
+                    character_count=len(content)
+                )
+    
     prompt = LINKEDIN_PROMPT_TEMPLATE.format(
         model_name=model.display_name,
         article_title=article.title,
@@ -147,8 +212,10 @@ async def generate_linkedin_post(
     
     response = await _call_llm(prompt)
     
-    try:
-        data = json.loads(response)
+    # Parse JSON from response
+    data = _parse_json_response(response)
+    
+    if data:
         content = data.get('content', '')
         return LinkedInPost(
             content=content,
@@ -158,7 +225,7 @@ async def generate_linkedin_post(
             hashtags=data.get('hashtags', [])[:5],
             character_count=len(content)
         )
-    except json.JSONDecodeError:
+    else:
         # Fallback
         return LinkedInPost(
             content=response[:3000],

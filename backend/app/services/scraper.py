@@ -51,15 +51,9 @@ async def scrape_model(url: str) -> ScrapedModel:
         raise ValueError(f"Invalid Hugging Face URL: {url}")
     
     async with httpx.AsyncClient(timeout=30.0) as client:
-        # Fetch main page
-        response = await client.get(url)
-        response.raise_for_status()
-        
-        soup = BeautifulSoup(response.text, 'lxml')
-        
         # Extract model name from URL
         path_parts = [p for p in urlparse(url).path.split('/') if p]
-        if len(path_parts) == 2:
+        if len(path_parts) >= 2:
             organization = path_parts[0]
             model_name = f"{path_parts[0]}/{path_parts[1]}"
         else:
@@ -68,8 +62,17 @@ async def scrape_model(url: str) -> ScrapedModel:
         
         display_name = path_parts[-1]
         
+        # Fetch from Hugging Face API for accurate stats
+        api_data = await _fetch_api_data(client, model_name)
+        
+        # Fetch main page for content
+        response = await client.get(url)
+        response.raise_for_status()
+        
+        soup = BeautifulSoup(response.text, 'lxml')
+        
         # Extract description
-        description = _extract_description(soup)
+        description = _extract_description(soup) or api_data.get('description', '')
         
         # Extract README content
         readme_content = _extract_readme(soup)
@@ -77,8 +80,8 @@ async def scrape_model(url: str) -> ScrapedModel:
         # Extract metadata
         metadata = _extract_metadata(soup)
         
-        # Extract tags
-        tags = _extract_tags(soup)
+        # Extract tags (prefer API data)
+        tags = api_data.get('tags', []) or _extract_tags(soup)
         
         # Extract images
         images = _extract_images(soup, url)
@@ -87,8 +90,10 @@ async def scrape_model(url: str) -> ScrapedModel:
         # Extract code snippets
         code_snippets = _extract_code_snippets(soup)
         
-        # Extract downloads/likes (if available)
-        downloads, likes = _extract_stats(soup)
+        # Get stats from API (more reliable)
+        downloads = api_data.get('downloads', 0)
+        likes = api_data.get('likes', 0)
+        license_info = api_data.get('license', metadata.get('license'))
         
         await asyncio.sleep(RATE_LIMIT_DELAY)  # Rate limiting
         
@@ -99,7 +104,7 @@ async def scrape_model(url: str) -> ScrapedModel:
             organization=organization,
             description=description,
             readme_content=readme_content,
-            license=metadata.get('license'),
+            license=license_info,
             tags=tags,
             model_metadata=metadata,
             featured_image_url=featured_image,
@@ -108,6 +113,18 @@ async def scrape_model(url: str) -> ScrapedModel:
             code_snippets=code_snippets,
             images=images
         )
+
+
+async def _fetch_api_data(client: httpx.AsyncClient, model_id: str) -> dict:
+    """Fetch model data from Hugging Face API."""
+    try:
+        api_url = f"https://huggingface.co/api/models/{model_id}"
+        response = await client.get(api_url)
+        if response.status_code == 200:
+            return response.json()
+    except Exception:
+        pass
+    return {}
 
 
 def _extract_description(soup: BeautifulSoup) -> Optional[str]:
