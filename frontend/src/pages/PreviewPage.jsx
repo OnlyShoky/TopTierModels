@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import usePreviewWebSocket from '../hooks/usePreviewWebSocket'
 import './PreviewPage.css'
 
 function PreviewPage() {
@@ -9,8 +10,22 @@ function PreviewPage() {
     const [publishing, setPublishing] = useState(false)
     const [copySuccess, setCopySuccess] = useState(false)
 
+    // WebSocket for real-time updates
+    const { data: wsData, isConnected } = usePreviewWebSocket(previewId, true)
+
+    // Update preview data when WebSocket receives updates
+    useEffect(() => {
+        if (wsData) {
+            setPreviewData(wsData)
+            setLoading(false)
+        }
+    }, [wsData])
+
     useEffect(() => {
         const fetchPreview = async () => {
+            // Skip if WebSocket already provided data
+            if (previewData) return
+
             setLoading(true)
             try {
                 const response = await fetch(`/api/preview/${previewId}`)
@@ -26,7 +41,7 @@ function PreviewPage() {
         }
 
         fetchPreview()
-    }, [previewId])
+    }, [previewId, previewData])
 
     const handlePublish = async () => {
         setPublishing(true)
@@ -91,6 +106,11 @@ function PreviewPage() {
                             <p className="text-muted">Session: {previewId}</p>
                         </div>
                         <div className="preview-status">
+                            {isConnected && (
+                                <span className="status-badge status-connected" title="Real-time updates enabled">
+                                    🟢 Live
+                                </span>
+                            )}
                             <span className="status-badge status-draft">Draft</span>
                         </div>
                     </div>

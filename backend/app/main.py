@@ -10,14 +10,15 @@ import webbrowser
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
 from .config import settings
-from .database import init_database
+from .database import init_database, get_preview
 from .routers import preview
+from .websocket import manager
 
 
 @asynccontextmanager
@@ -76,6 +77,26 @@ if FRONTEND_BUILD_PATH.exists():
 async def health_check():
     """Health check endpoint."""
     return {"status": "healthy", "version": "1.0.0"}
+
+
+@app.websocket("/ws/{preview_id}")
+async def websocket_endpoint(websocket: WebSocket, preview_id: str):
+    """WebSocket endpoint for real-time preview updates."""
+    await manager.connect(websocket, preview_id)
+    try:
+        # Send initial preview data
+        preview_data = await get_preview(preview_id)
+        if preview_data:
+            await websocket.send_json({"type": "initial", "data": preview_data})
+        
+        # Keep connection alive and handle messages
+        while True:
+            data = await websocket.receive_text()
+            # Echo back or handle specific commands
+            if data == "ping":
+                await websocket.send_json({"type": "pong"})
+    except WebSocketDisconnect:
+        manager.disconnect(websocket, preview_id)
 
 
 def open_browser(preview_id: str = None):
