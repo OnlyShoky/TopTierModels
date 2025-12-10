@@ -44,7 +44,8 @@ function ArticlePage() {
                     downloads: data.models.downloads,
                     likes: data.models.likes,
                     huggingface_url: data.models.huggingface_url,
-                    code_snippets: data.models.code_snippets
+                    code_snippets: data.models.code_snippets,
+                    tags: data.models.tags || []
                 })
 
                 setScores(data.models.model_scores)
@@ -173,6 +174,24 @@ function ArticlePage() {
                                 <span className="stat-value">{scores.freedom_score}</span>
                             </div>
                         </div>
+
+                        {/* Tags */}
+                        {model.tags && model.tags.length > 0 && (
+                            <div className="sidebar-card">
+                                <h4 className="sidebar-title">Tags</h4>
+                                <div className="model-tags">
+                                    {model.tags.map((tag, i) => (
+                                        <span
+                                            key={i}
+                                            className="model-tag"
+                                            style={{ backgroundColor: 'rgb(29, 78, 216)' }} // Use a default nice blue
+                                        >
+                                            {typeof tag === 'string' ? tag : tag.tag_name}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
 
 
                         {/* Info */}
