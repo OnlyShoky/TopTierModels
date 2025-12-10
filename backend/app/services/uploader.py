@@ -45,6 +45,10 @@ async def upload_to_supabase(
     """
     client = get_supabase_client()
     
+    # Check if Supabase is configured
+    if not settings.supabase_url or not settings.supabase_service_role_key:
+        raise ValueError("Supabase not configured. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env")
+    
     # Step 1: Upload images to storage
     image_urls = await _upload_images(client, images, preview_id)
     
@@ -106,11 +110,9 @@ async def upload_to_supabase(
         'model_id': model_id,
         'overall_score': scores_data.get('overall_score'),
         'tier': scores_data.get('tier'),
-        'performance_score': scores_data.get('performance_score'),
-        'usability_score': scores_data.get('usability_score'),
-        'innovation_score': scores_data.get('innovation_score'),
-        'adoption_score': scores_data.get('adoption_score'),
-        'production_score': scores_data.get('production_score'),
+        'quality_score': scores_data.get('quality_score'),
+        'speed_score': scores_data.get('speed_score'),
+        'freedom_score': scores_data.get('freedom_score'),
         'benchmarks': scores_data.get('benchmarks', {}),
         'scoring_methodology': scores_data.get('scoring_methodology')
     }

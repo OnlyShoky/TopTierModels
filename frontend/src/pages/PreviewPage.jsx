@@ -78,6 +78,49 @@ function PreviewPage() {
         return num.toString()
     }
 
+    const [linkedinConnected, setLinkedinConnected] = useState(false)
+
+    // Check LinkedIn status
+    useEffect(() => {
+        fetch('/api/linkedin/status')
+            .then(res => res.json())
+            .then(data => setLinkedinConnected(data.connected))
+            .catch(err => console.error('LinkedIn status check failed', err))
+    }, [])
+
+    const handleConnectLinkedIn = async () => {
+        try {
+            const res = await fetch('/api/linkedin/auth')
+            const data = await res.json()
+            if (data.url) {
+                // Open popup
+                const width = 600
+                const height = 700
+                const left = (window.innerWidth - width) / 2
+                const top = (window.innerHeight - height) / 2
+
+                window.open(
+                    data.url,
+                    'LinkedInAuth',
+                    `width=${width},height=${height},left=${left},top=${top}`
+                )
+
+                // Listen for message from popup
+                const handleMessage = (event) => {
+                    if (event.data && event.data.type === 'LINKEDIN_CONNECTED') {
+                        setLinkedinConnected(true)
+                        alert('LinkedIn connected successfully!')
+                        window.removeEventListener('message', handleMessage)
+                    }
+                }
+                window.addEventListener('message', handleMessage)
+            }
+        } catch (err) {
+            console.error(err)
+            alert('Failed to start LinkedIn connection')
+        }
+    }
+
     if (loading) {
         return (
             <div className="article-page container">
@@ -310,6 +353,20 @@ function PreviewPage() {
                         </div>
 
                         <div className="linkedin-actions">
+                            {!linkedinConnected ? (
+                                <button
+                                    className="btn btn-primary"
+                                    style={{ backgroundColor: '#0077b5', marginRight: '1rem' }}
+                                    onClick={handleConnectLinkedIn}
+                                >
+                                    Login with LinkedIn
+                                </button>
+                            ) : (
+                                <span className="connection-status" style={{ marginRight: '1rem', color: 'green', fontWeight: 'bold' }}>
+                                    ✓ Connected to LinkedIn
+                                </span>
+                            )}
+
                             <button className="btn btn-secondary" onClick={handleCopy}>
                                 {copySuccess ? '✓ Copied to Clipboard' : 'Copy to Clipboard'}
                             </button>

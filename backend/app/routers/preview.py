@@ -82,13 +82,25 @@ async def publish_preview(request: PublishRequest):
             images=preview["images"]
         )
         
+        # Also publish to LinkedIn if configured
+        linkedin_result = None
+        try:
+            from ..services.linkedin_publisher import publish_to_linkedin
+            linkedin_content = preview["linkedin_data"].get("content", "")
+            if linkedin_content:
+                linkedin_result = await publish_to_linkedin(linkedin_content)
+        except Exception as linkedin_error:
+            # Don't fail the whole publish if LinkedIn fails
+            linkedin_result = {"success": False, "error": str(linkedin_error)}
+        
         # Update status to published
         await update_preview_status(
             request.preview_id, 
             "published",
             {
                 "model_id": result.get("model_id"),
-                "article_id": result.get("article_id")
+                "article_id": result.get("article_id"),
+                "linkedin_post": linkedin_result
             }
         )
         
@@ -99,7 +111,7 @@ async def publish_preview(request: PublishRequest):
         
         return PublishResponse(
             success=True,
-            message="Published successfully",
+            message="Published successfully" + (" (LinkedIn: " + str(linkedin_result.get("success", False)) + ")" if linkedin_result else ""),
             live_url=result.get("live_url"),
             model_id=result.get("model_id"),
             article_id=result.get("article_id")
@@ -149,3 +161,86 @@ async def regenerate_section(preview_id: str, section: str):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# LinkedIn OAuth Endpoints
+
+@router.get("/linkedin/auth")
+async def linkedin_auth():
+    """Start LinkedIn OAuth flow - returns authorization URL."""
+    # Import here to avoid circular dependencies if any
+    from ..services.linkedin_publisher import get_oauth_authorize_url
+    from ..config import settings
+    
+    redirect_uri = f"http://{settings.local_server_host}:{settings.local_server_port}/linkedin/callback"
+    auth_url = get_oauth_authorize_url(redirect_uri)
+    
+    if not auth_url:
+        raise HTTPException(status_code=500, detail="LinkedIn client ID not configured")
+        
+    return {"url": auth_url}
+
+
+@router.get("/linkedin/callback")
+async def linkedin_callback(code: str, state: str = None):
+    """Handle LinkedIn OAuth callback and exchange code for token."""
+    from fastapi.responses import HTMLResponse
+    from ..services.linkedin_publisher import exchange_code_for_token
+    from ..config import settings
+    
+    # This must match the redirect_uri used in auth
+    redirect_uri = f"http://{settings.local_server_host}:{settings.local_server_port}/linkedin/callback"
+    
+    result = await exchange_code_for_token(code, redirect_uri)
+    
+    if result.get("success"):
+        token = result.get("access_token")
+        # Update settings in memory for this session
+        settings.linkedin_access_token = token
+        
+        # Return HTML that passes the token back to the main window and closes the popup
+        html_content = f"""
+        <html>
+            <head>
+                <title>LinkedIn Connected</title>
+                <style>
+                    body {{ font-family: sans-serif; text-align: center; padding: 50px; }}
+                    .success {{ color: green; font-size: 20px; }}
+                </style>
+            </head>
+            <body>
+                <h2 class="success">✅ LinkedIn Connected Successfully!</h2>
+                <p>You can close this window now.</p>
+                <script>
+                    // Send token to parent window
+                    if (window.opener) {{
+                        window.opener.postMessage({{ 
+                            type: 'LINKEDIN_CONNECTED', 
+                            token: '{token}' 
+                        }}, '*');
+                    }}
+                    // Close after a brief delay
+                    setTimeout(() => window.close(), 1500);
+                </script>
+            </body>
+        </html>
+        """
+        return HTMLResponse(content=html_content)
+    else:
+        return HTMLResponse(content=f"<html><body><h2 style='color:red'>Error: {result.get('error')}</h2></body></html>", status_code=400)
+
+
+@router.get("/linkedin/status")
+async def linkedin_status():
+    """Check if LinkedIn is connected."""
+    from ..config import settings
+    from ..services.linkedin_publisher import get_linkedin_profile_id
+    
+    token = settings.linkedin_access_token
+    if not token:
+        return {"connected": False}
+    
+    # Verify token is still valid
+    profile_id = await get_linkedin_profile_id(token)
+    return {"connected": bool(profile_id), "profile_id": profile_id}
+

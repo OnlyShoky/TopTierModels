@@ -62,15 +62,21 @@ async def process_model(url: str) -> str:
     article = await generate_article(model_data, category.value)
     print(f"✓ ({len(article.content)} chars)")
     
-    # Step 6: Generate LinkedIn post
-    print("6. Generating LinkedIn post... ", end="", flush=True)
-    linkedin_post = await generate_linkedin_post(model_data, article, category.value)
-    print(f"✓ ({linkedin_post.character_count} chars)")
-    
-    # Step 7: Calculate scores
-    print("7. Calculating scores... ", end="", flush=True)
+    # Step 6: Calculate scores (before LinkedIn so we can include them)
+    print("6. Calculating scores... ", end="", flush=True)
     scores = calculate_scores(model_data, category.value)
     print(f"✓ ({scores.overall_score}/100 - {scores.tier.value} Tier)")
+    
+    # Step 7: Generate LinkedIn post (with scores)
+    print("7. Generating LinkedIn post... ", end="", flush=True)
+    scores_dict = {
+        'overall_score': scores.overall_score,
+        'quality_score': scores.quality_score,
+        'speed_score': scores.speed_score,
+        'freedom_score': scores.freedom_score
+    }
+    linkedin_post = await generate_linkedin_post(model_data, article, category.value, scores_dict)
+    print(f"✓ ({linkedin_post.character_count} chars)")
     
     # Step 8: Images (Using remote URLs)
     print("8. Processing images... ", end="", flush=True)

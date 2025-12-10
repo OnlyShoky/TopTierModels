@@ -78,24 +78,47 @@ Return a JSON object with:
 Return ONLY valid JSON, no additional text."""
 
 
-LINKEDIN_PROMPT_TEMPLATE = """Create a compelling LinkedIn post about this AI model.
+LINKEDIN_PROMPT_TEMPLATE = """Create a LinkedIn post about this AI model analysis.
 
 ## Model: {model_name}
 ## Article Title: {article_title}
 ## Article Excerpt: {article_excerpt}
 ## Category: {category}
+## Scores: Overall: {overall_score}/100, Quality: {quality_score}, Speed: {speed_score}, Freedom: {freedom_score}
 
-## Requirements:
-1. 150-300 words maximum
-2. Start with an attention-grabbing hook
-3. Include 3-5 bullet points of key highlights
-4. End with a call-to-action
-5. Include 3-5 relevant hashtags
-6. Professional but engaging tone
+## CRITICAL FORMATTING RULES:
+1. Do NOT use Markdown (no *, **, #, __)
+2. Use ONLY Unicode styled characters for emphasis:
+   - Bold: Use 𝗕𝗼𝗹𝗱 Unicode characters for main emphasis (copy these exact characters)
+   - For bold text, convert normal letters to mathematical bold: a→𝗮, b→𝗯, etc.
+3. Use emoji as bullet points: ✅, 🔥, 🚀, 💡, ⚡
+4. Keep natural line breaks
+5. Professional, human-sounding tone
+
+## Structure:
+- Hook: 1 compelling opening line
+- Intro: Brief mention of overall score
+- Key points: 3-4 bullet points with emoji (include Quality, Speed, Freedom scores)
+- Your impression: 1-2 sentences
+- Call to action: Link to full article
+- Hashtags: 3-5 relevant hashtags
+
+## Example output style:
+𝗭-𝗜𝗺𝗮𝗴𝗲-𝗧𝘂𝗿𝗯𝗼 just scored 87/100 in our latest AI model analysis!
+
+✅ Quality: 85 - Excellent photorealistic outputs
+⚡ Speed: 92 - Sub-second generation
+🔓 Freedom: 84 - Open weights, free to use
+
+This model is a game-changer for...
+
+Read the full analysis → [link]
+
+#AI #ImageGeneration #OpenSource
 
 ## Output Format:
 Return a JSON object with:
-- content: The complete post text
+- content: The complete post text (ready to paste, NO markdown)
 - hook: The opening hook sentence
 - key_points: Array of bullet point strings
 - call_to_action: The CTA text
@@ -174,7 +197,8 @@ async def generate_article(model: ScrapedModel, category: str = "Other") -> Gene
 async def generate_linkedin_post(
     model: ScrapedModel,
     article: GeneratedArticle,
-    category: str = "Other"
+    category: str = "Other",
+    scores: dict = None
 ) -> LinkedInPost:
     """
     Generate a LinkedIn-optimized post about a model.
@@ -183,6 +207,7 @@ async def generate_linkedin_post(
         model: Scraped model data
         article: Generated article for context
         category: Model category
+        scores: Optional scores dict with overall_score, quality_score, speed_score, freedom_score
         
     Returns:
         LinkedInPost with formatted content
@@ -203,11 +228,19 @@ async def generate_linkedin_post(
                     character_count=len(content)
                 )
     
+    # Default scores if not provided
+    if scores is None:
+        scores = {'overall_score': 0, 'quality_score': 0, 'speed_score': 0, 'freedom_score': 0}
+    
     prompt = LINKEDIN_PROMPT_TEMPLATE.format(
         model_name=model.display_name,
         article_title=article.title,
         article_excerpt=article.excerpt,
-        category=category
+        category=category,
+        overall_score=scores.get('overall_score', 0),
+        quality_score=scores.get('quality_score', 0),
+        speed_score=scores.get('speed_score', 0),
+        freedom_score=scores.get('freedom_score', 0)
     )
     
     response = await _call_llm(prompt)

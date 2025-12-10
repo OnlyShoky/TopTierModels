@@ -46,6 +46,11 @@ class Settings(BaseSettings):
     # Netlify
     netlify_build_hook_url: Optional[str] = Field(default=None, env="NETLIFY_BUILD_HOOK_URL")
     
+    # LinkedIn OAuth
+    linkedin_client_id: Optional[str] = Field(default=None, env="LINKEDIN_CLIENT_ID")
+    linkedin_client_secret: Optional[str] = Field(default=None, env="LINKEDIN_CLIENT_SECRET")
+    linkedin_access_token: Optional[str] = Field(default=None, env="LINKEDIN_ACCESS_TOKEN")
+    
     # Paths
     data_dir: str = Field(default="data")
     cache_dir: str = Field(default="data/cache")
