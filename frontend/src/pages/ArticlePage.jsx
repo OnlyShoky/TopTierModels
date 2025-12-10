@@ -174,6 +174,7 @@ function ArticlePage() {
                             </div>
                         </div>
 
+
                         {/* Info */}
                         <div className="sidebar-card">
                             <h4 className="sidebar-title">Details</h4>
