@@ -172,10 +172,15 @@ async def generate_article(model: ScrapedModel, category: str = "Other") -> Gene
     data = _parse_json_response(response)
     
     if data:
+        # Ensure excerpt is within limit
+        excerpt = data.get('excerpt', model.description[:200] if model.description else '')
+        if len(excerpt) > 250:
+            excerpt = excerpt[:247] + "..."
+            
         return GeneratedArticle(
             title=data.get('title', f"Analysis: {model.display_name}"),
             slug=data.get('slug', model.display_name.lower().replace(' ', '-')),
-            excerpt=data.get('excerpt', model.description[:200] if model.description else ''),
+            excerpt=excerpt,
             content=data.get('content', ''),
             read_time_minutes=data.get('read_time_minutes', 5),
             seo_keywords=data.get('seo_keywords', []),
@@ -183,10 +188,14 @@ async def generate_article(model: ScrapedModel, category: str = "Other") -> Gene
         )
     else:
         # Fallback: treat response as raw content
+        excerpt = model.description[:200] if model.description else ''
+        if len(excerpt) > 250:
+            excerpt = excerpt[:247] + "..."
+            
         return GeneratedArticle(
             title=f"Analysis: {model.display_name}",
             slug=model.display_name.lower().replace(' ', '-'),
-            excerpt=model.description[:200] if model.description else '',
+            excerpt=excerpt,
             content=response,
             read_time_minutes=5,
             seo_keywords=[],
