@@ -172,7 +172,7 @@ async def linkedin_auth():
     from ..services.linkedin_publisher import get_oauth_authorize_url
     from ..config import settings
     
-    redirect_uri = f"http://{settings.local_server_host}:{settings.local_server_port}/linkedin/callback"
+    redirect_uri = f"http://{settings.local_server_host}:{settings.local_server_port}/api/linkedin/callback"
     auth_url = get_oauth_authorize_url(redirect_uri)
     
     if not auth_url:
@@ -189,7 +189,7 @@ async def linkedin_callback(code: str, state: str = None):
     from ..config import settings
     
     # This must match the redirect_uri used in auth
-    redirect_uri = f"http://{settings.local_server_host}:{settings.local_server_port}/linkedin/callback"
+    redirect_uri = f"http://{settings.local_server_host}:{settings.local_server_port}/api/linkedin/callback"
     
     result = await exchange_code_for_token(code, redirect_uri)
     
@@ -197,6 +197,38 @@ async def linkedin_callback(code: str, state: str = None):
         token = result.get("access_token")
         # Update settings in memory for this session
         settings.linkedin_access_token = token
+        
+        # Persist to .env file
+        try:
+            from pathlib import Path
+            import re
+            
+            # Find .env file (try current dir, then parent, then explicit project root if known)
+            env_path = Path(".env")
+            if not env_path.exists():
+                env_path = Path("../.env")
+            
+            if env_path.exists():
+                content = env_path.read_text("utf-8")
+                
+                # Check if LINKEDIN_ACCESS_TOKEN exists
+                if "LINKEDIN_ACCESS_TOKEN=" in content:
+                    # Replace existing
+                    content = re.sub(
+                        r"LINKEDIN_ACCESS_TOKEN=.*", 
+                        f"LINKEDIN_ACCESS_TOKEN={token}", 
+                        content
+                    )
+                else:
+                    # Append new
+                    if not content.endswith("\n"):
+                        content += "\n"
+                    content += f"LINKEDIN_ACCESS_TOKEN={token}\n"
+                
+                env_path.write_text(content, "utf-8")
+                print(f"✅ Saved LinkedIn token to {env_path}")
+        except Exception as e:
+            print(f"⚠️ Failed to save token to .env: {e}")
         
         # Return HTML that passes the token back to the main window and closes the popup
         html_content = f"""

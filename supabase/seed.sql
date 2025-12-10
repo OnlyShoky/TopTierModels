@@ -11,13 +11,13 @@ INSERT INTO models (id, huggingface_url, model_name, display_name, organization,
 ('66666666-6666-6666-6666-666666666666', 'https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0', 'stabilityai/stable-diffusion-xl-base-1.0', 'Stable Diffusion XL', 'Stability AI', 'Image Generation', 'High-resolution image generation with enhanced quality.', 'CreativeML Open RAIL++-M', '["text-to-image", "stable-diffusion", "sdxl"]', 1200000, 15000, 'active');
 
 -- Insert model scores
-INSERT INTO model_scores (model_id, overall_score, tier, performance_score, usability_score, innovation_score, adoption_score, production_score) VALUES
-('11111111-1111-1111-1111-111111111111', 95.00, 'S', 98.00, 92.00, 96.00, 90.00, 94.00),
-('22222222-2222-2222-2222-222222222222', 92.00, 'S', 90.00, 95.00, 92.00, 95.00, 88.00),
-('33333333-3333-3333-3333-333333333333', 91.00, 'S', 94.00, 90.00, 88.00, 92.00, 90.00),
-('44444444-4444-4444-4444-444444444444', 85.00, 'A', 88.00, 82.00, 90.00, 85.00, 80.00),
-('55555555-5555-5555-5555-555555555555', 78.00, 'B', 85.00, 80.00, 72.00, 82.00, 75.00),
-('66666666-6666-6666-6666-666666666666', 88.00, 'A', 90.00, 88.00, 85.00, 92.00, 82.00);
+INSERT INTO model_scores (model_id, overall_score, tier, quality_score, speed_score, freedom_score) VALUES
+('11111111-1111-1111-1111-111111111111', 94.00, 'S', 98.00, 95.00, 89.00),
+('22222222-2222-2222-2222-222222222222', 92.00, 'S', 95.00, 92.00, 89.00),
+('33333333-3333-3333-3333-333333333333', 90.00, 'S', 96.00, 90.00, 84.00),
+('44444444-4444-4444-4444-444444444444', 85.00, 'A', 88.00, 85.00, 82.00),
+('55555555-5555-5555-5555-555555555555', 78.00, 'B', 80.00, 85.00, 69.00),
+('66666666-6666-6666-6666-666666666666', 88.00, 'A', 92.00, 85.00, 87.00);
 
 -- Insert articles
 INSERT INTO articles (id, model_id, title, slug, excerpt, content, read_time_minutes, author, published) VALUES
