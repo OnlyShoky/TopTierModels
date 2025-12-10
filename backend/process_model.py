@@ -19,7 +19,7 @@ load_dotenv()
 
 from app.config import settings
 from app.database import init_database, save_preview
-from app.services.scraper import scrape_model, validate_huggingface_url, download_images
+from app.services.scraper import scrape_model, validate_huggingface_url
 from app.services.llm_processor import generate_article, generate_linkedin_post
 from app.services.scoring_engine import calculate_scores, classify_category
 
@@ -72,11 +72,12 @@ async def process_model(url: str) -> str:
     scores = calculate_scores(model_data, category.value)
     print(f"✓ ({scores.overall_score}/100 - {scores.tier.value} Tier)")
     
-    # Step 8: Download images
-    print("8. Downloading images... ", end="", flush=True)
+    # Step 8: Images (Using remote URLs)
+    print("8. Processing images... ", end="", flush=True)
     preview_id = str(uuid.uuid4())[:8]
-    local_images = await download_images(model_data.images, preview_id)
-    print(f"✓ ({len(local_images)} images)")
+    # User requested to skip download and use remote URLs directly
+    local_images = model_data.images
+    print(f"✓ ({len(local_images)} remote images)")
     
     # Step 9: Save to local database
     print("9. Saving preview... ", end="", flush=True)
