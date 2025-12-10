@@ -218,26 +218,37 @@ function PreviewPage() {
                                 <div className="sidebar-card">
                                     <h4 className="sidebar-title">Metrics</h4>
                                     <div className="stat-row">
-                                        <span className="stat-label">Performance</span>
-                                        <span className="stat-value">{scores.performance_score || 0}</span>
+                                        <span className="stat-label">Quality</span>
+                                        <span className="stat-value">{scores.quality_score || 0}</span>
                                     </div>
                                     <div className="stat-row">
-                                        <span className="stat-label">Usability</span>
-                                        <span className="stat-value">{scores.usability_score || 0}</span>
+                                        <span className="stat-label">Speed</span>
+                                        <span className="stat-value">{scores.speed_score || 0}</span>
                                     </div>
                                     <div className="stat-row">
-                                        <span className="stat-label">Innovation</span>
-                                        <span className="stat-value">{scores.innovation_score || 0}</span>
-                                    </div>
-                                    <div className="stat-row">
-                                        <span className="stat-label">Adoption</span>
-                                        <span className="stat-value">{scores.adoption_score || 0}</span>
-                                    </div>
-                                    <div className="stat-row">
-                                        <span className="stat-label">Production</span>
-                                        <span className="stat-value">{scores.production_score || 0}</span>
+                                        <span className="stat-label">Freedom</span>
+                                        <span className="stat-value">{scores.freedom_score || 0}</span>
                                     </div>
                                 </div>
+
+                                {/* Tags */}
+                                {scores.tags && scores.tags.length > 0 && (
+                                    <div className="sidebar-card">
+                                        <h4 className="sidebar-title">Tags</h4>
+                                        <div className="model-tags">
+                                            {scores.tags.map((tag, i) => (
+                                                <span
+                                                    key={i}
+                                                    className="model-tag"
+                                                    style={{ backgroundColor: tag.color_hex }}
+                                                    title={tag.description}
+                                                >
+                                                    {tag.tag_name}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
 
                                 {/* Info */}
                                 <div className="sidebar-card">

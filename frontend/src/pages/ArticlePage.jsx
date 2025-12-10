@@ -192,24 +192,16 @@ Z-Image-Turbo sets a new standard for image generation models.`,
                         <div className="sidebar-card">
                             <h4 className="sidebar-title">Metrics</h4>
                             <div className="stat-row">
-                                <span className="stat-label">Performance</span>
-                                <span className="stat-value">{scores.performance_score}</span>
+                                <span className="stat-label">Quality</span>
+                                <span className="stat-value">{scores.quality_score || scores.performance_score}</span>
                             </div>
                             <div className="stat-row">
-                                <span className="stat-label">Usability</span>
-                                <span className="stat-value">{scores.usability_score}</span>
+                                <span className="stat-label">Speed</span>
+                                <span className="stat-value">{scores.speed_score || scores.usability_score}</span>
                             </div>
                             <div className="stat-row">
-                                <span className="stat-label">Innovation</span>
-                                <span className="stat-value">{scores.innovation_score}</span>
-                            </div>
-                            <div className="stat-row">
-                                <span className="stat-label">Adoption</span>
-                                <span className="stat-value">{scores.adoption_score}</span>
-                            </div>
-                            <div className="stat-row">
-                                <span className="stat-label">Production</span>
-                                <span className="stat-value">{scores.production_score}</span>
+                                <span className="stat-label">Freedom</span>
+                                <span className="stat-value">{scores.freedom_score || scores.production_score}</span>
                             </div>
                         </div>
 
