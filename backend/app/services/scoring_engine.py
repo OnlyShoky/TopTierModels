@@ -1,25 +1,27 @@
 """
 Scoring Engine Module - Calculates model scores and tier assignments.
 
-Uses a weighted algorithm based on:
-- Performance (30%)
-- Usability (25%)
-- Innovation (20%)
-- Adoption (15%)
-- Production (10%)
+New Metrics System:
+- Quality Score (33.3%): Output quality, accuracy, realism
+- Speed Score (33.3%): Inference speed and efficiency  
+- Freedom Score (33.4%): Licensing, cost, accessibility
+
+Visual Subtags:
+- Open Source (#28a745), Open Weights (#7ed957)
+- Free (#007bff), Freemium (#66b2ff)
+- Closed/Paid (#dc3545)
 """
 
-from typing import Dict, Any, Optional
+from typing import Dict, Any, List
 from ..models import ScrapedModel, ModelScores, TierLevel, ModelCategory
+from ..models.schemas import ModelTag
 
 
-# Scoring weights
+# Scoring weights (equal distribution)
 WEIGHTS = {
-    'performance': 0.30,
-    'usability': 0.25,
-    'innovation': 0.20,
-    'adoption': 0.15,
-    'production': 0.10
+    'quality': 0.333,
+    'speed': 0.333,
+    'freedom': 0.334
 }
 
 # Tier thresholds
@@ -31,227 +33,237 @@ TIER_THRESHOLDS = {
     'D': 0
 }
 
+# Tag definitions
+TAG_DEFINITIONS = {
+    'open_source': ModelTag(
+        tag_name="Open Source",
+        color_hex="#28a745",
+        description="Full source code available"
+    ),
+    'open_weights': ModelTag(
+        tag_name="Open Weights",
+        color_hex="#7ed957",
+        description="Model weights available for download"
+    ),
+    'free': ModelTag(
+        tag_name="Free",
+        color_hex="#007bff",
+        description="Free to use without cost"
+    ),
+    'freemium': ModelTag(
+        tag_name="Freemium",
+        color_hex="#66b2ff",
+        description="Free tier with paid options"
+    ),
+    'closed_paid': ModelTag(
+        tag_name="Closed / Paid",
+        color_hex="#dc3545",
+        description="Requires payment or restricted access"
+    )
+}
+
 
 def calculate_scores(model: ScrapedModel, category: str = "Other") -> ModelScores:
     """
-    Calculate comprehensive scores for a model.
+    Calculate comprehensive scores for a model using new metrics.
     
     Args:
         model: Scraped model data
         category: Model category for context
         
     Returns:
-        ModelScores with all metrics
+        ModelScores with Quality, Speed, Freedom metrics and tags
     """
-    # Calculate individual component scores
-    performance_score = _calculate_performance_score(model, category)
-    usability_score = _calculate_usability_score(model)
-    innovation_score = _calculate_innovation_score(model, category)
-    adoption_score = _calculate_adoption_score(model)
-    production_score = _calculate_production_score(model)
+    # Calculate new core metrics
+    quality_score = _calculate_quality_score(model, category)
+    speed_score = _calculate_speed_score(model)
+    freedom_score = _calculate_freedom_score(model)
     
     # Calculate weighted overall score
     overall_score = (
-        performance_score * WEIGHTS['performance'] +
-        usability_score * WEIGHTS['usability'] +
-        innovation_score * WEIGHTS['innovation'] +
-        adoption_score * WEIGHTS['adoption'] +
-        production_score * WEIGHTS['production']
+        quality_score * WEIGHTS['quality'] +
+        speed_score * WEIGHTS['speed'] +
+        freedom_score * WEIGHTS['freedom']
     )
     
     # Determine tier
     tier = _assign_tier(overall_score)
     
+    # Assign visual tags
+    tags = _assign_tags(model)
+    
     return ModelScores(
         overall_score=round(overall_score, 2),
         tier=tier,
-        performance_score=round(performance_score, 2),
-        usability_score=round(usability_score, 2),
-        innovation_score=round(innovation_score, 2),
-        adoption_score=round(adoption_score, 2),
-        production_score=round(production_score, 2),
+        quality_score=round(quality_score, 2),
+        speed_score=round(speed_score, 2),
+        freedom_score=round(freedom_score, 2),
+        tags=tags,
         benchmarks=_extract_benchmarks(model),
         scoring_methodology=_get_methodology_description()
     )
 
 
-def _calculate_performance_score(model: ScrapedModel, category: str) -> float:
+def _calculate_quality_score(model: ScrapedModel, category: str) -> float:
     """
-    Calculate performance score based on benchmarks and metrics.
+    Calculate Quality Score (0-100).
+    
+    Measures output quality: accuracy, realism, coherence, task success.
     
     Factors:
-    - Benchmark results (if available in metadata)
-    - Speed/efficiency indicators
-    - Quality metrics
-    """
-    score = 70.0  # Base score
-    metadata = model.model_metadata
-    
-    # Check for benchmark data
-    if metadata.get('benchmark_score'):
-        score = min(100, metadata['benchmark_score'])
-    
-    # Adjust based on model size efficiency
-    if 'parameters' in metadata:
-        params = metadata['parameters']
-        if isinstance(params, str):
-            # Parse parameter count (e.g., "7B" -> 7 billion)
-            if 'B' in params.upper():
-                param_count = float(params.upper().replace('B', ''))
-                # Smaller efficient models score higher
-                if param_count < 3:
-                    score += 5
-                elif param_count < 10:
-                    score += 2
-    
-    # Boost for "turbo" or "fast" in name (indicates optimization)
-    if any(x in model.model_name.lower() for x in ['turbo', 'fast', 'efficient']):
-        score += 5
-    
-    return min(100, max(0, score))
-
-
-def _calculate_usability_score(model: ScrapedModel) -> float:
-    """
-    Calculate usability score based on documentation quality.
-    
-    Factors:
-    - README length and completeness
-    - Code examples presence
-    - Clear description
+    - Benchmark mentions in README
+    - Quality keywords (state-of-the-art, best, high-quality)
+    - Documentation completeness
+    - Community validation (likes)
     """
     score = 60.0  # Base score
-    
-    # README quality
-    if model.readme_content:
-        content_length = len(model.readme_content)
-        if content_length > 5000:
-            score += 15
-        elif content_length > 2000:
-            score += 10
-        elif content_length > 500:
-            score += 5
-    
-    # Code examples
-    if model.code_snippets:
-        score += min(15, len(model.code_snippets) * 5)
-    
-    # Description quality
-    if model.description:
-        if len(model.description) > 200:
-            score += 5
-        if len(model.description) > 100:
-            score += 3
-    
-    # Tags indicate good categorization
-    if model.tags and len(model.tags) > 3:
-        score += 5
-    
-    return min(100, max(0, score))
-
-
-def _calculate_innovation_score(model: ScrapedModel, category: str) -> float:
-    """
-    Calculate innovation score based on novelty.
-    
-    Factors:
-    - Novel architecture mentions
-    - Research citations
-    - Unique capabilities
-    """
-    score = 65.0  # Base score
     
     readme_lower = (model.readme_content or '').lower()
     description_lower = (model.description or '').lower()
     combined = readme_lower + description_lower
     
-    # Innovation keywords
-    innovation_keywords = [
-        'novel', 'state-of-the-art', 'sota', 'breakthrough',
-        'first', 'new approach', 'groundbreaking', 'innovative',
-        'outperforms', 'surpasses', 'leading'
+    # Quality keywords
+    quality_keywords = [
+        'state-of-the-art', 'sota', 'best', 'high-quality', 'photorealistic',
+        'accurate', 'precise', 'excellent', 'superior', 'outperforms'
     ]
-    
-    keyword_matches = sum(1 for kw in innovation_keywords if kw in combined)
+    keyword_matches = sum(1 for kw in quality_keywords if kw in combined)
     score += min(20, keyword_matches * 4)
     
-    # Research paper reference
-    if 'arxiv' in combined or 'paper' in combined:
-        score += 10
+    # Benchmark mentions
+    benchmark_keywords = ['benchmark', 'evaluation', 'score', 'fid', 'accuracy', 'bleu']
+    benchmark_matches = sum(1 for kw in benchmark_keywords if kw in combined)
+    score += min(10, benchmark_matches * 3)
     
-    # Award or recognition
-    if any(x in combined for x in ['award', 'winner', 'best']):
-        score += 5
-    
-    return min(100, max(0, score))
-
-
-def _calculate_adoption_score(model: ScrapedModel) -> float:
-    """
-    Calculate adoption score based on community metrics.
-    
-    Factors:
-    - Download count
-    - Likes/stars
-    - Community presence
-    """
-    score = 50.0  # Base score
-    
-    # Downloads (logarithmic scaling)
-    if model.downloads > 0:
-        from math import log10
-        download_factor = min(40, log10(model.downloads + 1) * 8)
-        score += download_factor
-    
-    # Likes
+    # Likes indicate community approval
     if model.likes > 0:
         from math import log10
-        like_factor = min(15, log10(model.likes + 1) * 5)
-        score += like_factor
-    
-    # Organization presence (known orgs get boost)
-    known_orgs = ['google', 'meta', 'openai', 'microsoft', 'huggingface', 'stability']
-    if model.organization:
-        org_lower = model.organization.lower()
-        if any(org in org_lower for org in known_orgs):
-            score += 10
+        score += min(10, log10(model.likes + 1) * 3)
     
     return min(100, max(0, score))
 
 
-def _calculate_production_score(model: ScrapedModel) -> float:
+def _calculate_speed_score(model: ScrapedModel) -> float:
     """
-    Calculate production readiness score.
+    Calculate Speed Score (0-100).
+    
+    Measures inference speed from user's perspective.
     
     Factors:
-    - License type
-    - Documentation completeness
-    - Version stability
+    - Speed keywords (fast, turbo, efficient, quick)
+    - Model size (smaller = faster)
+    - Optimization mentions
     """
     score = 60.0  # Base score
     
-    # License (permissive licenses score higher)
-    permissive_licenses = ['mit', 'apache', 'bsd', 'unlicense', 'cc0']
-    if model.license:
-        license_lower = model.license.lower()
-        if any(lic in license_lower for lic in permissive_licenses):
-            score += 15
-        elif 'commercial' in license_lower:
-            score += 10
+    readme_lower = (model.readme_content or '').lower()
+    name_lower = model.model_name.lower()
+    combined = readme_lower + name_lower
     
-    # Documentation completeness
-    if model.readme_content and len(model.readme_content) > 1000:
-        score += 10
+    # Speed keywords in name or content
+    speed_keywords = ['turbo', 'fast', 'quick', 'efficient', 'lite', 'mini', 'tiny', 'small']
+    for kw in speed_keywords:
+        if kw in combined:
+            score += 8
     
-    # Code snippets for implementation
-    if model.code_snippets and len(model.code_snippets) >= 2:
-        score += 10
+    # Optimization mentions
+    optimization_keywords = ['optimized', 'quantized', 'distilled', 'pruned', 'onnx', 'tensorrt']
+    for kw in optimization_keywords:
+        if kw in combined:
+            score += 5
     
-    # Multiple images suggest good presentation
-    if model.images and len(model.images) >= 2:
-        score += 5
+    # Low latency mentions
+    latency_keywords = ['sub-second', 'real-time', 'instant', 'low-latency', 'ms']
+    for kw in latency_keywords:
+        if kw in combined:
+            score += 6
     
     return min(100, max(0, score))
+
+
+def _calculate_freedom_score(model: ScrapedModel) -> float:
+    """
+    Calculate Freedom Score (0-100).
+    
+    Measures accessibility: licensing, cost, deployment options.
+    
+    Factors:
+    - License type (permissive = high, restrictive = low)
+    - Open source/weights availability
+    - Free/paid access
+    - Deployment flexibility
+    """
+    score = 50.0  # Base score
+    
+    license_lower = (model.license or '').lower()
+    tags_lower = [t.lower() for t in model.tags]
+    readme_lower = (model.readme_content or '').lower()
+    
+    # Permissive licenses (high freedom)
+    permissive_licenses = ['mit', 'apache', 'bsd', 'unlicense', 'cc0', 'wtfpl']
+    for lic in permissive_licenses:
+        if lic in license_lower:
+            score += 30
+            break
+    
+    # Semi-permissive (medium)
+    semi_permissive = ['cc-by', 'lgpl', 'mpl']
+    for lic in semi_permissive:
+        if lic in license_lower:
+            score += 20
+            break
+    
+    # Restrictive licenses (low freedom)
+    restrictive = ['gpl', 'agpl', 'cc-by-nc', 'non-commercial']
+    for lic in restrictive:
+        if lic in license_lower:
+            score += 10
+            break
+    
+    # Open weights indicator
+    if 'open' in ' '.join(tags_lower) or 'weights' in readme_lower:
+        score += 10
+    
+    # Hugging Face open models get bonus (accessible)
+    if model.huggingface_url:
+        score += 10
+    
+    return min(100, max(0, score))
+
+
+def _assign_tags(model: ScrapedModel) -> List[ModelTag]:
+    """
+    Assign visual tags based on model licensing, cost, and access.
+    
+    Returns up to 5 tags for UI display.
+    """
+    tags = []
+    
+    license_lower = (model.license or '').lower()
+    readme_lower = (model.readme_content or '').lower()
+    tags_lower = ' '.join([t.lower() for t in model.tags])
+    
+    # Open Source check
+    open_source_indicators = ['mit', 'apache', 'bsd', 'gpl', 'lgpl', 'unlicense']
+    if any(lic in license_lower for lic in open_source_indicators):
+        tags.append(TAG_DEFINITIONS['open_source'])
+    
+    # Open Weights check (Hugging Face models typically have open weights)
+    if model.huggingface_url and 'safetensors' in readme_lower:
+        tags.append(TAG_DEFINITIONS['open_weights'])
+    elif 'weights' in readme_lower or 'checkpoint' in readme_lower:
+        tags.append(TAG_DEFINITIONS['open_weights'])
+    
+    # Free check
+    paid_indicators = ['enterprise', 'pricing', 'subscription', 'pro plan', 'paid']
+    if not any(p in readme_lower for p in paid_indicators):
+        tags.append(TAG_DEFINITIONS['free'])
+    elif 'free tier' in readme_lower or 'freemium' in readme_lower:
+        tags.append(TAG_DEFINITIONS['freemium'])
+    else:
+        tags.append(TAG_DEFINITIONS['closed_paid'])
+    
+    return tags[:5]  # Max 5 tags
 
 
 def _assign_tier(score: float) -> TierLevel:
@@ -266,7 +278,6 @@ def _extract_benchmarks(model: ScrapedModel) -> Dict[str, Any]:
     """Extract any benchmark data from model metadata."""
     benchmarks = {}
     
-    # Look for common benchmark keys in metadata
     benchmark_keys = [
         'accuracy', 'f1', 'bleu', 'rouge', 'perplexity',
         'fid', 'inception_score', 'clip_score'
@@ -280,36 +291,39 @@ def _extract_benchmarks(model: ScrapedModel) -> Dict[str, Any]:
 
 
 def _get_methodology_description() -> str:
-    """Return description of the scoring methodology."""
+    """Return description of the new scoring methodology."""
     return """
-    Overall Score = (Performance × 0.30) + (Usability × 0.25) + 
-                    (Innovation × 0.20) + (Adoption × 0.15) + (Production × 0.10)
+    Overall Score = (Quality × 0.333) + (Speed × 0.333) + (Freedom × 0.334)
+    
+    Quality Score (0-100): Output quality, accuracy, realism, coherence
+    Speed Score (0-100): Inference speed, efficiency, time-to-result
+    Freedom Score (0-100): Licensing openness, cost, deployment flexibility
+    
+    Visual Tags indicate accessibility:
+    - Open Source (green): Full source available
+    - Open Weights (light green): Model weights downloadable
+    - Free (blue): No cost to use
+    - Freemium (light blue): Free tier with paid options
+    - Closed/Paid (red): Requires payment
     
     Tier Assignment:
-    - S Tier: 90-100 (Exceptional, industry-leading)
-    - A Tier: 80-89 (Excellent, highly recommended)
-    - B Tier: 70-79 (Good, solid choice)
-    - C Tier: 60-69 (Adequate, situational use)
-    - D Tier: 0-59 (Limited, not recommended)
+    - S Tier: 90-100 (Exceptional)
+    - A Tier: 80-89 (Excellent)
+    - B Tier: 70-79 (Good)
+    - C Tier: 60-69 (Adequate)
+    - D Tier: 0-59 (Limited)
     """
 
 
 def classify_category(model: ScrapedModel) -> ModelCategory:
     """
     Automatically classify model into a category based on tags and description.
-    
-    Args:
-        model: Scraped model data
-        
-    Returns:
-        Classified ModelCategory
     """
     tags_lower = [t.lower() for t in model.tags]
     description_lower = (model.description or '').lower()
     name_lower = model.model_name.lower()
     combined = ' '.join(tags_lower) + ' ' + description_lower + ' ' + name_lower
     
-    # Category detection rules
     category_rules = {
         ModelCategory.IMAGE_GENERATION: [
             'text-to-image', 'image-generation', 'diffusion', 'stable-diffusion',

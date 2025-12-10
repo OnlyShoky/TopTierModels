@@ -48,15 +48,26 @@ class ScrapedModel(BaseModel):
     images: List[str] = Field(default_factory=list)
 
 
+class ModelTag(BaseModel):
+    """Visual tag for model accessibility/licensing."""
+    tag_name: str
+    color_hex: str
+    description: str
+
+
 class ModelScores(BaseModel):
-    """Scoring data for a model."""
+    """Scoring data for a model with new metrics system."""
     overall_score: float = Field(ge=0, le=100)
     tier: TierLevel
-    performance_score: Optional[float] = Field(default=None, ge=0, le=100)
-    usability_score: Optional[float] = Field(default=None, ge=0, le=100)
-    innovation_score: Optional[float] = Field(default=None, ge=0, le=100)
-    adoption_score: Optional[float] = Field(default=None, ge=0, le=100)
-    production_score: Optional[float] = Field(default=None, ge=0, le=100)
+    
+    # New core metrics (0-100)
+    quality_score: float = Field(default=0, ge=0, le=100, description="Output quality: accuracy, realism, coherence")
+    speed_score: float = Field(default=0, ge=0, le=100, description="Inference speed and efficiency")
+    freedom_score: float = Field(default=0, ge=0, le=100, description="Licensing, cost, accessibility")
+    
+    # Visual subtags for UI display
+    tags: List[ModelTag] = Field(default_factory=list, description="Accessibility/licensing tags")
+    
     benchmarks: Dict[str, Any] = Field(default_factory=dict)
     scoring_methodology: Optional[str] = None
 
