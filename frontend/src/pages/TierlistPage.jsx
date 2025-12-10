@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import TierSection from '../components/TierSection'
+import { getModelsForTierlist } from '../lib/supabase'
 import './TierlistPage.css'
 
 function TierlistPage() {
@@ -22,15 +23,22 @@ function TierlistPage() {
         const fetchModels = async () => {
             setLoading(true)
             try {
-                const mockModels = [
-                    { id: '1', name: 'Z-Image-Turbo', category: 'Image Generation', tier: 'S', score: 95, slug: 'z-image-turbo' },
-                    { id: '2', name: 'Whisper V3', category: 'Audio Processing', tier: 'S', score: 92, slug: 'whisper-v3' },
-                    { id: '3', name: 'LLaMA 3 Instruct', category: 'Text Generation', tier: 'A', score: 87, slug: 'llama-3-instruct' },
-                    { id: '4', name: 'CLIP ViT-L', category: 'Multimodal', tier: 'A', score: 85, slug: 'clip-vit-l' },
-                    { id: '5', name: 'Stable Diffusion XL', category: 'Image Generation', tier: 'A', score: 88, slug: 'stable-diffusion-xl' },
-                    { id: '6', name: 'YOLOv8', category: 'Computer Vision', tier: 'B', score: 78, slug: 'yolov8' },
-                ]
-                setModels(mockModels)
+                const data = await getModelsForTierlist(activeCategory)
+
+                // Map Supabase data to component models
+                const formattedModels = data.map(item => {
+                    const article = item.articles && item.articles[0] // take first article
+                    return {
+                        id: item.id,
+                        name: item.display_name,
+                        category: item.category,
+                        tier: item.model_scores.tier,
+                        score: item.model_scores.overall_score,
+                        slug: article ? article.slug : '#' // fallback if no article
+                    }
+                })
+
+                setModels(formattedModels)
             } catch (error) {
                 console.error('Error:', error)
             } finally {

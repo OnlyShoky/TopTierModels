@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { getArticleBySlug } from '../lib/supabase'
 import './ArticlePage.css'
 
 function ArticlePage() {
@@ -17,68 +18,36 @@ function ArticlePage() {
         const fetchArticle = async () => {
             setLoading(true)
             try {
-                // Mock data
+                const data = await getArticleBySlug(slug)
+
+                if (!data) {
+                    throw new Error('Article not found')
+                }
+
                 setArticle({
-                    id: '1',
-                    title: 'Z-Image-Turbo',
-                    content: `## Overview
-
-Z-Image-Turbo represents a significant leap forward in AI-powered image generation technology. Developed by Tongyi-MAI, this model combines cutting-edge architecture with unprecedented processing speed.
-
-## Key Features
-
-- **Lightning Fast Generation**: Generate high-quality images in under 2 seconds
-- **Superior Quality**: State-of-the-art image fidelity and detail
-- **Versatile Applications**: From art creation to product visualization
-
-## Performance
-
-| Metric | Value |
-|--------|-------|
-| Generation Time | 1.8s |
-| FID Score | 8.2 |
-| Resolution | 1024x1024 |
-
-## Usage
-
-\`\`\`python
-from transformers import pipeline
-
-generator = pipeline("text-to-image", model="Tongyi-MAI/Z-Image-Turbo")
-image = generator("A beautiful sunset over mountains")
-image.save("output.png")
-\`\`\`
-
-## Conclusion
-
-Z-Image-Turbo sets a new standard for image generation models.`,
-                    excerpt: 'A breakthrough in fast image generation.',
-                    read_time_minutes: 8,
-                    author: 'TopTierModels',
-                    published_at: new Date().toISOString()
+                    id: data.id,
+                    title: data.title,
+                    content: data.content,
+                    excerpt: data.excerpt,
+                    read_time_minutes: data.read_time_minutes,
+                    author: data.author,
+                    published_at: data.published_at
                 })
 
                 setModel({
-                    id: '1',
-                    model_name: 'Tongyi-MAI/Z-Image-Turbo',
-                    display_name: 'Z-Image-Turbo',
-                    category: 'Image Generation',
-                    organization: 'Tongyi-MAI',
-                    license: 'MIT',
-                    downloads: 125000,
-                    likes: 4500,
-                    huggingface_url: 'https://huggingface.co/Tongyi-MAI/Z-Image-Turbo'
+                    id: data.models.id,
+                    model_name: data.models.model_name,
+                    display_name: data.models.display_name,
+                    category: data.models.category,
+                    organization: data.models.organization,
+                    license: data.models.license,
+                    downloads: data.models.downloads,
+                    likes: data.models.likes,
+                    huggingface_url: data.models.huggingface_url,
+                    code_snippets: data.models.code_snippets
                 })
 
-                setScores({
-                    overall_score: 95,
-                    tier: 'S',
-                    performance_score: 98,
-                    usability_score: 92,
-                    innovation_score: 96,
-                    adoption_score: 90,
-                    production_score: 94
-                })
+                setScores(data.models.model_scores)
             } catch (error) {
                 console.error('Error:', error)
             } finally {
@@ -193,15 +162,15 @@ Z-Image-Turbo sets a new standard for image generation models.`,
                             <h4 className="sidebar-title">Metrics</h4>
                             <div className="stat-row">
                                 <span className="stat-label">Quality</span>
-                                <span className="stat-value">{scores.quality_score || scores.performance_score}</span>
+                                <span className="stat-value">{scores.quality_score}</span>
                             </div>
                             <div className="stat-row">
                                 <span className="stat-label">Speed</span>
-                                <span className="stat-value">{scores.speed_score || scores.usability_score}</span>
+                                <span className="stat-value">{scores.speed_score}</span>
                             </div>
                             <div className="stat-row">
                                 <span className="stat-label">Freedom</span>
-                                <span className="stat-value">{scores.freedom_score || scores.production_score}</span>
+                                <span className="stat-value">{scores.freedom_score}</span>
                             </div>
                         </div>
 

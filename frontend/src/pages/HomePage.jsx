@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import ArticleCard from '../components/ArticleCard'
+import { getArticles } from '../lib/supabase'
 import './HomePage.css'
 
 function HomePage() {
@@ -15,76 +16,25 @@ function HomePage() {
         const fetchArticles = async () => {
             setLoading(true)
             try {
-                // Mock data
-                const mockArticles = [
-                    {
-                        id: '1',
-                        slug: 'z-image-turbo',
-                        title: 'Z-Image-Turbo',
-                        excerpt: 'Revolutionary fast image generation with unprecedented quality.',
-                        category: 'Image Generation',
-                        tier: 'S',
-                        score: 95,
-                        downloads: 125000,
-                        published_at: new Date().toISOString()
-                    },
-                    {
-                        id: '2',
-                        slug: 'llama-3-instruct',
-                        title: 'LLaMA 3 Instruct',
-                        excerpt: 'Meta\'s instruction-tuned language model with remarkable capabilities.',
-                        category: 'Text Generation',
-                        tier: 'A',
-                        score: 87,
-                        downloads: 890000,
-                        published_at: new Date().toISOString()
-                    },
-                    {
-                        id: '3',
-                        slug: 'whisper-v3',
-                        title: 'Whisper V3',
-                        excerpt: 'OpenAI\'s most capable speech recognition model.',
-                        category: 'Audio Processing',
-                        tier: 'S',
-                        score: 92,
-                        downloads: 560000,
-                        published_at: new Date().toISOString()
-                    },
-                    {
-                        id: '4',
-                        slug: 'clip-vit-large',
-                        title: 'CLIP ViT-L/14',
-                        excerpt: 'Zero-shot image classification with natural language prompts.',
-                        category: 'Multimodal',
-                        tier: 'A',
-                        score: 85,
-                        downloads: 340000,
-                        published_at: new Date().toISOString()
-                    },
-                    {
-                        id: '5',
-                        slug: 'yolov8',
-                        title: 'YOLOv8',
-                        excerpt: 'Real-time object detection with state-of-the-art performance.',
-                        category: 'Computer Vision',
-                        tier: 'B',
-                        score: 78,
-                        downloads: 780000,
-                        published_at: new Date().toISOString()
-                    },
-                    {
-                        id: '6',
-                        slug: 'stable-diffusion-xl',
-                        title: 'Stable Diffusion XL',
-                        excerpt: 'High-resolution image synthesis with enhanced quality.',
-                        category: 'Image Generation',
-                        tier: 'A',
-                        score: 88,
-                        downloads: 1200000,
-                        published_at: new Date().toISOString()
-                    }
-                ]
-                setArticles(mockArticles)
+                const data = await getArticles({
+                    category: filters.category,
+                    tier: filters.tier
+                })
+
+                // Map Supabase data to component format
+                const formattedArticles = data.map(item => ({
+                    id: item.id,
+                    slug: item.slug,
+                    title: item.title,
+                    excerpt: item.excerpt,
+                    category: item.models.category,
+                    tier: item.models.model_scores.tier,
+                    score: item.models.model_scores.overall_score,
+                    published_at: item.published_at,
+                    hero_image_url: item.hero_image_url
+                }))
+
+                setArticles(formattedArticles)
             } catch (error) {
                 console.error('Error fetching articles:', error)
             } finally {
@@ -105,12 +55,6 @@ function HomePage() {
     ]
 
     const tiers = ['all', 'S', 'A', 'B', 'C', 'D']
-
-    const filteredArticles = articles.filter(article => {
-        if (filters.category !== 'all' && article.category !== filters.category) return false
-        if (filters.tier !== 'all' && article.tier !== filters.tier) return false
-        return true
-    })
 
     return (
         <div className="home-page">
@@ -190,7 +134,7 @@ function HomePage() {
                 <div className="container">
                     <div className="section-header">
                         <span className="section-title">
-                            {filteredArticles.length} models
+                            {articles.length} models
                         </span>
                     </div>
 
@@ -206,14 +150,14 @@ function HomePage() {
                                 </div>
                             ))}
                         </div>
-                    ) : filteredArticles.length === 0 ? (
+                    ) : articles.length === 0 ? (
                         <div className="empty-state">
                             <h3>No models found</h3>
                             <p>Try adjusting your filters</p>
                         </div>
                     ) : (
                         <div className="grid grid-cols-3">
-                            {filteredArticles.map(article => (
+                            {articles.map(article => (
                                 <ArticleCard key={article.id} article={article} />
                             ))}
                         </div>

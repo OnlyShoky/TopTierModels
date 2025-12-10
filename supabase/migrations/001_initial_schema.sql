@@ -219,6 +219,16 @@ CREATE TRIGGER update_tierlists_updated_at BEFORE UPDATE ON tierlists
 CREATE TRIGGER update_code_snippets_updated_at BEFORE UPDATE ON code_snippets
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
+-- Function to increment model count for a tierlist category (used by backend)
+CREATE OR REPLACE FUNCTION increment_tierlist_count(cat TEXT)
+RETURNS VOID AS $$
+BEGIN
+  UPDATE tierlists
+  SET model_count = model_count + 1
+  WHERE category = cat;
+END;
+$$ LANGUAGE plpgsql;
+
 -- =====================
 -- Initial Tierlists Data
 -- =====================

@@ -5,10 +5,10 @@ import './ArticleCard.css'
 function ArticleCard({ article }) {
     // Memoize expensive computation
     const formattedDownloads = useMemo(() => {
-        const num = article.downloads
+        const num = article.downloads || 0
         if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`
         if (num >= 1000) return `${(num / 1000).toFixed(0)}k`
-        return num.toString()
+        return num > 0 ? num.toString() : ''
     }, [article.downloads])
 
     return (
@@ -26,9 +26,11 @@ function ArticleCard({ article }) {
 
                 <div className="article-card-footer">
                     <span className="tag">{article.category}</span>
-                    <span className="article-card-downloads">
-                        {formattedDownloads} downloads
-                    </span>
+                    {formattedDownloads && (
+                        <span className="article-card-downloads">
+                            {formattedDownloads} downloads
+                        </span>
+                    )}
                 </div>
             </div>
         </Link>
