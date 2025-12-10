@@ -15,25 +15,27 @@ import re
 
 def _parse_json_response(response: str) -> Optional[Dict[str, Any]]:
     """Parse JSON from LLM response, handling markdown code fences."""
-    # Try direct JSON parse first
-    try:
-        return json.loads(response)
-    except json.JSONDecodeError:
-        pass
+    # Try direct JSON parse first (for clean JSON responses)
+    response_stripped = response.strip()
+    if response_stripped.startswith('{'):
+        try:
+            return json.loads(response_stripped, strict=False)
+        except json.JSONDecodeError:
+            pass
     
     # Try to extract JSON from markdown code fence
     patterns = [
-        r'```json\s*([\s\S]*?)\s*```',  # ```json ... ```
-        r'```\s*([\s\S]*?)\s*```',       # ``` ... ```
-        r'\{[\s\S]*\}'                   # Raw JSON object
+        (r'```json\s*([\s\S]*?)\s*```', 1),  # ```json ... ```
+        (r'```\s*([\s\S]*?)\s*```', 1),       # ``` ... ```
+        (r'(\{[\s\S]*\})', 1)                 # Raw JSON object (with capture group)
     ]
     
-    for pattern in patterns:
+    for pattern, group_idx in patterns:
         match = re.search(pattern, response)
         if match:
             try:
-                json_str = match.group(1) if '```' in pattern else match.group(0)
-                return json.loads(json_str)
+                json_str = match.group(group_idx).strip()
+                return json.loads(json_str, strict=False)
             except (json.JSONDecodeError, IndexError):
                 continue
     

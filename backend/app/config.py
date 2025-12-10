@@ -50,6 +50,7 @@ class Settings(BaseSettings):
     linkedin_client_id: Optional[str] = Field(default=None, env="LINKEDIN_CLIENT_ID")
     linkedin_client_secret: Optional[str] = Field(default=None, env="LINKEDIN_CLIENT_SECRET")
     linkedin_access_token: Optional[str] = Field(default=None, env="LINKEDIN_ACCESS_TOKEN")
+    enable_linkedin_publishing: bool = Field(default=True, env="ENABLE_LINKEDIN_PUBLISHING")
     
     # Paths
     data_dir: str = Field(default="data")

@@ -83,15 +83,21 @@ async def publish_preview(request: PublishRequest):
         )
         
         # Also publish to LinkedIn if configured
+        # Also publish to LinkedIn if configured and enabled
         linkedin_result = None
-        try:
-            from ..services.linkedin_publisher import publish_to_linkedin
-            linkedin_content = preview["linkedin_data"].get("content", "")
-            if linkedin_content:
-                linkedin_result = await publish_to_linkedin(linkedin_content)
-        except Exception as linkedin_error:
-            # Don't fail the whole publish if LinkedIn fails
-            linkedin_result = {"success": False, "error": str(linkedin_error)}
+        from ..config import settings
+        
+        if settings.enable_linkedin_publishing:
+            try:
+                from ..services.linkedin_publisher import publish_to_linkedin
+                linkedin_content = preview["linkedin_data"].get("content", "")
+                if linkedin_content:
+                    linkedin_result = await publish_to_linkedin(linkedin_content)
+            except Exception as linkedin_error:
+                # Don't fail the whole publish if LinkedIn fails
+                linkedin_result = {"success": False, "error": str(linkedin_error)}
+        else:
+             linkedin_result = {"success": False, "message": "Skipped (ENABLE_LINKEDIN_PUBLISHING=False)"}
         
         # Update status to published
         await update_preview_status(
