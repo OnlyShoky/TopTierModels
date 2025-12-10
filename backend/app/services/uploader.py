@@ -70,7 +70,7 @@ async def upload_to_supabase(
         'status': 'active'
     }
     
-    model_result = client.table('models').insert(model_record).execute()
+    model_result = client.table('models').upsert(model_record, on_conflict='huggingface_url').execute()
     model_id = model_result.data[0]['id']
     
     # Step 3: Insert article record
@@ -87,7 +87,7 @@ async def upload_to_supabase(
         'published': True
     }
     
-    article_result = client.table('articles').insert(article_record).execute()
+    article_result = client.table('articles').upsert(article_record, on_conflict='slug').execute()
     article_id = article_result.data[0]['id']
     article_slug = article_result.data[0]['slug']
     
@@ -103,6 +103,8 @@ async def upload_to_supabase(
         'character_count': linkedin_data.get('character_count', 0)
     }
     
+    # Clean up old LinkedIn posts for this article to avoid duplicates (since no unique constraint)
+    client.table('simplified_articles').delete().eq('article_id', article_id).execute()
     client.table('simplified_articles').insert(linkedin_record).execute()
     
     # Step 5: Insert model scores
@@ -117,7 +119,7 @@ async def upload_to_supabase(
         'scoring_methodology': scores_data.get('scoring_methodology')
     }
     
-    client.table('model_scores').insert(scores_record).execute()
+    client.table('model_scores').upsert(scores_record, on_conflict='model_id').execute()
     
     # Step 6: Insert image records
     for i, url in enumerate(image_urls):

@@ -118,6 +118,9 @@ async def publish_preview(request: PublishRequest):
         )
         
     except Exception as e:
+        import traceback
+        print(f"❌ Error publishing: {e}")
+        traceback.print_exc()
         await update_preview_status(request.preview_id, "failed")
         raise HTTPException(status_code=500, detail=str(e))
 
