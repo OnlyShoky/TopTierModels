@@ -175,40 +175,45 @@
     cursor: help;
 }
 
-/* Score styling for preview */
-.score {
-    text-align: center;
-}
-
+/* Explicit Overrides for Sidebar Metrics to fix font size inconsistencies */
+/* Matching ArticlePage.css logic */
+.article-sidebar .score-value,
 .score-value {
-    font-size: var(--text-4xl);
+    font-size: var(--text-3xl);
     font-weight: var(--font-bold);
-    line-height: 1;
+    line-height: var(--leading-none);
+    letter-spacing: var(--tracking-tight);
 }
 
+.article-sidebar .score-max,
 .score-max {
-    font-size: var(--text-lg);
+    font-size: var(--text-sm);
     color: var(--color-text-muted);
 }
 
-/* Stat rows */
+.article-sidebar .stat-row,
 .stat-row {
+    font-size: var(--text-sm);
     display: flex;
     justify-content: space-between;
     padding: var(--space-2) 0;
     border-bottom: 1px solid var(--color-border);
-    font-size: var(--text-sm);
 }
 
+.article-sidebar .stat-row:last-child,
 .stat-row:last-child {
     border-bottom: none;
 }
 
+.article-sidebar .stat-label,
 .stat-label {
-    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
 }
 
+.article-sidebar .stat-value,
 .stat-value {
+    font-size: var(--text-sm) !important;
     font-weight: var(--font-medium);
     font-variant-numeric: tabular-nums;
 }

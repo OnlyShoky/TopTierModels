@@ -46,7 +46,8 @@ function ArticlePage() {
                     code_snippets: data.models.code_snippets,
                     safetensors: data.models.safetensors,
                     model_size: data.models.model_size,
-                    tensor_types: data.models.tensor_types || []
+                    tensor_types: data.models.tensor_types || [],
+                    model_metadata: data.models.model_metadata || {}
                 })
 
                 setScores(data.models.model_scores)
@@ -198,30 +199,48 @@ function ArticlePage() {
                         {/* Info */}
                         <div className="sidebar-card">
                             <h4 className="sidebar-title">Details</h4>
-                            <div className="stat-row">
-                                <span className="stat-label">Organization</span>
-                                <span className="stat-value">{model.organization}</span>
-                            </div>
-                            <div className="stat-row">
-                                <span className="stat-label">License</span>
-                                <span className="stat-value">{model.license}</span>
-                            </div>
+                            {model.organization && (
+                                <div className="stat-row">
+                                    <span className="stat-label">Organization</span>
+                                    <span className="stat-value">{model.organization}</span>
+                                </div>
+                            )}
+                            {model.license && (
+                                <div className="stat-row">
+                                    <span className="stat-label">License</span>
+                                    <span className="stat-value">
+                                        {model.model_metadata?.license_url ? (
+                                            <a
+                                                href={model.model_metadata.license_url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="underline hover:text-blue-500"
+                                            >
+                                                {model.license.replace(/^license:/, '')}
+                                            </a>
+                                        ) : (
+                                            model.license.replace(/^license:/, '')
+                                        )}
+                                    </span>
+                                </div>
+                            )}
+
                             {model.model_size && (
                                 <div className="stat-row">
                                     <span className="stat-label">Model Size</span>
                                     <span className="stat-value">{model.model_size}</span>
                                 </div>
                             )}
+                            {model.tensor_types && model.tensor_types.length > 0 && (
+                                <div className="stat-row">
+                                    <span className="stat-label">Tensor Type</span>
+                                    <span className="stat-value">{model.tensor_types.join(', ')}</span>
+                                </div>
+                            )}
                             {model.safetensors !== null && model.safetensors !== undefined && (
                                 <div className="stat-row">
                                     <span className="stat-label">Safetensors</span>
                                     <span className="stat-value">{model.safetensors ? 'Yes' : 'No'}</span>
-                                </div>
-                            )}
-                            {model.tensor_types && model.tensor_types.length > 0 && (
-                                <div className="stat-row">
-                                    <span className="stat-label">Tensor Types</span>
-                                    <span className="stat-value">{model.tensor_types.join(', ')}</span>
                                 </div>
                             )}
                         </div>

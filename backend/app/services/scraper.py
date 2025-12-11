@@ -90,10 +90,13 @@ async def scrape_model(url: str) -> ScrapedModel:
         # Extract code snippets
         code_snippets = _extract_code_snippets(soup)
         
-        # Get stats from API (more reliable)
-        downloads = api_data.get('downloads', 0)
-        likes = api_data.get('likes', 0)
+        # Get stats and metadata from API (more reliable)
         license_info = api_data.get('license', metadata.get('license'))
+        
+        # New Metadata Extraction Logic
+        safetensors = _extract_safetensors_status(api_data)
+        model_size = _extract_model_size(api_data)
+        tensor_types = _extract_tensor_types(api_data)
         
         await asyncio.sleep(RATE_LIMIT_DELAY)  # Rate limiting
         
@@ -108,8 +111,9 @@ async def scrape_model(url: str) -> ScrapedModel:
             tags=tags,
             model_metadata=metadata,
             featured_image_url=featured_image,
-            downloads=downloads,
-            likes=likes,
+            safetensors=safetensors,
+            model_size=model_size,
+            tensor_types=tensor_types,
             code_snippets=code_snippets,
             images=images
         )
@@ -160,9 +164,30 @@ def _extract_metadata(soup: BeautifulSoup) -> Dict[str, Any]:
     # This is simplified - real implementation would parse model card YAML
     
     # Try to find license
-    license_elem = soup.find('a', href=re.compile(r'/license'))
+    # Pattern: "licensed under the [Link](MIT License)" or similar
+    license_elem = soup.find('a', href=re.compile(r'LICENSE|/license', re.I))
     if license_elem:
-        metadata['license'] = license_elem.get_text(strip=True)
+         metadata['license'] = license_elem.get_text(strip=True)
+         href = license_elem.get('href')
+         if href:
+             # Ensure absolute URL
+             if href.startswith('/'):
+                 href = f"https://{HUGGINGFACE_DOMAIN}{href}"
+             metadata['license_url'] = href
+    else:
+        # Text search fallback
+        license_text = soup.find(text=re.compile(r'licensed? under the', re.I))
+        if license_text:
+            next_link = license_text.find_next('a')
+            if next_link:
+                metadata['license'] = next_link.get_text(strip=True)
+                href = next_link.get('href')
+                if href:
+                    if href.startswith('/'):
+                        href = f"https://{HUGGINGFACE_DOMAIN}{href}"
+                    metadata['license_url'] = href
+    
+    return metadata
     
     return metadata
 
@@ -218,26 +243,7 @@ def _extract_code_snippets(soup: BeautifulSoup) -> List[Dict[str, str]]:
     return snippets[:5]  # Limit to 5 snippets
 
 
-def _extract_stats(soup: BeautifulSoup) -> tuple:
-    """Extract download and like counts."""
-    downloads = 0
-    likes = 0
-    
-    # Look for download count
-    download_elem = soup.find(text=re.compile(r'downloads', re.I))
-    if download_elem:
-        match = re.search(r'([\d,]+)', download_elem.parent.get_text())
-        if match:
-            downloads = int(match.group(1).replace(',', ''))
-    
-    # Look for likes
-    like_elem = soup.find('button', attrs={'title': re.compile(r'like', re.I)})
-    if like_elem:
-        match = re.search(r'([\d,]+)', like_elem.get_text())
-        if match:
-            likes = int(match.group(1).replace(',', ''))
-    
-    return downloads, likes
+
 
 
 async def download_images(
@@ -282,4 +288,68 @@ async def download_images(
             except Exception as e:
                 print(f"Failed to download {url}: {e}")
     
+    
     return local_paths
+
+
+def _extract_safetensors_status(api_data: Dict[str, Any]) -> bool:
+    """Check if model has safetensors."""
+    # Check 'safetensors' property provided by some API responses
+    if api_data.get('safetensors') is not None:
+        if isinstance(api_data['safetensors'], dict):
+            return api_data['safetensors'].get('total') is not None
+        return bool(api_data['safetensors'])
+    
+    # Check siblings/files for .safetensors extension
+    siblings = api_data.get('siblings', [])
+    for file in siblings:
+        if file.get('rfilename', '').endswith('.safetensors'):
+            return True
+            
+    # Check tags
+    tags = api_data.get('tags', [])
+    return 'safetensors' in tags
+
+
+def _extract_model_size(api_data: Dict[str, Any]) -> Optional[str]:
+    """Extract model parameter count (e.g., 7B, 34B)."""
+    tags = api_data.get('tags', [])
+    
+    # Regex for common size patterns (e.g., 7b, 70b, 1.5b)
+    size_pattern = re.compile(r'^(\d+(?:\.\d+)?)[Bb]$')
+    
+    for tag in tags:
+        match = size_pattern.match(tag)
+        if match:
+            return tag.upper()
+            
+    # Fallback: check config if available (sometimes in 'config' key)
+    # But usually tags are reliable for size (e.g. '7b', '13b')
+    
+    return None
+
+
+def _extract_tensor_types(api_data: Dict[str, Any]) -> List[str]:
+    """Extract tensor types / precision (e.g., FP16, BF16)."""
+    tags = api_data.get('tags', [])
+    found_types = []
+    
+    # Common precision tags
+    known_types = {
+        'fp16': 'FP16',
+        'bf16': 'BF16',
+        'fp32': 'FP32',
+        'int8': 'INT8',
+        'int4': 'INT4',
+        '8bit': '8-bit',
+        '4bit': '4-bit'
+    }
+    
+    for tag in tags:
+        lower_tag = tag.lower()
+        if lower_tag in known_types:
+            type_str = known_types[lower_tag]
+            if type_str not in found_types:
+                found_types.append(type_str)
+                
+    return found_types

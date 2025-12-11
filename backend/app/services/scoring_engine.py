@@ -88,8 +88,6 @@ def calculate_scores(
     # If no LLM scores and we removed heuristic logic, we can default to 60 or implement a simpler safe heuristic.
     
 
-    if q_score is None or s_score is None or f_score is None:
-        raise print("Error: Missing scores")
     # We will trust the passed scores or default to heuristics that DO NOT use deleted fields
     q_score = quality_score if quality_score is not None else _calculate_quality_score(model, category)
     s_score = speed_score if speed_score is not None else _calculate_speed_score(model)

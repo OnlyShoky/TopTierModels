@@ -34,7 +34,28 @@ a AS (
         'ChatGPT (GPT-4): The King of LLMs', 
         'chatgpt-gpt-4-analysis', 
         'An in-depth look at GPT-4, the industry standard for LLM performance, examining its reasoning capabilities and ecosystem dominance.', 
-        '# ChatGPT (GPT-4) Analysis\n\nGPT-4 remains the benchmark for all other LLMs...',
+        '# ChatGPT (GPT-4) Analysis
+
+## The Benchmark for General Intelligence
+GPT-4 remains the undisputed king of large language models, setting the standard against which all others are measured. Its ability to handle complex reasoning, nuanced instructions, and multimodal inputs makes it the most versatile tool available.
+
+### Key Strengths
+*   **Reasoning Capabilities**: Unmatched performance in logic puzzles, math, and coding.
+*   **Multimodality**: Seamlessly processes text and images.
+*   **Instruction Following**: Adheres to complex system prompts better than any competitor.
+
+## Performance Analysis
+While slower than some lightweight models, GPT-4''s output quality justifies the latency. It rarely hallucinates compared to predecessors and maintains coherence over long context windows.
+
+### Scoring Breakdown
+*   **Quality (98/100)**: Almost flawless in general tasks.
+*   **Speed (85/100)**: Improved with Turbo, but still heavy.
+*   **Freedom (40/100)**: Highly guarded and proprietary.
+
+## Use Cases
+*   Complex coding architectures
+*   Creative writing and storytelling
+*   Data analysis and visualization',
         ARRAY['Large Language Model', 'OpenAI', 'Text Generation', 'Chatbot', 'Proprietary'], 
         7, 
         TRUE
@@ -65,7 +86,28 @@ a AS (
         'Claude 3.5 Sonnet: Coding & Reasoning Specialist', 
         'claude-3-5-sonnet-review', 
         'Why developers are switching to Claude 3.5 Sonnet for coding tasks and complex reasoning.', 
-        '# Claude 3.5 Sonnet\n\nAnthropic has delivered a masterpiece with Sonnet 3.5...',
+        '# Claude 3.5 Sonnet Analysis
+
+## The Developer''s New Best Friend
+Anthropic''s Claude 3.5 Sonnet has rapidly become the preferred model for software engineers. Its "Artefacts" UI feature, combined with superior coding logic, allows for an interactive development loop that feels futuristic.
+
+### Why It Stands Out
+*   **Coding Proficiency**: rigorous benchmarks show it outperforming GPT-4o in many coding tasks.
+*   **Visual Logic**: excellent at interpreting charts and diagrams.
+*   **Speed/Cost Ratio**: Significantly cheaper and faster than Opus, yet smarter.
+
+## Performance Analysis
+Sonnet strikes the perfect balance. It is fast enough for chat but smart enough for system architecture.
+
+### Scoring Breakdown
+*   **Quality (97/100)**: Exceptional for code and logic.
+*   **Speed (95/100)**: Blazing fast for its intelligence class.
+*   **Freedom (40/100)**: Strict safety guardrails.
+
+## Use Cases
+*   Full-stack web development
+*   Refactoring legacy codebases
+*   Technical documentation writing',
         ARRAY['Anthropic', 'Coding Assistant', 'Text Generation', 'Proprietary'], 
         6, 
         TRUE
@@ -96,7 +138,28 @@ a AS (
         'Gemini 1.5 Pro: Infinite Context', 
         'gemini-1-5-pro-review', 
         'Analyzing how Gemini''s massive context window changes the game for document analysis.', 
-        '# Gemini 1.5 Pro\n\nWith a 2 million token context window, Gemini 1.5 Pro allows...',
+        '# Gemini 1.5 Pro Analysis
+
+## Infinite Context, Infinite Possibilities
+Google''s Gemini 1.5 Pro redefines what is possible with RAG (Retrieval-Augmented Generation) by offering a staggering 2 million token context window. You can dump entire repositories, books, or codebases into the prompt, and it attends to them with near-perfect recall.
+
+### Key Features
+*   **2M Context Window**: The largest standard window in the industry.
+*   **Native Multimodality**: Processes hours of video and audio natively.
+*   **Integration**: deeply integrated into the Google Workspace ecosystem.
+
+## Performance Analysis
+While it can sometimes be "lazy" with output length, its retrieval accuracy over massive contexts is S-Tier.
+
+### Scoring Breakdown
+*   **Quality (95/100)**: Excellent retrieval and summary.
+*   **Speed (90/100)**: Fast token generation, though prompt processing takes time.
+*   **Freedom (45/100)**: Proprietary and filtered.
+
+## Use Cases
+*   Analyzing hour-long video meetings
+*   Chatting with entire code repositories
+*   Large-scale document summarization',
         ARRAY['Google', 'Multimodal', 'Long Context', 'Proprietary'], 
         6, 
         TRUE
@@ -127,7 +190,28 @@ a AS (
         'DeepSeek V3: Open Source Giant', 
         'deepseek-v3-analysis', 
         'DeepSeek V3 proves that open weights can compete with GPT-4 class models.', 
-        '# DeepSeek V3\n\nA massive MoE model released with an MIT license...',
+        '# DeepSeek V3 Analysis
+
+## The Open Weight Champion
+DeepSeek V3 is a revelation for the open-source community. It demonstrates that you do not need a closed ecosystem to achieve GPT-4 class performance. Its Mixture-of-Experts (MoE) architecture allows it to be efficient during inference while maintaining massive knowledge.
+
+### Why It Matters
+*   **Open Weights**: Researchers and companies can host and fine-tune it.
+*   **Coding Chopps**: Trained on massive amounts of code, it rivals Claude in generation.
+*   **Efficiency**: The MoE architecture means only a fraction of parameters are active per token.
+
+## Performance Analysis
+It stands toe-to-toe with the giants. The fact that this is open/accessible is a game changer for privacy-focused enterprises.
+
+### Scoring Breakdown
+*   **Quality (94/100)**: Rivals top proprietary models.
+*   **Speed (85/100)**: Efficient inference for its size.
+*   **Freedom (95/100)**: MIT license allows broad usage.
+
+## Use Cases
+*   Self-hosted enterprise assistants
+*   Fine-tuning for specific domains (law, medical)
+*   Academic research',
         ARRAY['DeepSeek', 'Open Weights', 'MoE', 'license:MIT'], 
         8, 
         TRUE
@@ -163,7 +247,28 @@ a AS (
         'FLUX.1 [dev]: The New King of Open Image Gen', 
         'flux-1-dev-review', 
         'FLUX.1 sets a new standard for text rendering and prompt adherence in open models.', 
-        '# FLUX.1 Analysis\n\nBlack Forest Labs has released a monster model...',
+        '# FLUX.1 [dev] Analysis
+
+## The New King of Image Generation
+Black Forest Labs has completely disrupted the image generation space with FLUX.1. It solves the biggest pain point of Stable Diffusion: prompt adherence. If you ask for text, complex compositions, or specific counts of objects, FLUX delivers.
+
+### Key Strengths
+*   **Typography**: Can render perfect text within images.
+*   **Prompt Adherence**: Follows complex, multi-part instructions faithfully.
+*   **Visual Quality**: Photorealistic lighting and texture without looking "plastic".
+
+## Performance Analysis
+It is a heavy model, requiring significant VRAM, but the results are indistinguishable from Midjourney v6.
+
+### Scoring Breakdown
+*   **Quality (98/100)**: Currently the best open model output.
+*   **Speed (70/100)**: Heavy model, requires good hardware.
+*   **Freedom (85/100)**: Open weights (Dev license).
+
+## Use Cases
+*   Marketing assets with text
+*   Concept art
+*   Photorealistic stock photo replacement',
         ARRAY['Image Generation', 'Text-to-Image', 'Open Weights', 'Black Forest Labs'], 
         5, 
         TRUE
@@ -194,7 +299,28 @@ a AS (
         'Stable Diffusion 3.5: Back on Track', 
         'stable-diffusion-3-5-review', 
         'Stability AI returns to form with a robust, highly prompt-adherent model.', 
-        '# SD 3.5 Large\n\nAfter the hiccups of previous versions, SD 3.5 delivers...',
+        '# Stable Diffusion 3.5 Large Analysis
+
+## A Strong Return to Form
+After a rocky launch with SD3 Medium, Stability AI has redeemed itself with SD 3.5 Large. It fixes the anatomical issues of its predecessor and offers a robust, highly creative model that actively listens to prompts.
+
+### Improvements
+*   **Anatomy**: Greatly improved hands and limb coherence.
+*   **Stylization**: More flexible than FLUX for artistic/painterly styles.
+*   **License**: Community license is friendly for most creators.
+
+## Performance Analysis
+A solid reliable workhorse. While FLUX might edge it out in text rendering, SD 3.5 is often more "creative" (better at artistic interpretation).
+
+### Scoring Breakdown
+*   **Quality (92/100)**: Great artistic capabilities.
+*   **Speed (80/100)**: Standard diffusion speed.
+*   **Freedom (85/100)**: Open weights with community license.
+
+## Use Cases
+*   Digital art and illustration
+*   Game asset generation
+*   Style transfer workflows',
         ARRAY['Image Generation', 'Stability AI', 'Text-to-Image', 'Open Weights'], 
         5, 
         TRUE
@@ -230,7 +356,28 @@ a AS (
         'Whisper v3: The Gold Standard for ASR', 
         'whisper-v3-review', 
         'OpenAI''s Whisper v3 continues to dominate open-source speech recognition.', 
-        '# Whisper v3\n\nFor subtitles and transcription, nothing beats Whisper...',
+        '# Whisper v3 Analysis
+
+## The Universal Translator
+OpenAI''s Whisper v3 requires little introduction. It is the gold standard for open-source Automatic Speech Recognition (ASR). It handles accents, background noise, and technical jargon with human-level accuracy.
+
+### Why It Is Essential
+*   **Multilingual**: Supports practically every major language.
+*   **Robustness**: Works well even with poor audio quality.
+*   **Sequence-to-Sequence**: Can translate audio directly to English text.
+
+## Performance Analysis
+There is almost no reason to use paid APIs for transcription when Whisper v3 exists and can be run locally.
+
+### Scoring Breakdown
+*   **Quality (98/100)**: Industry leading ASR.
+*   **Speed (85/100)**: Reasonably fast on GPUs.
+*   **Freedom (95/100)**: MIT license, run anywhere.
+
+## Use Cases
+*   Video sublimation
+*   Meeting transcription
+*   Voice-controlled interfaces',
         ARRAY['Audio', 'ASR', 'Speech-to-Text', 'Open Source', 'license:MIT'], 
         4, 
         TRUE
@@ -261,7 +408,28 @@ a AS (
         'AudioLDM 2: Versatile Sound Generation', 
         'audioldm-2-review', 
         'Generate sound effects and music from text descriptions with high fidelity.', 
-        '# AudioLDM 2\n\nA versatile model for creative audio generation...',
+        '# AudioLDM 2 Analysis
+
+## Painting with Sound
+AudioLDM 2 takes the concept of "Stable Diffusion" and applies it to audio. You can describe a sound—"a campfire crackling by a flowing river at night"—and it generates a high-fidelity audio clip.
+
+### Capabilities
+*   **Text-to-Audio**: Generate sound effects.
+*   **Text-to-Music**: Create musical snippets.
+*   **Inpainting**: Fill in missing parts of audio.
+
+## Performance Analysis
+While not a replacement for a professional DAW or composer, it is an incredible tool for rapid prototyping and foley work.
+
+### Scoring Breakdown
+*   **Quality (85/100)**: Good fidelity, sometimes noisy.
+*   **Speed (80/100)**: Decent generation times.
+*   **Freedom (70/100)**: Creative Commons license.
+
+## Use Cases
+*   Game sound effects
+*   Background ambience for videos
+*   Musical idea generation',
         ARRAY['Audio', 'Text-to-Audio', 'Sound Generation', 'Open Source'], 
         4, 
         TRUE
@@ -297,7 +465,28 @@ a AS (
         'LLaVA-NeXT: Vision-Language Efficiency', 
         'llava-next-review', 
         'LLaVA v1.6 demonstrates incredible vision-language capabilities in a compact package.', 
-        '# LLaVA-NeXT\n\nBuilt on Mistral, this model excels at describing images...',
+        '# LLaVA-NeXT Analysis
+
+## Vision-Language Efficiency
+LLaVA-NeXT (v1.6) proves that you don''t need proprietary giants for basic vision tasks. Built on top of Mistral 7B, it punches typically above its weight class in describing images and answering questions about visual inputs.
+
+### Key Strengths
+*   **Resolution**: Handles higher resolution images than predecessors.
+*   **Logic**: Better reasoning thanks to the Mistral backbone.
+*   **Efficiency**: Runs on consumer GPUs.
+
+## Performance Analysis
+For an open model, it is incredibly capable. It can serve as a local "eye" for agents and robots.
+
+### Scoring Breakdown
+*   **Quality (90/100)**: Excellent for its size category.
+*   **Speed (92/100)**: Very fast inference.
+*   **Freedom (95/100)**: Apache 2.0 license.
+
+## Use Cases
+*   Image captioning pipelines
+*   Visual QA systems
+*   Edge device vision',
         ARRAY['Computer Vision', 'VLM', 'Image-to-Text', 'Open Source', 'license:Apache-2.0'], 
         5, 
         TRUE
@@ -328,7 +517,28 @@ a AS (
         'Idefics2: Validating Visual Documents', 
         'idefics2-review', 
         'Excellent performance on charts, documents, and visual reasoning tasks.', 
-        '# Idefics2\n\nA native multimodal model from Hugging Face...',
+        '# Idefics2 Analysis
+
+## The Document Expert
+Idefics2 is Hugging Face''s answer to multimodal document parsing. It excels at OCR-free document understanding—looking at a chart or PDF page and answering questions directly from the pixels.
+
+### Features
+*   **Native Multimodal**: Trained from scratch on image-text pairs.
+*   **Document UI**: Specifically fine-tuned for charts and UIs.
+*   **Compact**: 8B parameters means it is deployable.
+
+## Performance Analysis
+A specialized tool that beats generalist models at specific document understanding tasks.
+
+### Scoring Breakdown
+*   **Quality (88/100)**: Specialized strength in documents.
+*   **Speed (85/100)**: Good throughput.
+*   **Freedom (95/100)**: Apache 2.0 license.
+
+## Use Cases
+*   Invoice processing
+*   Chart analysis
+*   Screenshot-to-code',
         ARRAY['Computer Vision', 'VLM', 'Document QA', 'Open Source', 'license:Apache-2.0'], 
         5, 
         TRUE

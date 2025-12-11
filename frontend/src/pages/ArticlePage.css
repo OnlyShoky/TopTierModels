@@ -176,3 +176,36 @@
     color: white;
     white-space: nowrap;
 }
+
+/* Explicit Overrides for Sidebar Metrics to fix font size inconsistencies */
+.article-sidebar .score-value {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-bold);
+}
+
+.article-sidebar .score-max {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}
+
+.article-sidebar .stat-row {
+    font-size: var(--text-sm);
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.article-sidebar .stat-row:last-child {
+    border-bottom: none;
+}
+
+.article-sidebar .stat-label {
+    color: var(--color-text-secondary);
+}
+
+.article-sidebar .stat-value {
+    font-size: var(--text-sm) !important;
+    /* Force small text */
+    font-weight: var(--font-medium);
+}

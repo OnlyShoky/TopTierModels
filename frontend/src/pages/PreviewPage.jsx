@@ -295,30 +295,47 @@ function PreviewPage() {
                                 {/* Info */}
                                 <div className="sidebar-card">
                                     <h4 className="sidebar-title">Details</h4>
-                                    <div className="stat-row">
-                                        <span className="stat-label">Organization</span>
-                                        <span className="stat-value">{model.organization || '-'}</span>
-                                    </div>
-                                    <div className="stat-row">
-                                        <span className="stat-label">License</span>
-                                        <span className="stat-value">{model.license || '-'}</span>
-                                    </div>
-                                    {article.model_size && (
+                                    {model.organization && (
+                                        <div className="stat-row">
+                                            <span className="stat-label">Organization</span>
+                                            <span className="stat-value">{model.organization}</span>
+                                        </div>
+                                    )}
+                                    {model.license && (
+                                        <div className="stat-row">
+                                            <span className="stat-label">License</span>
+                                            <span className="stat-value">
+                                                {model.model_metadata?.license_url ? (
+                                                    <a
+                                                        href={model.model_metadata.license_url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="underline hover:text-blue-500"
+                                                    >
+                                                        {model.license.replace(/^license:/, '')}
+                                                    </a>
+                                                ) : (
+                                                    model.license.replace(/^license:/, '')
+                                                )}
+                                            </span>
+                                        </div>
+                                    )}
+                                    {model.model_size && (
                                         <div className="stat-row">
                                             <span className="stat-label">Model Size</span>
-                                            <span className="stat-value">{article.model_size}</span>
+                                            <span className="stat-value">{model.model_size}</span>
                                         </div>
                                     )}
-                                    {article.safetensors !== null && article.safetensors !== undefined && (
+                                    {model.tensor_types && model.tensor_types.length > 0 && (
+                                        <div className="stat-row">
+                                            <span className="stat-label">Tensor Type</span>
+                                            <span className="stat-value">{model.tensor_types.join(', ')}</span>
+                                        </div>
+                                    )}
+                                    {model.safetensors !== null && model.safetensors !== undefined && (
                                         <div className="stat-row">
                                             <span className="stat-label">Safetensors</span>
-                                            <span className="stat-value">{article.safetensors ? 'Yes' : 'No'}</span>
-                                        </div>
-                                    )}
-                                    {article.tensor_types && article.tensor_types.length > 0 && (
-                                        <div className="stat-row">
-                                            <span className="stat-label">Tensor Types</span>
-                                            <span className="stat-value">{article.tensor_types.join(', ')}</span>
+                                            <span className="stat-value">{model.safetensors ? 'Yes' : 'No'}</span>
                                         </div>
                                     )}
                                 </div>
