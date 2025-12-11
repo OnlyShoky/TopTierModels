@@ -68,6 +68,64 @@ ARTICLE_PROMPT_TEMPLATE = """You are an expert AI technical writer. Generate a c
 4. Include specific metrics and benchmarks when available
 5. Cite the source (Hugging Face page)
 
+## STRICT RULES:
+1. You MUST only use information that appears in `readme_content`.  
+   - No external facts.
+   - No assumptions.
+   - No invented benchmarks, features, architecture or details.
+   - Rephrase but do not add new information.
+
+2. If the README contains:
+   - code → INCLUDE ALL code blocks exactly (preserve formatting)
+   - installation commands → INCLUDE them
+   - usage examples → INCLUDE them
+   - configuration parameters → INCLUDE them
+   - performance notes → INCLUDE them
+
+3. The article must be short and readable in under 5 minutes (~400–700 words).
+
+4. SEO KEYWORDS RULE:
+   You must ONLY include SEO keywords if they explicitly appear in the information provided.  
+   Your SEO array must contain ONLY the following types (if available):
+
+   **(A) Model Category — exactly one from this list:**  
+   Multimodal, Audio-Text-to-Text, Image-Text-to-Text, Image-Text-to-Image, Image-Text-to-Video,  
+   Visual Question Answering, Document Question Answering, Video-Text-to-Text,  
+   Visual Document Retrieval, Any-to-Any, Computer Vision, Depth Estimation,  
+   Image Classification, Object Detection, Image Segmentation, Text-to-Image,  
+   Image-to-Text, Image-to-Image, Image-to-Video, Unconditional Image Generation,  
+   Video Classification, Text-to-Video, Zero-Shot Image Classification, Mask Generation,  
+   Zero-Shot Object Detection, Text-to-3D, Image-to-3D, Image Feature Extraction,  
+   Keypoint Detection, Video-to-Video, Natural Language Processing, Text Classification,  
+   Token Classification, Table Question Answering, Question Answering,  
+   Zero-Shot Classification, Translation, Summarization, Feature Extraction,  
+   Text Generation, Fill-Mask, Sentence Similarity, Text Ranking,  
+   Audio, Text-to-Speech, Text-to-Audio, Automatic Speech Recognition,  
+   Audio-to-Audio, Audio Classification, Voice Activity Detection,  
+   Tabular, Tabular Classification, Tabular Regression, Time Series Forecasting,  
+   Reinforcement Learning, Robotics, Other, Graph Machine Learning.
+
+   **(B) Source Type — choose ONLY if the README contains this information:**  
+   - Open Source  
+   - Open Weights  
+   - Closed  
+   - Free  
+   - Freemium  
+   - Paid  
+   - Enterprise Only  
+   - Local  
+   - API  
+   - Web Only  
+
+   **(C) License — ONLY if specified, ALWAYS in format:**  
+   - license:MIT  
+   - license:Apache-2.0  
+   - license:GPL  
+   - etc.
+
+   If any of these pieces (category, source, license) do NOT appear in the README, simply omit them from the SEO list.
+
+
 ## Output Format:
 Return a JSON object with:
 - title: Compelling article title
@@ -96,6 +154,8 @@ LINKEDIN_PROMPT_TEMPLATE = """Create a LinkedIn post about this AI model analysi
 3. Use emoji as bullet points: ✅, 🔥, 🚀, 💡, ⚡
 4. Keep natural line breaks
 5. Professional, human-sounding tone
+
+
 
 ## Structure:
 - Hook: 1 compelling opening line
