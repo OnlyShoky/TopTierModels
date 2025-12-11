@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import TierSection from '../components/TierSection'
+import { Link } from 'react-router-dom'
 import { getModelsForTierlist } from '../lib/supabase'
 import './TierlistPage.css'
 
@@ -19,22 +19,44 @@ function TierlistPage() {
 
     const tiers = ['S', 'A', 'B', 'C', 'D']
 
+    // Helper to map tier directly to CSS variable
+    const getTierColor = (tier) => {
+        const map = {
+            'S': 'var(--tier-s)',
+            'A': 'var(--tier-a)',
+            'B': 'var(--tier-b)',
+            'C': 'var(--tier-c)',
+            'D': 'var(--tier-d)',
+        }
+        return map[tier] || 'var(--color-text)'
+    }
+
+    const getTierBg = (tier) => {
+        const map = {
+            'S': 'var(--tier-s-muted)',
+            'A': 'var(--tier-a-muted)',
+            'B': 'var(--tier-b-muted)',
+            'C': 'var(--tier-c-muted)',
+            'D': 'var(--tier-d-muted)',
+        }
+        return map[tier] || 'var(--color-bg-muted)'
+    }
+
     useEffect(() => {
         const fetchModels = async () => {
             setLoading(true)
             try {
                 const data = await getModelsForTierlist(activeCategory)
 
-                // Map Supabase data to component models
                 const formattedModels = data.map(item => {
-                    const article = item.articles && item.articles[0] // take first article
+                    const article = item.articles && item.articles[0]
                     return {
                         id: item.id,
                         name: item.display_name,
                         category: item.category,
                         tier: item.model_scores.tier,
                         score: item.model_scores.overall_score,
-                        slug: article ? article.slug : '#' // fallback if no article
+                        slug: article ? article.slug : '#'
                     }
                 })
 
@@ -59,8 +81,8 @@ function TierlistPage() {
             <div className="container">
                 {/* Header */}
                 <header className="page-header">
-                    <h1>Tierlist</h1>
-                    <p className="text-secondary">Models ranked by performance, usability, and innovation</p>
+                    <h1>AI Model Tier List</h1>
+                    <p>Ranked by performance, speed, and freedom</p>
                 </header>
 
                 {/* Category Tabs */}
@@ -76,27 +98,59 @@ function TierlistPage() {
                     ))}
                 </div>
 
-                {/* Tier Sections */}
-                {loading ? (
-                    <div className="tier-loading">
-                        {tiers.map(tier => (
-                            <div key={tier} className="skeleton" style={{ height: '100px', marginBottom: 'var(--space-4)' }} />
-                        ))}
-                    </div>
-                ) : (
-                    <div className="tier-list">
-                        {tiers.map(tier => {
-                            const tierModels = getModelsByTier(tier)
-                            if (tierModels.length === 0) return null
-                            return <TierSection key={tier} tier={tier} models={tierModels} />
-                        })}
-                    </div>
-                )}
+                {/* Tier Rows Container */}
+                <div className="tier-list-container">
+                    {loading ? (
+                        <div className="tier-loading">Loading rankings...</div>
+                    ) : (
+                        tiers.map(tier => (
+                            <div key={tier} className="tier-row">
+                                {/* Tier Label (Left) */}
+                                <div
+                                    className="tier-label"
+                                    style={{ backgroundColor: getTierBg(tier) }}
+                                >
+                                    <span style={{ color: getTierColor(tier) }}>{tier}</span>
+                                </div>
 
-                {/* Methodology Link */}
+                                {/* Content Area (Right) */}
+                                <div className="tier-content">
+                                    {getModelsByTier(tier).map(model => (
+                                        <Link
+                                            key={model.id}
+                                            to={`/article/${model.slug}`}
+                                            className="model-card"
+                                            title={model.name}
+                                        >
+                                            <div className="model-info-top">
+                                                <div className="model-name">{model.name}</div>
+                                                <div className="model-category">{model.category}</div>
+                                            </div>
+
+                                            <div
+                                                className="model-score-badge"
+                                                style={{ color: getTierColor(tier) }}
+                                            >
+                                                {model.score}
+                                            </div>
+                                        </Link>
+                                    ))}
+
+                                    {/* Empty State */}
+                                    {getModelsByTier(tier).length === 0 && (
+                                        <div className="tier-empty">
+                                            No models
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))
+                    )}
+                </div>
+
                 <div className="methodology">
-                    <button className="btn btn-ghost">
-                        How are models scored? →
+                    <button className="btn-ghost">
+                        Methodology & Scoring System
                     </button>
                 </div>
             </div>
