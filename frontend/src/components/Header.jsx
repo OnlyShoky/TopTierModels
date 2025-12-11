@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import logo from '../assets/logo.png';
+
 import './Header.css'
 
 function Header({ theme, toggleTheme }) {
@@ -20,7 +22,7 @@ function Header({ theme, toggleTheme }) {
                 <div className="header-inner">
                     {/* Logo */}
                     <Link to="/" className="logo">
-                        <span className="logo-mark">T</span>
+                        <img src={logo} alt="TopTierModels Logo" className="logo-img" />
                         <span className="logo-text">TopTierModels</span>
                     </Link>
 

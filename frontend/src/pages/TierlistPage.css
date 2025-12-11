@@ -10,46 +10,115 @@
 
 .page-header h1 {
     margin-bottom: var(--space-2);
-    font-size: 2.5rem;
-    font-weight: bold;
+    font-size: var(--text-5xl);
+    font-weight: var(--font-bold);
 }
 
 .page-header p {
     color: var(--color-text-secondary);
 }
 
-/* Category Tabs */
+
+/* Controls Container - Stacked for clear hierarchy */
+.controls-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-6);
+}
+
+@media (min-width: 768px) {
+    .controls-container {
+        /* Keep column on desktop too, but align items better */
+        align-items: stretch;
+    }
+}
+
+/* Primary Navigation: Category Tabs */
 .category-tabs {
     display: flex;
-    gap: var(--space-1);
-    margin-bottom: var(--space-8);
-    padding-bottom: var(--space-4);
-    border-bottom: 1px solid var(--color-border);
-    overflow-x: auto;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    /* Remove old borders/margins */
+    margin: 0;
+    padding: 0;
+    border: none;
 }
 
 .category-tab {
-    padding: var(--space-2) var(--space-4);
-    font-size: var(--text-sm);
-    font-weight: var(--font-medium);
+    padding: var(--space-2) var(--space-5);
+    font-size: 0.95rem;
+    font-weight: 600;
     color: var(--color-text-secondary);
     background: transparent;
-    border: none;
-    border-radius: var(--radius-md);
-    white-space: nowrap;
+    border-radius: var(--radius-full);
+    border: 1px solid transparent;
+    /* Prepare for border */
     cursor: pointer;
-    transition: all var(--duration-fast) var(--ease-out);
+    transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
 }
 
 .category-tab:hover {
     color: var(--color-text);
-    background: var(--color-accent-muted);
+    background: var(--color-surface-raised);
 }
 
 .category-tab.active {
-    color: var(--color-text-inverse, #fff);
-    background: var(--color-text, #000);
+    color: var(--color-bg);
+    background: var(--color-text);
+    /* High contrast active state */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Secondary Toolbar: Metrics */
+.metric-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* Right align metrics */
+    gap: var(--space-2);
+    padding-top: var(--space-2);
+    border-top: 1px dashed var(--color-border);
+    /* Subtle separation */
+}
+
+.metric-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    margin-right: var(--space-2);
+}
+
+.metric-tab {
+    padding: var(--space-1) var(--space-3);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    /* Boxier than cats */
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.metric-tab:hover {
+    border-color: var(--color-text-muted);
+    color: var(--color-text);
+}
+
+.metric-tab.active {
+    background: var(--color-surface-raised);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
 }
 
 /* Tier List Container */
@@ -86,8 +155,6 @@
     /* Font size and weight */
     font-size: 3rem;
     font-weight: 800;
-    /* Color is set via inline style from variable */
-    /* Shadow removed to avoid muddying the black text */
 }
 
 /* Right Content Area */
@@ -155,7 +222,7 @@
     font-size: 0.9rem;
     font-weight: bold;
     opacity: 0.9;
-    /* Ensuring score contrast is okay or just rely on color variable */
+    color: var(--color-text) !important;
 }
 
 /* Empty State */

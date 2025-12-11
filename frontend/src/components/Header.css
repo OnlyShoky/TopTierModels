@@ -23,6 +23,25 @@
     color: var(--color-text);
 }
 
+.logo-img {
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
+    transition: transform var(--duration-fast) var(--ease-out);
+    background-color: var(--logo-bg);
+    border-radius: var(--radius-sm);
+
+}
+
+/* Dark theme override */
+.dark-theme .logo-img {
+    background-color: inherit;
+}
+
+.logo:hover .logo-image {
+    transform: scale(1.1);
+}
+
 .logo-mark {
     display: flex;
     align-items: center;

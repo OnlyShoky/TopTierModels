@@ -107,6 +107,9 @@ export async function getModelsForTierlist(category) {
       featured_image_url,
       model_scores!inner (
         overall_score,
+        quality_score,
+        speed_score,
+        freedom_score,
         tier
       ),
       articles (
