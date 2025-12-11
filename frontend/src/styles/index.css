@@ -77,7 +77,7 @@
   --container-lg: 1024px;
 
   /* Tier Colors - Vibrant but not gradient */
-  --tier-s: #facc15;
+  /* --tier-s: #facc15;
   --tier-s-muted: rgba(250, 204, 21, 0.12);
   --tier-a: #f97316;
   --tier-a-muted: rgba(249, 115, 22, 0.12);
@@ -86,7 +86,19 @@
   --tier-c: #3b82f6;
   --tier-c-muted: rgba(59, 130, 246, 0.12);
   --tier-d: #6b7280;
-  --tier-d-muted: rgba(107, 114, 128, 0.12);
+  --tier-d-muted: rgba(107, 114, 128, 0.12); */
+
+  --tier-s: #white;
+  --tier-s-muted: rgba(239, 68, 68, 0.5);
+  --tier-a: #000000;
+  --tier-a-muted: rgba(249, 115, 22, 0.5);
+  --tier-b: #000000;
+  --tier-b-muted: rgba(250, 204, 21, 0.5);
+  --tier-c: #000000;
+  --tier-c-muted: rgba(34, 197, 94, 0.5);
+  --tier-d: #000000;
+  --tier-d-muted: rgba(59, 130, 246, 0.5);
+
 
   /* Category Colors - Pastel */
   --cat-image: #f472b6;
