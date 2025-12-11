@@ -106,6 +106,12 @@
   --cat-audio: #fb923c;
   --cat-vision: #2dd4bf;
   --cat-multimodal: #38bdf8;
+
+  /* Donation Section */
+  --pastel-dark: #1a202c;
+  --pastel-text: #4a5568;
+  --color-paypal: #bae1ff;
+  --color-coffee: #ffffba;
 }
 
 /* Light Theme - Clean, Minimal */

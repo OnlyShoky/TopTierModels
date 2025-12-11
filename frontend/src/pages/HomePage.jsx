@@ -4,6 +4,53 @@ import ArticleCard from '../components/ArticleCard'
 import { getArticles } from '../lib/supabase'
 import './HomePage.css'
 
+// SVG Icons
+const Heart = ({ size = 20, className = "" }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={className}
+    >
+        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+    </svg>
+)
+
+const Coffee = ({ size = 20, className = "" }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={className}
+    >
+        <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+        <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" />
+        <line x1="6" x2="6" y1="2" y2="4" />
+        <line x1="10" x2="10" y1="2" y2="4" />
+        <line x1="14" x2="14" y1="2" y2="4" />
+    </svg>
+)
+
+const t = {
+    supportTitle: "Support the Project",
+    supportText: "If you find these rankings useful, consider checking out my other work or supporting the project.",
+    paypal: "Donate via PayPal",
+    coffee: "Buy me a Coffee",
+    thanks: "Thank you for your support!"
+}
+
 function HomePage() {
     const [articles, setArticles] = useState([])
     const [loading, setLoading] = useState(true)
@@ -164,6 +211,25 @@ function HomePage() {
                     )}
                 </div>
             </section>
+
+            {/* Donation Section */}
+            <div className="donation-section">
+                <div className="donation-container">
+                    <h2 className="donation-title">{t.supportTitle}</h2>
+                    <p className="donation-text">{t.supportText}</p>
+                    <div className="donation-buttons">
+                        <a href="https://www.paypal.com/donate/?hosted_button_id=P49L3AK8RDVMN" target="_blank" rel="noopener noreferrer" className="btn-donate btn-paypal">
+                            <Heart className="btn-icon" size={20} />
+                            {t.paypal}
+                        </a>
+                        <a href="https://www.buymeacoffee.com/shoky" target="_blank" rel="noopener noreferrer" className="btn-donate btn-coffee">
+                            <Coffee className="btn-icon" size={20} />
+                            {t.coffee}
+                        </a>
+                    </div>
+                    <p className="donation-thanks">{t.thanks}</p>
+                </div>
+            </div>
         </div>
     )
 }
