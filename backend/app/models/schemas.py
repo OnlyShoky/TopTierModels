@@ -42,10 +42,12 @@ class ScrapedModel(BaseModel):
     tags: List[str] = Field(default_factory=list)
     model_metadata: Dict[str, Any] = Field(default_factory=dict)
     featured_image_url: Optional[str] = None
-    downloads: int = 0
-    likes: int = 0
     code_snippets: List[Dict[str, str]] = Field(default_factory=list)
     images: List[str] = Field(default_factory=list)
+    # New metadata fields
+    safetensors: Optional[bool] = None
+    model_size: Optional[str] = None
+    tensor_types: List[str] = Field(default_factory=list)
 
 
 class ModelTag(BaseModel):
@@ -73,7 +75,7 @@ class ModelScores(BaseModel):
 
 
 class GeneratedArticle(BaseModel):
-    """LLM-generated blog article."""
+    """LLM-generated blog article with scores and metadata."""
     title: str
     slug: str
     excerpt: str = Field(max_length=250)
@@ -82,6 +84,14 @@ class GeneratedArticle(BaseModel):
     read_time_minutes: int = Field(default=5)
     author: str = "TopTierModels AI"
     seo_keywords: List[str] = Field(default_factory=list)
+    # LLM-generated scores
+    quality_score: float = Field(default=60, ge=0, le=100)
+    speed_score: float = Field(default=60, ge=0, le=100)
+    freedom_score: float = Field(default=60, ge=0, le=100)
+    # Extracted metadata
+    safetensors: Optional[bool] = None
+    model_size: Optional[str] = None
+    tensor_types: List[str] = Field(default_factory=list)
 
 
 class LinkedInPost(BaseModel):

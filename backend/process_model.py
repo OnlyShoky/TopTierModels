@@ -62,9 +62,15 @@ async def process_model(url: str) -> str:
     article = await generate_article(model_data, category.value)
     print(f"✓ ({len(article.content)} chars)")
     
-    # Step 6: Calculate scores (before LinkedIn so we can include them)
+    # Step 6: Calculate scores (using LLM scores from article if available)
     print("6. Calculating scores... ", end="", flush=True)
-    scores = calculate_scores(model_data, category.value)
+    scores = calculate_scores(
+        model=model_data, 
+        category=category.value,
+        quality_score=getattr(article, 'quality_score', None),
+        speed_score=getattr(article, 'speed_score', None),
+        freedom_score=getattr(article, 'freedom_score', None)
+    )
     print(f"✓ ({scores.overall_score}/100 - {scores.tier.value} Tier)")
     
     # Step 7: Generate LinkedIn post (with scores)

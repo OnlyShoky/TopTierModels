@@ -50,81 +50,60 @@ ARTICLE_PROMPT_TEMPLATE = """You are an expert AI technical writer. Generate a c
 - Organization: {organization}
 - Category: {category}
 - Description: {description}
+- License: {license}
 
 ## README Content:
 {readme_content}
 
 ## Requirements:
-1. Write a 800-1500 word technical article
+1. Write a technical article (~400-700 words, readable in under 5 minutes).
 2. Include these sections:
    - Executive Summary (2-3 sentences)
-   - Model Architecture Overview
    - Key Features and Innovations
-   - Performance Analysis
    - Use Cases and Applications
-   - Implementation Guidance
-   - Conclusion and Recommendations
-3. Be technically accurate but accessible to a broad audience
-4. Include specific metrics and benchmarks when available
-5. Cite the source (Hugging Face page)
+   - Implementation Guidance (include code if available)
+   - Conclusion
+3. Be technically accurate but accessible to a broad audience.
 
 ## STRICT RULES:
-1. You MUST only use information that appears in `readme_content`.  
-   - No external facts.
-   - No assumptions.
-   - No invented benchmarks, features, architecture or details.
+1. You MUST only use information that appears in the README content provided.  
+   - No external facts, assumptions, or invented details.
    - Rephrase but do not add new information.
 
-2. If the README contains:
-   - code → INCLUDE ALL code blocks exactly (preserve formatting)
-   - installation commands → INCLUDE them
-   - usage examples → INCLUDE them
-   - configuration parameters → INCLUDE them
-   - performance notes → INCLUDE them
+2. If the README contains code, installation commands, usage examples, or configuration parameters → INCLUDE them exactly.
 
-3. The article must be short and readable in under 5 minutes (~400–700 words).
+## SCORING INSTRUCTIONS:
+You MUST generate three scores (0-100) based ONLY on the information in the README:
 
-4. SEO KEYWORDS RULE:
-   You must ONLY include SEO keywords if they explicitly appear in the information provided.  
-   Your SEO array must contain ONLY the following types (if available):
+### Quality Score (0-100):
+- Measures output quality: accuracy, realism, coherence, task success.
+- Look for: benchmark results, evaluation metrics, comparisons to other models.
+- If no quality info: default to 60.
 
-   **(A) Model Category — exactly one from this list:**  
-   Multimodal, Audio-Text-to-Text, Image-Text-to-Text, Image-Text-to-Image, Image-Text-to-Video,  
-   Visual Question Answering, Document Question Answering, Video-Text-to-Text,  
-   Visual Document Retrieval, Any-to-Any, Computer Vision, Depth Estimation,  
-   Image Classification, Object Detection, Image Segmentation, Text-to-Image,  
-   Image-to-Text, Image-to-Image, Image-to-Video, Unconditional Image Generation,  
-   Video Classification, Text-to-Video, Zero-Shot Image Classification, Mask Generation,  
-   Zero-Shot Object Detection, Text-to-3D, Image-to-3D, Image Feature Extraction,  
-   Keypoint Detection, Video-to-Video, Natural Language Processing, Text Classification,  
-   Token Classification, Table Question Answering, Question Answering,  
-   Zero-Shot Classification, Translation, Summarization, Feature Extraction,  
-   Text Generation, Fill-Mask, Sentence Similarity, Text Ranking,  
-   Audio, Text-to-Speech, Text-to-Audio, Automatic Speech Recognition,  
-   Audio-to-Audio, Audio Classification, Voice Activity Detection,  
-   Tabular, Tabular Classification, Tabular Regression, Time Series Forecasting,  
-   Reinforcement Learning, Robotics, Other, Graph Machine Learning.
+### Speed Score (0-100):
+- Measures inference speed from the user's perspective.
+- Look for: time to first token, generation time, latency metrics, words like "fast", "turbo", "efficient".
+- If no speed info: default to 60.
 
-   **(B) Source Type — choose ONLY if the README contains this information:**  
-   - Open Source  
-   - Open Weights  
-   - Closed  
-   - Free  
-   - Freemium  
-   - Paid  
-   - Enterprise Only  
-   - Local  
-   - API  
-   - Web Only  
+### Freedom Score (0-100):
+- Measures openness and accessibility.
+- Based on:
+  - License type: MIT/Apache/BSD = 90+, CC-BY = 75, GPL = 65, Non-commercial = 50, Unknown = 40
+  - Source: Open Source/Open Weights = +10, Closed = -20
+  - Cost: Free = +10, Freemium = 0, Paid = -15
+- If available on Hugging Face: +10
 
-   **(C) License — ONLY if specified, ALWAYS in format:**  
-   - license:MIT  
-   - license:Apache-2.0  
-   - license:GPL  
-   - etc.
+## METADATA EXTRACTION:
+Extract the following if present in the README:
+- safetensors: true/false (whether safetensors format is mentioned)
+- model_size: string like "7B params", "685B params", etc.
+- tensor_types: array like ["BF16", "F8_E4M3", "FP32"]
 
-   If any of these pieces (category, source, license) do NOT appear in the README, simply omit them from the SEO list.
-
+## SEO KEYWORDS RULE:
+Include ONLY keywords that appear in the provided information:
+- Model category (one from standard list)
+- Source type: Open Source, Open Weights, Free, Freemium, Paid, etc.
+- License in format: license:MIT, license:Apache-2.0, etc.
 
 ## Output Format:
 Return a JSON object with:
@@ -132,13 +111,19 @@ Return a JSON object with:
 - slug: URL-friendly slug (lowercase, hyphens)
 - excerpt: 150-200 character summary
 - content: Full article in Markdown format
-- seo_keywords: Array of 5-8 SEO keywords
+- seo_keywords: Array of SEO keywords (follow rules above)
 - read_time_minutes: Estimated read time
+- quality_score: integer 0-100
+- speed_score: integer 0-100
+- freedom_score: integer 0-100
+- safetensors: boolean or null
+- model_size: string or null
+- tensor_types: array of strings or empty array
 
 Return ONLY valid JSON, no additional text."""
 
 
-LINKEDIN_PROMPT_TEMPLATE = """Create a LinkedIn post about this AI model analysis.
+LINKEDIN_PROMPT_TEMPLATE = """Create an elegant, organic, and human LinkedIn post announcing a new AI model article.
 
 ## Model: {model_name}
 ## Article Title: {article_title}
@@ -149,34 +134,44 @@ LINKEDIN_PROMPT_TEMPLATE = """Create a LinkedIn post about this AI model analysi
 ## CRITICAL FORMATTING RULES:
 1. Do NOT use Markdown (no *, **, #, __)
 2. Use ONLY Unicode styled characters for emphasis:
-   - Bold: Use 𝗕𝗼𝗹𝗱 Unicode characters for main emphasis (copy these exact characters)
-   - For bold text, convert normal letters to mathematical bold: a→𝗮, b→𝗯, etc.
+   - Bold: Use 𝗯𝗼𝗹𝗱 Unicode characters for **single important words only**, not phrases.
+     (Use mathematical bold characters: a→𝗮, b→𝗯, c→𝗰, etc.)
 3. Use emoji as bullet points: ✅, 🔥, 🚀, 💡, ⚡
 4. Keep natural line breaks
 5. Professional, human-sounding tone
 
+## STYLE & TONE GOALS:
+- Write for a general audience that may not understand advanced AI.
+- Highlight the potential and real-world power of the model in simple terms.
+- Avoid long technical explanations.
+- Do NOT oversell — keep it authentic and insightful.
+- The post must feel original and personal.
 
-
-## Structure:
-- Hook: 1 compelling opening line
-- Intro: Brief mention of overall score
-- Key points: 3-4 bullet points with emoji (include Quality, Speed, Freedom scores)
-- Your impression: 1-2 sentences
-- Call to action: Link to full article
-- Hashtags: 3-5 relevant hashtags
+## STRUCTURE:
+- Hook: 1 compelling and human opening line that sparks curiosity.
+- Light intro: Mention the overall score briefly and naturally.
+- Key points: 3–4 bullet points with emoji.
+  - Include Quality, Speed, and Freedom scores in a simple, accessible way.
+  - Use Unicode bold only for specific technical keywords or model strengths.
+- Personal insight: 1–2 elegant sentences about why the model caught your attention.
+- Call to action: Encourage readers to explore the full article and visit my profile.
+- Hashtags: 3–5 relevant hashtags (without # symbol).
 
 ## Example output style:
-𝗭-𝗜𝗺𝗮𝗴𝗲-𝗧𝘂𝗿𝗯𝗼 just scored 87/100 in our latest AI model analysis!
 
-✅ Quality: 85 - Excellent photorealistic outputs
-⚡ Speed: 92 - Sub-second generation
-🔓 Freedom: 84 - Open weights, free to use
+New analysis dropped on my 𝗧𝗼𝗽𝗧𝗶𝗲𝗿𝗠𝗼𝗱𝗲𝗹𝘀 website. DeepSeek-V3.2 has earned an 𝗦-𝗥𝗮𝗻𝗸 — here’s why:
 
-This model is a game-changer for...
+DeepSeek-V3.2 is truly advancing AI with its blend of power and precision:
 
-Read the full analysis → [link]
+Overall score: 87/100
 
-#AI #ImageGeneration #OpenSource
+✅ 𝗤𝘂𝗮𝗹𝗶𝘁𝘆: 85 – Sharp, consistent, and reliable results  
+⚡ 𝗦𝗽𝗲𝗲𝗱: 92 – Fast generation that feels instant  
+🔓 𝗙𝗿𝗲𝗲𝗱𝗼𝗺: 84 – Open weights and flexible usage rights  
+
+What stands out most to me is how DeepSeek-V3.2 blends powerful performance with meaningful real-world application. It feels less like a tool and more like an evolving intelligence ready to elevate our creativity and productivity.
+
+For a deeper dive into how DeepSeek-V3.2 is shaping the future of AI, read the full article → [link]
 
 ## Output Format:
 Return a JSON object with:
@@ -199,7 +194,7 @@ async def generate_article(model: ScrapedModel, category: str = "Other") -> Gene
         category: Model category for context
         
     Returns:
-        GeneratedArticle with all content
+        GeneratedArticle with all content including scores and metadata
     """
     # Demo mode: use sample data
     if settings.demo_mode:
@@ -217,7 +212,13 @@ async def generate_article(model: ScrapedModel, category: str = "Other") -> Gene
                     content=data.get('content'),
                     read_time_minutes=data.get('read_time_minutes', 5),
                     seo_keywords=data.get('seo_keywords', []),
-                    hero_image_url=model.featured_image_url
+                    hero_image_url=model.featured_image_url,
+                    quality_score=data.get('quality_score', 60),
+                    speed_score=data.get('speed_score', 60),
+                    freedom_score=data.get('freedom_score', 60),
+                    safetensors=data.get('safetensors'),
+                    model_size=data.get('model_size'),
+                    tensor_types=data.get('tensor_types', [])
                 )
     
     prompt = ARTICLE_PROMPT_TEMPLATE.format(
@@ -225,6 +226,7 @@ async def generate_article(model: ScrapedModel, category: str = "Other") -> Gene
         organization=model.organization or "Unknown",
         category=category,
         description=model.description or "No description available",
+        license=model.license or "Unknown",
         readme_content=model.readme_content[:8000] if model.readme_content else "No README available"
     )
     
@@ -246,7 +248,13 @@ async def generate_article(model: ScrapedModel, category: str = "Other") -> Gene
             content=data.get('content', ''),
             read_time_minutes=data.get('read_time_minutes', 5),
             seo_keywords=data.get('seo_keywords', []),
-            hero_image_url=model.featured_image_url
+            hero_image_url=model.featured_image_url,
+            quality_score=float(data.get('quality_score', 60)),
+            speed_score=float(data.get('speed_score', 60)),
+            freedom_score=float(data.get('freedom_score', 60)),
+            safetensors=data.get('safetensors'),
+            model_size=data.get('model_size'),
+            tensor_types=data.get('tensor_types', [])
         )
     else:
         # Fallback: treat response as raw content
@@ -261,7 +269,13 @@ async def generate_article(model: ScrapedModel, category: str = "Other") -> Gene
             content=response,
             read_time_minutes=5,
             seo_keywords=[],
-            hero_image_url=model.featured_image_url
+            hero_image_url=model.featured_image_url,
+            quality_score=60,
+            speed_score=60,
+            freedom_score=60,
+            safetensors=None,
+            model_size=None,
+            tensor_types=[]
         )
 
 

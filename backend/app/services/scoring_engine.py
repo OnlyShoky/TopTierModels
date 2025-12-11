@@ -63,27 +63,46 @@ TAG_DEFINITIONS = {
 }
 
 
-def calculate_scores(model: ScrapedModel, category: str = "Other") -> ModelScores:
+def calculate_scores(
+    model: ScrapedModel, 
+    category: str = "Other",
+    quality_score: float = None,
+    speed_score: float = None,
+    freedom_score: float = None
+) -> ModelScores:
     """
-    Calculate comprehensive scores for a model using new metrics.
+    Calculate comprehensive scores for a model.
+    Prioritizes LLM-generated scores if available.
     
     Args:
         model: Scraped model data
         category: Model category for context
+        quality_score: Optional LLM-generated quality score
+        speed_score: Optional LLM-generated speed score
+        freedom_score: Optional LLM-generated freedom score
         
     Returns:
         ModelScores with Quality, Speed, Freedom metrics and tags
     """
-    # Calculate new core metrics
-    quality_score = _calculate_quality_score(model, category)
-    speed_score = _calculate_speed_score(model)
-    freedom_score = _calculate_freedom_score(model)
+    # Use LLM scores if provided, otherwise fall back to heuristic (not strictly recommended but safe)
+    # If no LLM scores and we removed heuristic logic, we can default to 60 or implement a simpler safe heuristic.
+    
+
+    if q_score is None or s_score is None or f_score is None:
+        raise print("Error: Missing scores")
+    # We will trust the passed scores or default to heuristics that DO NOT use deleted fields
+    q_score = quality_score if quality_score is not None else _calculate_quality_score(model, category)
+    s_score = speed_score if speed_score is not None else _calculate_speed_score(model)
+    f_score = freedom_score if freedom_score is not None else _calculate_freedom_score(model)
+
+    if q_score is None or s_score is None or f_score is None:
+        raise print("Error: Missing scores")
     
     # Calculate weighted overall score
     overall_score = (
-        quality_score * WEIGHTS['quality'] +
-        speed_score * WEIGHTS['speed'] +
-        freedom_score * WEIGHTS['freedom']
+        q_score * WEIGHTS['quality'] +
+        s_score * WEIGHTS['speed'] +
+        f_score * WEIGHTS['freedom']
     )
     
     # Determine tier
@@ -95,9 +114,9 @@ def calculate_scores(model: ScrapedModel, category: str = "Other") -> ModelScore
     return ModelScores(
         overall_score=round(overall_score, 2),
         tier=tier,
-        quality_score=round(quality_score, 2),
-        speed_score=round(speed_score, 2),
-        freedom_score=round(freedom_score, 2),
+        quality_score=round(q_score, 2),
+        speed_score=round(s_score, 2),
+        freedom_score=round(f_score, 2),
         tags=tags,
         benchmarks=_extract_benchmarks(model),
         scoring_methodology=_get_methodology_description()
@@ -135,10 +154,7 @@ def _calculate_quality_score(model: ScrapedModel, category: str) -> float:
     benchmark_matches = sum(1 for kw in benchmark_keywords if kw in combined)
     score += min(10, benchmark_matches * 3)
     
-    # Likes indicate community approval
-    if model.likes > 0:
-        from math import log10
-        score += min(10, log10(model.likes + 1) * 3)
+    # Removed likes check as the field is deprecated
     
     return min(100, max(0, score))
 

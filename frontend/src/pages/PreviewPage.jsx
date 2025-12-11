@@ -274,19 +274,18 @@ function PreviewPage() {
                                     </div>
                                 </div>
 
-                                {/* Tags */}
-                                {scores.tags && scores.tags.length > 0 && (
+                                {/* Tags - use seo_keywords from article */}
+                                {article.seo_keywords && article.seo_keywords.length > 0 && (
                                     <div className="sidebar-card">
                                         <h4 className="sidebar-title">Tags</h4>
                                         <div className="model-tags">
-                                            {scores.tags.map((tag, i) => (
+                                            {article.seo_keywords.map((tag, i) => (
                                                 <span
                                                     key={i}
                                                     className="model-tag"
-                                                    style={{ backgroundColor: tag.color_hex }}
-                                                    title={tag.description}
+                                                    style={{ backgroundColor: 'rgb(29, 78, 216)' }}
                                                 >
-                                                    {tag.tag_name}
+                                                    {tag}
                                                 </span>
                                             ))}
                                         </div>
@@ -304,14 +303,24 @@ function PreviewPage() {
                                         <span className="stat-label">License</span>
                                         <span className="stat-value">{model.license || '-'}</span>
                                     </div>
-                                    <div className="stat-row">
-                                        <span className="stat-label">Downloads</span>
-                                        <span className="stat-value">{formatNumber(model.downloads)}</span>
-                                    </div>
-                                    <div className="stat-row">
-                                        <span className="stat-label">Likes</span>
-                                        <span className="stat-value">{formatNumber(model.likes)}</span>
-                                    </div>
+                                    {article.model_size && (
+                                        <div className="stat-row">
+                                            <span className="stat-label">Model Size</span>
+                                            <span className="stat-value">{article.model_size}</span>
+                                        </div>
+                                    )}
+                                    {article.safetensors !== null && article.safetensors !== undefined && (
+                                        <div className="stat-row">
+                                            <span className="stat-label">Safetensors</span>
+                                            <span className="stat-value">{article.safetensors ? 'Yes' : 'No'}</span>
+                                        </div>
+                                    )}
+                                    {article.tensor_types && article.tensor_types.length > 0 && (
+                                        <div className="stat-row">
+                                            <span className="stat-label">Tensor Types</span>
+                                            <span className="stat-value">{article.tensor_types.join(', ')}</span>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <a

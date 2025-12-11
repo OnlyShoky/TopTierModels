@@ -31,7 +31,8 @@ function ArticlePage() {
                     excerpt: data.excerpt,
                     read_time_minutes: data.read_time_minutes,
                     author: data.author,
-                    published_at: data.published_at
+                    published_at: data.published_at,
+                    seo_keywords: data.seo_keywords || []
                 })
 
                 setModel({
@@ -41,11 +42,11 @@ function ArticlePage() {
                     category: data.models.category,
                     organization: data.models.organization,
                     license: data.models.license,
-                    downloads: data.models.downloads,
-                    likes: data.models.likes,
                     huggingface_url: data.models.huggingface_url,
                     code_snippets: data.models.code_snippets,
-                    tags: data.models.tags || []
+                    safetensors: data.models.safetensors,
+                    model_size: data.models.model_size,
+                    tensor_types: data.models.tensor_types || []
                 })
 
                 setScores(data.models.model_scores)
@@ -175,18 +176,18 @@ function ArticlePage() {
                             </div>
                         </div>
 
-                        {/* Tags */}
-                        {model.tags && model.tags.length > 0 && (
+                        {/* Tags - use seo_keywords from article */}
+                        {article.seo_keywords && article.seo_keywords.length > 0 && (
                             <div className="sidebar-card">
                                 <h4 className="sidebar-title">Tags</h4>
                                 <div className="model-tags">
-                                    {model.tags.map((tag, i) => (
+                                    {article.seo_keywords.map((tag, i) => (
                                         <span
                                             key={i}
                                             className="model-tag"
-                                            style={{ backgroundColor: 'rgb(29, 78, 216)' }} // Use a default nice blue
+                                            style={{ backgroundColor: 'rgb(29, 78, 216)' }}
                                         >
-                                            {typeof tag === 'string' ? tag : tag.tag_name}
+                                            {tag}
                                         </span>
                                     ))}
                                 </div>
@@ -205,14 +206,24 @@ function ArticlePage() {
                                 <span className="stat-label">License</span>
                                 <span className="stat-value">{model.license}</span>
                             </div>
-                            <div className="stat-row">
-                                <span className="stat-label">Downloads</span>
-                                <span className="stat-value">{formatNumber(model.downloads)}</span>
-                            </div>
-                            <div className="stat-row">
-                                <span className="stat-label">Likes</span>
-                                <span className="stat-value">{formatNumber(model.likes)}</span>
-                            </div>
+                            {model.model_size && (
+                                <div className="stat-row">
+                                    <span className="stat-label">Model Size</span>
+                                    <span className="stat-value">{model.model_size}</span>
+                                </div>
+                            )}
+                            {model.safetensors !== null && model.safetensors !== undefined && (
+                                <div className="stat-row">
+                                    <span className="stat-label">Safetensors</span>
+                                    <span className="stat-value">{model.safetensors ? 'Yes' : 'No'}</span>
+                                </div>
+                            )}
+                            {model.tensor_types && model.tensor_types.length > 0 && (
+                                <div className="stat-row">
+                                    <span className="stat-label">Tensor Types</span>
+                                    <span className="stat-value">{model.tensor_types.join(', ')}</span>
+                                </div>
+                            )}
                         </div>
 
                         <a

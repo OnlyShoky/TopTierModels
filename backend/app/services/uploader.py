@@ -65,8 +65,9 @@ async def upload_to_supabase(
         'tags': model_data.get('tags', []),
         'model_metadata': model_data.get('model_metadata', {}),
         'featured_image_url': image_urls[0] if image_urls else None,
-        'downloads': model_data.get('downloads', 0),
-        'likes': model_data.get('likes', 0),
+        'safetensors': model_data.get('safetensors'),
+        'model_size': model_data.get('model_size'),
+        'tensor_types': model_data.get('tensor_types', []),
         'status': 'active'
     }
     
