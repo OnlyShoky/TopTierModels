@@ -2,11 +2,9 @@ import './AboutPage.css'
 
 function AboutPage() {
     const scores = [
-        { name: 'Performance', weight: '30%', desc: 'Accuracy, speed, efficiency' },
-        { name: 'Usability', weight: '25%', desc: 'Documentation, API simplicity' },
-        { name: 'Innovation', weight: '20%', desc: 'Novelty, research impact' },
-        { name: 'Adoption', weight: '15%', desc: 'Downloads, community' },
-        { name: 'Production', weight: '10%', desc: 'Stability, support' },
+        { name: 'Quality', weight: '33.3%', desc: 'Accuracy, realism, coherence, task success' },
+        { name: 'Speed', weight: '33.3%', desc: 'Inference speed, latency, generation time' },
+        { name: 'Freedom', weight: '33.3%', desc: 'Openness, licensing, accessibility, cost' },
     ]
 
     const tiers = [
@@ -21,7 +19,7 @@ function AboutPage() {
         <div className="about-page">
             <div className="container">
                 <header className="page-header">
-                    <h1>About</h1>
+                    <h1>About Our Ranking System</h1>
                     <p className="text-secondary">How we analyze and rank AI models</p>
                 </header>
 
@@ -30,8 +28,16 @@ function AboutPage() {
                     <section className="about-section">
                         <h2>Mission</h2>
                         <p>
-                            TopTierModels transforms technical AI documentation into accessible content.
-                            We analyze models from Hugging Face and rank them using a transparent scoring system.
+                            We believe in <strong>freedom first</strong>. Our ranking system deliberately prioritizes
+                            accessible, open-source models over proprietary "walled gardens." While models like GPT-5
+                            may have superior quality, they receive severe penalties for being closed, expensive,
+                            and censored—reflecting their real-world usability limitations.
+                        </p>
+
+                        <p className="mt-3">
+                            <strong>Why this matters:</strong> Open models can be run locally, fine-tuned for specific
+                            needs, and used commercially without restrictions—making them more valuable despite
+                            slightly lower benchmark scores.
                         </p>
                     </section>
 
@@ -66,11 +72,16 @@ function AboutPage() {
 
                     {/* Source */}
                     <section className="about-section">
-                        <h2>Data Source</h2>
+                        <h2>Analysis Methodology</h2>
                         <p>
-                            All model data is sourced from <a href="https://huggingface.co" target="_blank" rel="noopener noreferrer">Hugging Face</a>.
-                            We respect rate limits and their terms of service.
+                            We aggregate data from multiple public sources:
                         </p>
+                        <ul>
+                            <li><strong>Technical Papers & Benchmarks:</strong> MLPerf, HELM, academic publications</li>
+                            <li><strong>Community Benchmarks:</strong> Open LLM Leaderboard, Arena rankings</li>
+                            <li><strong>Real-World Testing:</strong> Inference speed tests, API response times</li>
+                            <li><strong>Licensing Analysis:</strong> Software licenses, usage restrictions, cost structures</li>
+                        </ul>
                     </section>
                 </div>
             </div>

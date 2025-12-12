@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import './Footer.css'
+import logo from '../assets/logo.png';
+
 
 // Icons
 const Github = ({ size = 18 }) => (
@@ -44,7 +46,8 @@ function Footer() {
                     {/* Brand Column */}
                     <div className="footer-col">
                         <Link to="/" className="footer-logo">
-                            <span className="logo-mark">T</span>
+                            <img src={logo} alt="TopTierModels Logo" className="logo-img" />
+
                             <span>TopTierModels</span>
                         </Link>
                         <p className="footer-desc">
