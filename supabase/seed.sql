@@ -34,9 +34,7 @@ a AS (
         'Llama 4: Open Source Perfection', 
         'llama-4-analysis', 
         'Meta''s Llama 4 redefines what is possible with open weights, matching proprietary giants in reasoning.', 
-        '# Llama 4 Analysis
-
-## The New Standard for Open Reasoning
+        '## The New Standard for Open Reasoning
 Meta has once again shattered expectations with the release of Llama 4. It represents a massive leap forward in reasoning capabilities, code generation, and multilingual understanding, firmly establishing open weights as a competitor to the best closed models.
 
 ### Key Features and Innovations
@@ -86,9 +84,7 @@ a AS (
         'Grok 3: Real-Time Intelligence', 
         'grok-3-analysis', 
         'Grok 3 combines massive compute with real-time data access to create a uniquely capable assistant.', 
-        '# Grok 3 Analysis
-
-## The Pulse of the Internet
+        '## The Pulse of the Internet
 Grok 3 differentiates itself not just by raw intelligence, but by its "now-ness." Integrated deeply with real-time data streams, it provides answers that are up-to-the-second, a capability most static training runs lack.
 
 ### Key Features
@@ -138,9 +134,7 @@ a AS (
         'Gemini 3.0 Pro: The Context King', 
         'gemini-3-pro-analysis', 
         'Gemini 3.0 Pro continues to push the boundaries of long-context understanding and retrieval.', 
-        '# Gemini 3.0 Pro Analysis
-
-## Massive Context, Moderate Freedom
+        '## Massive Context, Moderate Freedom
 Gemini 3.0 Pro is built for one thing above all else: handling massive amounts of information. With a context window that effectively lets you load entire libraries, it changes how we approach data retrieval.
 
 ### Key Features
@@ -190,9 +184,7 @@ a AS (
         'GPT-5: Brilliant but Closed', 
         'gpt-5-analysis', 
         'GPT-5 sets a new high water mark for intelligence, but at the cost of speed and accessibility.', 
-        '# GPT-5 Analysis
-
-## Unmatched Intelligence, High Cost
+        '## Unmatched Intelligence, High Cost
 GPT-5 represents the pinnacle of current AI reasoning. It solves problems that stump every other model. However, this intelligence comes with significant trade-offs in terms of speed and operational opacity.
 
 ### Key Features
@@ -242,9 +234,7 @@ a AS (
         'Claude 4.5 Sonnet: The Coding Specialist', 
         'claude-4-5-sonnet-analysis', 
         'Claude remains the favorite for developers, with version 4.5 refining its coding intuition.', 
-        '# Claude 4.5 Sonnet Analysis
-
-## Refined for Developers
+        '## Refined for Developers
 Claude 4.5 Sonnet focuses on what Anthropic does best: coding and safe, steerable responses. It feels less like a chatbox and more like a pair programmer that understands intent.
 
 ### Key Features
@@ -299,9 +289,7 @@ a AS (
         'Flux 1.1 Ultra: Unbeatable Realism', 
         'flux-1-1-ultra-analysis', 
         'Flux 1.1 Ultra masters the hardest parts of AI imagery: hands, text, and composition.', 
-        '# Flux 1.1 Ultra Analysis
-
-## Photorealism Perfected
+        '## Photorealism Perfected
 Flux 1.1 Ultra builds on the massive success of the Flux architecture to deliver images that are virtually indistinguishable from photography. It handles complex lighting, skin textures, and typography with ease.
 
 ### Key Features
@@ -351,9 +339,7 @@ a AS (
         'Ideogram v3: The Designer''s Tool', 
         'ideogram-v3-analysis', 
         'Ideogram continues to lead the pack in integrating text and design elements into AI art.', 
-        '# Ideogram v3 Analysis
-
-## Design-First AI
+        '## Design-First AI
 Ideogram v3 is built for designers. While other models focus on generic photography, Ideogram excels at logos, t-shirt designs, and posters where text integration is crucial.
 
 ### Key Features
@@ -403,9 +389,7 @@ a AS (
         'Imagen 4: Google''s Visual Powerhouse', 
         'imagen-4-analysis', 
         'Imagen 4 delivers high-fidelity photorealism with Google''s safety and infrastructure.', 
-        '# Imagen 4 Analysis
-
-## Safe and Realistic
+        '## Safe and Realistic
 Imagen 4 is Google''s answer to the high-fidelity image generation race. It prioritizes photorealism and safety, making it a favorite for corporate environments.
 
 ### Key Features
@@ -455,9 +439,7 @@ a AS (
         'Midjourney v7: Pure Sytle', 
         'midjourney-v7-analysis', 
         'Midjourney v7 remains the most artistically pleasing model, despite usability hurdles.', 
-        '# Midjourney v7 Analysis
-
-## The Artistic Soul of AI
+        '## The Artistic Soul of AI
 Midjourney v7 continues to dominate in pure aesthetic quality. While other models strive for perfect realism, Midjourney aims for "beauty," producing images that often look better than the prompt asked for.
 
 ### Key Features
@@ -507,9 +489,7 @@ a AS (
         'DALL-E 3: Easiest to Use', 
         'dall-e-3-analysis', 
         'DALL-E 3 makes image generation accessible via natural language, though it lacks granular control.', 
-        '# DALL-E 3 Analysis
-
-## The Conversational Artist
+        '## The Conversational Artist
 DALL-E 3''s superpower is its integration with ChatGPT. You don''t need to learn "prompt engineering." You just talk to it, and it rewrites your request into a detailed visual description.
 
 ### Key Features
@@ -564,9 +544,7 @@ a AS (
         'Cartesia: The Fastest Voice AI', 
         'cartesia-sonic-analysis', 
         'Sonic separates itself with blazing fast latency, enabling true real-time voice conversations.', 
-        '# Cartesia (Sonic) Analysis
-
-## Speed is the Feature
+        '## Speed is the Feature
 When building voice agents, latency is the killer. Cartesia''s Sonic model is engineered for sub-100ms response times, making it feel like a real conversation rather than a turn-based game.
 
 ### Key Features
@@ -616,9 +594,7 @@ a AS (
         'ElevenLabs v3: Emotion Matcher', 
         'elevenlabs-v3-analysis', 
         'ElevenLabs remains the benchmark for quality, offering the most emotive and varied voices.', 
-        '# ElevenLabs v3 Analysis
-
-## The Voice of the Internet
+        '## The Voice of the Internet
 ElevenLabs has effectively solved TTS quality. Version 3 improves on intonation and emotional range, allowing voices to whisper, shout, or laugh naturally. It detects context context perfectly.
 
 ### Key Features
@@ -668,9 +644,7 @@ a AS (
         'Gemini 2.0 Flash: Audio Native', 
         'gemini-2-flash-audio-analysis', 
         'Gemini 2.0 Flash processes audio natively, skipping the transcription step for better nuance.', 
-        '# Gemini 2.0 Flash (Audio) Analysis
-
-## Native Listening
+        '## Native Listening
 Unlike traditional pipelines (Speech-to-Text -> LLM -> Text-to-Speech), Gemini 2.0 Flash handles audio natively. It hears the tone, the pause, and the emotion directly, allowing for much richer interactions.
 
 ### Key Features
@@ -720,9 +694,7 @@ a AS (
         'Suno v4: The AI Pop Star', 
         'suno-v4-analysis', 
         'Suno v4 can generate Billboard-quality tracks, raising massive questions about the future of music.', 
-        '# Suno v4 Analysis
-
-## Radio Ready
+        '## Radio Ready
 Suno v4 is a shock to the system for musicians. It generates coherently structured songs (verse, chorus, bridge) with high-fidelity vocals and instrumentation. It understands genre tags and lyrical cadence perfectly.
 
 ### Key Features
@@ -772,9 +744,7 @@ a AS (
         'Udio: Complex Harmonics', 
         'udio-analysis', 
         'Udio rivals Suno but focuses more on clarity and complex musical arrangements.', 
-        '# Udio Analysis
-
-## The Producer''s Choice
+        '## The Producer''s Choice
 While Suno aims for pop structure, Udio often generates richer, more textured audio. It excels at electronic genres, jazz, and complex instrumentals where clarity matters more than lyrical catchy-ness.
 
 ### Key Features
@@ -829,9 +799,7 @@ a AS (
         'YOLOv12: Real-time King', 
         'yolov12-analysis', 
         'YOLOv12 continues the legacy of "You Only Look Once" with unmatched inference speeds.', 
-        '# YOLOv12 Analysis
-
-## Speed Meets Accuracy
+        '## Speed Meets Accuracy
 YOLOv12 is the latest evolution of the most popular object detection family. It optimizes the balance between accuracy (mAP) and latency, making it the default choice for edge devices and real-time video analysis.
 
 ### Key Features
@@ -881,9 +849,7 @@ a AS (
         'Florence-2: Small but Mighty', 
         'florence-2-analysis', 
         'Microsoft''s Florence-2 packs massive capability into a tiny parameter count.', 
-        '# Florence-2 Analysis
-
-## The Unified VLM
+        '## The Unified VLM
 Florence-2 is stunning not because it is huge, but because it is tiny. At under 1B parameters, it outperforms models 10x its size on captioning and grounding tasks. It uses a unified text-to-text API for all vision tasks.
 
 ### Key Features
@@ -933,9 +899,7 @@ a AS (
         'SAM 3: Pixel Perfection', 
         'sam-3-analysis', 
         'Meta''s Segment Anything Model 3 makes image segmentation a solved problem.', 
-        '# SAM 3 (Meta) Analysis
-
-## Cut Everything Out
+        '## Cut Everything Out
 SAM 3 takes the "zero-shot" capabilities of its predecessor and adds video handling and better semantic understanding. You can click on any object in an image or video, and SAM 3 gives you a perfect cut-out mask.
 
 ### Key Features
@@ -985,9 +949,7 @@ a AS (
         'DINOv2: Seeing Like a Human', 
         'dinov2-analysis', 
         'DINOv2 learns features from images in a self-supervised way, creating powerful embeddings.', 
-        '# DINOv2 Analysis
-
-## Self-Supervised Vision
+        '## Self-Supervised Vision
 Most vision models learn from labelled data (this is a cat). DINOv2 learns by "looking" at massive amounts of data and figuring out relationships itself. This creates robust features that work well for classification, depth estimation, and retrieval.
 
 ### Key Features
@@ -1037,9 +999,7 @@ a AS (
         'RF-DETR: Transformer Vision', 
         'rf-detr-analysis', 
         'RF-DETR brings the power of Transformers to object detection with improved accuracy.', 
-        '# RF-DETR Analysis
-
-## Vision Transformers
+        '## Vision Transformers
 RF-DETR leverages the transformer architecture (like LLMs) to look at an image globally rather than using sliding windows. This allows it to understand context ("a bat" near "a player") better than older CNNs.
 
 ### Key Features
@@ -1094,9 +1054,7 @@ a AS (
         'Pixtral Large: Multimodal Excellence', 
         'pixtral-large-analysis', 
         'Mistral AI delivers a top-tier multimodal model that handles text and logic efficiently.', 
-        '# Pixtral Large Analysis
-
-## The European Giant
+        '## The European Giant
 Pixtral Large is Mistral AI''s flagship multimodal model. It combines the strong reasoning of Mistral Large with a new vision encoder, allowing it to interpret charts, code from screenshots, and complex diagrams with GPT-4 class accuracy.
 
 ### Key Features
@@ -1146,9 +1104,7 @@ a AS (
         'Llama 4-Vision: Opening Eyes', 
         'llama-4-vision-analysis', 
         'Meta brings native vision capabilities to the Llama 4 family, empowering open source multimodal apps.', 
-        '# Llama 4-Vision Analysis
-
-## Open Source Vision
+        '## Open Source Vision
 Llama 4-Vision integrates a high-performance vision tower directly into the Llama 4 architecture. This allows users to build "ChatGPT-Vision" style applications entirely on their own infrastructure without sending data to an API.
 
 ### Key Features
@@ -1198,9 +1154,7 @@ a AS (
         'Claude 3.5 Sonnet: Visual Reasoning', 
         'claude-3-5-sonnet-vision-review', 
         'Claude 3.5 Sonnet excels at "understanding" images, not just describing them.', 
-        '# Claude 3.5 Sonnet (Vision) Analysis
-
-## Seeing the Logic
+        '## Seeing the Logic
 While many models can describe an image ("a cat on a mat"), Claude 3.5 Sonnet excels at reasoning about it ("the cat is waiting for food because the bowl is empty"). This makes it uniquely suited for screenshots-to-code and complex diagram analysis.
 
 ### Key Features
@@ -1250,9 +1204,7 @@ a AS (
         'Gemini 3.0 Ultra: The Heavyweight', 
         'gemini-3-ultra-analysis', 
         'Gemini 3.0 Ultra brings massive compute to bear on multimodal problems.', 
-        '# Gemini 3.0 Ultra Analysis
-
-## Maximum Power
+        '## Maximum Power
 Gemini 3.0 Ultra is Google''s "no compromises" model. It is designed to achieve state-of-the-art results on benchmarks regardless of compute cost. It natively understands video, audio, and text in a single stream.
 
 ### Key Features
@@ -1302,9 +1254,7 @@ a AS (
         'OpenAI o3: Deep Thought', 
         'openai-o3-analysis', 
         'OpenAI o3 pushes the "System 2" thinking paradigm to multimodal tasks.', 
-        '# OpenAI o3 Analysis
-
-## The Reasoning Engine
+        '## The Reasoning Engine
 OpenAI o3 continues the "o" series legacy of "thinking before speaking." It creates massive internal chain-of-thought traces to verify its own logic before outputting an answer. This applies now to visual and auditory inputs as well.
 
 ### Key Features

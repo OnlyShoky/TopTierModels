@@ -129,7 +129,7 @@ function HomePage() {
                     {/* Stats */}
                     <div className="hero-stats">
                         <div className="stat">
-                            <span className="stat-value">50+</span>
+                            <span className="stat-value">10+</span>
                             <span className="stat-label">Models</span>
                         </div>
                         <div className="stat">
