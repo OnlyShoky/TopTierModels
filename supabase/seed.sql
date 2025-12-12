@@ -118,7 +118,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://deepmind.google/technologies/gemini/', 'gemini-3-0-pro', 'Gemini 3.0 Pro', 'Text Generation', 'Google DeepMind',
+        'https://deepmind.google/models/gemini/pro/', 'gemini-3-0-pro', 'Gemini 3.0 Pro', 'Text Generation', 'Google DeepMind',
         'Google''s mid-tier powerhouse, balancing massive context with reasoning capabilities.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg'
@@ -1088,7 +1088,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://www.llama.com/', 'llama-4-vision', 'Llama 4-Vision', 'Multimodal', 'Meta',
+        'https://ai.meta.com/blog/llama-4-multimodal-intelligence/', 'llama-4-vision', 'Llama 4-Vision', 'Multimodal', 'Meta',
         'The vision-enabled variant of Llama 4, bringing eyesight to the open ecosystem.',
         'license:llama-community', TRUE, '90B', ARRAY['BF16'],
         'https://huggingface.co/meta-llama/Llama-3.2-11B-Vision/resolve/main/original/header.png'
@@ -1138,7 +1138,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://www.anthropic.com/claude', 'claude-3-5-sonnet-vlm', 'Claude 3.5 Sonnet', 'Multimodal', 'Anthropic',
+        'https://www.anthropic.com/news/claude-3-5-sonnet', 'claude-3-5-sonnet-vlm', 'Claude 3.5 Sonnet', 'Multimodal', 'Anthropic',
         'Excellent visual reasoning capabilities, particularly for UI and document tasks.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://upload.wikimedia.org/wikipedia/commons/7/78/Anthropic_logo.svg'
@@ -1238,7 +1238,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://openai.com/', 'openai-o3', 'OpenAI o3', 'Multimodal', 'OpenAI',
+        'https://openai.com/index/introducing-o3-and-o4-mini/', 'openai-o3', 'OpenAI o3', 'Multimodal', 'OpenAI',
         'The next evolution of reasoning models, capable of vast coherent thought chains.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg'

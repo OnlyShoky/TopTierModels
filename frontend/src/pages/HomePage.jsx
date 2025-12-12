@@ -113,7 +113,7 @@ function HomePage() {
                             AI Model Rankings
                         </h1>
                         <p className="hero-subtitle">
-                            Discover and compare the best models from Hugging Face.
+                            Discover and compare the best AI models.
                             Analyzed, scored, and ranked.
                         </p>
                         <div className="hero-actions">
