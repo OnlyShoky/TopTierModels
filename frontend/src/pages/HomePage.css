@@ -156,12 +156,13 @@
     font-family: serif;
     font-size: var(--text-3xl);
     font-weight: var(--font-bold);
-    color: var(--pastel-dark);
     margin-bottom: var(--space-4);
+    color: var(--color-text);
+
 }
 
 .donation-text {
-    color: var(--pastel-text);
+    color: var(--color-text-secondary);
     font-size: var(--text-lg);
     margin-bottom: var(--space-8);
 }
@@ -212,7 +213,7 @@
 }
 
 .donation-thanks {
-    color: rgba(74, 85, 104, 0.6);
+    color: var(--color-text-muted);
     /* text-pastel-text/60 */
     margin-top: var(--space-6);
     font-size: var(--text-sm);
