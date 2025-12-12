@@ -252,7 +252,7 @@ function ArticlePage() {
                             className="btn btn-primary"
                             style={{ width: '100%' }}
                         >
-                            View on Hugging Face →
+                            Explore →
                         </a>
                     </aside>
                 </div>

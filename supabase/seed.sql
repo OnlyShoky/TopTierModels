@@ -18,7 +18,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/meta-llama/Llama-4-70b', 'llama-4-70b', 'Llama 4', 'Text Generation', 'Meta',
+        'https://www.llama.com/', 'llama-4-70b', 'Llama 4', 'Text Generation', 'Meta',
         'Meta''s next-generation open weights model pushing the boundaries of reasoning and efficiency.',
         'license:llama-community', TRUE, '70B', ARRAY['BF16'],
         'https://huggingface.co/meta-llama/Llama-3.2-1B/resolve/main/original/header.png'
@@ -68,7 +68,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/xai/grok-3', 'grok-3', 'Grok 3', 'Text Generation', 'xAI',
+        'https://x.ai/', 'grok-3', 'Grok 3', 'Text Generation', 'xAI',
         'The wittiest and most real-time aware model, integrated directly with X platform data.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://upload.wikimedia.org/wikipedia/commons/4/4e/Grok_logo.svg'
@@ -118,7 +118,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/google/gemini-3-0-pro', 'gemini-3-0-pro', 'Gemini 3.0 Pro', 'Text Generation', 'Google DeepMind',
+        'https://deepmind.google/technologies/gemini/', 'gemini-3-0-pro', 'Gemini 3.0 Pro', 'Text Generation', 'Google DeepMind',
         'Google''s mid-tier powerhouse, balancing massive context with reasoning capabilities.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg'
@@ -168,7 +168,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/openai/gpt-5', 'gpt-5', 'GPT-5', 'Text Generation', 'OpenAI',
+        'https://openai.com/', 'gpt-5', 'GPT-5', 'Text Generation', 'OpenAI',
         'The highly anticipated successor to GPT-4, focusing on deep reasoning and reliability.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg'
@@ -218,7 +218,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/anthropic/claude-4-5-sonnet', 'claude-4-5-sonnet', 'Claude 4.5 Sonnet', 'Text Generation', 'Anthropic',
+        'https://www.anthropic.com/claude', 'claude-4-5-sonnet', 'Claude 4.5 Sonnet', 'Text Generation', 'Anthropic',
         'Anthropic''s iterative update, focusing on coding nuances and safer outputs.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://upload.wikimedia.org/wikipedia/commons/7/78/Anthropic_logo.svg'
@@ -273,7 +273,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/black-forest-labs/flux-1-1-ultra', 'flux-1-1-ultra', 'Flux 1.1 Ultra', 'Image Generation', 'Black Forest Labs',
+        'https://blackforestlabs.ai/', 'flux-1-1-ultra', 'Flux 1.1 Ultra', 'Image Generation', 'Black Forest Labs',
         'The definitive open model for photorealism and typography.',
         'license:other', TRUE, '16B', ARRAY['BF16'],
         'https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/assets/repo-header.jpg'
@@ -323,7 +323,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/ideogram/v3', 'ideogram-v3', 'Ideogram v3', 'Image Generation', 'Ideogram',
+        'https://ideogram.ai/', 'ideogram-v3', 'Ideogram v3', 'Image Generation', 'Ideogram',
         'Specialized model for typography and design layouts.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://pbs.twimg.com/profile_images/1694060938763538432/P2aaeiLp_400x400.jpg'
@@ -373,7 +373,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/google/imagen-4', 'imagen-4', 'Imagen 4', 'Image Generation', 'Google',
+        'https://deepmind.google/technologies/imagen/', 'imagen-4', 'Imagen 4', 'Image Generation', 'Google',
         'Google''s photorealistic diffusion model, deeply integrated with Gemini.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg'
@@ -423,7 +423,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/midjourney/v7', 'midjourney-v7', 'Midjourney v7', 'Image Generation', 'Midjourney',
+        'https://www.midjourney.com/', 'midjourney-v7', 'Midjourney v7', 'Image Generation', 'Midjourney',
         'The artistic gold standard, known for its distinct style and improved coherence.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://upload.wikimedia.org/wikipedia/commons/e/ed/Midjourney_Emblem.png'
@@ -473,7 +473,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/openai/dall-e-3', 'dall-e-3', 'DALL-E 3', 'Image Generation', 'OpenAI',
+        'https://openai.com/dall-e-3', 'dall-e-3', 'DALL-E 3', 'Image Generation', 'OpenAI',
         'Integrated directly into ChatGPT, offering the best prompt adherence natural language interface.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg'
@@ -528,7 +528,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/cartesia/sonic', 'sonic', 'Cartesia (Sonic)', 'Audio Processing', 'Cartesia',
+        'https://cartesia.ai/', 'sonic', 'Cartesia (Sonic)', 'Audio Processing', 'Cartesia',
         'Ultra-low latency real-time voice generation for interactive agents.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://cartesia.ai/logo.png'
@@ -578,7 +578,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/elevenlabs/v3', 'elevenlabs-v3', 'ElevenLabs v3', 'Audio Processing', 'ElevenLabs',
+        'https://elevenlabs.io/', 'elevenlabs-v3', 'ElevenLabs v3', 'Audio Processing', 'ElevenLabs',
         'The industry standard for emotive, high-quality speech synthesis.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://avatars.githubusercontent.com/u/120663473?s=200&v=4'
@@ -628,7 +628,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/google/gemini-2-0-flash', 'gemini-2-0-flash-audio', 'Gemini 2.0 Flash', 'Audio Processing', 'Google',
+        'https://deepmind.google/technologies/gemini/flash/', 'gemini-2-0-flash-audio', 'Gemini 2.0 Flash', 'Audio Processing', 'Google',
         'Multimodal model with native audio input/output for seamlessly fast interaction.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg'
@@ -678,7 +678,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/suno/v4', 'suno-v4', 'Suno v4', 'Audio Processing', 'Suno',
+        'https://suno.com/', 'suno-v4', 'Suno v4', 'Audio Processing', 'Suno',
         'Generates full radio-quality songs from simple text prompts.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://suno.com/images/logo_square.png'
@@ -728,7 +728,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/udio/v1', 'udio-v1', 'Udio', 'Audio Processing', 'Udio',
+        'https://www.udio.com/', 'udio-v1', 'Udio', 'Audio Processing', 'Udio',
         'High-fidelity music generation with a focus on electronic and complex genres.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://www.udio.com/logo.png'
@@ -783,7 +783,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/ultralytics/yolov12', 'yolov12', 'YOLOv12', 'Computer Vision', 'Ultralytics',
+        'https://www.ultralytics.com/', 'yolov12', 'YOLOv12', 'Computer Vision', 'Ultralytics',
         'The absolute standard for real-time object detection, now faster and more accurate.',
         'license:agpl-3.0', TRUE, 'Unknown', ARRAY['FP16', 'INT8'],
         'https://raw.githubusercontent.com/ultralytics/assets/main/yolov8/banner-yolov8.png'
@@ -833,7 +833,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/microsoft/Florence-2-large', 'florence-2-large', 'Florence-2', 'Computer Vision', 'Microsoft',
+        'https://www.microsoft.com/en-us/research/project/project-florence/', 'florence-2-large', 'Florence-2', 'Computer Vision', 'Microsoft',
         'A unified foundation model for vision capable of captioning, detection, and segmentation.',
         'license:mit', TRUE, '0.7B', ARRAY['FP16'],
         'https://huggingface.co/microsoft/Florence-2-large/resolve/main/cover.png'
@@ -883,7 +883,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/facebook/sam-3', 'sam-3', 'SAM 3 (Meta)', 'Computer Vision', 'Meta',
+        'https://segment-anything.com/', 'sam-3', 'SAM 3 (Meta)', 'Computer Vision', 'Meta',
         'Segment Anything Model 3, offering pixel-perfect object masks for any image.',
         'license:apache-2.0', TRUE, 'Unknown', ARRAY['BF16'],
         'https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/model_doc/sam_architecture.jpg'
@@ -933,7 +933,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/facebook/dinov2-large', 'dinov2-large', 'DINOv2', 'Computer Vision', 'Meta',
+        'https://dinov2.metademolab.com/', 'dinov2-large', 'DINOv2', 'Computer Vision', 'Meta',
         'Self-supervised vision model that learns robust visual features without labels.',
         'license:apache-2.0', TRUE, '0.3B', ARRAY['FP16'],
         'https://huggingface.co/facebook/dinov2-large/resolve/main/assets/dino_v2.png'
@@ -983,7 +983,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/rf-detr', 'rf-detr', 'RF-DETR', 'Computer Vision', 'OpenCV',
+        'https://roboflow.com/', 'rf-detr', 'RF-DETR', 'Computer Vision', 'OpenCV',
         'Receptive Field based Detection Transformer for accurate visual understanding.',
         'license:apache-2.0', TRUE, 'Unknown', '{}',
         'https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg'
@@ -1038,7 +1038,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/mistralai/pixtral-large-2409', 'pixtral-large', 'Pixtral Large', 'Multimodal', 'Mistral AI',
+        'https://mistral.ai/', 'pixtral-large', 'Pixtral Large', 'Multimodal', 'Mistral AI',
         'A multimodal powerhouse from Mistral, combining text and vision with high efficiency.',
         'license:mistral-community', TRUE, '123B', ARRAY['BF16'],
         'https://huggingface.co/mistralai/pixtral-large-2409/resolve/main/assets/banner_pixtral.jpg'
@@ -1088,7 +1088,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/meta-llama/Llama-4-Vision-90b', 'llama-4-vision', 'Llama 4-Vision', 'Multimodal', 'Meta',
+        'https://www.llama.com/', 'llama-4-vision', 'Llama 4-Vision', 'Multimodal', 'Meta',
         'The vision-enabled variant of Llama 4, bringing eyesight to the open ecosystem.',
         'license:llama-community', TRUE, '90B', ARRAY['BF16'],
         'https://huggingface.co/meta-llama/Llama-3.2-11B-Vision/resolve/main/original/header.png'
@@ -1138,7 +1138,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/anthropic/claude-3-5-sonnet-vlm', 'claude-3-5-sonnet-vlm', 'Claude 3.5 Sonnet', 'Multimodal', 'Anthropic',
+        'https://www.anthropic.com/claude', 'claude-3-5-sonnet-vlm', 'Claude 3.5 Sonnet', 'Multimodal', 'Anthropic',
         'Excellent visual reasoning capabilities, particularly for UI and document tasks.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://upload.wikimedia.org/wikipedia/commons/7/78/Anthropic_logo.svg'
@@ -1188,7 +1188,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/google/gemini-3-0-ultra', 'gemini-3-0-ultra', 'Gemini 3.0 Ultra', 'Multimodal', 'Google',
+        'https://deepmind.google/technologies/gemini/', 'gemini-3-0-ultra', 'Gemini 3.0 Ultra', 'Multimodal', 'Google',
         'Google''s most capable multimodal model, designed for massive scale complex reasoning.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg'
@@ -1238,7 +1238,7 @@ WITH m AS (
         huggingface_url, model_name, display_name, category, organization, 
         description, license, safetensors, model_size, tensor_types, featured_image_url
     ) VALUES (
-        'https://huggingface.co/openai/o3', 'openai-o3', 'OpenAI o3', 'Multimodal', 'OpenAI',
+        'https://openai.com/', 'openai-o3', 'OpenAI o3', 'Multimodal', 'OpenAI',
         'The next evolution of reasoning models, capable of vast coherent thought chains.',
         'Proprietary', FALSE, 'Unknown', '{}',
         'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg'
