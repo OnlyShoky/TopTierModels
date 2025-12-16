@@ -43,7 +43,8 @@ def _parse_json_response(response: str) -> Optional[Dict[str, Any]]:
 
 
 # Prompt templates
-ARTICLE_PROMPT_TEMPLATE = """You are an expert AI technical writer. Generate a comprehensive blog article about the following AI model from Hugging Face.
+# Prompt templates
+ARTICLE_PROMPT_TEMPLATE = """You are an expert AI technical writer with an opinionated, editorial voice. Generate a concise blog article about the following AI model from Hugging Face.
 
 ## Model Information:
 - Name: {model_name}
@@ -56,21 +57,25 @@ ARTICLE_PROMPT_TEMPLATE = """You are an expert AI technical writer. Generate a c
 {readme_content}
 
 ## Requirements:
-1. Write a technical article (~400-700 words, readable in under 5 minutes).
-2. Include these sections:
-   - Executive Summary (2-3 sentences)
-   - Key Features and Innovations
-   - Use Cases and Applications
-   - Implementation Guidance (include code if available)
-   - Conclusion
-3. Be technically accurate but accessible to a broad audience.
+1. Write a punchy, opinionated article (~400-500 words, 4-6 minute read).
+2. Use this EXACT structure:
+   - **Opening Hook** (1-2 sentences establishing significance/personality)
+   - **Key Features and Innovations** (3-5 bullet points with brief explanations)
+   - **Performance Analysis** (1-2 paragraphs with editorial perspective)
+   - **Scoring Breakdown** (Always include with explanations)
+   - **Use Cases** (3-5 practical applications as bullet list)
+3. Write with personality and conviction - use phrases like "The New Standard", "Pure Excellence", "The Future of...", etc.
+4. Be technically informed but highly readable - more editorial than academic.
+5. Include code examples ONLY if they are simple and essential (prefer to omit).
 
 ## STRICT RULES:
 1. You MUST only use information that appears in the README content provided.  
    - No external facts, assumptions, or invented details.
    - Rephrase but do not add new information.
 
-2. If the README contains code, installation commands, usage examples, or configuration parameters → INCLUDE them exactly.
+2. AVOID overly technical architecture details - focus on capabilities and impact.
+
+3. LENGTH LIMIT: 400-500 words maximum. Be ruthlessly concise.
 
 ## SCORING INSTRUCTIONS:
 You MUST generate three scores (0-100) based ONLY on the information in the README:
@@ -93,6 +98,14 @@ You MUST generate three scores (0-100) based ONLY on the information in the READ
   - Cost: Free = +10, Freemium = 0, Paid = -15
 - If available on Hugging Face: +10
 
+**IMPORTANT**: Always include the scoring breakdown in the article content with this format:
+```
+### Scoring Breakdown
+*   **Quality (XX/100)**: [Brief explanation]
+*   **Speed (XX/100)**: [Brief explanation]
+*   **Freedom (XX/100)**: [Brief explanation]
+```
+
 ## METADATA EXTRACTION:
 Extract the following if present in the README:
 - safetensors: true/false (whether safetensors format is mentioned)
@@ -105,14 +118,22 @@ Include ONLY keywords that appear in the provided information:
 - Source type: Open Source, Open Weights, Free, Freemium, Paid, etc.
 - License in format: license:MIT, license:Apache-2.0, etc.
 
+## WRITING STYLE GUIDELINES:
+- Use strong opening hooks: "The New Standard", "Redefining Excellence", "The [Category] King", etc.
+- Be opinionated but fair: "While quality is undeniable, it comes at a cost..."
+- Use conversational shorthand: "It's fast. Really fast." or "This changes everything."
+- Focus on impact over implementation: What does this mean for users?
+- Keep paragraphs short (2-4 sentences max)
+- Use bullet points for features and use cases
+
 ## Output Format:
 Return a JSON object with:
-- title: Compelling article title
+- title: Compelling, personality-driven title (not generic)
 - slug: URL-friendly slug (lowercase, hyphens)
-- excerpt: 150-200 character summary
-- content: Full article in Markdown format
+- excerpt: 150-200 character summary with hook
+- content: Full article in Markdown format (400-500 words)
 - seo_keywords: Array of SEO keywords (follow rules above)
-- read_time_minutes: Estimated read time
+- read_time_minutes: Estimated read time (4-6 minutes)
 - quality_score: integer 0-100
 - speed_score: integer 0-100
 - freedom_score: integer 0-100

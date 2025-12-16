@@ -347,7 +347,7 @@ function PreviewPage() {
                                     className="btn btn-primary"
                                     style={{ width: '100%' }}
                                 >
-                                    View on Hugging Face →
+                                    Expl →
                                 </a>
                             </aside>
                         </div>
