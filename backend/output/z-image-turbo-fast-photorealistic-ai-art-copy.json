@@ -87,7 +87,25 @@
       "BF16"
     ]
   },
-  "linkedin_data": null,
+  "linkedin_data": {
+    "content": "Ever wondered how close AI images can get to real photography — in less than a second?\n\nA new deep dive just went live on my site, featuring Z-Image-Turbo, an image generation model that genuinely surprised me.\n\nWith an overall score of 91/100, this model sits comfortably in S-Tier territory, and for good reason.\n\nOverall score: 91/100\n\n🔥 𝗤𝘂𝗮𝗹𝗶𝘁𝘆: 92 – Photorealistic results that feel polished and visually confident\n⚡ 𝗦𝗽𝗲𝗲𝗱: 96 – Images appear almost instantly, even on modest hardware\n🚀 𝗙𝗿𝗲𝗲𝗱𝗼𝗺: 90 – Open weights, Apache 2.0 license, and real deployment flexibility\n💡 𝗧𝗲𝘅𝘁-𝗧𝗼-𝗜𝗺𝗮𝗴𝗲: Strong bilingual rendering in both English and Chinese\n\nWhat stood out to me most is how Z-Image-Turbo balances raw speed with visual realism. It doesn’t feel experimental — it feels ready. Ready for creators, developers, and real-world use cases that demand both quality and efficiency.\n\nIf you’re curious about where fast, open image generation is heading, the full article breaks it down in a clear, practical way.\n\nExplore the full analysis and more AI model reviews on my profile.",
+    "hook": "Ever wondered how close AI images can get to real photography — in less than a second?",
+    "key_points": [
+      "🔥 𝗤𝘂𝗮𝗹𝗶𝘁𝘆: 92 – Photorealistic results that feel polished and visually confident",
+      "⚡ 𝗦𝗽𝗲𝗲𝗱: 96 – Images appear almost instantly, even on modest hardware",
+      "🚀 𝗙𝗿𝗲𝗲𝗱𝗼𝗺: 90 – Open weights, Apache 2.0 license, and real deployment flexibility",
+      "💡 𝗧𝗲𝘅𝘁-𝗧𝗼-𝗜𝗺𝗮𝗴𝗲: Strong bilingual rendering in both English and Chinese"
+    ],
+    "call_to_action": "Explore the full analysis and more AI model reviews on my profile.",
+    "hashtags": [
+      "AI",
+      "ImageGeneration",
+      "OpenSourceAI",
+      "GenerativeAI",
+      "AICreators"
+    ],
+    "character_count": 1268
+  },
   "scores_data": {
     "overall_score": 90.66,
     "tier": "S",

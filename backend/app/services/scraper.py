@@ -93,6 +93,13 @@ async def scrape_model(url: str) -> ScrapedModel:
         # Get stats and metadata from API (more reliable)
         license_info = api_data.get('license', metadata.get('license'))
         
+        # Fallback: check tags for license if still None
+        if not license_info:
+            for tag in tags:
+                if tag.lower().startswith('license:'):
+                    license_info = tag.split(':', 1)[1]
+                    break
+        
         # New Metadata Extraction Logic
         safetensors = _extract_safetensors_status(api_data)
         model_size = _extract_model_size(api_data)
