@@ -42,6 +42,28 @@ def _parse_json_response(response: str) -> Optional[Dict[str, Any]]:
     return None
 
 
+def fix_markdown_code_blocks(content: str) -> str:
+    """
+    Fix common markdown code block formatting issues.
+    Specifically removes double newlines after language identifier.
+    Example: ```bash\\n\\n becomes ```bash\\n
+    """
+    if not content:
+        return content
+        
+    # Fix double newlines after code fence
+    # Look for ```language followed by \n\n
+    content = re.sub(r'```(\w+)\n\n', r'```\1\n', content)
+    
+    # Fix missing newline before closing fence
+    # Look for content followed immediately by ``` (excluding start of line)
+    content = re.sub(r'([^\n])```', r'\1\n```', content)
+    
+    return content
+
+
+
+
 
 # Prompt templates
 ARTICLE_PROMPT_TEMPLATE = """You are an expert AI technical writer with an opinionated, editorial voice. Generate a concise blog article about the following AI model from Hugging Face.
@@ -283,8 +305,9 @@ async def generate_article(model: ScrapedModel, category: str = "Other") -> Gene
             title=data.get('title', f"Analysis: {model.display_name}"),
             slug=data.get('slug', model.display_name.lower().replace(' ', '-')),
             excerpt=excerpt,
-            content=data.get('content', ''),
+            content=fix_markdown_code_blocks(data.get('content', '')),
             read_time_minutes=data.get('read_time_minutes', 5),
+
             seo_keywords=data.get('seo_keywords', []),
             hero_image_url=model.featured_image_url,
             quality_score=float(data.get('quality_score', 60)),
@@ -304,7 +327,8 @@ async def generate_article(model: ScrapedModel, category: str = "Other") -> Gene
             title=f"Analysis: {model.display_name}",
             slug=model.display_name.lower().replace(' ', '-'),
             excerpt=excerpt,
-            content=response,
+            content=fix_markdown_code_blocks(response),
+
             read_time_minutes=5,
             seo_keywords=[],
             hero_image_url=model.featured_image_url,

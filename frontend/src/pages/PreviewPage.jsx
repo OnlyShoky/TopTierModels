@@ -214,31 +214,46 @@ function PreviewPage() {
                                     <ReactMarkdown
                                         remarkPlugins={[remarkGfm]}
                                         components={{
+                                            pre: ({ children }) => <>{children}</>,
                                             code({ node, inline, className, children, ...props }) {
                                                 const match = /language-(\w+)/.exec(className || '')
-                                                return !inline && match ? (
-                                                    <div className="code-block">
-                                                        <div className="code-block-header">
-                                                            <span>{match[1]}</span>
-                                                            <button
-                                                                className="btn btn-ghost btn-sm"
-                                                                onClick={() => navigator.clipboard.writeText(String(children))}
+                                                if (!inline && match) {
+                                                    return (
+                                                        <div className="code-block">
+                                                            <div className="code-block-header">
+                                                                <span>{match[1]}</span>
+                                                                <button
+                                                                    className="btn btn-ghost btn-sm"
+                                                                    onClick={() => navigator.clipboard.writeText(String(children))}
+                                                                >
+                                                                    Copy
+                                                                </button>
+                                                            </div>
+                                                            <SyntaxHighlighter
+                                                                style={oneDark}
+                                                                language={match[1]}
+                                                                PreTag="div"
+                                                                {...props}
                                                             >
-                                                                Copy
-                                                            </button>
+                                                                {String(children).replace(/\n$/, '')}
+                                                            </SyntaxHighlighter>
                                                         </div>
-                                                        <SyntaxHighlighter
-                                                            style={oneDark}
-                                                            language={match[1]}
-                                                            PreTag="div"
-                                                            {...props}
-                                                        >
-                                                            {String(children).replace(/\n$/, '')}
-                                                        </SyntaxHighlighter>
-                                                    </div>
-                                                ) : (
-                                                    <code className={className} {...props}>{children}</code>
-                                                )
+                                                    )
+                                                } else if (!inline) {
+                                                    return (
+                                                        <pre className="not-prose bg-gray-800 p-4 rounded-lg overflow-x-auto">
+                                                            <code className={className} {...props}>
+                                                                {children}
+                                                            </code>
+                                                        </pre>
+                                                    )
+                                                } else {
+                                                    return (
+                                                        <code className={className} {...props}>
+                                                            {children}
+                                                        </code>
+                                                    )
+                                                }
                                             }
                                         }}
                                     >

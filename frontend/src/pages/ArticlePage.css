@@ -23,7 +23,8 @@
 /* Layout */
 .article-layout {
     display: grid;
-    grid-template-columns: 1fr 280px;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    /* CRITICAL: minmax(0, 1fr) prevents grid blowout */
     gap: var(--space-8);
 }
 
@@ -56,6 +57,8 @@
 .prose {
     font-size: var(--text-base);
     line-height: var(--leading-relaxed);
+    max-width: 100%;
+    overflow-wrap: break-word;
 }
 
 .prose h2 {

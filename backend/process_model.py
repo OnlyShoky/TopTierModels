@@ -26,7 +26,7 @@ load_dotenv()
 from app.config import settings
 from app.database import init_database, save_preview
 from app.services.scraper import scrape_model, validate_huggingface_url
-from app.services.llm_processor import generate_article, generate_linkedin_post
+from app.services.llm_processor import generate_article, generate_linkedin_post, fix_markdown_code_blocks
 from app.services.scoring_engine import calculate_scores, classify_category
 from app.models import ScrapedModel, GeneratedArticle, LinkedInPost, ModelScores
 
@@ -188,6 +188,11 @@ async def load_preview_from_json(json_path: str) -> str:
     # Reconstruct data
     model_data = state["model_data"]
     article_data = state["article_data"]
+    
+    # Fix markdown content if needed
+    if "content" in article_data:
+        article_data["content"] = fix_markdown_code_blocks(article_data["content"])
+        
     linkedin_data = state["linkedin_data"]
     scores_data = state["scores_data"]
     images = state["images"]

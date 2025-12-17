@@ -1,0 +1,130 @@
+{
+  "model_data": {
+    "huggingface_url": "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo",
+    "model_name": "Tongyi-MAI/Z-Image-Turbo",
+    "display_name": "Z-Image-Turbo",
+    "organization": "Tongyi-MAI",
+    "description": "We’re on a journey to advance and democratize artificial intelligence through open source and open science.",
+    "readme_content": "⚡️- Image\nAn Efficient Image Generation Foundation Model with Single-Stream Diffusion Transformer\nWelcome to the official repository for the Z-Image（造相）project!\n✨ Z-Image\nZ-Image is a powerful and highly efficient image generation model with\n6B\nparameters. Currently there are three variants:\n🚀\nZ-Image-Turbo\n– A distilled version of Z-Image that matches or exceeds leading competitors with only\n8 NFEs\n(Number of Function Evaluations). It offers\n⚡️sub-second inference latency⚡️\non enterprise-grade H800 GPUs and fits comfortably within\n16G VRAM consumer devices\n. It excels in photorealistic image generation, bilingual text rendering (English & Chinese), and robust instruction adherence.\n🧱\nZ-Image-Base\n– The non-distilled foundation model. By releasing this checkpoint, we aim to unlock the full potential for community-driven fine-tuning and custom development.\n✍️\nZ-Image-Edit\n– A variant fine-tuned on Z-Image specifically for image editing tasks. It supports creative image-to-image generation with impressive instruction-following capabilities, allowing for precise edits based on natural language prompts.\n📥 Model Zoo\nModel\nHugging Face\nModelScope\nZ-Image-Turbo\nZ-Image-Base\nTo be released\nTo be released\nZ-Image-Edit\nTo be released\nTo be released\n🖼️ Showcase\n📸\nPhotorealistic Quality\n:\nZ-Image-Turbo\ndelivers strong photorealistic image generation while maintaining excellent aesthetic quality.\n📖\nAccurate Bilingual Text Rendering\n:\nZ-Image-Turbo\nexcels at accurately rendering complex Chinese and English text.\n💡\nPrompt Enhancing & Reasoning\n: Prompt Enhancer empowers the model with reasoning capabilities, enabling it to transcend surface-level descriptions and tap into underlying world knowledge.\n🧠\nCreative Image Editing\n:\nZ-Image-Edit\nshows a strong understanding of bilingual editing instructions, enabling imaginative and flexible image transformations.\n🏗️ Model Architecture\nWe adopt a\nScalable Single-Stream DiT\n(S3-DiT) architecture. In this setup, text, visual semantic tokens, and image VAE tokens are concatenated at the sequence level to serve as a unified input stream, maximizing parameter efficiency compared to dual-stream approaches.\n📈 Performance\nAccording to the Elo-based Human Preference Evaluation (on\nAlibaba AI Arena\n), Z-Image-Turbo shows highly competitive performance against other leading models, while achieving state-of-the-art results among open-source models.\nClick to view the full leaderboard\n🚀 Quick Start\nInstall the latest version of diffusers, use the following command:\nClick here for details for why you need to install diffusers from source\nWe have submitted two pull requests (\n#12703\nand\n#12715\n) to the 🤗 diffusers repository to add support for Z-Image. Both PRs have been merged into the latest official diffusers release.\n  Therefore, you need to install diffusers from source for the latest features and Z-Image support.\npip install git+https://github.com/huggingface/diffusers\nimport\ntorch\nfrom\ndiffusers\nimport\nZImagePipeline\n# 1. Load the pipeline\n# Use bfloat16 for optimal performance on supported GPUs\npipe = ZImagePipeline.from_pretrained(\n\"Tongyi-MAI/Z-Image-Turbo\"\n,\n    torch_dtype=torch.bfloat16,\n    low_cpu_mem_usage=\nFalse\n,\n)\npipe.to(\n\"cuda\"\n)\n# [Optional] Attention Backend\n# Diffusers uses SDPA by default. Switch to Flash Attention for better efficiency if supported:\n# pipe.transformer.set_attention_backend(\"flash\")    # Enable Flash-Attention-2\n# pipe.transformer.set_attention_backend(\"_flash_3\") # Enable Flash-Attention-3\n# [Optional] Model Compilation\n# Compiling the DiT model accelerates inference, but the first run will take longer to compile.\n# pipe.transformer.compile()\n# [Optional] CPU Offloading\n# Enable CPU offloading for memory-constrained devices.\n# pipe.enable_model_cpu_offload()\nprompt =\n\"Young Chinese woman in red Hanfu, intricate embroidery. Impeccable makeup, red floral forehead pattern. Elaborate high bun, golden phoenix headdress, red flowers, beads. Holds round folding fan with lady, trees, bird. Neon lightning-bolt lamp (⚡️), bright yellow glow, above extended left palm. Soft-lit outdoor night background, silhouetted tiered pagoda (西安大雁塔), blurred colorful distant lights.\"\n# 2. Generate Image\nimage = pipe(\n    prompt=prompt,\n    height=\n1024\n,\n    width=\n1024\n,\n    num_inference_steps=\n9\n,\n# This actually results in 8 DiT forwards\nguidance_scale=\n0.0\n,\n# Guidance should be 0 for the Turbo models\ngenerator=torch.Generator(\n\"cuda\"\n).manual_seed(\n42\n),\n).images[\n0\n]\n\nimage.save(\n\"example.png\"\n)\n🔬 Decoupled-DMD: The Acceleration Magic Behind Z-Image\nDecoupled-DMD is the core few-step distillation algorithm that empowers the 8-step Z-Image model.\nOur core insight in Decoupled-DMD  is that the success of existing DMD (Distributaion Matching Distillation) methods is the result of two independent, collaborating mechanisms:\nCFG Augmentation (CA)\n: The primary\nengine\n🚀 driving the distillation process, a factor largely overlooked in previous work.\nDistribution Matching (DM)\n: Acts more as a\nregularizer\n⚖️, ensuring the stability and quality of the generated output.\nBy recognizing and decoupling these two mechanisms, we were able to study and optimize them in isolation. This ultimately motivated us to develop an improved distillation process that significantly enhances the performance of few-step generation.\n🤖 DMDR: Fusing DMD with Reinforcement Learning\nBuilding upon the strong foundation of Decoupled-DMD, our 8-step Z-Image model has already demonstrated exceptional capabilities. To achieve further improvements in terms of semantic alignment, aesthetic quality, and structural coherence—while producing images with richer high-frequency details—we present\nDMDR\n.\nOur core insight behind DMDR is that Reinforcement Learning (RL) and Distribution Matching Distillation (DMD) can be synergistically integrated during the post-training of few-step models. We demonstrate that:\nRL Unlocks the Performance of DMD\n🚀\nDMD Effectively Regularizes RL\n⚖️\n⏬ Download\npip install -U huggingface_hub\nHF_XET_HIGH_PERFORMANCE=1 hf download Tongyi-MAI/Z-Image-Turbo\n📜 Citation\nIf you find our work useful in your research, please consider citing:\n@article{team2025zimage,\n  title={Z-Image: An Efficient Image Generation Foundation Model with Single-Stream Diffusion Transformer},\n  author={Z-Image Team},\n  journal={arXiv preprint arXiv:2511.22699},\n  year={2025}\n}\n\n@article{liu2025decoupled,\n  title={Decoupled DMD: CFG Augmentation as the Spear, Distribution Matching as the Shield},\n  author={Dongyang Liu and Peng Gao and David Liu and Ruoyi Du and Zhen Li and Qilong Wu and Xin Jin and Sihan Cao and Shifeng Zhang and Hongsheng Li and Steven Hoi},\n  journal={arXiv preprint arXiv:2511.22677},\n  year={2025}\n}\n\n@article{jiang2025distribution,\n  title={Distribution Matching Distillation Meets Reinforcement Learning},\n  author={Jiang, Dengyang and Liu, Dongyang and Wang, Zanyi and Wu, Qilong and Jin, Xin and Liu, David and Li, Zhen and Wang, Mengmeng and Gao, Peng and Yang, Harry},\n  journal={arXiv preprint arXiv:2511.13649},\n  year={2025}\n}",
+    "license": null,
+    "tags": [
+      "diffusers",
+      "safetensors",
+      "text-to-image",
+      "en",
+      "arxiv:2511.22699",
+      "arxiv:2511.22677",
+      "arxiv:2511.13649",
+      "license:apache-2.0",
+      "diffusers:ZImagePipeline",
+      "deploy:azure",
+      "region:us"
+    ],
+    "model_metadata": {},
+    "featured_image_url": "https://img.shields.io/badge/%F0%9F%A4%97%20Checkpoint-Z--Image--Turbo-yellow",
+    "code_snippets": [
+      {
+        "language": "bash",
+        "code": "pip install git+https://github.com/huggingface/diffusers",
+        "title": "Bash Example"
+      },
+      {
+        "language": "python",
+        "code": "importtorchfromdiffusersimportZImagePipeline# 1. Load the pipeline# Use bfloat16 for optimal performance on supported GPUspipe = ZImagePipeline.from_pretrained(\"Tongyi-MAI/Z-Image-Turbo\",\n    torch_dtype=torch.bfloat16,\n    low_cpu_mem_usage=False,\n)\npipe.to(\"cuda\")# [Optional] Attention Backend# Diffusers uses SDPA by default. Switch to Flash Attention for better efficiency if supported:# pipe.transformer.set_attention_backend(\"flash\")    # Enable Flash-Attention-2# pipe.transformer.set_attention_backend(\"_flash_3\") # Enable Flash-Attention-3# [Optional] Model Compilation# Compiling the DiT model accelerates inference, but the first run will take longer to compile.# pipe.transformer.compile()# [Optional] CPU Offloading# Enable CPU offloading for memory-constrained devices.# pipe.enable_model_cpu_offload()prompt =\"Young Chinese woman in red Hanfu, intricate embroidery. Impeccable makeup, red floral forehead pattern. Elaborate high bun, golden phoenix headdress, red flowers, beads. Holds round folding fan with lady, trees, bird. Neon lightning-bolt lamp (⚡️), bright yellow glow, above extended left palm. Soft-lit outdoor night background, silhouetted tiered pagoda (西安大雁塔), blurred colorful distant lights.\"# 2. Generate Imageimage = pipe(\n    prompt=prompt,\n    height=1024,\n    width=1024,\n    num_inference_steps=9,# This actually results in 8 DiT forwardsguidance_scale=0.0,# Guidance should be 0 for the Turbo modelsgenerator=torch.Generator(\"cuda\").manual_seed(42),\n).images[0]\n\nimage.save(\"example.png\")",
+        "title": "Python Example"
+      },
+      {
+        "language": "bash",
+        "code": "pip install -U huggingface_hub\nHF_XET_HIGH_PERFORMANCE=1 hf download Tongyi-MAI/Z-Image-Turbo",
+        "title": "Bash Example"
+      },
+      {
+        "language": "bibtex",
+        "code": "@article{team2025zimage,\n  title={Z-Image: An Efficient Image Generation Foundation Model with Single-Stream Diffusion Transformer},\n  author={Z-Image Team},\n  journal={arXiv preprint arXiv:2511.22699},\n  year={2025}\n}\n\n@article{liu2025decoupled,\n  title={Decoupled DMD: CFG Augmentation as the Spear, Distribution Matching as the Shield},\n  author={Dongyang Liu and Peng Gao and David Liu and Ruoyi Du and Zhen Li and Qilong Wu and Xin Jin and Sihan Cao and Shifeng Zhang and Hongsheng Li and Steven Hoi},\n  journal={arXiv preprint arXiv:2511.22677},\n  year={2025}\n}\n\n@article{jiang2025distribution,\n  title={Distribution Matching Distillation Meets Reinforcement Learning},\n  author={Jiang, Dengyang and Liu, Dongyang and Wang, Zanyi and Wu, Qilong and Jin, Xin and Liu, David and Li, Zhen and Wang, Mengmeng and Gao, Peng and Yang, Harry},\n  journal={arXiv preprint arXiv:2511.13649},\n  year={2025}\n}",
+        "title": "Bibtex Example"
+      }
+    ],
+    "images": [
+      "https://img.shields.io/badge/%F0%9F%A4%97%20Checkpoint-Z--Image--Turbo-yellow",
+      "https://img.shields.io/badge/%F0%9F%A4%97%20Online_Demo-Z--Image--Turbo-blue",
+      "https://img.shields.io/badge/%F0%9F%A4%97%20Mobile_Demo-Z--Image--Turbo-red",
+      "https://img.shields.io/badge/%F0%9F%A4%96%20Checkpoint-Z--Image--Turbo-624aff",
+      "https://img.shields.io/badge/%F0%9F%A4%96%20Online_Demo-Z--Image--Turbo-17c7a7"
+    ],
+    "safetensors": true,
+    "model_size": null,
+    "tensor_types": [],
+    "category": "Image Generation"
+  },
+  "article_data": {
+    "title": "Z-Image-Turbo: The New Speed Standard for AI Image Generation",
+    "slug": "z-image-turbo-new-speed-standard",
+    "excerpt": "Tongyi-MAI's Z-Image-Turbo isn't just another image generation model; it's a blazing-fast, photorealistic powerhouse redefining efficiency. Expect sub-second inference and stunning quality, even on consumer hardware.",
+    "content": "Forget sluggish image generation; Tongyi-MAI's Z-Image-Turbo isn't just fast, it's a paradigm shift. This model redefines efficiency in the high-stakes world of AI art, delivering stunning visuals with unprecedented speed and precision.\n\n### Key Features and Innovations\n\n*   **Blazing Fast Inference**: With just 8 NFEs, Z-Image-Turbo achieves sub-second inference on enterprise-grade H800 GPUs and runs comfortably on consumer 16G VRAM devices. This is pure speed, making rapid iteration a reality.\n*   **Photorealistic Excellence**: Expect top-tier photorealistic image generation, coupled with exceptional aesthetic quality that rivals leading competitors.\n*   **Bilingual Text Mastery**: A standout feature is its accurate rendering of both complex Chinese and English text, a significant advantage for global content creation and nuanced prompting.\n*   **Architectural Prowess**: Leveraging a Scalable Single-Stream DiT (S3-DiT) architecture, it maximizes parameter efficiency by unifying input streams, a smart move for performance.\n*   **Distillation Magic**: Powered by innovations like Decoupled-DMD and DMDR, Z-Image-Turbo achieves its remarkable performance through advanced distillation techniques that prioritize both speed and fidelity.\n\n### Performance Analysis\n\nWhen it comes to raw performance, Z-Image-Turbo doesn't just compete; it sets new benchmarks. Evaluated on the Elo-based Human Preference Evaluation via Alibaba AI Arena, it stands \"highly competitive against other leading models\" and, crucially, achieves \"state-of-the-art results among open-source models.\" This isn't just marketing fluff; it's a testament to the ingenious Decoupled-DMD and DMDR distillation methods. These breakthroughs, which meticulously decouple and integrate CFG Augmentation, Distribution Matching, and Reinforcement Learning, are the secret sauce behind its ability to produce rich, high-frequency details and superior semantic alignment at lightning speed. Tongyi-MAI has engineered a model that delivers both quality and velocity, a rare and impactful feat in the current AI landscape.\n\n### Scoring Breakdown\n*   **Quality (92/100)**: Achieves \"highly competitive\" and \"state-of-the-art among open-source models\" in human preference evaluations, excelling in photorealism and bilingual text rendering.\n*   **Speed (98/100)**: Boasts \"sub-second inference latency\" with only \"8 NFEs\" and fits \"16G VRAM consumer devices,\" making it exceptionally fast and efficient.\n*   **Freedom (70/100)**: Available on Hugging Face (+10), implied free (+10) and open source/open weights (+10) through its organization's description and community focus, but the license is currently \"Unknown\" (base 40).\n\n### Implementation/Usage\n\nGetting started with Z-Image-Turbo is straightforward, thanks to its integration with `diffusers`. You'll need to install the latest version from source to ensure full support.\n\n```python\npip install git+https://github.com/huggingface/diffusers\nimport torch\nfrom diffusers import ZImagePipeline\n\n# 1. Load the pipeline\npipe = ZImagePipeline.from_pretrained(\n    \"Tongyi-MAI/Z-Image-Turbo\",\n    torch_dtype=torch.bfloat16,\n    low_cpu_mem_usage=False,\n)\npipe.to(\"cuda\")\n\nprompt = \"Young Chinese woman in red Hanfu, intricate embroidery. Impeccable makeup, red floral forehead pattern. Elaborate high bun, golden phoenix headdress, red flowers, beads. Holds round folding fan with lady, trees, bird. Neon lightning-bolt lamp (⚡️), bright yellow glow, above extended left palm. Soft-lit outdoor night background, silhouetted tiered pagoda (西安大雁塔), blurred colorful distant lights.\"\n\n# 2. Generate Image\nimage = pipe(\n    prompt=prompt,\n    height=1024,\n    width=1024,\n    num_inference_steps=9,\n    guidance_scale=0.0,\n    generator=torch.Generator(\"cuda\").manual_seed(42),\n).images[0]\n\nimage.save(\"example.png\")\n```\n\n### Use Cases\n\n*   **Rapid Prototyping & Asset Creation**: Generate high-quality images quickly for design, marketing, or game development where speed is paramount.\n*   **Global Content Localisation**: Create images with accurate bilingual (English & Chinese) text for diverse audiences and international markets.\n*   **Creative Image-to-Image Editing**: Leverage the Z-Image-Edit variant for intricate, instruction-guided transformations and artistic renditions.\n*   **Accessible AI Art**: Run advanced image generation on consumer-grade GPUs, democratizing access to high-end creative tools.\n*   **Foundation for Fine-tuning**: Utilize Z-Image-Base for community-driven custom development and specialized applications, unlocking new possibilities.\n\n### Citations/Sources\n\n*   Z-Image Team. (2025). *Z-Image: An Efficient Image Generation Foundation Model with Single-Stream Diffusion Transformer*. arXiv preprint arXiv:2511.22699.\n*   Liu, D., et al. (2025). *Decoupled DMD: CFG Augmentation as the Spear, Distribution Matching as the Shield*. arXiv preprint arXiv:2511.22677.\n*   Jiang, D., et al. (2025). *Distribution Matching Distillation Meets Reinforcement Learning*. arXiv preprint arXiv:2511.13649.",
+    "hero_image_url": "https://img.shields.io/badge/%F0%9F%A4%97%20Checkpoint-Z--Image--Turbo-yellow",
+    "read_time_minutes": 5,
+    "author": "TopTierModels AI",
+    "seo_keywords": [
+      "Image Generation",
+      "Open Source",
+      "Free",
+      "Open Weights",
+      "license:Unknown"
+    ],
+    "quality_score": 92.0,
+    "speed_score": 98.0,
+    "freedom_score": 70.0,
+    "safetensors": null,
+    "model_size": "6B parameters",
+    "tensor_types": [
+      "BF16"
+    ]
+  },
+  "linkedin_data": {
+    "content": "Imagine bringing your creative visions to life almost instantly.\n\nMy latest article explores Tongyi-MAI's Z-Image-Turbo, an impressive new model that scored an 86.65/100 in our latest review.\n\n✅ 𝗤𝘂𝗮𝗹𝗶𝘁𝘆: 92.0 – Delivers stunningly 𝗽𝗵𝗼𝘁𝗼𝗿𝗲𝗮𝗹𝗶𝘀𝘁𝗶𝗰 images with remarkable consistency.\n⚡ 𝗦𝗽𝗲𝗲𝗱: 98.0 – Redefines efficiency with 𝘀𝘂𝗯-𝘀𝗲𝗰𝗼𝗻𝗱 image generation, even on consumer hardware.\n💡 𝗙𝗿𝗲𝗲𝗱𝗼𝗺: 70.0 – Offers significant flexibility for creative exploration and practical application.\n\nWhat truly captivates me about Z-Image-Turbo is its ability to democratize high-speed, high-quality AI art. It feels like a genuine leap forward, empowering creators without requiring top-tier hardware.\n\nFor a deep dive into how Z-Image-Turbo is setting a new speed standard for AI image generation, read the full article on my profile → [link]",
+    "hook": "Imagine bringing your creative visions to life almost instantly.",
+    "key_points": [
+      "✅ 𝗤𝘂𝗮𝗹𝗶𝘁𝘆: 92.0 – Delivers stunningly 𝗽𝗵𝗼𝘁𝗼𝗿𝗲𝗮𝗹𝗶𝘀𝘁𝗶𝗰 images with remarkable consistency.",
+      "⚡ 𝗦𝗽𝗲𝗲𝗱: 98.0 – Redefines efficiency with 𝘀𝘂𝗯-𝘀𝗲𝗰𝗼𝗻𝗱 image generation, even on consumer hardware.",
+      "💡 𝗙𝗿𝗲𝗲𝗱𝗼𝗺: 70.0 – Offers significant flexibility for creative exploration and practical application."
+    ],
+    "call_to_action": "For a deep dive into how Z-Image-Turbo is setting a new speed standard for AI image generation, read the full article on my profile → [link]",
+    "hashtags": [
+      "AI ImageGeneration",
+      "CreativeAI",
+      "MachineLearning",
+      "AIArt",
+      "TechInnovation"
+    ],
+    "character_count": 826
+  },
+  "scores_data": {
+    "overall_score": 86.65,
+    "tier": "A",
+    "quality_score": 92.0,
+    "speed_score": 98.0,
+    "freedom_score": 70.0,
+    "tags": [
+      {
+        "tag_name": "Open Weights",
+        "color_hex": "#7ed957",
+        "description": "Model weights available for download"
+      },
+      {
+        "tag_name": "Closed / Paid",
+        "color_hex": "#dc3545",
+        "description": "Requires payment or restricted access"
+      }
+    ],
+    "benchmarks": {},
+    "scoring_methodology": "\n    Overall Score = (Quality × 0.333) + (Speed × 0.333) + (Freedom × 0.334)\n    \n    Quality Score (0-100): Output quality, accuracy, realism, coherence\n    Speed Score (0-100): Inference speed, efficiency, time-to-result\n    Freedom Score (0-100): Licensing openness, cost, deployment flexibility\n    \n    Visual Tags indicate accessibility:\n    - Open Source (green): Full source available\n    - Open Weights (light green): Model weights downloadable\n    - Free (blue): No cost to use\n    - Freemium (light blue): Free tier with paid options\n    - Closed/Paid (red): Requires payment\n    \n    Tier Assignment:\n    - S Tier: 90-100 (Exceptional)\n    - A Tier: 80-89 (Excellent)\n    - B Tier: 70-79 (Good)\n    - C Tier: 60-69 (Adequate)\n    - D Tier: 0-59 (Limited)\n    "
+  },
+  "images": [
+    "https://img.shields.io/badge/%F0%9F%A4%97%20Checkpoint-Z--Image--Turbo-yellow",
+    "https://img.shields.io/badge/%F0%9F%A4%97%20Online_Demo-Z--Image--Turbo-blue",
+    "https://img.shields.io/badge/%F0%9F%A4%97%20Mobile_Demo-Z--Image--Turbo-red",
+    "https://img.shields.io/badge/%F0%9F%A4%96%20Checkpoint-Z--Image--Turbo-624aff",
+    "https://img.shields.io/badge/%F0%9F%A4%96%20Online_Demo-Z--Image--Turbo-17c7a7"
+  ],
+  "preview_id": "daf51441"
+}

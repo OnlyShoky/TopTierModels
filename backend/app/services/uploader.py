@@ -93,20 +93,24 @@ async def upload_to_supabase(
     article_slug = article_result.data[0]['slug']
     
     # Step 4: Insert LinkedIn post
-    linkedin_record = {
-        'article_id': article_id,
-        'model_id': model_id,
-        'content': linkedin_data.get('content'),
-        'hook': linkedin_data.get('hook'),
-        'key_points': linkedin_data.get('key_points', []),
-        'call_to_action': linkedin_data.get('call_to_action'),
-        'hashtags': linkedin_data.get('hashtags', []),
-        'character_count': linkedin_data.get('character_count', 0)
-    }
-    
-    # Clean up old LinkedIn posts for this article to avoid duplicates (since no unique constraint)
-    client.table('simplified_articles').delete().eq('article_id', article_id).execute()
-    client.table('simplified_articles').insert(linkedin_record).execute()
+    if linkedin_data:
+        linkedin_record = {
+            'article_id': article_id,
+            'model_id': model_id,
+            'content': linkedin_data.get('content'),
+            'hook': linkedin_data.get('hook'),
+            'key_points': linkedin_data.get('key_points', []),
+            'call_to_action': linkedin_data.get('call_to_action'),
+            'hashtags': linkedin_data.get('hashtags', []),
+            'character_count': linkedin_data.get('character_count', 0)
+        }
+        
+        # Clean up old LinkedIn posts for this article to avoid duplicates (since no unique constraint)
+        client.table('simplified_articles').delete().eq('article_id', article_id).execute()
+        client.table('simplified_articles').insert(linkedin_record).execute()
+    else:
+        # If no linkedin data, ensure we don't have stray records (optional, but good for consistency)
+        client.table('simplified_articles').delete().eq('article_id', article_id).execute()
     
     # Step 5: Insert model scores
     scores_record = {
