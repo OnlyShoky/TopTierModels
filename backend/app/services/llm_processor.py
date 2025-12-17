@@ -42,7 +42,7 @@ def _parse_json_response(response: str) -> Optional[Dict[str, Any]]:
     return None
 
 
-# Prompt templates
+
 # Prompt templates
 ARTICLE_PROMPT_TEMPLATE = """You are an expert AI technical writer with an opinionated, editorial voice. Generate a concise blog article about the following AI model from Hugging Face.
 
@@ -63,7 +63,9 @@ ARTICLE_PROMPT_TEMPLATE = """You are an expert AI technical writer with an opini
    - **Key Features and Innovations** (3-5 bullet points with brief explanations)
    - **Performance Analysis** (1-2 paragraphs with editorial perspective)
    - **Scoring Breakdown** (Always include with explanations)
+   - **Implementation/Usage** (REQUIRED if code exists in README - include code examples exactly as provided)
    - **Use Cases** (3-5 practical applications as bullet list)
+   - **Citations/Sources** (if mentioned in README, include at the end)
 3. Write with personality and conviction - use phrases like "The New Standard", "Pure Excellence", "The Future of...", etc.
 4. Be technically informed but highly readable - more editorial than academic.
 5. Include code examples ONLY if they are simple and essential (prefer to omit).
@@ -126,6 +128,22 @@ Include ONLY keywords that appear in the provided information:
 - Keep paragraphs short (2-4 sentences max)
 - Use bullet points for features and use cases
 
+**CRITICAL: CODE BLOCK FORMAT (this is where most errors happen):**
+When including code, you MUST format it EXACTLY like this:
+
+CORRECT:
+```bash
+pip install package
+```
+
+WRONG (will break the page):
+```
+bash
+pip install package
+```
+
+The language name (bash, python, etc.) must be on the SAME LINE as the three opening backticks with NO LINE BREAKS.
+
 ## Output Format:
 Return a JSON object with:
 - title: Compelling, personality-driven title (not generic)
@@ -142,7 +160,6 @@ Return a JSON object with:
 - tensor_types: array of strings or empty array
 
 Return ONLY valid JSON, no additional text."""
-
 
 LINKEDIN_PROMPT_TEMPLATE = """Create an elegant, organic, and human LinkedIn post announcing a new AI model article.
 
