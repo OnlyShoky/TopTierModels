@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import ArticleCard from '../components/ArticleCard'
-import { getArticles } from '../lib/supabase'
+import { getArticles, getTotalModelsCount } from '../lib/supabase'
 import './HomePage.css'
 
 // SVG Icons
@@ -54,6 +54,7 @@ const t = {
 function HomePage() {
     const [articles, setArticles] = useState([])
     const [loading, setLoading] = useState(true)
+    const [totalCount, setTotalCount] = useState(0) // State for total count
     const [filters, setFilters] = useState({
         category: 'all',
         tier: 'all'
@@ -63,10 +64,18 @@ function HomePage() {
         const fetchArticles = async () => {
             setLoading(true)
             try {
+                // Fetch articles (limit 12)
                 const data = await getArticles({
                     category: filters.category,
                     tier: filters.tier
                 })
+
+                // Fetch total count matching filters
+                const count = await getTotalModelsCount({
+                    category: filters.category,
+                    tier: filters.tier
+                })
+                setTotalCount(count)
 
                 // Map Supabase data to component format
                 const formattedArticles = data.map(item => ({
@@ -129,7 +138,7 @@ function HomePage() {
                     {/* Stats */}
                     <div className="hero-stats">
                         <div className="stat">
-                            <span className="stat-value">10+</span>
+                            <span className="stat-value">{totalCount < 10 ? totalCount : Math.floor(totalCount / 10) * 10 + '+'}</span>
                             <span className="stat-label">Models</span>
                         </div>
                         <div className="stat">
@@ -181,7 +190,7 @@ function HomePage() {
                 <div className="container">
                     <div className="section-header">
                         <span className="section-title">
-                            {articles.length} models
+                            {totalCount} models {/* Display Total Count */}
                         </span>
                     </div>
 
