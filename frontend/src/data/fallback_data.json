@@ -1,0 +1,1883 @@
+{
+  "articles": [
+    {
+      "id": "article-1771071150962-1",
+      "model_id": "model-1771071150962-1",
+      "title": "Llama 4: Open Source Perfection",
+      "slug": "llama-4-analysis",
+      "excerpt": "Meta's Llama 4 redefines what is possible with open weights, matching proprietary giants in reasoning.",
+      "content": "## The New Standard for Open Reasoning\r\nMeta has once again shattered expectations with the release of Llama 4. It represents a massive leap forward in reasoning capabilities, code generation, and multilingual understanding, firmly establishing open weights as a competitor to the best closed models.\r\n\r\n### Key Features and Innovations\r\n*   **Dense-MoE Hybrid Architecture**: Achieves massive knowledge retention with efficient inference.\r\n*   **Reasoning Breakthroughs**: Significant improvements in Chain-of-Thought processing.\r\n*   **Long Context**: Natively supports 128k context with perfect recall.\r\n\r\n## Performance Analysis\r\nLlama 4 is not just \"good for an open model\"—it is simply excellent. It handles complex instruction following with a nuance previously reserved for GPT-4 class models.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (92/100)**: Matches top-tier proprietary models in most benchmarks.\r\n*   **Speed (85/100)**: Highly optimized for modern GPU clusters.\r\n*   **Freedom (100/100)**: The most open of the high-performance giants.\r\n\r\n## Use Cases\r\n*   Enterprise-grade chatbots\r\n*   Complex data analysis pipelines\r\n*   Sovereign AI deployments",
+      "hero_image_url": "",
+      "read_time_minutes": 6,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Llama 4",
+        "Meta",
+        "Open Source",
+        "LLM",
+        "Text Generation"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.962Z",
+      "created_at": "2026-02-14T12:12:30.963Z",
+      "updated_at": "2026-02-14T12:12:30.963Z",
+      "models": {
+        "id": "model-1771071150962-1",
+        "huggingface_url": "https://www.llama.com/",
+        "model_name": "llama-4-70b",
+        "display_name": "Llama 4",
+        "category": "Text Generation",
+        "organization": "Meta",
+        "description": "Meta's next-generation open weights model pushing the boundaries of reasoning and efficiency.",
+        "license": "license:llama-community",
+        "safetensors": true,
+        "model_size": "70B",
+        "tensor_types": [
+          "BF16"
+        ],
+        "featured_image_url": "https://huggingface.co/meta-llama/Llama-3.2-1B/resolve/main/original/header.png",
+        "model_scores": {
+          "overall_score": 92.3,
+          "tier": "S",
+          "quality_score": 92,
+          "speed_score": 85,
+          "freedom_score": 100
+        }
+      }
+    },
+    {
+      "id": "article-1771071150963-2",
+      "model_id": "model-1771071150963-2",
+      "title": "Grok 3: Real-Time Intelligence",
+      "slug": "grok-3-analysis",
+      "excerpt": "Grok 3 combines massive compute with real-time data access to create a uniquely capable assistant.",
+      "content": "## The Pulse of the Internet\r\nGrok 3 differentiates itself not just by raw intelligence, but by its \"now-ness.\" Integrated deeply with real-time data streams, it provides answers that are up-to-the-second, a capability most static training runs lack.\r\n\r\n### Key Features\r\n*   **Real-Time Knowledge**: Access to current events as they happen.\r\n*   **Unfiltered Personality**: Designed to be less preachy and more conversational.\r\n*   **Visual Logic**: Strong multimodal capabilities for analyzing feeds.\r\n\r\n## Performance Analysis\r\nWhile uniquely capable in news and current events, it sometimes favors wit over strict accuracy in technical domains.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (90/100)**: Intelligent but occasionally hallucinates on static facts.\r\n*   **Speed (92/100)**: Extremely fast inference infrastructure.\r\n*   **Freedom (40/100)**: Proprietary and bound to the X ecosystem.\r\n\r\n## Use Cases\r\n*   Trend analysis and news summarization\r\n*   Creative and engaging conversational agents\r\n*   Market sentiment analysis",
+      "hero_image_url": "",
+      "read_time_minutes": 5,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "xAI",
+        "Grok",
+        "Real-time",
+        "Chatbot",
+        "Proprietary"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.963Z",
+      "created_at": "2026-02-14T12:12:30.963Z",
+      "updated_at": "2026-02-14T12:12:30.963Z",
+      "models": {
+        "id": "model-1771071150963-2",
+        "huggingface_url": "https://x.ai/",
+        "model_name": "grok-3",
+        "display_name": "Grok 3",
+        "category": "Text Generation",
+        "organization": "xAI",
+        "description": "The wittiest and most real-time aware model, integrated directly with X platform data.",
+        "license": "Proprietary",
+        "safetensors": false,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Grok_logo.svg",
+        "model_scores": {
+          "overall_score": 73.9,
+          "tier": "B",
+          "quality_score": 90,
+          "speed_score": 92,
+          "freedom_score": 40
+        }
+      }
+    },
+    {
+      "id": "article-1771071150963-3",
+      "model_id": "model-1771071150963-3",
+      "title": "Gemini 3.0 Pro: The Context King",
+      "slug": "gemini-3-pro-analysis",
+      "excerpt": "Gemini 3.0 Pro continues to push the boundaries of long-context understanding and retrieval.",
+      "content": "'## Massive Context, Moderate Freedom\r\nGemini 3.0 Pro is built for one thing above all else: handling massive amounts of information. With a context window that effectively lets you load entire libraries, it changes how we approach data retrieval.\r\n\r\n### Key Features\r\n*   **Infinite Context**: Successfully retrieves needles",
+      "hero_image_url": "",
+      "read_time_minutes": null,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [],
+      "related_model_ids": "",
+      "published": null,
+      "published_at": "2026-02-14T12:12:30.963Z",
+      "created_at": "2026-02-14T12:12:30.963Z",
+      "updated_at": "2026-02-14T12:12:30.963Z",
+      "models": {
+        "id": "model-1771071150963-3",
+        "huggingface_url": "https://deepmind.google/models/gemini/pro/",
+        "model_name": "gemini-3-0-pro",
+        "display_name": "Gemini 3.0 Pro",
+        "category": "Text Generation",
+        "organization": "Google DeepMind",
+        "description": "Google's mid-tier powerhouse, balancing massive context with reasoning capabilities.",
+        "license": "Proprietary",
+        "safetensors": false,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg",
+        "model_scores": {
+          "overall_score": 67.3,
+          "tier": "C",
+          "quality_score": 94,
+          "speed_score": 88,
+          "freedom_score": 20
+        }
+      }
+    },
+    {
+      "id": "article-1771071150963-4",
+      "model_id": "model-1771071150963-4",
+      "title": "GPT-5: Brilliant but Closed",
+      "slug": "gpt-5-analysis",
+      "excerpt": "GPT-5 sets a new high water mark for intelligence, but at the cost of speed and accessibility.",
+      "content": "## Unmatched Intelligence, High Cost\r\nGPT-5 represents the pinnacle of current AI reasoning. It solves problems that stump every other model. However, this intelligence comes with significant trade-offs in terms of speed and operational opacity.\r\n\r\n### Key Features\r\n*   **Deep Reasoning**: Solves complex multi-step physics and math problems.\r\n*   **Reliability**: Extremely low hallucination rate.\r\n*   **Agentic Capabilities**: Can autonomously plan and execute long tasks.\r\n\r\n## Performance Analysis\r\nWhile its quality is undeniable, it is slow, expensive, and extremely locked down.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (99/100)**: The smartest model available.\r\n*   **Speed (60/100)**: Heavy and slow.\r\n*   **Freedom (15/100)**: Extremely restrictive API and policy.\r\n\r\n## Use Cases\r\n*   Scientific research assistance\r\n*   Complex system architecture\r\n*   Autonomous agent planning",
+      "hero_image_url": "",
+      "read_time_minutes": 6,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "OpenAI",
+        "GPT-5",
+        "AGI",
+        "Proprietary"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.963Z",
+      "created_at": "2026-02-14T12:12:30.963Z",
+      "updated_at": "2026-02-14T12:12:30.963Z",
+      "models": {
+        "id": "model-1771071150963-4",
+        "huggingface_url": "https://openai.com/",
+        "model_name": "gpt-5",
+        "display_name": "GPT-5",
+        "category": "Text Generation",
+        "organization": "OpenAI",
+        "description": "The highly anticipated successor to GPT-4, focusing on deep reasoning and reliability.",
+        "license": "Proprietary",
+        "safetensors": false,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
+        "model_scores": {
+          "overall_score": 58,
+          "tier": "D",
+          "quality_score": 99,
+          "speed_score": 60,
+          "freedom_score": 15
+        }
+      }
+    },
+    {
+      "id": "article-1771071150963-5",
+      "model_id": "model-1771071150963-5",
+      "title": "Claude 4.5 Sonnet: The Coding Specialist",
+      "slug": "claude-4-5-sonnet-analysis",
+      "excerpt": "Claude remains the favorite for developers, with version 4.5 refining its coding intuition.",
+      "content": "## Refined for Developers\r\nClaude 4.5 Sonnet focuses on what Anthropic does best: coding and safe, steerable responses. It feels less like a chatbox and more like a pair programmer that understands intent.\r\n\r\n### Key Features\r\n*   **System Thinking**: Understands large codebases intuitively.\r\n*   **Artifacts UI**: Enhanced generation of rendering UIs and charts.\r\n*   **Safety**: Rigorous constitutional AI alignment.\r\n\r\n## Performance Analysis\r\nIt is slightly slower than the 3.5 generation but brings higher accuracy. However, its strict safety filters can be frustrating.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (97/100)**: Top-tier coding and writing.\r\n*   **Speed (70/100)**: Slower than previous Sonnet iterations.\r\n*   **Freedom (15/100)**: Very strict formatting and content filters.\r\n\r\n## Use Cases\r\n*   Software development\r\n*   Technical specification writing\r\n*   Safe enterprise chatbots",
+      "hero_image_url": "",
+      "read_time_minutes": 5,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Anthropic",
+        "Claude",
+        "Coding",
+        "Proprietary"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.963Z",
+      "created_at": "2026-02-14T12:12:30.963Z",
+      "updated_at": "2026-02-14T12:12:30.963Z",
+      "models": {
+        "id": "model-1771071150963-5",
+        "huggingface_url": "https://www.anthropic.com/claude",
+        "model_name": "claude-4-5-sonnet",
+        "display_name": "Claude 4.5 Sonnet",
+        "category": "Text Generation",
+        "organization": "Anthropic",
+        "description": "Anthropic's iterative update, focusing on coding nuances and safer outputs.",
+        "license": "Proprietary",
+        "safetensors": false,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Anthropic_logo.svg",
+        "model_scores": {
+          "overall_score": 60.6,
+          "tier": "C",
+          "quality_score": 97,
+          "speed_score": 70,
+          "freedom_score": 15
+        }
+      }
+    },
+    {
+      "id": "article-1771071150963-6",
+      "model_id": "model-1771071150963-6",
+      "title": "Flux 1.1 Ultra: Unbeatable Realism",
+      "slug": "flux-1-1-ultra-analysis",
+      "excerpt": "Flux 1.1 Ultra masters the hardest parts of AI imagery: hands, text, and composition.",
+      "content": "## Photorealism Perfected\r\nFlux 1.1 Ultra builds on the massive success of the Flux architecture to deliver images that are virtually indistinguishable from photography. It handles complex lighting, skin textures, and typography with ease.\r\n\r\n### Key Features\r\n*   **Typography**: Perfect text rendering in diverse fonts.\r\n*   **Prompt Adherence**: Follows complex spatial instructions.\r\n*   **Quality**: High dynamic range and detail.\r\n\r\n## Performance Analysis\r\nIt is a large model requiring significant VRAM, but the output quality is currently unmatched in the open ecosystem.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (96/100)**: Stunning visual fidelity.\r\n*   **Speed (85/100)**: Optimized latent distillation.\r\n*   **Freedom (95/100)**: Open weights, dev-friendly license.\r\n\r\n## Use Cases\r\n*   High-end advertising assets\r\n*   Graphic design composition\r\n*   Photorealistic rendering",
+      "hero_image_url": "",
+      "read_time_minutes": 5,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Image Gen",
+        "Flux",
+        "Black Forest Labs",
+        "Open Source"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.963Z",
+      "created_at": "2026-02-14T12:12:30.963Z",
+      "updated_at": "2026-02-14T12:12:30.963Z",
+      "models": {
+        "id": "model-1771071150963-6",
+        "huggingface_url": "https://blackforestlabs.ai/",
+        "model_name": "flux-1-1-ultra",
+        "display_name": "Flux 1.1 Ultra",
+        "category": "Image Generation",
+        "organization": "Black Forest Labs",
+        "description": "The definitive open model for photorealism and typography.",
+        "license": "license:other",
+        "safetensors": true,
+        "model_size": "16B",
+        "tensor_types": [
+          "BF16"
+        ],
+        "featured_image_url": "https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/assets/repo-header.jpg",
+        "model_scores": {
+          "overall_score": 91.9,
+          "tier": "S",
+          "quality_score": 96,
+          "speed_score": 85,
+          "freedom_score": 95
+        }
+      }
+    },
+    {
+      "id": "article-1771071150964-7",
+      "model_id": "model-1771071150964-7",
+      "title": "Ideogram v3: The Designer's Tool",
+      "slug": "ideogram-v3-analysis",
+      "excerpt": "Ideogram continues to lead the pack in integrating text and design elements into AI art.",
+      "content": "## Design-First AI\r\nIdeogram v3 is built for designers. While other models focus on generic photography, Ideogram excels at logos, t-shirt designs, and posters where text integration is crucial.\r\n\r\n### Key Features\r\n*   **Text Rendering**: Best-in-class integration of words into art.\r\n*   **Style Logic**: Understands design principles better than pure art models.\r\n*   **Magic Prompt**: Auto-enhances simple prompts for better results.\r\n\r\n## Performance Analysis\r\nExcellent quality, but locked behind a web interface/API.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (94/100)**: Excellent for design work.\r\n*   **Speed (80/100)**: Fast web generation.\r\n*   **Freedom (30/100)**: Proprietary platform only.\r\n\r\n## Use Cases\r\n*   Logo design prototyping\r\n*   Marketing materials\r\n*   Print-on-demand designs",
+      "hero_image_url": "",
+      "read_time_minutes": 4,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Ideogram",
+        "Design",
+        "Typography",
+        "Proprietary"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.964Z",
+      "created_at": "2026-02-14T12:12:30.964Z",
+      "updated_at": "2026-02-14T12:12:30.964Z",
+      "models": {
+        "id": "model-1771071150964-7",
+        "huggingface_url": "https://ideogram.ai/",
+        "model_name": "ideogram-v3",
+        "display_name": "Ideogram v3",
+        "category": "Image Generation",
+        "organization": "Ideogram",
+        "description": "Specialized model for typography and design layouts.",
+        "license": "Proprietary",
+        "safetensors": false,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://pbs.twimg.com/profile_images/1694060938763538432/P2aaeiLp_400x400.jpg",
+        "model_scores": {
+          "overall_score": 67.9,
+          "tier": "C",
+          "quality_score": 94,
+          "speed_score": 80,
+          "freedom_score": 30
+        }
+      }
+    },
+    {
+      "id": "article-1771071150964-8",
+      "model_id": "model-1771071150964-8",
+      "title": "Imagen 4: Google's Visual Powerhouse",
+      "slug": "imagen-4-analysis",
+      "excerpt": "Imagen 4 delivers high-fidelity photorealism with Google's safety and infrastructure.",
+      "content": "## Safe and Realistic\r\nImagen 4 is Google's answer to the high-fidelity image generation race. It prioritizes photorealism and safety, making it a favorite for corporate environments.\r\n\r\n### Key Features\r\n*   **Photorealism**: Exceptional handling of light and texture.\r\n*   **Integration**: Works natively inside Gemini chat.\r\n*   **Safety**: Strong filters against deepfakes and NSFW content.\r\n\r\n## Performance Analysis\r\nGreat quality, but the heavy guardrails can limit creative freedom.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (92/100)**: Very high fidelity.\r\n*   **Speed (85/100)**: Fast via TPU infrastructure.\r\n*   **Freedom (15/100)**: Highly restrictive and proprietary.\r\n\r\n## Use Cases\r\n*   Enterprise presentation assets\r\n*   Safe stock imagery\r\n*   Visual brainstorming",
+      "hero_image_url": "",
+      "read_time_minutes": 4,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Google",
+        "Imagen",
+        "Proprietary",
+        "Safe AI"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.964Z",
+      "created_at": "2026-02-14T12:12:30.964Z",
+      "updated_at": "2026-02-14T12:12:30.964Z",
+      "models": {
+        "id": "model-1771071150964-8",
+        "huggingface_url": "https://deepmind.google/technologies/imagen/",
+        "model_name": "imagen-4",
+        "display_name": "Imagen 4",
+        "category": "Image Generation",
+        "organization": "Google",
+        "description": "Google's photorealistic diffusion model, deeply integrated with Gemini.",
+        "license": "Proprietary",
+        "safetensors": false,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+        "model_scores": {
+          "overall_score": 63.9,
+          "tier": "C",
+          "quality_score": 92,
+          "speed_score": 85,
+          "freedom_score": 15
+        }
+      }
+    },
+    {
+      "id": "article-1771071150964-9",
+      "model_id": "model-1771071150964-9",
+      "title": "Midjourney v7: Pure Sytle",
+      "slug": "midjourney-v7-analysis",
+      "excerpt": "Midjourney v7 remains the most artistically pleasing model, despite usability hurdles.",
+      "content": "## The Artistic Soul of AI\r\nMidjourney v7 continues to dominate in pure aesthetic quality. While other models strive for perfect realism, Midjourney aims for \"beauty,\" producing images that often look better than the prompt asked for.\r\n\r\n### Key Features\r\n*   **Aesthetics**: Unmatched color theory and composition.\r\n*   **Stylization**: Huge range of artistic styles via parameters.\r\n*   **Web Alpha**: Finally moving away from Discord-only generation.\r\n\r\n## Performance Analysis\r\nThe visuals are stunning (Quality 98), but the closed ecosystem and slow generation times hurt its ranking.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (98/100)**: The most beautiful output.\r\n*   **Speed (50/100)**: Slow generation queues.\r\n*   **Freedom (10/100)**: Fully closed, subscription only.\r\n\r\n## Use Cases\r\n*   High-concept art\r\n*   Fashion design inspiration\r\n*   Mood boarding",
+      "hero_image_url": "",
+      "read_time_minutes": 5,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Midjourney",
+        "Art",
+        "Generative AI",
+        "Proprietary"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.964Z",
+      "created_at": "2026-02-14T12:12:30.964Z",
+      "updated_at": "2026-02-14T12:12:30.964Z",
+      "models": {
+        "id": "model-1771071150964-9",
+        "huggingface_url": "https://www.midjourney.com/",
+        "model_name": "midjourney-v7",
+        "display_name": "Midjourney v7",
+        "category": "Image Generation",
+        "organization": "Midjourney",
+        "description": "The artistic gold standard, known for its distinct style and improved coherence.",
+        "license": "Proprietary",
+        "safetensors": false,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Midjourney_Emblem.png",
+        "model_scores": {
+          "overall_score": 52.7,
+          "tier": "D",
+          "quality_score": 98,
+          "speed_score": 50,
+          "freedom_score": 10
+        }
+      }
+    },
+    {
+      "id": "article-1771071150964-10",
+      "model_id": "model-1771071150964-10",
+      "title": "DALL-E 3: Easiest to Use",
+      "slug": "dall-e-3-analysis",
+      "excerpt": "DALL-E 3 makes image generation accessible via natural language, though it lacks granular control.",
+      "content": "## The Conversational Artist\r\nDALL-E 3's superpower is its integration with ChatGPT. You don't need to learn \"prompt engineering.\" You just talk to it, and it rewrites your request into a detailed visual description.\r\n\r\n### Key Features\r\n*   **NLP Integration**: Understands complex intent via LLM preprocessing.\r\n*   **Accessibility**: Available to millions via ChatGPT Plus.\r\n*   **Simplicity**: No complex parameters to tune.\r\n\r\n## Performance Analysis\r\nIt is chemically incapable of generating bad images, but often struggles with the \"plastic/smooth\" AI look. Granular control is non-existent.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (88/100)**: Solid, but identifiable \"AI style.\"\r\n*   **Speed (75/100)**: Decent speed via browser.\r\n*   **Freedom (15/100)**: Very restrictive policies.\r\n\r\n## Use Cases\r\n*   Quick visualizations for slides\r\n*   Ideation for non-technical users\r\n*   Meme generation",
+      "hero_image_url": "",
+      "read_time_minutes": 4,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "OpenAI",
+        "DALL-E",
+        "ChatGPT",
+        "Proprietary"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.964Z",
+      "created_at": "2026-02-14T12:12:30.964Z",
+      "updated_at": "2026-02-14T12:12:30.964Z",
+      "models": {
+        "id": "model-1771071150964-10",
+        "huggingface_url": "https://openai.com/dall-e-3",
+        "model_name": "dall-e-3",
+        "display_name": "DALL-E 3",
+        "category": "Image Generation",
+        "organization": "OpenAI",
+        "description": "Integrated directly into ChatGPT, offering the best prompt adherence natural language interface.",
+        "license": "Proprietary",
+        "safetensors": false,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
+        "model_scores": {
+          "overall_score": 59.3,
+          "tier": "D",
+          "quality_score": 88,
+          "speed_score": 75,
+          "freedom_score": 15
+        }
+      }
+    },
+    {
+      "id": "article-1771071150964-11",
+      "model_id": "model-1771071150964-11",
+      "title": "Cartesia: The Fastest Voice AI",
+      "slug": "cartesia-sonic-analysis",
+      "excerpt": "Sonic separates itself with blazing fast latency, enabling true real-time voice conversations.",
+      "content": "## Speed is the Feature\r\nWhen building voice agents, latency is the killer. Cartesia's Sonic model is engineered for sub-100ms response times, making it feel like a real conversation rather than a turn-based game.\r\n\r\n### Key Features\r\n*   **Ultra-Low Latency**: Generates audio faster than real-time.\r\n*   **Expressiveness**: Captures nuance and emotion.\r\n*   **Voice Cloning**: High-quality instant cloning.\r\n\r\n## Performance Analysis\r\nThe quality is good, but the speed is transformational for developers building voice apps.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (92/100)**: Very natural sounding.\r\n*   **Speed (99/100)**: Best in class latency.\r\n*   **Freedom (50/100)**: Developer-friendly API, but proprietary.\r\n\r\n## Use Cases\r\n*   Real-time voice assistants\r\n*   Interactive gaming NPCs\r\n*   Live translation",
+      "hero_image_url": "",
+      "read_time_minutes": 4,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Audio",
+        "TTS",
+        "Real-time",
+        "Voice AI"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.964Z",
+      "created_at": "2026-02-14T12:12:30.964Z",
+      "updated_at": "2026-02-14T12:12:30.964Z",
+      "models": {
+        "id": "model-1771071150964-11",
+        "huggingface_url": "https://cartesia.ai/",
+        "model_name": "sonic",
+        "display_name": "Cartesia (Sonic)",
+        "category": "Audio Processing",
+        "organization": "Cartesia",
+        "description": "Ultra-low latency real-time voice generation for interactive agents.",
+        "license": "Proprietary",
+        "safetensors": false,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://cartesia.ai/logo.png",
+        "model_scores": {
+          "overall_score": 80.3,
+          "tier": "A",
+          "quality_score": 92,
+          "speed_score": 99,
+          "freedom_score": 50
+        }
+      }
+    },
+    {
+      "id": "article-1771071150964-12",
+      "model_id": "model-1771071150964-12",
+      "title": "ElevenLabs v3: Emotion Matcher",
+      "slug": "elevenlabs-v3-analysis",
+      "excerpt": "ElevenLabs remains the benchmark for quality, offering the most emotive and varied voices.",
+      "content": "## The Voice of the Internet\r\nElevenLabs has effectively solved TTS quality. Version 3 improves on intonation and emotional range, allowing voices to whisper, shout, or laugh naturally. It detects context context perfectly.\r\n\r\n### Key Features\r\n*   **Emotional Range**: Can perform drama, news, or casual chat.\r\n*   **Voice Design**: easy tools to create custom voices.\r\n*   **Dubbing**: Automatic video dubbing with lip-sync.\r\n\r\n## Performance Analysis\r\nQuality is unmatched (S-tier), but it can be expensive at scale and is slower than Cartesia.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (98/100)**: Indistinguishable from human.\r\n*   **Speed (85/100)**: Good, but not instant.\r\n*   **Freedom (30/100)**: Expensive proprietary API.\r\n\r\n## Use Cases\r\n*   Audiobook narration\r\n*   Game character voicing\r\n*   Content creation voiceovers",
+      "hero_image_url": "",
+      "read_time_minutes": 5,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Audio",
+        "TTS",
+        "ElevenLabs",
+        "Proprietary"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.964Z",
+      "created_at": "2026-02-14T12:12:30.964Z",
+      "updated_at": "2026-02-14T12:12:30.964Z",
+      "models": {
+        "id": "model-1771071150964-12",
+        "huggingface_url": "https://elevenlabs.io/",
+        "model_name": "elevenlabs-v3",
+        "display_name": "ElevenLabs v3",
+        "category": "Audio Processing",
+        "organization": "ElevenLabs",
+        "description": "The industry standard for emotive, high-quality speech synthesis.",
+        "license": "Proprietary",
+        "safetensors": false,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://avatars.githubusercontent.com/u/120663473?s=200&v=4",
+        "model_scores": {
+          "overall_score": 70.9,
+          "tier": "B",
+          "quality_score": 98,
+          "speed_score": 85,
+          "freedom_score": 30
+        }
+      }
+    },
+    {
+      "id": "article-1771071150964-13",
+      "model_id": "model-1771071150964-13",
+      "title": "Gemini 2.0 Flash: Audio Native",
+      "slug": "gemini-2-flash-audio-analysis",
+      "excerpt": "Gemini 2.0 Flash processes audio natively, skipping the transcription step for better nuance.",
+      "content": "## Native Listening\r\nUnlike traditional pipelines (Speech-to-Text -> LLM -> Text-to-Speech), Gemini 2.0 Flash handles audio natively. It hears the tone, the pause, and the emotion directly, allowing for much richer interactions.\r\n\r\n### Key Features\r\n*   **Native Modality**: No information loss in transcription.\r\n*   **Speed**: \"Flash\" designation means it is optimized for throughput.\r\n*   **Turn-taking**: Better at interrupting and natural conversation flow.\r\n\r\n## Performance Analysis\r\nGreat for conversational understanding, though the voice output personality is less varied than dedicated TTS engines.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (88/100)**: Good understanding, standard voice.\r\n*   **Speed (98/100)**: Extremely fast end-to-end.\r\n*   **Freedom (20/100)**: Locked to Google ecosystem.\r\n\r\n## Use Cases\r\n*   Customer service agents\r\n*   Language learning partners\r\n*   Meeting assistants",
+      "hero_image_url": "",
+      "read_time_minutes": 4,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Audio",
+        "Multimodal",
+        "Google",
+        "Proprietary"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.964Z",
+      "created_at": "2026-02-14T12:12:30.964Z",
+      "updated_at": "2026-02-14T12:12:30.964Z",
+      "models": {
+        "id": "model-1771071150964-13",
+        "huggingface_url": "https://deepmind.google/technologies/gemini/flash/",
+        "model_name": "gemini-2-0-flash-audio",
+        "display_name": "Gemini 2.0 Flash",
+        "category": "Audio Processing",
+        "organization": "Google",
+        "description": "Multimodal model with native audio input/output for seamlessly fast interaction.",
+        "license": "Proprietary",
+        "safetensors": false,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg",
+        "model_scores": {
+          "overall_score": 68.6,
+          "tier": "C",
+          "quality_score": 88,
+          "speed_score": 98,
+          "freedom_score": 20
+        }
+      }
+    },
+    {
+      "id": "article-1771071150964-14",
+      "model_id": "model-1771071150964-14",
+      "title": "Suno v4: The AI Pop Star",
+      "slug": "suno-v4-analysis",
+      "excerpt": "Suno v4 can generate Billboard-quality tracks, raising massive questions about the future of music.",
+      "content": "## Radio Ready\r\nSuno v4 is a shock to the system for musicians. It generates coherently structured songs (verse, chorus, bridge) with high-fidelity vocals and instrumentation. It understands genre tags and lyrical cadence perfectly.\r\n\r\n### Key Features\r\n*   **Song Structure**: Understands musical progression.\r\n*   **Vocals**: Surprisingly human-sounding singing voices.\r\n*   **Speed**: Generates a 3-minute song in seconds.\r\n\r\n## Performance Analysis\r\nMusically impressive (Quality 95), but lacks granular control for producers (can't edit just the drums).\r\n\r\n### Scoring Breakdown\r\n*   **Quality (95/100)**: Hits mainstream quality bars.\r\n*   **Speed (40/100)**: Generation takes a moment.\r\n*   **Freedom (15/100)**: Rights ownership is complex, proprietary.\r\n\r\n## Use Cases\r\n*   Commercial jingles\r\n*   Content creation background music\r\n*   Idea generation for artists",
+      "hero_image_url": "",
+      "read_time_minutes": 5,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Music AI",
+        "Suno",
+        "Generative Audio",
+        "Proprietary"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.964Z",
+      "created_at": "2026-02-14T12:12:30.964Z",
+      "updated_at": "2026-02-14T12:12:30.964Z",
+      "models": {
+        "id": "model-1771071150964-14",
+        "huggingface_url": "https://suno.com/",
+        "model_name": "suno-v4",
+        "display_name": "Suno v4",
+        "category": "Audio Processing",
+        "organization": "Suno",
+        "description": "Generates full radio-quality songs from simple text prompts.",
+        "license": "Proprietary",
+        "safetensors": false,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://suno.com/images/logo_square.png",
+        "model_scores": {
+          "overall_score": 50,
+          "tier": "D",
+          "quality_score": 95,
+          "speed_score": 40,
+          "freedom_score": 15
+        }
+      }
+    },
+    {
+      "id": "article-1771071150964-15",
+      "model_id": "model-1771071150964-15",
+      "title": "Udio: Complex Harmonics",
+      "slug": "udio-analysis",
+      "excerpt": "Udio rivals Suno but focuses more on clarity and complex musical arrangements.",
+      "content": "## The Producer's Choice\r\nWhile Suno aims for pop structure, Udio often generates richer, more textured audio. It excels at electronic genres, jazz, and complex instrumentals where clarity matters more than lyrical catchy-ness.\r\n\r\n### Key Features\r\n*   **Fidelity**: Crisp high-end and clear separation.\r\n*   **Extension**: Start with a segment and extend it forwards/backwards.\r\n*   **Genre Handling**: Excellent at niche sub-genres.\r\n\r\n## Performance Analysis\r\nIncredible quality (96), but the generation process is slower and the \"slot machine\" nature of prompting can be frustrating.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (96/100)**: Audiophile quality.\r\n*   **Speed (30/100)**: Slower generation.\r\n*   **Freedom (15/100)**: Fully proprietary.\r\n\r\n## Use Cases\r\n*   Soundtrack composition\r\n*   Electronic music production\r\n*   Sampling",
+      "hero_image_url": "",
+      "read_time_minutes": 4,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Music AI",
+        "Udio",
+        "Generative Audio",
+        "Proprietary"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.964Z",
+      "created_at": "2026-02-14T12:12:30.964Z",
+      "updated_at": "2026-02-14T12:12:30.964Z",
+      "models": {
+        "id": "model-1771071150964-15",
+        "huggingface_url": "https://www.udio.com/",
+        "model_name": "udio-v1",
+        "display_name": "Udio",
+        "category": "Audio Processing",
+        "organization": "Udio",
+        "description": "High-fidelity music generation with a focus on electronic and complex genres.",
+        "license": "Proprietary",
+        "safetensors": false,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://www.udio.com/logo.png",
+        "model_scores": {
+          "overall_score": 47,
+          "tier": "D",
+          "quality_score": 96,
+          "speed_score": 30,
+          "freedom_score": 15
+        }
+      }
+    },
+    {
+      "id": "article-1771071150964-16",
+      "model_id": "model-1771071150964-16",
+      "title": "YOLOv12: Real-time King",
+      "slug": "yolov12-analysis",
+      "excerpt": "YOLOv12 continues the legacy of \"You Only Look Once\" with unmatched inference speeds.",
+      "content": "## Speed Meets Accuracy\r\nYOLOv12 is the latest evolution of the most popular object detection family. It optimizes the balance between accuracy (mAP) and latency, making it the default choice for edge devices and real-time video analysis.\r\n\r\n### Key Features\r\n*   **Efficiency**: Runs on Raspberry Pis and mobile phones.\r\n*   **Versatility**: Detection, segmentation, and pose estimation.\r\n*   **Ecosystem**: Massive support via Ultralytics libraries.\r\n\r\n## Performance Analysis\r\nIt is S-Tier because it solves the practical problem of \"vision on the edge\" perfectly.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (90/100)**: High enough mAP for production.\r\n*   **Speed (99/100)**: Real-time at high FPS.\r\n*   **Freedom (100/100)**: Open source (AGPL).\r\n\r\n## Use Cases\r\n*   Autonomous vehicles\r\n*   Security camera analytics\r\n*   Robotics",
+      "hero_image_url": "",
+      "read_time_minutes": 5,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Computer Vision",
+        "Object Detection",
+        "Edge AI",
+        "Open Source",
+        "license:AGPL-3.0"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.964Z",
+      "created_at": "2026-02-14T12:12:30.964Z",
+      "updated_at": "2026-02-14T12:12:30.964Z",
+      "models": {
+        "id": "model-1771071150964-16",
+        "huggingface_url": "https://www.ultralytics.com/",
+        "model_name": "yolov12",
+        "display_name": "YOLOv12",
+        "category": "Computer Vision",
+        "organization": "Ultralytics",
+        "description": "The absolute standard for real-time object detection, now faster and more accurate.",
+        "license": "license:agpl-3.0",
+        "safetensors": true,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "FP16",
+          "INT8"
+        ],
+        "featured_image_url": "https://raw.githubusercontent.com/ultralytics/assets/main/yolov8/banner-yolov8.png",
+        "model_scores": {
+          "overall_score": 96.3,
+          "tier": "S",
+          "quality_score": 90,
+          "speed_score": 99,
+          "freedom_score": 100
+        }
+      }
+    },
+    {
+      "id": "article-1771071150965-17",
+      "model_id": "model-1771071150964-17",
+      "title": "Florence-2: Small but Mighty",
+      "slug": "florence-2-analysis",
+      "excerpt": "Microsoft's Florence-2 packs massive capability into a tiny parameter count.",
+      "content": "## The Unified VLM\r\nFlorence-2 is stunning not because it is huge, but because it is tiny. At under 1B parameters, it outperforms models 10x its size on captioning and grounding tasks. It uses a unified text-to-text API for all vision tasks.\r\n\r\n### Key Features\r\n*   **Unified API**: Use text prompts to trigger detection, captioning, or OCR.\r\n*   **Size**: Extremely lightweight (0.2B and 0.7B versions).\r\n*   **Performance**: Beats specialized models on benchmarks.\r\n\r\n## Performance Analysis\r\nThe efficiency here is S-tier. You can run this in the browser.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (88/100)**: Incredible for its size.\r\n*   **Speed (95/100)**: Blazing fast.\r\n*   **Freedom (100/100)**: MIT License.\r\n\r\n## Use Cases\r\n*   On-device accessibility descriptions\r\n*   Fast image tagging\r\n*   Video indexing",
+      "hero_image_url": "",
+      "read_time_minutes": 4,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Computer Vision",
+        "Microsoft",
+        "Small Model",
+        "Open Source",
+        "license:MIT"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.965Z",
+      "created_at": "2026-02-14T12:12:30.965Z",
+      "updated_at": "2026-02-14T12:12:30.965Z",
+      "models": {
+        "id": "model-1771071150964-17",
+        "huggingface_url": "https://www.microsoft.com/en-us/research/project/project-florence/",
+        "model_name": "florence-2-large",
+        "display_name": "Florence-2",
+        "category": "Computer Vision",
+        "organization": "Microsoft",
+        "description": "A unified foundation model for vision capable of captioning, detection, and segmentation.",
+        "license": "license:mit",
+        "safetensors": true,
+        "model_size": "0.7B",
+        "tensor_types": [
+          "FP16"
+        ],
+        "featured_image_url": "https://huggingface.co/microsoft/Florence-2-large/resolve/main/cover.png",
+        "model_scores": {
+          "overall_score": 94.3,
+          "tier": "S",
+          "quality_score": 88,
+          "speed_score": 95,
+          "freedom_score": 100
+        }
+      }
+    },
+    {
+      "id": "article-1771071150965-18",
+      "model_id": "model-1771071150965-18",
+      "title": "SAM 3: Pixel Perfection",
+      "slug": "sam-3-analysis",
+      "excerpt": "Meta's Segment Anything Model 3 makes image segmentation a solved problem.",
+      "content": "## Cut Everything Out\r\nSAM 3 takes the \"zero-shot\" capabilities of its predecessor and adds video handling and better semantic understanding. You can click on any object in an image or video, and SAM 3 gives you a perfect cut-out mask.\r\n\r\n### Key Features\r\n*   **Zero-Shot**: Works on objects it has never seen before.\r\n*   **Video Support**: Tracks objects across frames.\r\n*   **Ambiguity**: Handles overlapping objects gracefully.\r\n\r\n## Performance Analysis\r\nIt is the standard utility for image editing pipelines.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (95/100)**: Near perfect edges.\r\n*   **Speed (80/100)**: Good, but video processing is heavy.\r\n*   **Freedom (90/100)**: Open weights, permissive license.\r\n\r\n## Use Cases\r\n*   Photo editing (Magic Eraser)\r\n*   Robotic grasping\r\n*   Medical imaging analysis",
+      "hero_image_url": "",
+      "read_time_minutes": 5,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Computer Vision",
+        "Segmentation",
+        "Meta",
+        "Open Source"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.965Z",
+      "created_at": "2026-02-14T12:12:30.965Z",
+      "updated_at": "2026-02-14T12:12:30.965Z",
+      "models": {
+        "id": "model-1771071150965-18",
+        "huggingface_url": "https://segment-anything.com/",
+        "model_name": "sam-3",
+        "display_name": "SAM 3 (Meta)",
+        "category": "Computer Vision",
+        "organization": "Meta",
+        "description": "Segment Anything Model 3, offering pixel-perfect object masks for any image.",
+        "license": "license:apache-2.0",
+        "safetensors": true,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "BF16"
+        ],
+        "featured_image_url": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/model_doc/sam_architecture.jpg",
+        "model_scores": {
+          "overall_score": 88.3,
+          "tier": "A",
+          "quality_score": 95,
+          "speed_score": 80,
+          "freedom_score": 90
+        }
+      }
+    },
+    {
+      "id": "article-1771071150965-19",
+      "model_id": "model-1771071150965-19",
+      "title": "DINOv2: Seeing Like a Human",
+      "slug": "dinov2-analysis",
+      "excerpt": "DINOv2 learns features from images in a self-supervised way, creating powerful embeddings.",
+      "content": "## Self-Supervised Vision\r\nMost vision models learn from labelled data (this is a cat). DINOv2 learns by \"looking\" at massive amounts of data and figuring out relationships itself. This creates robust features that work well for classification, depth estimation, and retrieval.\r\n\r\n### Key Features\r\n*   **Robustness**: Works well on sketches, cartoons, and real photos.\r\n*   **Depth Estimation**: Can perceive depth without explicit training.\r\n*   **Embeddings**: Great for visual search engines.\r\n\r\n## Performance Analysis\r\nA foundational building block for other vision apps.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (85/100)**: Strong general features.\r\n*   **Speed (90/100)**: Efficient backbones.\r\n*   **Freedom (90/100)**: Apache 2.0.\r\n\r\n## Use Cases\r\n*   Reverse image search\r\n*   Content moderation\r\n*   Visual similarity",
+      "hero_image_url": "",
+      "read_time_minutes": 4,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Computer Vision",
+        "Embeddings",
+        "Meta",
+        "Open Source"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.965Z",
+      "created_at": "2026-02-14T12:12:30.965Z",
+      "updated_at": "2026-02-14T12:12:30.965Z",
+      "models": {
+        "id": "model-1771071150965-19",
+        "huggingface_url": "https://dinov2.metademolab.com/",
+        "model_name": "dinov2-large",
+        "display_name": "DINOv2",
+        "category": "Computer Vision",
+        "organization": "Meta",
+        "description": "Self-supervised vision model that learns robust visual features without labels.",
+        "license": "license:apache-2.0",
+        "safetensors": true,
+        "model_size": "0.3B",
+        "tensor_types": [
+          "FP16"
+        ],
+        "featured_image_url": "https://huggingface.co/facebook/dinov2-large/resolve/main/assets/dino_v2.png",
+        "model_scores": {
+          "overall_score": 88.3,
+          "tier": "A",
+          "quality_score": 85,
+          "speed_score": 90,
+          "freedom_score": 90
+        }
+      }
+    },
+    {
+      "id": "article-1771071150965-20",
+      "model_id": "model-1771071150965-20",
+      "title": "RF-DETR: Transformer Vision",
+      "slug": "rf-detr-analysis",
+      "excerpt": "RF-DETR brings the power of Transformers to object detection with improved accuracy.",
+      "content": "## Vision Transformers\r\nRF-DETR leverages the transformer architecture (like LLMs) to look at an image globally rather than using sliding windows. This allows it to understand context (\"a bat\" near \"a player\") better than older CNNs.\r\n\r\n### Key Features\r\n*   **Context Awareness**: Sees the whole image at once.\r\n*   **Accuracy**: High mAP on COCO benchmarks.\r\n*   **Modern Arch**: Easier to scale.\r\n\r\n## Performance Analysis\r\nSlightly heavier than YOLO but often more accurate on small or clustered objects.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (89/100)**: High accuracy.\r\n*   **Speed (85/100)**: Good optimization.\r\n*   **Freedom (80/100)**: Open source.\r\n\r\n## Use Cases\r\n*   Drone imagery analysis\r\n*   Crowd counting\r\n*   Satellite view processing",
+      "hero_image_url": "",
+      "read_time_minutes": 5,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Computer Vision",
+        "Transformers",
+        "Detection",
+        "Open Source"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.965Z",
+      "created_at": "2026-02-14T12:12:30.965Z",
+      "updated_at": "2026-02-14T12:12:30.965Z",
+      "models": {
+        "id": "model-1771071150965-20",
+        "huggingface_url": "https://roboflow.com/",
+        "model_name": "rf-detr",
+        "display_name": "RF-DETR",
+        "category": "Computer Vision",
+        "organization": "OpenCV",
+        "description": "Receptive Field based Detection Transformer for accurate visual understanding.",
+        "license": "license:apache-2.0",
+        "safetensors": true,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg",
+        "model_scores": {
+          "overall_score": 84.6,
+          "tier": "A",
+          "quality_score": 89,
+          "speed_score": 85,
+          "freedom_score": 80
+        }
+      }
+    },
+    {
+      "id": "article-1771071150965-21",
+      "model_id": "model-1771071150965-21",
+      "title": "Pixtral Large: Multimodal Excellence",
+      "slug": "pixtral-large-analysis",
+      "excerpt": "Mistral AI delivers a top-tier multimodal model that handles text and logic efficiently.",
+      "content": "## The European Giant\r\nPixtral Large is Mistral AI's flagship multimodal model. It combines the strong reasoning of Mistral Large with a new vision encoder, allowing it to interpret charts, code from screenshots, and complex diagrams with GPT-4 class accuracy.\r\n\r\n### Key Features\r\n*   **Native Resolution**: variable resolution support for clear vision.\r\n*   **Reasoning**: Strong math and logic performance.\r\n*   **Availability**: Open weights available for research/commercial use.\r\n\r\n## Performance Analysis\r\nIt sits comfortably in the S-tier, offering a non-US alternative to the big labs with competitive performance.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (90/100)**: Reliable and smart.\r\n*   **Speed (85/100)**: Efficient MoE structure.\r\n*   **Freedom (95/100)**: Permissive Mistral license.\r\n\r\n## Use Cases\r\n*   Financial report analysis\r\n*   Automated UI testing\r\n*   Visual assistants",
+      "hero_image_url": "",
+      "read_time_minutes": 6,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Inference",
+        "Multimodal",
+        "Mistral",
+        "Open Weights"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.965Z",
+      "created_at": "2026-02-14T12:12:30.965Z",
+      "updated_at": "2026-02-14T12:12:30.965Z",
+      "models": {
+        "id": "model-1771071150965-21",
+        "huggingface_url": "https://mistral.ai/",
+        "model_name": "pixtral-large",
+        "display_name": "Pixtral Large",
+        "category": "Multimodal",
+        "organization": "Mistral AI",
+        "description": "A multimodal powerhouse from Mistral, combining text and vision with high efficiency.",
+        "license": "license:mistral-community",
+        "safetensors": true,
+        "model_size": "123B",
+        "tensor_types": [
+          "BF16"
+        ],
+        "featured_image_url": "https://huggingface.co/mistralai/pixtral-large-2409/resolve/main/assets/banner_pixtral.jpg",
+        "model_scores": {
+          "overall_score": 89.9,
+          "tier": "S",
+          "quality_score": 90,
+          "speed_score": 85,
+          "freedom_score": 95
+        }
+      }
+    },
+    {
+      "id": "article-1771071150965-22",
+      "model_id": "model-1771071150965-22",
+      "title": "Llama 4-Vision: Opening Eyes",
+      "slug": "llama-4-vision-analysis",
+      "excerpt": "Meta brings native vision capabilities to the Llama 4 family, empowering open source multimodal apps.",
+      "content": "## Open Source Vision\r\nLlama 4-Vision integrates a high-performance vision tower directly into the Llama 4 architecture. This allows users to build \"ChatGPT-Vision\" style applications entirely on their own infrastructure without sending data to an API.\r\n\r\n### Key Features\r\n*   **Video Understanding**: Can process short video clips.\r\n*   **Chart Literacy**: Excellent at extracting data from plots.\r\n*   **Integration**: Uses the same instruction format as text Llama.\r\n\r\n## Performance Analysis\r\nVery strong (A-tier), though perhaps slightly behind the specialized Pixtral in pure pixel-peeping tasks.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (88/100)**: Solid general purpose vision.\r\n*   **Speed (85/100)**: Good inference speed.\r\n*   **Freedom (95/100)**: Open weights using Llama license.\r\n\r\n## Use Cases\r\n*   Local video indexing\r\n*   Private medical imaging analysis\r\n*   Robotics perception",
+      "hero_image_url": "",
+      "read_time_minutes": 5,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Multimodal",
+        "Llama 4",
+        "Vision",
+        "Meta",
+        "Open Source"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.965Z",
+      "created_at": "2026-02-14T12:12:30.965Z",
+      "updated_at": "2026-02-14T12:12:30.965Z",
+      "models": {
+        "id": "model-1771071150965-22",
+        "huggingface_url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
+        "model_name": "llama-4-vision",
+        "display_name": "Llama 4-Vision",
+        "category": "Multimodal",
+        "organization": "Meta",
+        "description": "The vision-enabled variant of Llama 4, bringing eyesight to the open ecosystem.",
+        "license": "license:llama-community",
+        "safetensors": true,
+        "model_size": "90B",
+        "tensor_types": [
+          "BF16"
+        ],
+        "featured_image_url": "https://huggingface.co/meta-llama/Llama-3.2-11B-Vision/resolve/main/original/header.png",
+        "model_scores": {
+          "overall_score": 89.3,
+          "tier": "A",
+          "quality_score": 88,
+          "speed_score": 85,
+          "freedom_score": 95
+        }
+      }
+    },
+    {
+      "id": "article-1771071150965-23",
+      "model_id": "model-1771071150965-23",
+      "title": "Claude 3.5 Sonnet: Visual Reasoning",
+      "slug": "claude-3-5-sonnet-vision-review",
+      "excerpt": "Claude 3.5 Sonnet excels at \"understanding\" images, not just describing them.",
+      "content": "## Seeing the Logic\r\nWhile many models can describe an image (\"a cat on a mat\"), Claude 3.5 Sonnet excels at reasoning about it (\"the cat is waiting for food because the bowl is empty\"). This makes it uniquely suited for screenshots-to-code and complex diagram analysis.\r\n\r\n### Key Features\r\n*   **UI to Code**: Converts screenshot mockups to React code perfectly.\r\n*   **Graph Analysis**: Interprets trends in unlabeled charts.\r\n*   **Handwriting**: Reads messy cursive with ease.\r\n\r\n## Performance Analysis\r\nHigh quality, but hampered by strict safety filters and proprietary API limits.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (96/100)**: Top tier reasoning.\r\n*   **Speed (75/100)**: Decent speed.\r\n*   **Freedom (20/100)**: Closed ecosystem.\r\n\r\n## Use Cases\r\n*   Frontend development acceleration\r\n*   Digitizing handwritten archives\r\n*   Complex QA",
+      "hero_image_url": "",
+      "read_time_minutes": 5,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Multimodal",
+        "Anthropic",
+        "Vision",
+        "Proprietary"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.965Z",
+      "created_at": "2026-02-14T12:12:30.965Z",
+      "updated_at": "2026-02-14T12:12:30.965Z",
+      "models": {
+        "id": "model-1771071150965-23",
+        "huggingface_url": "https://www.anthropic.com/news/claude-3-5-sonnet",
+        "model_name": "claude-3-5-sonnet-vlm",
+        "display_name": "Claude 3.5 Sonnet",
+        "category": "Multimodal",
+        "organization": "Anthropic",
+        "description": "Excellent visual reasoning capabilities, particularly for UI and document tasks.",
+        "license": "Proprietary",
+        "safetensors": false,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Anthropic_logo.svg",
+        "model_scores": {
+          "overall_score": 63.6,
+          "tier": "C",
+          "quality_score": 96,
+          "speed_score": 75,
+          "freedom_score": 20
+        }
+      }
+    },
+    {
+      "id": "article-1771071150965-24",
+      "model_id": "model-1771071150965-24",
+      "title": "Gemini 3.0 Ultra: The Heavyweight",
+      "slug": "gemini-3-ultra-analysis",
+      "excerpt": "Gemini 3.0 Ultra brings massive compute to bear on multimodal problems.",
+      "content": "## Maximum Power\r\nGemini 3.0 Ultra is Google's \"no compromises\" model. It is designed to achieve state-of-the-art results on benchmarks regardless of compute cost. It natively understands video, audio, and text in a single stream.\r\n\r\n### Key Features\r\n*   **Native Video**: Can watch movies and answer questions about plot.\r\n*   **Complex Reasoning**: Solves multimodal math problems.\r\n*   **Scale**: The largest model in the Gemini family.\r\n\r\n## Performance Analysis\r\nThe quality is unquestionable (98), but it is very slow (Speed 60) and fully locked down (Freedom 15).\r\n\r\n### Scoring Breakdown\r\n*   **Quality (98/100)**: Benchmark leader.\r\n*   **Speed (60/100)**: Heavy and slow.\r\n*   **Freedom (15/100)**: Enterprise focused, proprietary.\r\n\r\n## Use Cases\r\n*   Scientific discovery\r\n*   Long-form video processing\r\n*   High-stakes financial analysis",
+      "hero_image_url": "",
+      "read_time_minutes": 6,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "Google",
+        "Gemini",
+        "Multimodal",
+        "Proprietary"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.965Z",
+      "created_at": "2026-02-14T12:12:30.965Z",
+      "updated_at": "2026-02-14T12:12:30.965Z",
+      "models": {
+        "id": "model-1771071150965-24",
+        "huggingface_url": "https://deepmind.google/technologies/gemini/",
+        "model_name": "gemini-3-0-ultra",
+        "display_name": "Gemini 3.0 Ultra",
+        "category": "Multimodal",
+        "organization": "Google",
+        "description": "Google's most capable multimodal model, designed for massive scale complex reasoning.",
+        "license": "Proprietary",
+        "safetensors": false,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg",
+        "model_scores": {
+          "overall_score": 57.6,
+          "tier": "D",
+          "quality_score": 98,
+          "speed_score": 60,
+          "freedom_score": 15
+        }
+      }
+    },
+    {
+      "id": "article-1771071150965-25",
+      "model_id": "model-1771071150965-25",
+      "title": "OpenAI o3: Deep Thought",
+      "slug": "openai-o3-analysis",
+      "excerpt": "OpenAI o3 pushes the \"System 2\" thinking paradigm to multimodal tasks.",
+      "content": "## The Reasoning Engine\r\nOpenAI o3 continues the \"o\" series legacy of \"thinking before speaking.\" It creates massive internal chain-of-thought traces to verify its own logic before outputting an answer. This applies now to visual and auditory inputs as well.\r\n\r\n### Key Features\r\n*   **Self-Correction**: Catches its own hallucinations during the thinking phase.\r\n*   **Planning**: Can outline and execute multi-step multimodal tasks.\r\n*   **Accuracy**: Unmatched in hard science questions.\r\n\r\n## Performance Analysis\r\nIt is the smartest model (Quality 99) but undoubtedly the slowest (Speed 20) due to compute-time thinking.\r\n\r\n### Scoring Breakdown\r\n*   **Quality (99/100)**: Near perfect reasoning.\r\n*   **Speed (20/100)**: Very slow (\"thinking\" time).\r\n*   **Freedom (10/100)**: A black box service.\r\n\r\n## Use Cases\r\n*   PhD-level research\r\n*   Complex engineering problems\r\n*   Autonomous agent brains",
+      "hero_image_url": "",
+      "read_time_minutes": 7,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [
+        "OpenAI",
+        "Reasoning",
+        "AGI",
+        "Proprietary"
+      ],
+      "related_model_ids": "",
+      "published": true,
+      "published_at": "2026-02-14T12:12:30.965Z",
+      "created_at": "2026-02-14T12:12:30.965Z",
+      "updated_at": "2026-02-14T12:12:30.965Z",
+      "models": {
+        "id": "model-1771071150965-25",
+        "huggingface_url": "https://openai.com/index/introducing-o3-and-o4-mini/",
+        "model_name": "openai-o3",
+        "display_name": "OpenAI o3",
+        "category": "Multimodal",
+        "organization": "OpenAI",
+        "description": "The next evolution of reasoning models, capable of vast coherent thought chains.",
+        "license": "Proprietary",
+        "safetensors": false,
+        "model_size": "Unknown",
+        "tensor_types": [
+          "{}"
+        ],
+        "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
+        "model_scores": {
+          "overall_score": 43,
+          "tier": "D",
+          "quality_score": 99,
+          "speed_score": 20,
+          "freedom_score": 10
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "model-1771071150962-1",
+      "huggingface_url": "https://www.llama.com/",
+      "model_name": "llama-4-70b",
+      "display_name": "Llama 4",
+      "category": "Text Generation",
+      "organization": "Meta",
+      "description": "Meta's next-generation open weights model pushing the boundaries of reasoning and efficiency.",
+      "license": "license:llama-community",
+      "safetensors": true,
+      "model_size": "70B",
+      "tensor_types": [
+        "BF16"
+      ],
+      "featured_image_url": "https://huggingface.co/meta-llama/Llama-3.2-1B/resolve/main/original/header.png",
+      "associated_article_slug": "llama-4-analysis",
+      "articles": [
+        {
+          "slug": "llama-4-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 92.3,
+        "tier": "S",
+        "quality_score": 92,
+        "speed_score": 85,
+        "freedom_score": 100
+      }
+    },
+    {
+      "id": "model-1771071150963-2",
+      "huggingface_url": "https://x.ai/",
+      "model_name": "grok-3",
+      "display_name": "Grok 3",
+      "category": "Text Generation",
+      "organization": "xAI",
+      "description": "The wittiest and most real-time aware model, integrated directly with X platform data.",
+      "license": "Proprietary",
+      "safetensors": false,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Grok_logo.svg",
+      "associated_article_slug": "grok-3-analysis",
+      "articles": [
+        {
+          "slug": "grok-3-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 73.9,
+        "tier": "B",
+        "quality_score": 90,
+        "speed_score": 92,
+        "freedom_score": 40
+      }
+    },
+    {
+      "id": "model-1771071150963-3",
+      "huggingface_url": "https://deepmind.google/models/gemini/pro/",
+      "model_name": "gemini-3-0-pro",
+      "display_name": "Gemini 3.0 Pro",
+      "category": "Text Generation",
+      "organization": "Google DeepMind",
+      "description": "Google's mid-tier powerhouse, balancing massive context with reasoning capabilities.",
+      "license": "Proprietary",
+      "safetensors": false,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg",
+      "associated_article_slug": "gemini-3-pro-analysis",
+      "articles": [
+        {
+          "slug": "gemini-3-pro-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 67.3,
+        "tier": "C",
+        "quality_score": 94,
+        "speed_score": 88,
+        "freedom_score": 20
+      }
+    },
+    {
+      "id": "model-1771071150963-4",
+      "huggingface_url": "https://openai.com/",
+      "model_name": "gpt-5",
+      "display_name": "GPT-5",
+      "category": "Text Generation",
+      "organization": "OpenAI",
+      "description": "The highly anticipated successor to GPT-4, focusing on deep reasoning and reliability.",
+      "license": "Proprietary",
+      "safetensors": false,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
+      "associated_article_slug": "gpt-5-analysis",
+      "articles": [
+        {
+          "slug": "gpt-5-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 58,
+        "tier": "D",
+        "quality_score": 99,
+        "speed_score": 60,
+        "freedom_score": 15
+      }
+    },
+    {
+      "id": "model-1771071150963-5",
+      "huggingface_url": "https://www.anthropic.com/claude",
+      "model_name": "claude-4-5-sonnet",
+      "display_name": "Claude 4.5 Sonnet",
+      "category": "Text Generation",
+      "organization": "Anthropic",
+      "description": "Anthropic's iterative update, focusing on coding nuances and safer outputs.",
+      "license": "Proprietary",
+      "safetensors": false,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Anthropic_logo.svg",
+      "associated_article_slug": "claude-4-5-sonnet-analysis",
+      "articles": [
+        {
+          "slug": "claude-4-5-sonnet-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 60.6,
+        "tier": "C",
+        "quality_score": 97,
+        "speed_score": 70,
+        "freedom_score": 15
+      }
+    },
+    {
+      "id": "model-1771071150963-6",
+      "huggingface_url": "https://blackforestlabs.ai/",
+      "model_name": "flux-1-1-ultra",
+      "display_name": "Flux 1.1 Ultra",
+      "category": "Image Generation",
+      "organization": "Black Forest Labs",
+      "description": "The definitive open model for photorealism and typography.",
+      "license": "license:other",
+      "safetensors": true,
+      "model_size": "16B",
+      "tensor_types": [
+        "BF16"
+      ],
+      "featured_image_url": "https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/assets/repo-header.jpg",
+      "associated_article_slug": "flux-1-1-ultra-analysis",
+      "articles": [
+        {
+          "slug": "flux-1-1-ultra-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 91.9,
+        "tier": "S",
+        "quality_score": 96,
+        "speed_score": 85,
+        "freedom_score": 95
+      }
+    },
+    {
+      "id": "model-1771071150964-7",
+      "huggingface_url": "https://ideogram.ai/",
+      "model_name": "ideogram-v3",
+      "display_name": "Ideogram v3",
+      "category": "Image Generation",
+      "organization": "Ideogram",
+      "description": "Specialized model for typography and design layouts.",
+      "license": "Proprietary",
+      "safetensors": false,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://pbs.twimg.com/profile_images/1694060938763538432/P2aaeiLp_400x400.jpg",
+      "associated_article_slug": "ideogram-v3-analysis",
+      "articles": [
+        {
+          "slug": "ideogram-v3-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 67.9,
+        "tier": "C",
+        "quality_score": 94,
+        "speed_score": 80,
+        "freedom_score": 30
+      }
+    },
+    {
+      "id": "model-1771071150964-8",
+      "huggingface_url": "https://deepmind.google/technologies/imagen/",
+      "model_name": "imagen-4",
+      "display_name": "Imagen 4",
+      "category": "Image Generation",
+      "organization": "Google",
+      "description": "Google's photorealistic diffusion model, deeply integrated with Gemini.",
+      "license": "Proprietary",
+      "safetensors": false,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+      "associated_article_slug": "imagen-4-analysis",
+      "articles": [
+        {
+          "slug": "imagen-4-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 63.9,
+        "tier": "C",
+        "quality_score": 92,
+        "speed_score": 85,
+        "freedom_score": 15
+      }
+    },
+    {
+      "id": "model-1771071150964-9",
+      "huggingface_url": "https://www.midjourney.com/",
+      "model_name": "midjourney-v7",
+      "display_name": "Midjourney v7",
+      "category": "Image Generation",
+      "organization": "Midjourney",
+      "description": "The artistic gold standard, known for its distinct style and improved coherence.",
+      "license": "Proprietary",
+      "safetensors": false,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Midjourney_Emblem.png",
+      "associated_article_slug": "midjourney-v7-analysis",
+      "articles": [
+        {
+          "slug": "midjourney-v7-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 52.7,
+        "tier": "D",
+        "quality_score": 98,
+        "speed_score": 50,
+        "freedom_score": 10
+      }
+    },
+    {
+      "id": "model-1771071150964-10",
+      "huggingface_url": "https://openai.com/dall-e-3",
+      "model_name": "dall-e-3",
+      "display_name": "DALL-E 3",
+      "category": "Image Generation",
+      "organization": "OpenAI",
+      "description": "Integrated directly into ChatGPT, offering the best prompt adherence natural language interface.",
+      "license": "Proprietary",
+      "safetensors": false,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
+      "associated_article_slug": "dall-e-3-analysis",
+      "articles": [
+        {
+          "slug": "dall-e-3-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 59.3,
+        "tier": "D",
+        "quality_score": 88,
+        "speed_score": 75,
+        "freedom_score": 15
+      }
+    },
+    {
+      "id": "model-1771071150964-11",
+      "huggingface_url": "https://cartesia.ai/",
+      "model_name": "sonic",
+      "display_name": "Cartesia (Sonic)",
+      "category": "Audio Processing",
+      "organization": "Cartesia",
+      "description": "Ultra-low latency real-time voice generation for interactive agents.",
+      "license": "Proprietary",
+      "safetensors": false,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://cartesia.ai/logo.png",
+      "associated_article_slug": "cartesia-sonic-analysis",
+      "articles": [
+        {
+          "slug": "cartesia-sonic-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 80.3,
+        "tier": "A",
+        "quality_score": 92,
+        "speed_score": 99,
+        "freedom_score": 50
+      }
+    },
+    {
+      "id": "model-1771071150964-12",
+      "huggingface_url": "https://elevenlabs.io/",
+      "model_name": "elevenlabs-v3",
+      "display_name": "ElevenLabs v3",
+      "category": "Audio Processing",
+      "organization": "ElevenLabs",
+      "description": "The industry standard for emotive, high-quality speech synthesis.",
+      "license": "Proprietary",
+      "safetensors": false,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://avatars.githubusercontent.com/u/120663473?s=200&v=4",
+      "associated_article_slug": "elevenlabs-v3-analysis",
+      "articles": [
+        {
+          "slug": "elevenlabs-v3-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 70.9,
+        "tier": "B",
+        "quality_score": 98,
+        "speed_score": 85,
+        "freedom_score": 30
+      }
+    },
+    {
+      "id": "model-1771071150964-13",
+      "huggingface_url": "https://deepmind.google/technologies/gemini/flash/",
+      "model_name": "gemini-2-0-flash-audio",
+      "display_name": "Gemini 2.0 Flash",
+      "category": "Audio Processing",
+      "organization": "Google",
+      "description": "Multimodal model with native audio input/output for seamlessly fast interaction.",
+      "license": "Proprietary",
+      "safetensors": false,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg",
+      "associated_article_slug": "gemini-2-flash-audio-analysis",
+      "articles": [
+        {
+          "slug": "gemini-2-flash-audio-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 68.6,
+        "tier": "C",
+        "quality_score": 88,
+        "speed_score": 98,
+        "freedom_score": 20
+      }
+    },
+    {
+      "id": "model-1771071150964-14",
+      "huggingface_url": "https://suno.com/",
+      "model_name": "suno-v4",
+      "display_name": "Suno v4",
+      "category": "Audio Processing",
+      "organization": "Suno",
+      "description": "Generates full radio-quality songs from simple text prompts.",
+      "license": "Proprietary",
+      "safetensors": false,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://suno.com/images/logo_square.png",
+      "associated_article_slug": "suno-v4-analysis",
+      "articles": [
+        {
+          "slug": "suno-v4-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 50,
+        "tier": "D",
+        "quality_score": 95,
+        "speed_score": 40,
+        "freedom_score": 15
+      }
+    },
+    {
+      "id": "model-1771071150964-15",
+      "huggingface_url": "https://www.udio.com/",
+      "model_name": "udio-v1",
+      "display_name": "Udio",
+      "category": "Audio Processing",
+      "organization": "Udio",
+      "description": "High-fidelity music generation with a focus on electronic and complex genres.",
+      "license": "Proprietary",
+      "safetensors": false,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://www.udio.com/logo.png",
+      "associated_article_slug": "udio-analysis",
+      "articles": [
+        {
+          "slug": "udio-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 47,
+        "tier": "D",
+        "quality_score": 96,
+        "speed_score": 30,
+        "freedom_score": 15
+      }
+    },
+    {
+      "id": "model-1771071150964-16",
+      "huggingface_url": "https://www.ultralytics.com/",
+      "model_name": "yolov12",
+      "display_name": "YOLOv12",
+      "category": "Computer Vision",
+      "organization": "Ultralytics",
+      "description": "The absolute standard for real-time object detection, now faster and more accurate.",
+      "license": "license:agpl-3.0",
+      "safetensors": true,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "FP16",
+        "INT8"
+      ],
+      "featured_image_url": "https://raw.githubusercontent.com/ultralytics/assets/main/yolov8/banner-yolov8.png",
+      "associated_article_slug": "yolov12-analysis",
+      "articles": [
+        {
+          "slug": "yolov12-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 96.3,
+        "tier": "S",
+        "quality_score": 90,
+        "speed_score": 99,
+        "freedom_score": 100
+      }
+    },
+    {
+      "id": "model-1771071150964-17",
+      "huggingface_url": "https://www.microsoft.com/en-us/research/project/project-florence/",
+      "model_name": "florence-2-large",
+      "display_name": "Florence-2",
+      "category": "Computer Vision",
+      "organization": "Microsoft",
+      "description": "A unified foundation model for vision capable of captioning, detection, and segmentation.",
+      "license": "license:mit",
+      "safetensors": true,
+      "model_size": "0.7B",
+      "tensor_types": [
+        "FP16"
+      ],
+      "featured_image_url": "https://huggingface.co/microsoft/Florence-2-large/resolve/main/cover.png",
+      "associated_article_slug": "florence-2-analysis",
+      "articles": [
+        {
+          "slug": "florence-2-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 94.3,
+        "tier": "S",
+        "quality_score": 88,
+        "speed_score": 95,
+        "freedom_score": 100
+      }
+    },
+    {
+      "id": "model-1771071150965-18",
+      "huggingface_url": "https://segment-anything.com/",
+      "model_name": "sam-3",
+      "display_name": "SAM 3 (Meta)",
+      "category": "Computer Vision",
+      "organization": "Meta",
+      "description": "Segment Anything Model 3, offering pixel-perfect object masks for any image.",
+      "license": "license:apache-2.0",
+      "safetensors": true,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "BF16"
+      ],
+      "featured_image_url": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/model_doc/sam_architecture.jpg",
+      "associated_article_slug": "sam-3-analysis",
+      "articles": [
+        {
+          "slug": "sam-3-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 88.3,
+        "tier": "A",
+        "quality_score": 95,
+        "speed_score": 80,
+        "freedom_score": 90
+      }
+    },
+    {
+      "id": "model-1771071150965-19",
+      "huggingface_url": "https://dinov2.metademolab.com/",
+      "model_name": "dinov2-large",
+      "display_name": "DINOv2",
+      "category": "Computer Vision",
+      "organization": "Meta",
+      "description": "Self-supervised vision model that learns robust visual features without labels.",
+      "license": "license:apache-2.0",
+      "safetensors": true,
+      "model_size": "0.3B",
+      "tensor_types": [
+        "FP16"
+      ],
+      "featured_image_url": "https://huggingface.co/facebook/dinov2-large/resolve/main/assets/dino_v2.png",
+      "associated_article_slug": "dinov2-analysis",
+      "articles": [
+        {
+          "slug": "dinov2-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 88.3,
+        "tier": "A",
+        "quality_score": 85,
+        "speed_score": 90,
+        "freedom_score": 90
+      }
+    },
+    {
+      "id": "model-1771071150965-20",
+      "huggingface_url": "https://roboflow.com/",
+      "model_name": "rf-detr",
+      "display_name": "RF-DETR",
+      "category": "Computer Vision",
+      "organization": "OpenCV",
+      "description": "Receptive Field based Detection Transformer for accurate visual understanding.",
+      "license": "license:apache-2.0",
+      "safetensors": true,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg",
+      "associated_article_slug": "rf-detr-analysis",
+      "articles": [
+        {
+          "slug": "rf-detr-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 84.6,
+        "tier": "A",
+        "quality_score": 89,
+        "speed_score": 85,
+        "freedom_score": 80
+      }
+    },
+    {
+      "id": "model-1771071150965-21",
+      "huggingface_url": "https://mistral.ai/",
+      "model_name": "pixtral-large",
+      "display_name": "Pixtral Large",
+      "category": "Multimodal",
+      "organization": "Mistral AI",
+      "description": "A multimodal powerhouse from Mistral, combining text and vision with high efficiency.",
+      "license": "license:mistral-community",
+      "safetensors": true,
+      "model_size": "123B",
+      "tensor_types": [
+        "BF16"
+      ],
+      "featured_image_url": "https://huggingface.co/mistralai/pixtral-large-2409/resolve/main/assets/banner_pixtral.jpg",
+      "associated_article_slug": "pixtral-large-analysis",
+      "articles": [
+        {
+          "slug": "pixtral-large-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 89.9,
+        "tier": "S",
+        "quality_score": 90,
+        "speed_score": 85,
+        "freedom_score": 95
+      }
+    },
+    {
+      "id": "model-1771071150965-22",
+      "huggingface_url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
+      "model_name": "llama-4-vision",
+      "display_name": "Llama 4-Vision",
+      "category": "Multimodal",
+      "organization": "Meta",
+      "description": "The vision-enabled variant of Llama 4, bringing eyesight to the open ecosystem.",
+      "license": "license:llama-community",
+      "safetensors": true,
+      "model_size": "90B",
+      "tensor_types": [
+        "BF16"
+      ],
+      "featured_image_url": "https://huggingface.co/meta-llama/Llama-3.2-11B-Vision/resolve/main/original/header.png",
+      "associated_article_slug": "llama-4-vision-analysis",
+      "articles": [
+        {
+          "slug": "llama-4-vision-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 89.3,
+        "tier": "A",
+        "quality_score": 88,
+        "speed_score": 85,
+        "freedom_score": 95
+      }
+    },
+    {
+      "id": "model-1771071150965-23",
+      "huggingface_url": "https://www.anthropic.com/news/claude-3-5-sonnet",
+      "model_name": "claude-3-5-sonnet-vlm",
+      "display_name": "Claude 3.5 Sonnet",
+      "category": "Multimodal",
+      "organization": "Anthropic",
+      "description": "Excellent visual reasoning capabilities, particularly for UI and document tasks.",
+      "license": "Proprietary",
+      "safetensors": false,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Anthropic_logo.svg",
+      "associated_article_slug": "claude-3-5-sonnet-vision-review",
+      "articles": [
+        {
+          "slug": "claude-3-5-sonnet-vision-review"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 63.6,
+        "tier": "C",
+        "quality_score": 96,
+        "speed_score": 75,
+        "freedom_score": 20
+      }
+    },
+    {
+      "id": "model-1771071150965-24",
+      "huggingface_url": "https://deepmind.google/technologies/gemini/",
+      "model_name": "gemini-3-0-ultra",
+      "display_name": "Gemini 3.0 Ultra",
+      "category": "Multimodal",
+      "organization": "Google",
+      "description": "Google's most capable multimodal model, designed for massive scale complex reasoning.",
+      "license": "Proprietary",
+      "safetensors": false,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg",
+      "associated_article_slug": "gemini-3-ultra-analysis",
+      "articles": [
+        {
+          "slug": "gemini-3-ultra-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 57.6,
+        "tier": "D",
+        "quality_score": 98,
+        "speed_score": 60,
+        "freedom_score": 15
+      }
+    },
+    {
+      "id": "model-1771071150965-25",
+      "huggingface_url": "https://openai.com/index/introducing-o3-and-o4-mini/",
+      "model_name": "openai-o3",
+      "display_name": "OpenAI o3",
+      "category": "Multimodal",
+      "organization": "OpenAI",
+      "description": "The next evolution of reasoning models, capable of vast coherent thought chains.",
+      "license": "Proprietary",
+      "safetensors": false,
+      "model_size": "Unknown",
+      "tensor_types": [
+        "{}"
+      ],
+      "featured_image_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
+      "associated_article_slug": "openai-o3-analysis",
+      "articles": [
+        {
+          "slug": "openai-o3-analysis"
+        }
+      ],
+      "model_scores": {
+        "overall_score": 43,
+        "tier": "D",
+        "quality_score": 99,
+        "speed_score": 20,
+        "freedom_score": 10
+      }
+    }
+  ]
+}

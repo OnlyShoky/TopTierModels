@@ -1,21 +1,144 @@
 /**
- * Supabase Client Configuration
+ * Supabase Client Configuration & Data Service
  * 
  * This module initializes the Supabase client for frontend use.
- * Uses the anon key which is safe for client-side code.
+ * It also implements a Fallback Data Service that reads from a local JSON file
+ * when VITE_USE_SUPABASE is set to 'false'.
  */
 
 import { createClient } from '@supabase/supabase-js'
+import fallbackData from '../data/fallback_data.json'
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || ''
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
+// Default to true unless explicitly set to 'false'
+const USE_SUPABASE = import.meta.env.VITE_USE_SUPABASE !== 'false'
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-/**
- * Fetch all published articles with optional filters
- */
+// --- Fallback Handlers ---
+
+function getArticlesFallback({ category, tier, page = 1, limit = 12 }) {
+  let articles = fallbackData.articles || []
+
+  // Filter out invalid articles (fragments from CSV parsing)
+  articles = articles.filter(a => a.models && a.title);
+
+  // Filter by category
+  if (category && category !== 'all') {
+    articles = articles.filter(a => a.models?.category === category)
+  }
+
+  // Filter by Tier
+  if (tier && tier !== 'all') {
+    articles = articles.filter(a => a.models?.model_scores?.tier === tier)
+  }
+
+  // Sort by published_at desc
+  articles.sort((a, b) => new Date(b.published_at) - new Date(a.published_at))
+
+  // Pagination
+  const start = (page - 1) * limit
+  const end = start + limit
+  return articles.slice(start, end).map(a => ({
+    id: a.id,
+    title: a.title,
+    slug: a.slug,
+    excerpt: a.excerpt,
+    hero_image_url: a.hero_image_url,
+    read_time_minutes: a.read_time_minutes,
+    published_at: a.published_at,
+    models: a.models ? {
+      id: a.models.id, // might be undefined in fallback if not joined
+      category: a.models.category,
+      model_scores: a.models.model_scores
+    } : null
+  }))
+}
+
+function getArticleBySlugFallback(slug) {
+  const article = (fallbackData.articles || []).find(a => a.slug === slug)
+  if (!article) return null
+
+  // The fallback JSON already has the 'models' object nested.
+  // We just need to ensure the shape matches what the component expects.
+  // The component expects: 
+  // models (object) -> model_scores, code_snippets, etc.
+  // simplified_articles -> array (missing in fallback currently, define as empty)
+
+  return {
+    ...article,
+    models: article.models ? {
+      ...article.models,
+      code_snippets: [] // TODO: seed.sql parsing didn't extract snippets, defaulting to empty
+    } : null,
+    simplified_articles: []
+  }
+}
+
+function getModelsForTierlistFallback(category) {
+  let models = fallbackData.models || [] // generated list of models
+
+  if (category && category !== 'all') {
+    models = models.filter(m => m.category === category)
+  }
+
+  // Sort by overall_score desc
+  models.sort((a, b) => (b.model_scores?.overall_score || 0) - (a.model_scores?.overall_score || 0))
+
+  return models
+}
+
+function searchContentFallback(query) {
+  const searchTerm = query.toLowerCase()
+  const articles = (fallbackData.articles || [])
+    .filter(a => a.title?.toLowerCase().includes(searchTerm))
+    .slice(0, 5)
+    .map(a => ({ id: a.id, title: a.title, slug: a.slug, excerpt: a.excerpt }))
+
+  const models = (fallbackData.models || [])
+    .filter(m => m.display_name?.toLowerCase().includes(searchTerm))
+    .slice(0, 5)
+    .map(m => ({
+      id: m.id || 'mock-id',
+      display_name: m.display_name,
+      category: m.category,
+      model_scores: m.model_scores,
+      articles: m.articles // contains { slug }
+    }))
+
+  return { articles, models }
+}
+
+async function getTierlistCategoriesFallback() {
+  // Determine counts from data
+  const models = fallbackData.models || []
+  const counts = {}
+
+  models.forEach(m => {
+    if (m.category) {
+      counts[m.category] = (counts[m.category] || 0) + 1
+    }
+  })
+
+  // Transform to array
+  return Object.entries(counts).map(([name, count]) => ({
+    name,
+    slug: name, // assuming slug is name for now
+    description: null,
+    icon_name: 'Box', // default
+    model_count: count
+  })).sort((a, b) => b.model_count - a.model_count)
+}
+
+// --- Exported Functions (Facade) ---
+
 export async function getArticles({ category, tier, page = 1, limit = 12 }) {
+  if (!USE_SUPABASE) {
+    console.log('Using Fallback Data for getArticles')
+    return getArticlesFallback({ category, tier, page, limit })
+  }
+
   let query = supabase
     .from('articles')
     .select(`
@@ -53,10 +176,12 @@ export async function getArticles({ category, tier, page = 1, limit = 12 }) {
   return data
 }
 
-/**
- * Fetch a single article by slug
- */
 export async function getArticleBySlug(slug) {
+  if (!USE_SUPABASE) {
+    console.log('Using Fallback Data for getArticleBySlug')
+    return getArticleBySlugFallback(slug)
+  }
+
   const { data, error } = await supabase
     .from('articles')
     .select(`
@@ -93,10 +218,12 @@ export async function getArticleBySlug(slug) {
   return data
 }
 
-/**
- * Fetch all models with scores for tierlist
- */
 export async function getModelsForTierlist(category) {
+  if (!USE_SUPABASE) {
+    console.log('Using Fallback Data for getModelsForTierlist')
+    return getModelsForTierlistFallback(category)
+  }
+
   let query = supabase
     .from('models')
     .select(`
@@ -129,10 +256,11 @@ export async function getModelsForTierlist(category) {
   return data
 }
 
-/**
- * Search articles and models
- */
 export async function searchContent(query) {
+  if (!USE_SUPABASE) {
+    return searchContentFallback(query)
+  }
+
   const searchTerm = `%${query}%`
 
   const [articlesResult, modelsResult] = await Promise.all([
@@ -162,10 +290,11 @@ export async function searchContent(query) {
   }
 }
 
-/**
- * Get tierlist categories with counts
- */
 export async function getTierlistCategories() {
+  if (!USE_SUPABASE) {
+    return getTierlistCategoriesFallback()
+  }
+
   const { data, error } = await supabase
     .from('tierlists')
     .select('*')
