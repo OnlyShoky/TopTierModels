@@ -120,9 +120,9 @@ function HomePage() {
                             <Link to="/tierlist" className="btn btn-primary btn-lg">
                                 View Tierlist
                             </Link>
-                            <a href="#models" className="btn btn-secondary btn-lg">
+                            <Link to="/models" className="btn btn-secondary btn-lg">
                                 Browse Models
-                            </a>
+                            </Link>
                         </div>
                     </div>
 

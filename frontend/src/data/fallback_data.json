@@ -1,8 +1,8 @@
 {
   "articles": [
     {
-      "id": "article-1771071150962-1",
-      "model_id": "model-1771071150962-1",
+      "id": "article-1771071528856-1",
+      "model_id": "model-1771071528856-1",
       "title": "Llama 4: Open Source Perfection",
       "slug": "llama-4-analysis",
       "excerpt": "Meta's Llama 4 redefines what is possible with open weights, matching proprietary giants in reasoning.",
@@ -20,11 +20,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.962Z",
-      "created_at": "2026-02-14T12:12:30.963Z",
-      "updated_at": "2026-02-14T12:12:30.963Z",
+      "published_at": "2026-02-14T12:18:48.856Z",
+      "created_at": "2026-02-14T12:18:48.856Z",
+      "updated_at": "2026-02-14T12:18:48.856Z",
       "models": {
-        "id": "model-1771071150962-1",
+        "id": "model-1771071528856-1",
         "huggingface_url": "https://www.llama.com/",
         "model_name": "llama-4-70b",
         "display_name": "Llama 4",
@@ -48,8 +48,8 @@
       }
     },
     {
-      "id": "article-1771071150963-2",
-      "model_id": "model-1771071150963-2",
+      "id": "article-1771071528857-2",
+      "model_id": "model-1771071528856-2",
       "title": "Grok 3: Real-Time Intelligence",
       "slug": "grok-3-analysis",
       "excerpt": "Grok 3 combines massive compute with real-time data access to create a uniquely capable assistant.",
@@ -67,11 +67,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.963Z",
-      "created_at": "2026-02-14T12:12:30.963Z",
-      "updated_at": "2026-02-14T12:12:30.963Z",
+      "published_at": "2026-02-14T12:18:48.857Z",
+      "created_at": "2026-02-14T12:18:48.857Z",
+      "updated_at": "2026-02-14T12:18:48.857Z",
       "models": {
-        "id": "model-1771071150963-2",
+        "id": "model-1771071528856-2",
         "huggingface_url": "https://x.ai/",
         "model_name": "grok-3",
         "display_name": "Grok 3",
@@ -95,8 +95,8 @@
       }
     },
     {
-      "id": "article-1771071150963-3",
-      "model_id": "model-1771071150963-3",
+      "id": "article-1771071528857-3",
+      "model_id": "model-1771071528857-3",
       "title": "Gemini 3.0 Pro: The Context King",
       "slug": "gemini-3-pro-analysis",
       "excerpt": "Gemini 3.0 Pro continues to push the boundaries of long-context understanding and retrieval.",
@@ -108,11 +108,11 @@
       "seo_keywords": [],
       "related_model_ids": "",
       "published": null,
-      "published_at": "2026-02-14T12:12:30.963Z",
-      "created_at": "2026-02-14T12:12:30.963Z",
-      "updated_at": "2026-02-14T12:12:30.963Z",
+      "published_at": "2026-02-14T12:18:48.857Z",
+      "created_at": "2026-02-14T12:18:48.857Z",
+      "updated_at": "2026-02-14T12:18:48.857Z",
       "models": {
-        "id": "model-1771071150963-3",
+        "id": "model-1771071528857-3",
         "huggingface_url": "https://deepmind.google/models/gemini/pro/",
         "model_name": "gemini-3-0-pro",
         "display_name": "Gemini 3.0 Pro",
@@ -136,8 +136,8 @@
       }
     },
     {
-      "id": "article-1771071150963-4",
-      "model_id": "model-1771071150963-4",
+      "id": "article-1771071528857-4",
+      "model_id": "model-1771071528857-4",
       "title": "GPT-5: Brilliant but Closed",
       "slug": "gpt-5-analysis",
       "excerpt": "GPT-5 sets a new high water mark for intelligence, but at the cost of speed and accessibility.",
@@ -154,11 +154,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.963Z",
-      "created_at": "2026-02-14T12:12:30.963Z",
-      "updated_at": "2026-02-14T12:12:30.963Z",
+      "published_at": "2026-02-14T12:18:48.857Z",
+      "created_at": "2026-02-14T12:18:48.857Z",
+      "updated_at": "2026-02-14T12:18:48.857Z",
       "models": {
-        "id": "model-1771071150963-4",
+        "id": "model-1771071528857-4",
         "huggingface_url": "https://openai.com/",
         "model_name": "gpt-5",
         "display_name": "GPT-5",
@@ -182,8 +182,8 @@
       }
     },
     {
-      "id": "article-1771071150963-5",
-      "model_id": "model-1771071150963-5",
+      "id": "article-1771071528857-5",
+      "model_id": "model-1771071528857-5",
       "title": "Claude 4.5 Sonnet: The Coding Specialist",
       "slug": "claude-4-5-sonnet-analysis",
       "excerpt": "Claude remains the favorite for developers, with version 4.5 refining its coding intuition.",
@@ -200,11 +200,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.963Z",
-      "created_at": "2026-02-14T12:12:30.963Z",
-      "updated_at": "2026-02-14T12:12:30.963Z",
+      "published_at": "2026-02-14T12:18:48.857Z",
+      "created_at": "2026-02-14T12:18:48.857Z",
+      "updated_at": "2026-02-14T12:18:48.857Z",
       "models": {
-        "id": "model-1771071150963-5",
+        "id": "model-1771071528857-5",
         "huggingface_url": "https://www.anthropic.com/claude",
         "model_name": "claude-4-5-sonnet",
         "display_name": "Claude 4.5 Sonnet",
@@ -228,8 +228,8 @@
       }
     },
     {
-      "id": "article-1771071150963-6",
-      "model_id": "model-1771071150963-6",
+      "id": "article-1771071528857-6",
+      "model_id": "model-1771071528857-6",
       "title": "Flux 1.1 Ultra: Unbeatable Realism",
       "slug": "flux-1-1-ultra-analysis",
       "excerpt": "Flux 1.1 Ultra masters the hardest parts of AI imagery: hands, text, and composition.",
@@ -246,11 +246,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.963Z",
-      "created_at": "2026-02-14T12:12:30.963Z",
-      "updated_at": "2026-02-14T12:12:30.963Z",
+      "published_at": "2026-02-14T12:18:48.857Z",
+      "created_at": "2026-02-14T12:18:48.857Z",
+      "updated_at": "2026-02-14T12:18:48.857Z",
       "models": {
-        "id": "model-1771071150963-6",
+        "id": "model-1771071528857-6",
         "huggingface_url": "https://blackforestlabs.ai/",
         "model_name": "flux-1-1-ultra",
         "display_name": "Flux 1.1 Ultra",
@@ -274,8 +274,8 @@
       }
     },
     {
-      "id": "article-1771071150964-7",
-      "model_id": "model-1771071150964-7",
+      "id": "article-1771071528857-7",
+      "model_id": "model-1771071528857-7",
       "title": "Ideogram v3: The Designer's Tool",
       "slug": "ideogram-v3-analysis",
       "excerpt": "Ideogram continues to lead the pack in integrating text and design elements into AI art.",
@@ -292,11 +292,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.964Z",
-      "created_at": "2026-02-14T12:12:30.964Z",
-      "updated_at": "2026-02-14T12:12:30.964Z",
+      "published_at": "2026-02-14T12:18:48.857Z",
+      "created_at": "2026-02-14T12:18:48.857Z",
+      "updated_at": "2026-02-14T12:18:48.857Z",
       "models": {
-        "id": "model-1771071150964-7",
+        "id": "model-1771071528857-7",
         "huggingface_url": "https://ideogram.ai/",
         "model_name": "ideogram-v3",
         "display_name": "Ideogram v3",
@@ -320,8 +320,8 @@
       }
     },
     {
-      "id": "article-1771071150964-8",
-      "model_id": "model-1771071150964-8",
+      "id": "article-1771071528858-8",
+      "model_id": "model-1771071528858-8",
       "title": "Imagen 4: Google's Visual Powerhouse",
       "slug": "imagen-4-analysis",
       "excerpt": "Imagen 4 delivers high-fidelity photorealism with Google's safety and infrastructure.",
@@ -338,11 +338,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.964Z",
-      "created_at": "2026-02-14T12:12:30.964Z",
-      "updated_at": "2026-02-14T12:12:30.964Z",
+      "published_at": "2026-02-14T12:18:48.858Z",
+      "created_at": "2026-02-14T12:18:48.858Z",
+      "updated_at": "2026-02-14T12:18:48.858Z",
       "models": {
-        "id": "model-1771071150964-8",
+        "id": "model-1771071528858-8",
         "huggingface_url": "https://deepmind.google/technologies/imagen/",
         "model_name": "imagen-4",
         "display_name": "Imagen 4",
@@ -366,8 +366,8 @@
       }
     },
     {
-      "id": "article-1771071150964-9",
-      "model_id": "model-1771071150964-9",
+      "id": "article-1771071528858-9",
+      "model_id": "model-1771071528858-9",
       "title": "Midjourney v7: Pure Sytle",
       "slug": "midjourney-v7-analysis",
       "excerpt": "Midjourney v7 remains the most artistically pleasing model, despite usability hurdles.",
@@ -384,11 +384,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.964Z",
-      "created_at": "2026-02-14T12:12:30.964Z",
-      "updated_at": "2026-02-14T12:12:30.964Z",
+      "published_at": "2026-02-14T12:18:48.858Z",
+      "created_at": "2026-02-14T12:18:48.858Z",
+      "updated_at": "2026-02-14T12:18:48.858Z",
       "models": {
-        "id": "model-1771071150964-9",
+        "id": "model-1771071528858-9",
         "huggingface_url": "https://www.midjourney.com/",
         "model_name": "midjourney-v7",
         "display_name": "Midjourney v7",
@@ -412,8 +412,8 @@
       }
     },
     {
-      "id": "article-1771071150964-10",
-      "model_id": "model-1771071150964-10",
+      "id": "article-1771071528858-10",
+      "model_id": "model-1771071528858-10",
       "title": "DALL-E 3: Easiest to Use",
       "slug": "dall-e-3-analysis",
       "excerpt": "DALL-E 3 makes image generation accessible via natural language, though it lacks granular control.",
@@ -430,11 +430,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.964Z",
-      "created_at": "2026-02-14T12:12:30.964Z",
-      "updated_at": "2026-02-14T12:12:30.964Z",
+      "published_at": "2026-02-14T12:18:48.858Z",
+      "created_at": "2026-02-14T12:18:48.858Z",
+      "updated_at": "2026-02-14T12:18:48.858Z",
       "models": {
-        "id": "model-1771071150964-10",
+        "id": "model-1771071528858-10",
         "huggingface_url": "https://openai.com/dall-e-3",
         "model_name": "dall-e-3",
         "display_name": "DALL-E 3",
@@ -458,8 +458,8 @@
       }
     },
     {
-      "id": "article-1771071150964-11",
-      "model_id": "model-1771071150964-11",
+      "id": "article-1771071528858-11",
+      "model_id": "model-1771071528858-11",
       "title": "Cartesia: The Fastest Voice AI",
       "slug": "cartesia-sonic-analysis",
       "excerpt": "Sonic separates itself with blazing fast latency, enabling true real-time voice conversations.",
@@ -476,11 +476,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.964Z",
-      "created_at": "2026-02-14T12:12:30.964Z",
-      "updated_at": "2026-02-14T12:12:30.964Z",
+      "published_at": "2026-02-14T12:18:48.858Z",
+      "created_at": "2026-02-14T12:18:48.858Z",
+      "updated_at": "2026-02-14T12:18:48.858Z",
       "models": {
-        "id": "model-1771071150964-11",
+        "id": "model-1771071528858-11",
         "huggingface_url": "https://cartesia.ai/",
         "model_name": "sonic",
         "display_name": "Cartesia (Sonic)",
@@ -504,8 +504,8 @@
       }
     },
     {
-      "id": "article-1771071150964-12",
-      "model_id": "model-1771071150964-12",
+      "id": "article-1771071528858-12",
+      "model_id": "model-1771071528858-12",
       "title": "ElevenLabs v3: Emotion Matcher",
       "slug": "elevenlabs-v3-analysis",
       "excerpt": "ElevenLabs remains the benchmark for quality, offering the most emotive and varied voices.",
@@ -522,11 +522,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.964Z",
-      "created_at": "2026-02-14T12:12:30.964Z",
-      "updated_at": "2026-02-14T12:12:30.964Z",
+      "published_at": "2026-02-14T12:18:48.858Z",
+      "created_at": "2026-02-14T12:18:48.858Z",
+      "updated_at": "2026-02-14T12:18:48.858Z",
       "models": {
-        "id": "model-1771071150964-12",
+        "id": "model-1771071528858-12",
         "huggingface_url": "https://elevenlabs.io/",
         "model_name": "elevenlabs-v3",
         "display_name": "ElevenLabs v3",
@@ -550,8 +550,8 @@
       }
     },
     {
-      "id": "article-1771071150964-13",
-      "model_id": "model-1771071150964-13",
+      "id": "article-1771071528858-13",
+      "model_id": "model-1771071528858-13",
       "title": "Gemini 2.0 Flash: Audio Native",
       "slug": "gemini-2-flash-audio-analysis",
       "excerpt": "Gemini 2.0 Flash processes audio natively, skipping the transcription step for better nuance.",
@@ -568,11 +568,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.964Z",
-      "created_at": "2026-02-14T12:12:30.964Z",
-      "updated_at": "2026-02-14T12:12:30.964Z",
+      "published_at": "2026-02-14T12:18:48.858Z",
+      "created_at": "2026-02-14T12:18:48.858Z",
+      "updated_at": "2026-02-14T12:18:48.858Z",
       "models": {
-        "id": "model-1771071150964-13",
+        "id": "model-1771071528858-13",
         "huggingface_url": "https://deepmind.google/technologies/gemini/flash/",
         "model_name": "gemini-2-0-flash-audio",
         "display_name": "Gemini 2.0 Flash",
@@ -596,8 +596,8 @@
       }
     },
     {
-      "id": "article-1771071150964-14",
-      "model_id": "model-1771071150964-14",
+      "id": "article-1771071528858-14",
+      "model_id": "model-1771071528858-14",
       "title": "Suno v4: The AI Pop Star",
       "slug": "suno-v4-analysis",
       "excerpt": "Suno v4 can generate Billboard-quality tracks, raising massive questions about the future of music.",
@@ -614,11 +614,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.964Z",
-      "created_at": "2026-02-14T12:12:30.964Z",
-      "updated_at": "2026-02-14T12:12:30.964Z",
+      "published_at": "2026-02-14T12:18:48.858Z",
+      "created_at": "2026-02-14T12:18:48.858Z",
+      "updated_at": "2026-02-14T12:18:48.858Z",
       "models": {
-        "id": "model-1771071150964-14",
+        "id": "model-1771071528858-14",
         "huggingface_url": "https://suno.com/",
         "model_name": "suno-v4",
         "display_name": "Suno v4",
@@ -642,8 +642,8 @@
       }
     },
     {
-      "id": "article-1771071150964-15",
-      "model_id": "model-1771071150964-15",
+      "id": "article-1771071528858-15",
+      "model_id": "model-1771071528858-15",
       "title": "Udio: Complex Harmonics",
       "slug": "udio-analysis",
       "excerpt": "Udio rivals Suno but focuses more on clarity and complex musical arrangements.",
@@ -660,11 +660,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.964Z",
-      "created_at": "2026-02-14T12:12:30.964Z",
-      "updated_at": "2026-02-14T12:12:30.964Z",
+      "published_at": "2026-02-14T12:18:48.858Z",
+      "created_at": "2026-02-14T12:18:48.858Z",
+      "updated_at": "2026-02-14T12:18:48.858Z",
       "models": {
-        "id": "model-1771071150964-15",
+        "id": "model-1771071528858-15",
         "huggingface_url": "https://www.udio.com/",
         "model_name": "udio-v1",
         "display_name": "Udio",
@@ -688,8 +688,8 @@
       }
     },
     {
-      "id": "article-1771071150964-16",
-      "model_id": "model-1771071150964-16",
+      "id": "article-1771071528858-16",
+      "model_id": "model-1771071528858-16",
       "title": "YOLOv12: Real-time King",
       "slug": "yolov12-analysis",
       "excerpt": "YOLOv12 continues the legacy of \"You Only Look Once\" with unmatched inference speeds.",
@@ -707,11 +707,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.964Z",
-      "created_at": "2026-02-14T12:12:30.964Z",
-      "updated_at": "2026-02-14T12:12:30.964Z",
+      "published_at": "2026-02-14T12:18:48.858Z",
+      "created_at": "2026-02-14T12:18:48.858Z",
+      "updated_at": "2026-02-14T12:18:48.858Z",
       "models": {
-        "id": "model-1771071150964-16",
+        "id": "model-1771071528858-16",
         "huggingface_url": "https://www.ultralytics.com/",
         "model_name": "yolov12",
         "display_name": "YOLOv12",
@@ -736,8 +736,8 @@
       }
     },
     {
-      "id": "article-1771071150965-17",
-      "model_id": "model-1771071150964-17",
+      "id": "article-1771071528859-17",
+      "model_id": "model-1771071528858-17",
       "title": "Florence-2: Small but Mighty",
       "slug": "florence-2-analysis",
       "excerpt": "Microsoft's Florence-2 packs massive capability into a tiny parameter count.",
@@ -755,11 +755,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.965Z",
-      "created_at": "2026-02-14T12:12:30.965Z",
-      "updated_at": "2026-02-14T12:12:30.965Z",
+      "published_at": "2026-02-14T12:18:48.859Z",
+      "created_at": "2026-02-14T12:18:48.859Z",
+      "updated_at": "2026-02-14T12:18:48.859Z",
       "models": {
-        "id": "model-1771071150964-17",
+        "id": "model-1771071528858-17",
         "huggingface_url": "https://www.microsoft.com/en-us/research/project/project-florence/",
         "model_name": "florence-2-large",
         "display_name": "Florence-2",
@@ -783,8 +783,8 @@
       }
     },
     {
-      "id": "article-1771071150965-18",
-      "model_id": "model-1771071150965-18",
+      "id": "article-1771071528859-18",
+      "model_id": "model-1771071528859-18",
       "title": "SAM 3: Pixel Perfection",
       "slug": "sam-3-analysis",
       "excerpt": "Meta's Segment Anything Model 3 makes image segmentation a solved problem.",
@@ -801,11 +801,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.965Z",
-      "created_at": "2026-02-14T12:12:30.965Z",
-      "updated_at": "2026-02-14T12:12:30.965Z",
+      "published_at": "2026-02-14T12:18:48.859Z",
+      "created_at": "2026-02-14T12:18:48.859Z",
+      "updated_at": "2026-02-14T12:18:48.859Z",
       "models": {
-        "id": "model-1771071150965-18",
+        "id": "model-1771071528859-18",
         "huggingface_url": "https://segment-anything.com/",
         "model_name": "sam-3",
         "display_name": "SAM 3 (Meta)",
@@ -829,8 +829,8 @@
       }
     },
     {
-      "id": "article-1771071150965-19",
-      "model_id": "model-1771071150965-19",
+      "id": "article-1771071528859-19",
+      "model_id": "model-1771071528859-19",
       "title": "DINOv2: Seeing Like a Human",
       "slug": "dinov2-analysis",
       "excerpt": "DINOv2 learns features from images in a self-supervised way, creating powerful embeddings.",
@@ -847,11 +847,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.965Z",
-      "created_at": "2026-02-14T12:12:30.965Z",
-      "updated_at": "2026-02-14T12:12:30.965Z",
+      "published_at": "2026-02-14T12:18:48.859Z",
+      "created_at": "2026-02-14T12:18:48.859Z",
+      "updated_at": "2026-02-14T12:18:48.859Z",
       "models": {
-        "id": "model-1771071150965-19",
+        "id": "model-1771071528859-19",
         "huggingface_url": "https://dinov2.metademolab.com/",
         "model_name": "dinov2-large",
         "display_name": "DINOv2",
@@ -875,8 +875,8 @@
       }
     },
     {
-      "id": "article-1771071150965-20",
-      "model_id": "model-1771071150965-20",
+      "id": "article-1771071528859-20",
+      "model_id": "model-1771071528859-20",
       "title": "RF-DETR: Transformer Vision",
       "slug": "rf-detr-analysis",
       "excerpt": "RF-DETR brings the power of Transformers to object detection with improved accuracy.",
@@ -893,11 +893,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.965Z",
-      "created_at": "2026-02-14T12:12:30.965Z",
-      "updated_at": "2026-02-14T12:12:30.965Z",
+      "published_at": "2026-02-14T12:18:48.859Z",
+      "created_at": "2026-02-14T12:18:48.859Z",
+      "updated_at": "2026-02-14T12:18:48.859Z",
       "models": {
-        "id": "model-1771071150965-20",
+        "id": "model-1771071528859-20",
         "huggingface_url": "https://roboflow.com/",
         "model_name": "rf-detr",
         "display_name": "RF-DETR",
@@ -921,8 +921,8 @@
       }
     },
     {
-      "id": "article-1771071150965-21",
-      "model_id": "model-1771071150965-21",
+      "id": "article-1771071528859-21",
+      "model_id": "model-1771071528859-21",
       "title": "Pixtral Large: Multimodal Excellence",
       "slug": "pixtral-large-analysis",
       "excerpt": "Mistral AI delivers a top-tier multimodal model that handles text and logic efficiently.",
@@ -939,11 +939,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.965Z",
-      "created_at": "2026-02-14T12:12:30.965Z",
-      "updated_at": "2026-02-14T12:12:30.965Z",
+      "published_at": "2026-02-14T12:18:48.859Z",
+      "created_at": "2026-02-14T12:18:48.859Z",
+      "updated_at": "2026-02-14T12:18:48.859Z",
       "models": {
-        "id": "model-1771071150965-21",
+        "id": "model-1771071528859-21",
         "huggingface_url": "https://mistral.ai/",
         "model_name": "pixtral-large",
         "display_name": "Pixtral Large",
@@ -967,8 +967,8 @@
       }
     },
     {
-      "id": "article-1771071150965-22",
-      "model_id": "model-1771071150965-22",
+      "id": "article-1771071528859-22",
+      "model_id": "model-1771071528859-22",
       "title": "Llama 4-Vision: Opening Eyes",
       "slug": "llama-4-vision-analysis",
       "excerpt": "Meta brings native vision capabilities to the Llama 4 family, empowering open source multimodal apps.",
@@ -986,11 +986,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.965Z",
-      "created_at": "2026-02-14T12:12:30.965Z",
-      "updated_at": "2026-02-14T12:12:30.965Z",
+      "published_at": "2026-02-14T12:18:48.859Z",
+      "created_at": "2026-02-14T12:18:48.859Z",
+      "updated_at": "2026-02-14T12:18:48.859Z",
       "models": {
-        "id": "model-1771071150965-22",
+        "id": "model-1771071528859-22",
         "huggingface_url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
         "model_name": "llama-4-vision",
         "display_name": "Llama 4-Vision",
@@ -1014,8 +1014,8 @@
       }
     },
     {
-      "id": "article-1771071150965-23",
-      "model_id": "model-1771071150965-23",
+      "id": "article-1771071528859-23",
+      "model_id": "model-1771071528859-23",
       "title": "Claude 3.5 Sonnet: Visual Reasoning",
       "slug": "claude-3-5-sonnet-vision-review",
       "excerpt": "Claude 3.5 Sonnet excels at \"understanding\" images, not just describing them.",
@@ -1032,11 +1032,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.965Z",
-      "created_at": "2026-02-14T12:12:30.965Z",
-      "updated_at": "2026-02-14T12:12:30.965Z",
+      "published_at": "2026-02-14T12:18:48.859Z",
+      "created_at": "2026-02-14T12:18:48.859Z",
+      "updated_at": "2026-02-14T12:18:48.859Z",
       "models": {
-        "id": "model-1771071150965-23",
+        "id": "model-1771071528859-23",
         "huggingface_url": "https://www.anthropic.com/news/claude-3-5-sonnet",
         "model_name": "claude-3-5-sonnet-vlm",
         "display_name": "Claude 3.5 Sonnet",
@@ -1060,8 +1060,8 @@
       }
     },
     {
-      "id": "article-1771071150965-24",
-      "model_id": "model-1771071150965-24",
+      "id": "article-1771071528859-24",
+      "model_id": "model-1771071528859-24",
       "title": "Gemini 3.0 Ultra: The Heavyweight",
       "slug": "gemini-3-ultra-analysis",
       "excerpt": "Gemini 3.0 Ultra brings massive compute to bear on multimodal problems.",
@@ -1078,11 +1078,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.965Z",
-      "created_at": "2026-02-14T12:12:30.965Z",
-      "updated_at": "2026-02-14T12:12:30.965Z",
+      "published_at": "2026-02-14T12:18:48.859Z",
+      "created_at": "2026-02-14T12:18:48.859Z",
+      "updated_at": "2026-02-14T12:18:48.859Z",
       "models": {
-        "id": "model-1771071150965-24",
+        "id": "model-1771071528859-24",
         "huggingface_url": "https://deepmind.google/technologies/gemini/",
         "model_name": "gemini-3-0-ultra",
         "display_name": "Gemini 3.0 Ultra",
@@ -1106,8 +1106,8 @@
       }
     },
     {
-      "id": "article-1771071150965-25",
-      "model_id": "model-1771071150965-25",
+      "id": "article-1771071528859-25",
+      "model_id": "model-1771071528859-25",
       "title": "OpenAI o3: Deep Thought",
       "slug": "openai-o3-analysis",
       "excerpt": "OpenAI o3 pushes the \"System 2\" thinking paradigm to multimodal tasks.",
@@ -1124,11 +1124,11 @@
       ],
       "related_model_ids": "",
       "published": true,
-      "published_at": "2026-02-14T12:12:30.965Z",
-      "created_at": "2026-02-14T12:12:30.965Z",
-      "updated_at": "2026-02-14T12:12:30.965Z",
+      "published_at": "2026-02-14T12:18:48.859Z",
+      "created_at": "2026-02-14T12:18:48.859Z",
+      "updated_at": "2026-02-14T12:18:48.859Z",
       "models": {
-        "id": "model-1771071150965-25",
+        "id": "model-1771071528859-25",
         "huggingface_url": "https://openai.com/index/introducing-o3-and-o4-mini/",
         "model_name": "openai-o3",
         "display_name": "OpenAI o3",
@@ -1150,11 +1150,299 @@
           "freedom_score": 10
         }
       }
+    },
+    {
+      "id": "article-csv-5",
+      "model_id": "model-csv-placeholder-5",
+      "title": "GLM-4.7: The New Coding Partner Redefining Agentic Intelligence",
+      "slug": "glm-4-7-coding-partner-agentic-intelligence",
+      "excerpt": "GLM-4.7 isn't just another language model; it's a quantum leap in AI-assisted coding and complex reasoning. With significant gains across benchmarks and innovative thinking modes, zai-org's latest open-source offering is setting a new standard for...",
+      "content": "Forget everything you thought you knew about AI coding assistants. GLM-4.7, from the visionary team at zai-org, isn't just an upgrade; it's a declaration. This model is poised to become your indispensable coding partner, pushing the boundaries of what open-source AI can achieve in a world hungry for genuine intelligence.\n\n### Key Features and Innovations\n*   **Core Coding Prowess:** Delivers clear gains in multilingual agentic coding and terminal-based tasks, with impressive leaps on SWE-bench and Terminal Bench 2.0. It even supports \"thinking before acting\" for complex agent frameworks.\n*   **Vibe Coding for UI Excellence:** A surprising but welcome focus on aesthetics, producing cleaner, more modern webpages and better-looking, accurately laid-out slides.\n*   **Masterful Tool Usage:** Achieves significant improvements in tool-using benchmarks like τ^2-Bench and web browsing via BrowseComp.\n*   **Advanced Complex Reasoning:** Boasts a substantial boost in mathematical and reasoning capabilities, with a 12.4% gain on the HLE (Humanity’s Last Exam) benchmark over its predecessor.\n*   **Revolutionary Thinking Modes:** Introduces \"Interleaved Thinking\" (thinking before actions), \"Preserved Thinking\" (retains reasoning across turns for long tasks), and \"Turn-level Thinking\" (dynamic control over reasoning for latency/accuracy).\n\n### Performance Analysis\nGLM-4.7 doesn't just talk the talk; it walks the walk. While benchmarks are only one measure, the numbers speak volumes. It consistently outpaces its predecessor, GLM-4.6, with double-digit percentage gains across critical coding, reasoning, and agentic benchmarks. More importantly, it holds its own against industry titans like GPT-5-High, GPT-5.1-High, Claude Sonnet 4.5, and Gemini 3.0 Pro. While Gemini 3.0 Pro might edge it out in some general reasoning, GLM-4.7's specialized coding and agentic capabilities, particularly its multilingual prowess and innovative thinking modes, carve out a unique and powerful niche. This isn't just an incremental improvement; it's a strong contender in the race for true AI utility.\n\n### Scoring Breakdown\n*   **Quality (88/100)**: Demonstrates strong, competitive performance against top-tier models and significant gains over its predecessor across a wide range of coding, reasoning, and agentic benchmarks.\n*   **Speed (60/100)**: While \"Turn-level Thinking\" allows for latency reduction by disabling reasoning, no explicit quantitative speed metrics were provided to assess inherent inference speed.\n*   **Freedom (100/100)**: Released under the permissive MIT License and readily available on Hugging Face, aligning with the organization's commitment to open source and open science for broad accessibility.\n\n### Implementation/Usage\nGetting started with GLM-4.7 is straightforward, with support for popular inference frameworks like vLLM, SGLang, and Hugging Face Transformers. For local deployment, the `transformers` library offers a quick path:\n\n```python\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nMODEL_PATH = \"zai-org/GLM-4.7\"\nmessages = [{\"role\": \"user\", \"content\": \"hello\"}]\ntokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\ninputs = tokenizer.apply_chat_template(\n    messages,\n    tokenize=True,\n    add_generation_prompt=True,\n    return_dict=True,\n    return_tensors=\"pt\",\n)\nmodel = AutoModelForCausalLM.from_pretrained(\n    pretrained_model_name_or_path=MODEL_PATH,\n    torch_dtype=torch.bfloat16,\n    device_map=\"auto\",\n)\ninputs = inputs.to(model.device)\ngenerated_ids = model.generate(**inputs, max_new_tokens=128, do_sample=False)\noutput_text = tokenizer.decode(generated_ids[0][inputs.input_ids.shape[1] :])\nprint(output_text)\n```\nFor multi-turn agentic tasks, remember to enable `Preserved Thinking mode` for optimal stability and control.\n\n### Use Cases\n*   **Advanced Code Generation & Debugging:** From multilingual agentic coding to complex terminal tasks.\n*   **Automated UI/UX Design:** Generating clean, modern webpages and visually appealing presentation slides.\n*   **Intelligent Agent Development:** Powering complex agents that can reason, use tools, and interact seamlessly.\n*   **Mathematical & Scientific Problem Solving:** Tackling challenging reasoning and mathematical tasks.\n*   **Creative Content & Role-Play:** Enhancing chat experiences, creative writing, and immersive role-playing scenarios.\n\n### Citations/Sources\nIf you leverage this groundbreaking work, please consider citing the associated paper:\n@misc{5team2025glm45agenticreasoningcoding,\n      title={GLM-4.5: Agentic, Reasoning, and Coding (ARC) Foundation Models},\n      author={GLM Team and Aohan Zeng and Xin Lv and Qinkai Zheng and Zhenyu Hou and Bin Chen and Chengxing Xie and Cunxiang Wang and Da Yin and Hao Zeng and Jiajie Zhang and Kedong Wang and Lucen Zhong and Mingdao Liu and Rui Lu and Shulin Cao and Xiaohan Zhang and Xuancheng Huang and Yao Wei and Yean Cheng and Yifan An and Yilin Niu and Yuanhao Wen\n",
+      "hero_image_url": "",
+      "read_time_minutes": 5,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [],
+      "related_model_ids": "",
+      "published": false,
+      "published_at": "2025-12-30 09:47:00.410334+00",
+      "created_at": "2026-02-14T12:18:48.863Z",
+      "updated_at": "2026-02-14T12:18:48.863Z",
+      "models": {
+        "id": "model-csv-placeholder-5",
+        "display_name": "GLM-4.7",
+        "category": "Text Generation",
+        "model_scores": {
+          "overall_score": 0,
+          "tier": "C",
+          "quality_score": 0,
+          "speed_score": 0,
+          "freedom_score": 0
+        },
+        "associated_article_slug": "glm-4-7-coding-partner-agentic-intelligence",
+        "articles": [
+          {
+            "slug": "glm-4-7-coding-partner-agentic-intelligence"
+          }
+        ]
+      }
+    },
+    {
+      "id": "article-csv-10",
+      "model_id": "model-csv-placeholder-10",
+      "title": "GLM-Image: The New Standard for Text-Aware Visual Creation",
+      "slug": "glm-image-text-aware-visual-creation",
+      "excerpt": "Tired of image models butchering text? GLM-Image from zai-org arrives, wielding a hybrid architecture and advanced reinforcement learning to master precise text rendering and complex, knowledge-intensive visual generation. It's a game-changer for ...",
+      "content": "Image generation has seen incredible strides, but one persistent Achilles' heel remains: accurate text rendering. Enter GLM-Image from zai-org, a revolutionary model poised to redefine what's possible in text-aware visual creation, blending cutting-edge architecture with an uncanny understanding of semantic detail.\n\n### Key Features and Innovations\n*   **Hybrid Powerhouse:** A unique autoregressive (9B parameters, initialized from GLM-4-9B-0414) and diffusion decoder (7B parameters) architecture, designed for both broad strokes and fine details.\n*   **Unrivaled Text Rendering:** Equipped with a dedicated Glyph Encoder text module, GLM-Image significantly improves the precision and accuracy of text embedded within generated images.\n*   **Knowledge-Intensive Generation:** Excels in scenarios demanding precise semantic understanding and complex information expression, going beyond mere aesthetics.\n*   **Decoupled Reinforcement Learning:** Utilizes the GRPO algorithm with modular feedback to enhance both semantic alignment and visual fidelity, learning from low-frequency aesthetics and high-frequency details.\n*   **Versatile Image-to-Image:** Beyond text-to-image, it seamlessly handles image editing, style transfer, identity preservation, and multi-subject consistency.\n\n### Performance Analysis\nGLM-Image is a bold statement in the image generation landscape. Its ability to handle dense text and intricate knowledge-based prompts with high fidelity is a clear differentiator, positioning it as a front-runner for tasks that demand more than just pretty pictures – they demand *accurate* pictures. This model isn't just generating; it's *understanding*.\n\nHowever, this innovation comes with a caveat. Current inference optimizations are limited, leading to a relatively high runtime cost. While `enable_model_cpu_offload=True` can mitigate GPU memory requirements (~23GB), it will further impact speed. It's a trade-off: unparalleled precision for patience.\n\n### Scoring Breakdown\n*   **Quality (85/100)**: Excels in text rendering and knowledge-intensive generation, aligning with mainstream latent diffusion while offering significant advantages in precise semantic understanding and high-fidelity details.\n*   **Speed (40/100)**: Explicitly noted to have \"relatively high runtime cost\" due to limited inference optimizations, suggesting a need for patience.\n*   **Freedom (70/100)**: Available on Hugging Face and described as \"open source,\" but the specific license type is not detailed beyond \"License,\" resulting in a default base score with bonuses for openness and accessibility.\n\n### Implementation/Usage\nIntegrating GLM-Image is straightforward, supporting both `transformers` and `diffusers` pipelines as well as `SGLang` for API-based access. Below is a text-to-image example using the `transformers` and `diffusers` libraries.\n\n```bash\npip install git+https://github.com/huggingface/transformers.git\npip install git+https://github.com/huggingface/diffusers.git\n```\n\n**Text-to-Image Generation Example:**\n```python\nimport torch\nfrom diffusers.pipelines.glm_image import GlmImagePipeline\n\npipe = GlmImagePipeline.from_pretrained(\"zai-org/GLM-Image\", torch_dtype=torch.bfloat16, device_map=\"cuda\")\nprompt = \"A beautifully designed modern food magazine style dessert recipe illustration, themed around a raspberry mousse cake. The overall layout is clean and bright, divided into four main areas: the top left features a bold black title 'Raspberry Mousse Cake Recipe Guide', with a soft-lit close-up photo of the finished cake on the right, showcasing a light pink cake adorned with fresh raspberries and mint leaves; the bottom left contains an ingredient list section, titled 'Ingredients' in a simple font, listing 'Flour 150g', 'Eggs 3', 'Sugar 120g', 'Raspberry puree 200g', 'Gelatin sheets 10g', 'Whipping cream 300ml', and 'Fresh raspberries', each accompanied by minimalist line icons (like a flour bag, eggs, sugar jar, etc.); the bottom right displays four equally sized step boxes, each containing high-definition macro photos and corresponding instructions, arranged from top to bottom as follows: Step 1 shows a whisk whipping white foam (with the instruction 'Whip egg whites to stiff peaks'), Step 2 shows a red-and-white mixture being folded with a spatula (with the instruction 'Gently fold in the puree and batter'), Step 3 shows pink liquid being poured into a round mold (with the instruction 'Pour into mold and chill for 4 hours'), Step 4 shows the finished cake decorated with raspberries and mint leaves (with the instruction 'Decorate with raspberries and mint'); a light brown information bar runs along the bottom edge, with icons on the left representing 'Preparation time: 30 minutes', 'Cooking time: 20 minutes', and 'Servings: 8'. The overall color scheme is dominated by creamy white and light pink, with a subtle paper texture in the background, featuring compact and orderly text and image layout with clear information hierarchy.\"\nimage = pipe(\n    prompt=prompt,\n    height=32*32,\n    width=36*32,\n    num_inference_steps=50,\n    guidance_scale=1.5,\n    generator=torch.Generator(device=\"cuda\").manual_seed(42),\n).images[0]\nimage.save(\"output_t2i.png\")\n```\n*Note: For optimal text rendering, ensure all text within the image prompt is enclosed in quotation marks. For higher image quality, consider enhancing prompts with GLM-4.7.*\n\n### Use Cases\n*   Generating complex infographics or magazine layouts with perfectly rendered text.\n*   Creating educational materials requiring precise semantic and knowledge-intensive visual representation.\n*   Advanced image editing, such as sophisticated background replacement or object modification.\n*   Artistic style transfer while maintaining intricate details.\n*   Ensuring consistent identities of subjects across multiple generated images.\n\n### Citations/Sources\n*   GLM-4-9B-0414\n*   transformers library\n*   diffusers library\n*   sglang library\n*   GLM-Image Technical Blog\n*   zai-org Github\n",
+      "hero_image_url": "",
+      "read_time_minutes": 5,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [],
+      "related_model_ids": "",
+      "published": false,
+      "published_at": "2026-01-20 08:05:03.457539+00",
+      "created_at": "2026-02-14T12:18:48.863Z",
+      "updated_at": "2026-02-14T12:18:48.863Z",
+      "models": {
+        "id": "model-csv-placeholder-10",
+        "display_name": "GLM-Image",
+        "category": "Text Generation",
+        "model_scores": {
+          "overall_score": 0,
+          "tier": "C",
+          "quality_score": 0,
+          "speed_score": 0,
+          "freedom_score": 0
+        },
+        "associated_article_slug": "glm-image-text-aware-visual-creation",
+        "articles": [
+          {
+            "slug": "glm-image-text-aware-visual-creation"
+          }
+        ]
+      }
+    },
+    {
+      "id": "article-csv-13",
+      "model_id": "model-csv-placeholder-13",
+      "title": "Kimi-K2.5: The Multimodal Agent King Reinventing AI",
+      "slug": "kimi-k2.5-multimodal-agent-king-reinventing-ai",
+      "excerpt": "Forget everything you thought you knew about multimodal AI; Kimi-K2.5 isn't just raising the bar, it's building a whole new skyscraper. This is the future of intelligent agents, unleashed by moonshotai, pushing the boundaries of open science.",
+      "content": "## Kimi-K2.5: The Multimodal Agent King Reinventing AI\n\n**Opening Hook**\nForget everything you thought you knew about multimodal AI; Kimi-K2.5 isn't just raising the bar, it's building a whole new skyscraper. This is the future of intelligent agents, unleashed by moonshotai, pushing the boundaries of open science.\n\n**Key Features and Innovations**\nKimi-K2.5, built atop Kimi-K2-Base with approximately 15 trillion mixed visual and text tokens, is a true game-changer.\n*   **Native Multimodality**: Pre-trained on vision–language tokens, it boasts unparalleled visual knowledge, cross-modal reasoning, and tool use grounded in visual inputs – pure excellence in understanding the world as we see it.\n*   **Coding with Vision**: Generating code from visual specifications like UI designs or video workflows, K2.5 autonomously orchestrates tools for visual data processing. A true developer's dream.\n*   **Agent Swarm**: Beyond single-agent scaling, K2.5 transitions to a self-directed, coordinated swarm, decomposing complex tasks into parallel sub-tasks executed by dynamically instantiated, domain-specific agents. The future of autonomous problem-solving is here.\n*   **Mixture-of-Experts (MoE) Architecture**: With 1T total parameters (32B activated), its MoE design with 384 experts delivers potent capabilities efficiently.\n*   **Instant & Thinking Modes**: Offering both, K2.5 adapts to task complexity, ensuring optimal performance for reasoning and agentic paradigms.\n\n**Performance Analysis**\nKimi-K2.5 doesn't just talk a big game; it delivers. Across a sprawling suite of benchmarks, it consistently challenges, and often surpasses, industry titans like GPT-5.2, Claude 4.5 Opus, and Gemini 3 Pro. In critical areas like HLE-Full with tools, Agentic Search (especially with its Agent Swarm), and numerous vision benchmarks (MathVision, OCRBench, WorldVQA), K2.5 carves out a dominant position. Its \"Thinking\" mode, coupled with tool use and the groundbreaking Agent Swarm, establishes it as a formidable force. The results speak for themselves: this model is setting a new standard for multimodal agentic capabilities.\n\n### Scoring Breakdown\n*   **Quality (93/100)**: Kimi-K2.5 consistently delivers strong, often leading, performance across a vast array of multimodal, agentic, and coding benchmarks, particularly when leveraging its tool-augmented and agent swarm capabilities.\n*   **Speed (60/100)**: The README does not provide specific metrics or descriptive language regarding the model's inference speed.\n*   **Freedom (45/100)**: While billed as open-source and available via Hugging Face, the specific license details are unclear (\"7. License\"), and access is primarily through a platform API, which typically implies costs.\n\n**Implementation/Usage**\nAccessing Kimi-K2.5 is straightforward via the moonshot.ai platform API, which offers OpenAI/Anthropic-compatible endpoints. A Kimi Vendor Verifier is also provided to ensure correct deployment.\n\n**Use Cases**\n*   Automated generation of code from visual specifications, like UI designs.\n*   Complex, multi-step task automation through its innovative Agent Swarm.\n*   Advanced cross-modal reasoning for image and video analysis.\n*   Intelligent document processing and information extraction from diverse formats.\n*   Enhancing search capabilities with proactive tool use and context management.\n\n**Citations/Sources**\n*   Kimi-K2.5 API: https://platform.moonshot.ai\n*   Kimi Vendor Verifier (available for deployment verification)\n*   WorldVQA: https://github.com/MoonshotAI/WorldVQA",
+      "hero_image_url": "",
+      "read_time_minutes": 4,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [],
+      "related_model_ids": "",
+      "published": false,
+      "published_at": "2026-02-03 09:46:35.541103+00",
+      "created_at": "2026-02-14T12:18:48.863Z",
+      "updated_at": "2026-02-14T12:18:48.863Z",
+      "models": {
+        "id": "model-csv-placeholder-13",
+        "display_name": "Kimi-K2.5",
+        "category": "Text Generation",
+        "model_scores": {
+          "overall_score": 0,
+          "tier": "C",
+          "quality_score": 0,
+          "speed_score": 0,
+          "freedom_score": 0
+        },
+        "associated_article_slug": "kimi-k2.5-multimodal-agent-king-reinventing-ai",
+        "articles": [
+          {
+            "slug": "kimi-k2.5-multimodal-agent-king-reinventing-ai"
+          }
+        ]
+      }
+    },
+    {
+      "id": "article-csv-18",
+      "model_id": "model-csv-placeholder-18",
+      "title": "Tencent's HY-MT1.5-1.8B: The Edge Translation Powerhouse You Didn't See Coming",
+      "slug": "tencent-hy-mt1-5-1-8b-edge-translation-powerhouse",
+      "excerpt": "Forget bulky translation models! Tencent's HY-MT1.5-1.8B bursts onto the scene, promising industry-leading speed and quality in a compact, edge-ready package. Is this the new standard for real-time, multilingual communication?",
+      "content": "Tencent is making a bold statement with the HY-MT1.5-1.8B, a compact translation model that punches well above its weight class. This isn't just another language model; it's a strategic move towards democratizing AI, delivering high-speed, high-quality translation right to the edge.\n\n### Key Features and Innovations\n*   **Compact Powerhouse:** At just 1.8 billion parameters, it rivals the performance of significantly larger models and even surpasses many commercial APIs of the same size.\n*   **Edge-Ready Deployment:** Optimized for real-time scenarios, it can be quantized (FP8, Int4) and deployed on edge devices, making high-quality translation ubiquitous.\n*   **Multilingual Mastery:** Supports mutual translation across a staggering 33 languages, plus 5 ethnic and dialect variations, showcasing impressive linguistic breadth.\n*   **Intelligent Translation:** Features like terminology intervention, contextual awareness, and formatted translation elevate its utility beyond basic word-for-word conversion.\n\n### Performance Analysis\nThe HY-MT1.5-1.8B is nothing short of a marvel in efficiency. Tencent claims it delivers performance comparable to its much larger 7B counterpart, all while maintaining \"high speed and high quality.\" This isn't just an incremental improvement; it's a paradigm shift for resource-constrained environments. Imagine industry-leading translation performance, not just on servers, but directly on your device, capable of real-time processing. This model redefines what's possible for compact, high-utility AI, proving that size isn't everything when it comes to linguistic prowess.\n\n### Scoring Breakdown\n*   **Quality (90/100)**: Achieves industry-leading performance for its size, comparable to larger models, and surpasses many commercial APIs.\n*   **Speed (90/100)**: Designed for \"high speed\" and \"real-time translation scenarios,\" especially when deployed on edge devices after quantization.\n*   **Freedom (70/100)**: Open-sourced and available on Hugging Face, implying free usage, but the specific license remains unknown, limiting full transparency.\n\n### Implementation/Usage\nGetting started with HY-MT1.5-1.8B is straightforward, leveraging the popular `transformers` library. Ensure you're on version `4.56.0` for optimal compatibility.\n\n```bash\npip install transformers==4.56.0\n```\n\nHere's how to integrate it into your Python applications:\n\n```python\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\nimport os\n\nmodel_name_or_path = \"tencent/HY-MT1.5-1.8B\"\ntokenizer = AutoTokenizer.from_pretrained(model_name_or_path)\nmodel = AutoModelForCausalLM.from_pretrained(model_name_or_path, device_map=\"auto\")\n# You may want to use bfloat16 and/or move to GPU here\nmessages = [\n    {\"role\": \"user\", \"content\": \"Translate the following segment into Chinese, without additional explanation.\\n\\nIt’s on the house.\"}\n]\ntokenized_chat = tokenizer.apply_chat_template(\n    messages,\n    tokenize=True,\n    add_generation_prompt=False,\n    return_tensors=\"pt\"\n)\n\noutputs = model.generate(tokenized_chat.to(model.device), max_new_tokens=2048)\noutput_text = tokenizer.decode(outputs[0])\n```\n\n### Use Cases\nThe versatility and efficiency of HY-MT1.5-1.8B open up a world of possibilities:\n*   **Real-time Mobile Translation:** Powering instant language conversion in smartphone apps.\n*   **On-device Wearable Translators:** Enabling seamless communication without cloud dependency.\n*   **Localized Content Generation:** Assisting creators in adapting content for diverse audiences while maintaining specific terminology.\n*   **Cross-cultural Business Communication:** Facilitating smoother interactions in international settings, even with nuanced dialects.\n*   **Embedded IoT Translation:** Bringing language capabilities to smart devices and appliances.\n\n### Citations/Sources\nFor deeper insights into the model's architecture and performance, refer to the technical report:\n```\n@misc{hy-mt1.5,\n      title={HY-MT1.5 Technical Report}, \n      author={Mao Zheng and Zheng Li and Tao Chen and Mingyang Song and Di Wang},\n      year={2025},\n      eprint={2512.24092},\n      archivePrefix={arXiv},\n      primaryClass={cs.CL},\n      url={https://arxiv.org/abs/2512.24092}, \n}\n```",
+      "hero_image_url": "",
+      "read_time_minutes": 4,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [],
+      "related_model_ids": "",
+      "published": false,
+      "published_at": "2026-01-06 20:25:46.703061+00",
+      "created_at": "2026-02-14T12:18:48.863Z",
+      "updated_at": "2026-02-14T12:18:48.863Z",
+      "models": {
+        "id": "model-csv-placeholder-18",
+        "display_name": "Tencent's HY-MT1.5-1.8B",
+        "category": "Text Generation",
+        "model_scores": {
+          "overall_score": 0,
+          "tier": "C",
+          "quality_score": 0,
+          "speed_score": 0,
+          "freedom_score": 0
+        },
+        "associated_article_slug": "tencent-hy-mt1-5-1-8b-edge-translation-powerhouse",
+        "articles": [
+          {
+            "slug": "tencent-hy-mt1-5-1-8b-edge-translation-powerhouse"
+          }
+        ]
+      }
+    },
+    {
+      "id": "article-csv-20",
+      "model_id": "model-csv-placeholder-20",
+      "title": "Unleash the Inner Cinematographer: Qwen-Image-Edit-2511 Gets a Multi-Angle Upgrade",
+      "slug": "qwen-image-edit-2511-multi-angle-upgrade",
+      "excerpt": "Tired of flat, uninspired image generations? The new Qwen-Image-Edit-2511-Multiple-Angles-LoRA by fal is here to revolutionize your creative control. This isn't just another LoRA; it's a precision instrument for crafting dynamic, multi-angle visuals.",
+      "content": "## Unleash the Inner Cinematographer: Qwen-Image-Edit-2511 Gets a Multi-Angle Upgrade\n\nGenerative AI has been a wild ride, but often, the biggest challenge isn't what you can create, but *how* you can control it. Enter **Qwen-Image-Edit-2511-Multiple-Angles-LoRA** from `fal`, a game-changer that transforms Qwen-Image-Edit-2511 into a veritable virtual camera rig. This isn't just another LoRA; it's a precision instrument for crafting dynamic, multi-angle visuals with unprecedented control. The future of image generation demands more than just content – it demands a viewpoint, and this LoRA delivers.\n\n### Key Features and Innovations\n\n*   **96 Precise Camera Poses**: Forget vague prompts. This LoRA offers exact control with 4 elevations, 8 azimuths, and 3 distances, giving you a full 96 distinct viewpoints.\n*   **Gaussian Splatting Data**: Trained on over 3000 high-quality, 3D-consistent Gaussian Splatting renders, ensuring superior spatial understanding and realistic perspective shifts.\n*   **Low-Angle Excellence**: Finally, proper support for ground-level and truly low camera positions (-30°), adding depth and dramatic flair previously hard to achieve.\n*   **First of its Kind**: This is the inaugural multi-angle camera control LoRA specifically designed for Qwen-Image-Edit-2511, setting a new standard for creative freedom.\n\n### Performance Analysis\n\nWhile raw speed benchmarks aren't explicitly detailed, the sheer volume and quality of the training data—3000+ Gaussian Splatting renders—speak volumes about the expected output fidelity. This massive, 3D-consistent dataset is the bedrock of its precision, promising generations that not only adhere to your chosen camera angle but do so with remarkable spatial accuracy. The meticulous testing and numerous iterations mentioned in the README suggest a commitment to quality that should translate into highly reliable and visually compelling results. This is less about raw speed and more about unlocking a new dimension of creative control, ensuring that every image is rendered exactly as envisioned.\n\n### Scoring Breakdown\n\n*   **Quality (60/100)**: While no explicit benchmarks are provided, the training on 3000+ Gaussian Splatting renders and emphasis on precision suggest a strong focus on output quality and 3D consistency.\n*   **Speed (60/100)**: No specific speed metrics or descriptors were provided in the README. Default score applied.\n*   **Freedom (100/100)**: Released under the permissive Apache-2.0 license, this LoRA is open source, free to use, and readily available on Hugging Face, earning it top marks for accessibility and openness.\n\n### Implementation/Usage\n\nIntegrating this LoRA is straightforward, enhancing the base Qwen-Image-Edit-2511 model with its specialized camera control via a simple prompt format. For optimal results, `fal` recommends a LoRA strength between 0.8 and 1.0.\n\n**Prompt Format:**\n\n```text\n<sks> [azimuth] [elevation] [distance]\n```\n\n**Quick Examples:**\n\n```text\n<sks> front view eye-level shot medium shot\n<sks> right side view high-angle shot close-up\n<sks> back view low-angle shot wide shot\n```\n\n### Use Cases\n\n*   **Product Photography**: Generate perfect multi-angle shots of products for e-commerce or marketing materials.\n*   **Architectural Visualization**: Create dynamic exterior and interior views from precise vantage points.\n*   **Storyboarding and Pre-visualization**: Rapidly generate consistent scenes from various camera angles for film or game development.\n*   **Character Design**: Explore character models from every conceivable angle, including challenging low-angle hero shots.\n*   **Virtual World Creation**: Build comprehensive visual libraries of objects and environments from a controlled set of perspectives.\n\n### Citations/Sources\n\nBuilt with fal.ai\nBase Model: Qwen/Qwen-Image-Edit-2511",
+      "hero_image_url": "",
+      "read_time_minutes": 4,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [],
+      "related_model_ids": "",
+      "published": false,
+      "published_at": "2026-01-13 14:50:55.597734+00",
+      "created_at": "2026-02-14T12:18:48.863Z",
+      "updated_at": "2026-02-14T12:18:48.863Z",
+      "models": {
+        "id": "model-csv-placeholder-20",
+        "display_name": "Unleash the Inner Cinematographer",
+        "category": "Text Generation",
+        "model_scores": {
+          "overall_score": 0,
+          "tier": "C",
+          "quality_score": 0,
+          "speed_score": 0,
+          "freedom_score": 0
+        },
+        "associated_article_slug": "qwen-image-edit-2511-multi-angle-upgrade",
+        "articles": [
+          {
+            "slug": "qwen-image-edit-2511-multi-angle-upgrade"
+          }
+        ]
+      }
+    },
+    {
+      "id": "article-csv-22",
+      "model_id": "model-csv-placeholder-22",
+      "title": "Z-Image-Turbo: The New Standard for Blazing-Fast, Photorealistic AI Art",
+      "slug": "z-image-turbo-fast-photorealistic-ai-art",
+      "excerpt": "Tongyi-MAI's Z-Image-Turbo is here to redefine image generation. With sub-second inference and stunning photorealism, it's a game-changer for creators and developers alike. Get ready for speed and quality in one powerful package.",
+      "content": "Tongyi-MAI has just dropped Z-Image-Turbo, and it's not just another image generator – it's a statement. This model is engineered for pure speed and uncompromising quality, poised to redefine what's possible in the realm of AI-powered visual creation.\n\n### Key Features and Innovations\n\n*   **Blazing-Fast Inference:** Achieve sub-second image generation on H800 GPUs with just 8 NFEs, making real-time applications a reality.\n*   **Photorealistic & Bilingual Excellence:** Delivers stunning photorealism while mastering accurate text rendering in both English and complex Chinese characters.\n*   **Consumer-Friendly Efficiency:** Designed to run comfortably on consumer devices with just 16GB of VRAM, democratizing high-end AI art.\n*   **Distillation Breakthroughs:** Leverages cutting-edge Decoupled-DMD and DMDR techniques, optimizing for both speed and semantic quality in few-step generation.\n\n### Performance Analysis\n\nIn a world saturated with AI image models, Z-Image-Turbo cuts through the noise with undeniable performance. Evaluated on the Alibaba AI Arena using Elo-based Human Preference, it doesn't just compete; it sets a new benchmark, achieving state-of-the-art results among open-source models. This isn't just about generating images; it's about generating them *fast* and *flawlessly*.\n\nThe underlying Scalable Single-Stream DiT (S3-DiT) architecture, combined with its innovative distillation methods, is the secret sauce. By unifying input streams, it maximizes parameter efficiency, translating directly into the lightning-fast inference and high-quality outputs users demand. Tongyi-MAI isn't just building models; they're crafting a new era of accessible, high-performance AI.\n\n### Scoring Breakdown\n\n*   **Quality (92/100)**: Achieves state-of-the-art among open-source models with strong photorealism and accurate bilingual text rendering, as validated by human preference evaluations.\n*   **Speed (96/100)**: Boasts sub-second inference latency with only 8 NFEs and fits 16G VRAM, highlighting exceptional efficiency and speed.\n*   **Freedom (90/100)**: Released under Apache 2.0 license with open weights on Hugging Face, enabling commercial use and community development.\n\n### Implementation/Usage\n\nGetting started with Z-Image-Turbo is straightforward, especially with its integration into `diffusers`. Ensure you install `diffusers` from source for the latest features.\n\n```bash\npip install git+https://github.com/huggingface/diffusers\n```\n\n```python\nimport torch\nfrom diffusers import ZImagePipeline\n\npipe = ZImagePipeline.from_pretrained(\n    \"Tongyi-MAI/Z-Image-Turbo\",\n    torch_dtype=torch.bfloat16,\n    low_cpu_mem_usage=False,\n)\npipe.to(\"cuda\")\n\nprompt = \"Young Chinese woman in red Hanfu, intricate embroidery. Impeccable makeup, red floral forehead pattern. Elaborate high bun, golden phoenix headdress, red flowers, beads. Holds round folding fan with lady, trees, bird. Neon lightning-bolt lamp (⚡️), bright yellow glow, above extended left palm. Soft-lit outdoor night background, silhouetted tiered pagoda (西安大雁塔), blurred colorful distant lights.\"\n\nimage = pipe(\n    prompt=prompt,\n    height=1024,\n    width=1024,\n    num_inference_steps=9,\n    guidance_scale=0.0,\n    generator=torch.Generator(\"cuda\").manual_seed(42),\n).images[0]\n\nimage.save(\"example.png\")\n```\n\n### Use Cases\n\n*   **Rapid Content Creation:** Generate high-quality photorealistic visuals for marketing, advertising, or digital art in mere moments.\n*   **Bilingual Design & Localization:** Produce graphics with perfectly rendered English and Chinese text, ideal for global campaigns.\n*   **Creative Image Editing:** Leverage the Z-Image-Edit variant for imaginative image-to-image transformations guided by natural language.\n\n### Citations/Sources\n\n*   Z-Image: An Efficient Image Generation Foundation Model with Single-Stream Diffusion Transformer, Z-Image Team (2025). arXiv:2511.22699.\n*   Decoupled DMD: CFG Augmentation as the Spear, Distribution Matching as the Shield, Liu et al. (2025). arXiv:2511.22677.\n*   Distribution Matching Distillation Meets Reinforcement Learning, Jiang et al. (2025). arXiv:2511.13649.",
+      "hero_image_url": "",
+      "read_time_minutes": 5,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [],
+      "related_model_ids": "",
+      "published": false,
+      "published_at": "2025-12-17 11:40:29.0793+00",
+      "created_at": "2026-02-14T12:18:48.863Z",
+      "updated_at": "2026-02-14T12:18:48.863Z",
+      "models": {
+        "id": "model-csv-placeholder-22",
+        "display_name": "Z-Image-Turbo",
+        "category": "Text Generation",
+        "model_scores": {
+          "overall_score": 0,
+          "tier": "C",
+          "quality_score": 0,
+          "speed_score": 0,
+          "freedom_score": 0
+        },
+        "associated_article_slug": "z-image-turbo-fast-photorealistic-ai-art",
+        "articles": [
+          {
+            "slug": "z-image-turbo-fast-photorealistic-ai-art"
+          }
+        ]
+      }
+    },
+    {
+      "id": "article-csv-29",
+      "model_id": "model-csv-placeholder-29",
+      "title": "FunctionGemma-270m-it: Google's Curated Leap in Text Generation",
+      "slug": "functiongemma-270m-it-googles-curated-leap-in-text-generation",
+      "excerpt": "Google's FunctionGemma-270m-it bursts onto the scene, a potent new force in text generation. But while Google champions 'open science,' this model comes with a distinct, agreement-gated approach. Dive into its promise and peculiar access.",
+      "content": "Google's `functiongemma-270m-it` bursts onto the scene, a clear statement of intent in the rapidly evolving landscape of text generation. This isn't merely an incremental update; it's Google's latest strategic maneuver, ostensibly advancing their \"open source and open science\" journey, albeit with a uniquely Google-flavored approach to accessibility. Prepare for a powerful, yet carefully curated, experience.\n\n### Key Features and Innovations\n*   **Precision Text Generation:** Tailored specifically for text generation tasks, implying a focused architecture for high-quality output in this domain.\n*   **Google's Engineering Excellence:** Hailing from Google, `functiongemma-270m-it` carries the weight of a tech giant's extensive research and development, suggesting inherent robustness and state-of-the-art capabilities.\n*   **Strategic Democratization:** Positioned within Google's broader mission to democratize AI, aiming to make advanced models more broadly available, even if specific terms apply for usage.\n*   **Seamless Hugging Face Access:** Its presence on Hugging Face ensures that developers and researchers can easily discover and begin the access process for this model.\n\n### Performance Analysis\nThe `functiongemma-270m-it` arrives without a parade of benchmark scores or explicit performance metrics, which is a curious omission given Google's usual transparency with its cutting-edge models. This leaves us to infer its capabilities primarily from its origin and category. As a model from Google focused on \"Text Generation,\" one can reasonably anticipate a high standard of output quality and coherence. The \"it\" in its name often denotes an \"instruction-tuned\" variant, suggesting a model finely honed to understand and execute specific prompts, making it incredibly versatile for practical applications. While the README proudly states that access requests are \"processed immediately,\" this speaks to the administrative speed of getting your hands on the model, not its inference speed in generating text. We must reserve judgment on raw performance, but the Google name alone commands a certain level of expectation for excellence.\n\n### Scoring Breakdown\n*   **Quality (60/100)**: With no specific benchmarks, evaluation metrics, or comparative results provided, we default to a neutral baseline. While the Google name suggests inherent quality, concrete data is absent.\n*   **Speed (60/100)**: The README mentions that access requests are \"processed immediately,\" which is great for getting started. However, this offers no insight into the model's actual inference speed or generation latency. Thus, a default score is applied.\n*   **Freedom (60/100)**: The `gemma` license, requiring users to \"review and agree to Google’s usage license,\" indicates a controlled access model rather than a fully permissive open-source license. While the organization's mission mentions \"open source and open science,\" the specific licensing terms introduce a gate. The model is available for free on Hugging Face, adding points for accessibility.\n\n### Use Cases\n*   **Intelligent Content Creation:** Drafting marketing copy, creative narratives, or blog posts.\n*   **Automated Summarization:** Condensing lengthy articles or reports into digestible summaries.\n*   **Personalized User Interactions:** Crafting dynamic and context-aware responses for chatbots or virtual assistants.\n*   **Educational Material Generation:** Developing explanations, examples, or interactive learning prompts.\n*   **Dialogue Systems:** Building more natural and fluent conversational AI agents.",
+      "hero_image_url": "",
+      "read_time_minutes": 4,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [],
+      "related_model_ids": "",
+      "published": false,
+      "published_at": "2025-12-23 09:32:01.475791+00",
+      "created_at": "2026-02-14T12:18:48.863Z",
+      "updated_at": "2026-02-14T12:18:48.863Z",
+      "models": {
+        "id": "model-csv-placeholder-29",
+        "display_name": "FunctionGemma-270m-it",
+        "category": "Text Generation",
+        "model_scores": {
+          "overall_score": 0,
+          "tier": "C",
+          "quality_score": 0,
+          "speed_score": 0,
+          "freedom_score": 0
+        },
+        "associated_article_slug": "functiongemma-270m-it-googles-curated-leap-in-text-generation",
+        "articles": [
+          {
+            "slug": "functiongemma-270m-it-googles-curated-leap-in-text-generation"
+          }
+        ]
+      }
+    },
+    {
+      "id": "article-csv-31",
+      "model_id": "model-csv-placeholder-31",
+      "title": "NVIDIA's personaplex-7b-v1: The Open Science Catalyst for Audio Excellence",
+      "slug": "nvidia-personaplex-7b-v1-open-science-audio-excellence",
+      "excerpt": "NVIDIA unveils personaplex-7b-v1, an audio processing model embodying their commitment to open source and open science. This isn't just another release; it's a strategic move to democratize advanced AI, promising to redefine audio capabilities.",
+      "content": "NVIDIA, a name synonymous with pushing the boundaries of AI, has once again delivered, unveiling `personaplex-7b-v1`. This isn't just another model; it's a testament to their unwavering commitment to democratizing advanced AI, particularly in the critical domain of audio processing.\n\n### Key Features and Innovations\n\n*   **Open Science Commitment:** Rooted in NVIDIA's mission to advance and democratize AI through open source and open science, `personaplex-7b-v1` embodies a collaborative spirit, signaling a powerful shift towards accessible innovation.\n*   **Audio Processing Powerhouse:** Categorized specifically for audio processing, this model targets a vital area of AI development, promising significant impact across various industries.\n*   **NVIDIA's Open Model Initiative:** Governed by the NVIDIA Open Model License Agreement, it represents a structured and deliberate approach to making powerful models accessible under clear terms.\n*   **Additional Openness:** Further enriched with CC-BY-4.0 for additional information, signaling a broad approach to sharing knowledge and assets, fostering a more inclusive AI ecosystem.\n\n### Performance Analysis\n\nGiven the information provided, `personaplex-7b-v1` emerges as a model whose primary strength lies in its strategic positioning and the backing of a tech titan. While specific performance metrics remain under wraps in the public-facing documentation, the mere presence of an NVIDIA-backed `Audio Processing` model speaks volumes. The organization's track record for innovation suggests a commitment to excellence, implying robust capabilities that will undoubtedly redefine expectations in its category.\n\nThis model's release is less about raw benchmark numbers at this stage and more about a declaration of intent: NVIDIA is serious about fostering an open ecosystem for advanced AI. The true performance value, therefore, isn't just in what it *does*, but what it *represents* for the future of accessible, high-quality audio AI.\n\n### Scoring Breakdown\n\n*   **Quality (60/100)**: No specific benchmarks or evaluation metrics were provided, so we default to a solid baseline score.\n*   **Speed (60/100)**: Without explicit inference speed data or performance keywords, a default score is applied.\n*   **Freedom (70/100)**: While governed by the NVIDIA Open Model License Agreement (an unlisted license in our rubric, thus treated as 'unknown' for base scoring), the model's description champions \"open source and open science\" and is available on Hugging Face, indicating a strong commitment to accessibility and collaboration.\n\n### Use Cases\n\n*   **Enhanced Audio Analytics:** Powering next-generation tools for understanding and interpreting complex audio data with unprecedented clarity.\n*   **Advanced Voice Interfaces:** Enabling more natural and responsive human-computer interaction through superior audio processing and understanding.\n*   **Creative Audio Generation:** Opening new avenues for innovative sound design, dynamic music synthesis, and immersive audio environments.\n*   **Accessibility Technologies:** Improving assistive technologies that rely on robust audio interpretation for diverse users, making technology more inclusive.\n\n### Citations/Sources\n\n*   GOVERNING TERMS: NVIDIA Open Model License Agreement\n*   ADDITIONAL INFORMATION: CC-BY-4.0",
+      "hero_image_url": "",
+      "read_time_minutes": 4,
+      "author": "TopTierModels AI",
+      "version": "1",
+      "seo_keywords": [],
+      "related_model_ids": "",
+      "published": false,
+      "published_at": "2026-01-27 08:28:51.562576+00",
+      "created_at": "2026-02-14T12:18:48.863Z",
+      "updated_at": "2026-02-14T12:18:48.863Z",
+      "models": {
+        "id": "model-csv-placeholder-31",
+        "display_name": "NVIDIA's personaplex-7b-v1",
+        "category": "Text Generation",
+        "model_scores": {
+          "overall_score": 0,
+          "tier": "C",
+          "quality_score": 0,
+          "speed_score": 0,
+          "freedom_score": 0
+        },
+        "associated_article_slug": "nvidia-personaplex-7b-v1-open-science-audio-excellence",
+        "articles": [
+          {
+            "slug": "nvidia-personaplex-7b-v1-open-science-audio-excellence"
+          }
+        ]
+      }
     }
   ],
   "models": [
     {
-      "id": "model-1771071150962-1",
+      "id": "model-1771071528856-1",
       "huggingface_url": "https://www.llama.com/",
       "model_name": "llama-4-70b",
       "display_name": "Llama 4",
@@ -1183,7 +1471,7 @@
       }
     },
     {
-      "id": "model-1771071150963-2",
+      "id": "model-1771071528856-2",
       "huggingface_url": "https://x.ai/",
       "model_name": "grok-3",
       "display_name": "Grok 3",
@@ -1212,7 +1500,7 @@
       }
     },
     {
-      "id": "model-1771071150963-3",
+      "id": "model-1771071528857-3",
       "huggingface_url": "https://deepmind.google/models/gemini/pro/",
       "model_name": "gemini-3-0-pro",
       "display_name": "Gemini 3.0 Pro",
@@ -1241,7 +1529,7 @@
       }
     },
     {
-      "id": "model-1771071150963-4",
+      "id": "model-1771071528857-4",
       "huggingface_url": "https://openai.com/",
       "model_name": "gpt-5",
       "display_name": "GPT-5",
@@ -1270,7 +1558,7 @@
       }
     },
     {
-      "id": "model-1771071150963-5",
+      "id": "model-1771071528857-5",
       "huggingface_url": "https://www.anthropic.com/claude",
       "model_name": "claude-4-5-sonnet",
       "display_name": "Claude 4.5 Sonnet",
@@ -1299,7 +1587,7 @@
       }
     },
     {
-      "id": "model-1771071150963-6",
+      "id": "model-1771071528857-6",
       "huggingface_url": "https://blackforestlabs.ai/",
       "model_name": "flux-1-1-ultra",
       "display_name": "Flux 1.1 Ultra",
@@ -1328,7 +1616,7 @@
       }
     },
     {
-      "id": "model-1771071150964-7",
+      "id": "model-1771071528857-7",
       "huggingface_url": "https://ideogram.ai/",
       "model_name": "ideogram-v3",
       "display_name": "Ideogram v3",
@@ -1357,7 +1645,7 @@
       }
     },
     {
-      "id": "model-1771071150964-8",
+      "id": "model-1771071528858-8",
       "huggingface_url": "https://deepmind.google/technologies/imagen/",
       "model_name": "imagen-4",
       "display_name": "Imagen 4",
@@ -1386,7 +1674,7 @@
       }
     },
     {
-      "id": "model-1771071150964-9",
+      "id": "model-1771071528858-9",
       "huggingface_url": "https://www.midjourney.com/",
       "model_name": "midjourney-v7",
       "display_name": "Midjourney v7",
@@ -1415,7 +1703,7 @@
       }
     },
     {
-      "id": "model-1771071150964-10",
+      "id": "model-1771071528858-10",
       "huggingface_url": "https://openai.com/dall-e-3",
       "model_name": "dall-e-3",
       "display_name": "DALL-E 3",
@@ -1444,7 +1732,7 @@
       }
     },
     {
-      "id": "model-1771071150964-11",
+      "id": "model-1771071528858-11",
       "huggingface_url": "https://cartesia.ai/",
       "model_name": "sonic",
       "display_name": "Cartesia (Sonic)",
@@ -1473,7 +1761,7 @@
       }
     },
     {
-      "id": "model-1771071150964-12",
+      "id": "model-1771071528858-12",
       "huggingface_url": "https://elevenlabs.io/",
       "model_name": "elevenlabs-v3",
       "display_name": "ElevenLabs v3",
@@ -1502,7 +1790,7 @@
       }
     },
     {
-      "id": "model-1771071150964-13",
+      "id": "model-1771071528858-13",
       "huggingface_url": "https://deepmind.google/technologies/gemini/flash/",
       "model_name": "gemini-2-0-flash-audio",
       "display_name": "Gemini 2.0 Flash",
@@ -1531,7 +1819,7 @@
       }
     },
     {
-      "id": "model-1771071150964-14",
+      "id": "model-1771071528858-14",
       "huggingface_url": "https://suno.com/",
       "model_name": "suno-v4",
       "display_name": "Suno v4",
@@ -1560,7 +1848,7 @@
       }
     },
     {
-      "id": "model-1771071150964-15",
+      "id": "model-1771071528858-15",
       "huggingface_url": "https://www.udio.com/",
       "model_name": "udio-v1",
       "display_name": "Udio",
@@ -1589,7 +1877,7 @@
       }
     },
     {
-      "id": "model-1771071150964-16",
+      "id": "model-1771071528858-16",
       "huggingface_url": "https://www.ultralytics.com/",
       "model_name": "yolov12",
       "display_name": "YOLOv12",
@@ -1619,7 +1907,7 @@
       }
     },
     {
-      "id": "model-1771071150964-17",
+      "id": "model-1771071528858-17",
       "huggingface_url": "https://www.microsoft.com/en-us/research/project/project-florence/",
       "model_name": "florence-2-large",
       "display_name": "Florence-2",
@@ -1648,7 +1936,7 @@
       }
     },
     {
-      "id": "model-1771071150965-18",
+      "id": "model-1771071528859-18",
       "huggingface_url": "https://segment-anything.com/",
       "model_name": "sam-3",
       "display_name": "SAM 3 (Meta)",
@@ -1677,7 +1965,7 @@
       }
     },
     {
-      "id": "model-1771071150965-19",
+      "id": "model-1771071528859-19",
       "huggingface_url": "https://dinov2.metademolab.com/",
       "model_name": "dinov2-large",
       "display_name": "DINOv2",
@@ -1706,7 +1994,7 @@
       }
     },
     {
-      "id": "model-1771071150965-20",
+      "id": "model-1771071528859-20",
       "huggingface_url": "https://roboflow.com/",
       "model_name": "rf-detr",
       "display_name": "RF-DETR",
@@ -1735,7 +2023,7 @@
       }
     },
     {
-      "id": "model-1771071150965-21",
+      "id": "model-1771071528859-21",
       "huggingface_url": "https://mistral.ai/",
       "model_name": "pixtral-large",
       "display_name": "Pixtral Large",
@@ -1764,7 +2052,7 @@
       }
     },
     {
-      "id": "model-1771071150965-22",
+      "id": "model-1771071528859-22",
       "huggingface_url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
       "model_name": "llama-4-vision",
       "display_name": "Llama 4-Vision",
@@ -1793,7 +2081,7 @@
       }
     },
     {
-      "id": "model-1771071150965-23",
+      "id": "model-1771071528859-23",
       "huggingface_url": "https://www.anthropic.com/news/claude-3-5-sonnet",
       "model_name": "claude-3-5-sonnet-vlm",
       "display_name": "Claude 3.5 Sonnet",
@@ -1822,7 +2110,7 @@
       }
     },
     {
-      "id": "model-1771071150965-24",
+      "id": "model-1771071528859-24",
       "huggingface_url": "https://deepmind.google/technologies/gemini/",
       "model_name": "gemini-3-0-ultra",
       "display_name": "Gemini 3.0 Ultra",
@@ -1851,7 +2139,7 @@
       }
     },
     {
-      "id": "model-1771071150965-25",
+      "id": "model-1771071528859-25",
       "huggingface_url": "https://openai.com/index/introducing-o3-and-o4-mini/",
       "model_name": "openai-o3",
       "display_name": "OpenAI o3",
@@ -1878,6 +2166,150 @@
         "speed_score": 20,
         "freedom_score": 10
       }
+    },
+    {
+      "id": "model-csv-placeholder-5",
+      "display_name": "GLM-4.7",
+      "category": "Text Generation",
+      "model_scores": {
+        "overall_score": 0,
+        "tier": "C",
+        "quality_score": 0,
+        "speed_score": 0,
+        "freedom_score": 0
+      },
+      "associated_article_slug": "glm-4-7-coding-partner-agentic-intelligence",
+      "articles": [
+        {
+          "slug": "glm-4-7-coding-partner-agentic-intelligence"
+        }
+      ]
+    },
+    {
+      "id": "model-csv-placeholder-10",
+      "display_name": "GLM-Image",
+      "category": "Text Generation",
+      "model_scores": {
+        "overall_score": 0,
+        "tier": "C",
+        "quality_score": 0,
+        "speed_score": 0,
+        "freedom_score": 0
+      },
+      "associated_article_slug": "glm-image-text-aware-visual-creation",
+      "articles": [
+        {
+          "slug": "glm-image-text-aware-visual-creation"
+        }
+      ]
+    },
+    {
+      "id": "model-csv-placeholder-13",
+      "display_name": "Kimi-K2.5",
+      "category": "Text Generation",
+      "model_scores": {
+        "overall_score": 0,
+        "tier": "C",
+        "quality_score": 0,
+        "speed_score": 0,
+        "freedom_score": 0
+      },
+      "associated_article_slug": "kimi-k2.5-multimodal-agent-king-reinventing-ai",
+      "articles": [
+        {
+          "slug": "kimi-k2.5-multimodal-agent-king-reinventing-ai"
+        }
+      ]
+    },
+    {
+      "id": "model-csv-placeholder-18",
+      "display_name": "Tencent's HY-MT1.5-1.8B",
+      "category": "Text Generation",
+      "model_scores": {
+        "overall_score": 0,
+        "tier": "C",
+        "quality_score": 0,
+        "speed_score": 0,
+        "freedom_score": 0
+      },
+      "associated_article_slug": "tencent-hy-mt1-5-1-8b-edge-translation-powerhouse",
+      "articles": [
+        {
+          "slug": "tencent-hy-mt1-5-1-8b-edge-translation-powerhouse"
+        }
+      ]
+    },
+    {
+      "id": "model-csv-placeholder-20",
+      "display_name": "Unleash the Inner Cinematographer",
+      "category": "Text Generation",
+      "model_scores": {
+        "overall_score": 0,
+        "tier": "C",
+        "quality_score": 0,
+        "speed_score": 0,
+        "freedom_score": 0
+      },
+      "associated_article_slug": "qwen-image-edit-2511-multi-angle-upgrade",
+      "articles": [
+        {
+          "slug": "qwen-image-edit-2511-multi-angle-upgrade"
+        }
+      ]
+    },
+    {
+      "id": "model-csv-placeholder-22",
+      "display_name": "Z-Image-Turbo",
+      "category": "Text Generation",
+      "model_scores": {
+        "overall_score": 0,
+        "tier": "C",
+        "quality_score": 0,
+        "speed_score": 0,
+        "freedom_score": 0
+      },
+      "associated_article_slug": "z-image-turbo-fast-photorealistic-ai-art",
+      "articles": [
+        {
+          "slug": "z-image-turbo-fast-photorealistic-ai-art"
+        }
+      ]
+    },
+    {
+      "id": "model-csv-placeholder-29",
+      "display_name": "FunctionGemma-270m-it",
+      "category": "Text Generation",
+      "model_scores": {
+        "overall_score": 0,
+        "tier": "C",
+        "quality_score": 0,
+        "speed_score": 0,
+        "freedom_score": 0
+      },
+      "associated_article_slug": "functiongemma-270m-it-googles-curated-leap-in-text-generation",
+      "articles": [
+        {
+          "slug": "functiongemma-270m-it-googles-curated-leap-in-text-generation"
+        }
+      ]
+    },
+    {
+      "id": "model-csv-placeholder-31",
+      "display_name": "NVIDIA's personaplex-7b-v1",
+      "category": "Text Generation",
+      "model_scores": {
+        "overall_score": 0,
+        "tier": "C",
+        "quality_score": 0,
+        "speed_score": 0,
+        "freedom_score": 0
+      },
+      "associated_article_slug": "nvidia-personaplex-7b-v1-open-science-audio-excellence",
+      "articles": [
+        {
+          "slug": "nvidia-personaplex-7b-v1-open-science-audio-excellence"
+        }
+      ]
     }
   ]
 }

@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 // Lazy-loaded pages for code splitting
 const HomePage = lazy(() => import('./pages/HomePage'))
 const TierlistPage = lazy(() => import('./pages/TierlistPage'))
+const ModelsPage = lazy(() => import('./pages/ModelsPage'))
 const ArticlePage = lazy(() => import('./pages/ArticlePage'))
 const PreviewPage = lazy(() => import('./pages/PreviewPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
@@ -58,6 +59,7 @@ function App() {
                 <Suspense fallback={<PageLoader />}>
                     <Routes>
                         <Route path="/" element={<HomePage />} />
+                        <Route path="/models" element={<ModelsPage />} />
                         <Route path="/tierlist" element={<TierlistPage />} />
                         <Route path="/article/:slug" element={<ArticlePage />} />
                         <Route path="/preview/:previewId" element={<PreviewPage />} />
